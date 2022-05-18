@@ -2,7 +2,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import { Route, Routes} from 'react-router-dom';
+import { Route, Routes, Navigate} from 'react-router-dom';
 import Signup from './components/Signup/Signup';
 import Welcomepage from './components/mainpage/Welcomepage';
 import Login from './components/Login/Login';
@@ -30,6 +30,7 @@ function App() {
     <main>
      
       <Routes>
+      <Route path="/" element={<Navigate to="/home" />} >  </Route>
       <Route path="/home" element={<Home/>}/>
       <Route path="/welcomepage" element={<Welcomepage/>}/>
       <Route path="/about" element={<About />}/> 
