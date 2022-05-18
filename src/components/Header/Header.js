@@ -6,7 +6,7 @@ import DrawerComponent from '../DrawerComponent';
 import Logo from '../../brgylogo.jpg';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
-import { Logout } from 'react-hero-icon/soli ad';
+import { Logout } from 'react-hero-icon/solid';
 
 
 function HideOnScroll(props) {
