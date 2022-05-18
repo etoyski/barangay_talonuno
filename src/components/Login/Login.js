@@ -11,6 +11,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Logo from '../../assets/brgylogo.jpg'
+import LoadingButton from '@mui/lab/LoadingButton';
+
 
 function Copyright(props) {
   return (
@@ -29,7 +31,7 @@ const theme = createTheme();
 
 const Login = () => {
   const [error,setError] = useState(false); 
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [inputs,setInputs] = useState({
   
@@ -43,6 +45,7 @@ const Login = () => {
         [e.target.name]: e.target.value
     }))};
     const sendRequest = async () => {
+      setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
              
@@ -50,6 +53,7 @@ const Login = () => {
               password: inputs.password,
           // confirmpassword: inputs.confirmpassword
           })
+          
               console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
              navigate('/mainpage');
@@ -57,6 +61,8 @@ const Login = () => {
       }catch(error) {
         setError(true)
               console.log(error.response.data);
+      }finally {
+        setLoading(false)
       }
     
   }
@@ -134,14 +140,16 @@ const Login = () => {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
+            <LoadingButton 
+             loading = {loading}
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
+              >
+           SignIn
+          </LoadingButton>
+            
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

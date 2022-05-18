@@ -13,12 +13,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 
 import Logo from '../../assets/brgylogo.jpg'
+import LoadingButton from "@mui/lab/LoadingButton";
   const theme = createTheme();
 
   const Signup = () => {
   const navigate = useNavigate();
   const [error,setError] = useState(false); 
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:5001/api/")
@@ -45,6 +46,7 @@ import Logo from '../../assets/brgylogo.jpg'
   };
   //console.log(e.target.name,"value",e.target.value);
   const sendRequest = async () => {
+    setLoading(true)
     try {
       const res = await axios.post(
         "https://barangay-talon-uno.vercel.app/register",
@@ -66,6 +68,9 @@ import Logo from '../../assets/brgylogo.jpg'
       setError(true)
       console.log(error.response);
     }
+    finally {
+      setLoading(false)
+    }
   };
 
   const handleSubmit = (e) => {
@@ -75,7 +80,7 @@ import Logo from '../../assets/brgylogo.jpg'
   };
   return (
     <ThemeProvider theme={theme}>
-    <Grid container component="main"  spacing={3} sx={{ height: '100vh', width: '100%' }}>
+    <Grid container component="main"  spacing={3} sx={{ height: '120vh', width: '100%' }}>
       <CssBaseline />
       <Grid
         item
@@ -246,14 +251,16 @@ import Logo from '../../assets/brgylogo.jpg'
               control={<Checkbox value="remember" color="primary" />}
               label="Agree to Terms & Policy"
             />
-            <Button
+           <LoadingButton 
+             loading = {loading}
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
+              >
+           SignIn
+          </LoadingButton>
+            
             
             <Alert variant="filled" severity="success">
   This is a success alert — check it out!
