@@ -80,13 +80,13 @@ import Logo from '../../assets/brgylogo.jpg'
       <Grid
         item
         xs={false}
-        sm={4}
+        sm={3}
         md={7}
         sx={{
           textAlign:'center',
           backgroundImage: `url(${Logo})`,
-          height: '100%',
           width: '100%',
+          height: '100%',
           backgroundRepeat: 'no-repeat',
           backgroundColor: (t) =>
             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
