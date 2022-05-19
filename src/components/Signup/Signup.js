@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
+import swal from "sweetalert";
   const theme = createTheme();
 
   const Signup = () => {
@@ -62,11 +63,24 @@ import LoadingButton from "@mui/lab/LoadingButton";
           confirmpassword: inputs.confirmpassword
         }
       );
+      swal({
+        title: "success",
+        text: res.data.token,
+        icon: "success",
+        button: "OK",
+      });
       console.log(res.data);
       navigate("/login");
+      
     } catch (error) {
       setError(true)
-      console.log(error.response);
+      swal({
+        title: "Error",
+        text: error.response,
+        icon: "error",
+        button: "OK",
+      });
+      //console.log(error.response);
     }
     finally {
       setLoading(false)

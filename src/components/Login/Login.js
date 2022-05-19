@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Alert, Avatar , Box, Button, TextField, Typography } from '@mui/material';
+import {Alert, Avatar , Box, Button, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,7 +12,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from '@mui/lab/LoadingButton';
-
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import swal from 'sweetalert';
 
 function Copyright(props) {
   return (
@@ -30,8 +31,18 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClick = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+  };
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
   const [inputs,setInputs] = useState({
   
@@ -40,6 +51,7 @@ const Login = () => {
     
 });
   const handleChange = (e) => {
+
     setInputs(prev => ({
         ...prev,
         [e.target.name]: e.target.value
@@ -53,16 +65,29 @@ const Login = () => {
               password: inputs.password,
           // confirmpassword: inputs.confirmpassword
           })
-          
-              console.log(res.data.token);
+          swal({
+            title: "success",
+            text: res.data.token,
+            icon: "success",
+            button: "OK",
+          });
+              //console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
              navigate('/mainpage');
   
       }catch(error) {
         setError(true)
-              console.log(error.response.data);
+        swal({
+          title: "error",
+          text: error.response.data,
+          icon: "error",
+          button: "OK",
+          
+        });
+              //console.log(error.response.data);
       }finally {
         setLoading(false)
+       
       }
     
   }
@@ -70,6 +95,7 @@ const Login = () => {
   const handleSubmit = (e) => {
       e.preventDefault();
       //console.log(inputs);
+   
       sendRequest();
 
   };
@@ -91,6 +117,7 @@ const Login = () => {
           backgroundPosition: 'center',
         }}
       />
+      
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
@@ -132,9 +159,19 @@ const Login = () => {
               value={inputs.password} 
               name="password"
               label="Password"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
+              inputProps={{ minLength: 6 }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleClick} onMouseDown={handleMouseDown}>
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -146,6 +183,7 @@ const Login = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              
               >
            SignIn
           </LoadingButton>
@@ -165,9 +203,7 @@ const Login = () => {
             <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
-        <Alert variant="filled" severity="success">
-  This is a success alert — check it out!
-</Alert>
+        
       </Grid>
     </Grid>
   </ThemeProvider>
