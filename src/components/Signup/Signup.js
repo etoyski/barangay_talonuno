@@ -10,11 +10,10 @@ import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-
-
 import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
-import swal from "sweetalert";
+import swal from 'sweetalert';
+
   const theme = createTheme();
 
   const Signup = () => {
@@ -65,11 +64,11 @@ import swal from "sweetalert";
       );
       swal({
         title: "success",
-        text: res.data.token,
+        text: res.data,
         icon: "success",
         button: "OK",
       });
-      console.log(res.data);
+      //console.log(res.data);
       navigate("/login");
       
     } catch (error) {
