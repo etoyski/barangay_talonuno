@@ -67,11 +67,11 @@ const Login = () => {
           })
           swal({
             title: "success",
-            text: res.data.token,
+            text: "Login Successful",
             icon: "success",
             button: "OK",
           });
-              //console.log(res.data.token);
+              console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
              navigate('/mainpage');
   

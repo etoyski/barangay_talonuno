@@ -20,6 +20,7 @@ import swal from 'sweetalert';
   const navigate = useNavigate();
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:5001/api/")
@@ -36,7 +37,7 @@ import swal from 'sweetalert';
     password: "",
     birthday: "",
   });
-  const [alert, setAlert] = useState(false);
+  
 
   const handleChange = (e) => {
     setInputs((prev) => ({
@@ -73,6 +74,7 @@ import swal from 'sweetalert';
       
     } catch (error) {
       setError(true)
+      setAlert(true)
       swal({
         title: "Error",
         text: error.response,
@@ -275,7 +277,7 @@ import swal from 'sweetalert';
           </LoadingButton>
             
             
-            <Alert variant="filled" severity="success">
+            <Alert variant="filled" severity="success" alert={alert}>
   This is a success alert — check it out!
 </Alert>
           </Box>
