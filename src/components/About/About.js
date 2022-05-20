@@ -48,7 +48,7 @@ const About = () => {
   return (
     
     
-    <Box sx={{ flexGrow: 1, p:10,  backgroundColor: 'primary.dark',
+    <Box sx={{ flexGrow: 1, p:3,  backgroundColor: 'primary.dark',
     '&:hover': {
       backgroundColor: 'primary.main',
       opacity: [0.9, 0.8, 0.7],
@@ -64,7 +64,7 @@ const About = () => {
                     Barangay officials
         </Typography>
         
-    <Grid sx={{marginLeft: 5, p: 1 }}  container spacing={3}>
+    <Grid sx={{marginRight: 1, p: 1 }}  container spacing={3}>
       <Grid item xs="auto">
         <Item>
     <div className='grid md:grid-cols-3 gap-1 px-2 text-center'>
@@ -310,7 +310,7 @@ const About = () => {
             </Item>
         </Grid>
     </Grid>
-    <Grid sx={{marginLeft: 5, p: 1 }}  container spacing={3}>
+    <Grid sx={{marginRight: 0.5, p: 1 }}  container spacing={3}>
         
         
         <Grid item xs="auto" alignItems="center" justifyContent="center">

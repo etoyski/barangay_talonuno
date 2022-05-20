@@ -20,35 +20,15 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
-const images = [
-  {
-    
-    imgPath:
-      '{bgImg}',
-  },
-  {
-   
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    
-    imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-  },
-  {
-  
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-];
 
+  
+  
 
 const Hero = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+ 
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -86,10 +66,10 @@ const Hero = () => {
         <Typography align="left" variant="h5"sx={{p:0.5,}} gutterBottom component="div">
      Make Changes Now...
     </Typography>
-    <Button   onClick={() => navigate('/login')}to="/login"  size="large" variant="outlined" sx={{p:2,  width: 480, }}>GET STARTED</Button>
+    <Button   onClick={() => navigate('/login')}to="/login"  size="large" variant="outlined" sx={{p:2,  width: 300, }}>GET STARTED</Button>
           </Box>
 
-          <Grid container spacing={3} sx={{p:20}}>
+          <Grid container spacing={2} sx={{p:10}}>
   <Grid item xs="auto">
   <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>

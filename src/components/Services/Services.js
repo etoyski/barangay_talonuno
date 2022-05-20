@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const Services = () => {
   const navigate = useNavigate();
   return (
-    <Box sx={{ flexGrow: 1, p:10,  }}>
+    <Box sx={{ flexGrow: 1, p:5,  }}>
         <Grid container spacing={5}>
         <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>

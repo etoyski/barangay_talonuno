@@ -66,7 +66,7 @@ const Login = () => {
           // confirmpassword: inputs.confirmpassword
           })
           swal({
-            title: "success",
+            title: "Welcome!",
             text: "Login Successful",
             icon: "success",
             button: "OK",
@@ -84,7 +84,7 @@ const Login = () => {
           button: "OK",
           
         });
-              //console.log(error.response.data);
+              console.log(error.response.data);
       }finally {
         setLoading(false)
        
