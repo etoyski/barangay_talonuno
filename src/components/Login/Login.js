@@ -71,6 +71,7 @@ const Login = () => {
             icon: "success",
             button: "OK",
           });
+            
               console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
              navigate('/mainpage');
@@ -79,7 +80,7 @@ const Login = () => {
         setError(true)
         swal({
           title: "error",
-          text: error.response.data,
+          text: "Login Failed",
           icon: "error",
           button: "OK",
           

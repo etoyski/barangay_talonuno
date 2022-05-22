@@ -82,7 +82,7 @@ import swal from 'sweetalert';
         icon: "error",
         button: "OK",
       });
-      //console.log(error.response);
+      console.log(error.response);
     }
     finally {
       setLoading(false)
@@ -278,9 +278,7 @@ import swal from 'sweetalert';
           </LoadingButton>
             
             
-            <Alert variant="filled" severity="success" alert={alert}>
-  This is a success alert — check it out!
-</Alert>
+            
           </Box>
         </Box>
       </Grid>

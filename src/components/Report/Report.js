@@ -9,107 +9,116 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import VerticalTabs from '../Tabs/Tabs';
 import { TextField } from '@mui/material';
-
-const steps = [
-  {
-    label: 'Select campaign settings',
-    
-  },
-  {
-    label: 'Create an ad group',
-    
-  },
-  {
-    label: 'Create an ad',
-    
-  },
-];
-
+import Grid from '@mui/material/Grid';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox'; 
 export default function Report() {
-  const [activeStep, setActiveStep] = React.useState(0);
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
 
   return (
-    <Box sx={{ maxWidth: 400 }}>
-        <VerticalTabs/>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((step, index) => (
-          <Step key={step.label}>
-            <StepLabel
-              optional={
-                index === 2 ? (
-                  <Typography variant="caption">Last step</Typography>
-                ) : null
-              }
-            >
-              {step.label}
-            </StepLabel>
-            <TextField
-              margin="normal"
-              required  
-              fullWidth       
-              id="email"
-              label="Email Address"
-              name="email"
-              type="email"
-              autoComplete="email"
-              autoFocus
-              
-            />
-            <TextField
-              margin="normal"
-              required  
-              fullWidth
-               
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                  </Button>
-                  <Button
-                    disabled={index === 0}
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    Back
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-      {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Reset
-          </Button>
-        </Paper>
-      )}
-    </Box>
+    <React.Fragment>
+      <VerticalTabs />
+    <Typography variant="h6" gutterBottom>
+      Submit A report
+    </Typography>
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          required
+          id="firstName"
+          name="firstName"
+          label="First name"
+          fullWidth
+          autoComplete="given-name"
+          variant="standard"
+        />
+      </Grid>
+      
+      <Grid item xs={12} sm={6}>
+        <TextField
+          required
+          id="lastName"
+          name="lastName"
+          label="Last name"
+          fullWidth
+          autoComplete="family-name"
+          variant="standard"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          required
+          id="address1"
+          name="address1"
+          label="Address line 1"
+          fullWidth
+          autoComplete="shipping address-line1"
+          variant="standard"
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          id="Report"
+          name="Report Type"
+          label="Report Type"
+          fullWidth
+          autoComplete="shipping address-line2"
+          variant="standard"
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          id="Report"
+          name="Report Type"
+          label="Report Description"
+          fullWidth
+          autoComplete="shipping address-line2"
+          variant="standard"
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          required
+          id="city"
+          name="city"
+          label="City"
+          fullWidth
+          autoComplete="shipping address-level2"
+          variant="standard"
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          id="state"
+          name="state"
+          label="State/Province/Region"
+          fullWidth
+          variant="standard"
+        />
+      </Grid>
+      
+      <Grid item xs={12} sm={6}>
+        <TextField
+          required
+          id="country"
+          name="country"
+          label="Country"
+          fullWidth
+          autoComplete="shipping country"
+          variant="standard"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <FormControlLabel
+          control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+          label="Use this address for reporting details"
+        />
+      </Grid>
+      <Button size="md" variant="outlined"sx={{p:2, marginLeft:44,marginBottom:2,marginRight:12}}>
+        Submit Report
+        </Button>
+        
+    </Grid>
+  </React.Fragment>
   );
 }
