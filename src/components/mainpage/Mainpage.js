@@ -45,48 +45,12 @@ export default function  Mainpage  ()  {
         <Box sx={{ p:3, marginTop:10,marginRight:2,marginLeft:2, height: '50vh' }} 
         
         >
+        
             <Typography variant="h6">
                Announcement:
             </Typography>
-            <div>
-      <Button sx={{marginLeft:15,marginBottom:1}}aria-describedby={id} variant="outlined" type="button" onClick={handleClick}>
-        View Announcement
-      </Button>
-      <Popper id={id} open={open} anchorEl={anchorEl} transition>
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Box sx={{  p: 1, bgcolor: 'background.paper' }}>
             <img width={500} height={350} src={bball} alt="" />
-            </Box>
-          </Fade>
-        )}
-      </Popper>
-      <Button sx={{marginLeft:15,marginBottom:1}} aria-describedby={id} variant="outlined" type="button" onClick={handleClick} >
-      View Announcement
-      </Button>
-      <Popper id={id} open={open} anchorEl={anchorEl} transition>
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Box sx={{  p: 1, bgcolor: 'background.paper' }}>
-            <img width={500} height={350} src={bball} alt="" />
-            </Box>
-          </Fade>
-        )}
-      </Popper>
-      <Button sx={{marginLeft:15,marginBottom:1}} aria-describedby={id} variant="outlined" type="button" onClick={handleClick} >
-      View Announcement
-      </Button>
-      <Popper id={id} open={open} anchorEl={anchorEl} transition>
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Box sx={{  p: 1, bgcolor: 'background.paper' }}>
-            <img width={500} height={350} src={bball} alt="" />
-            </Box>
-          </Fade>
-        )}
-      </Popper>
-    </div>
-    
+        
       
             </Box>
             
