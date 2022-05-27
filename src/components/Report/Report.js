@@ -10,6 +10,7 @@ import { useState } from 'react';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 
 export default function Report() {
@@ -27,6 +28,12 @@ export default function Report() {
     Image:"",
     
 });
+useEffect(() => {
+  axios
+    .get("http://localhost:5001/api/")
+    .then((res) => console.log(res.data))
+    .catch((e) => console.error(e));
+}, []);
 const handleChange = (e) => {
 
   setInputs(prev => ({
@@ -61,7 +68,7 @@ const handleChange = (e) => {
       setError(true)
       swal({
         title: "error",
-        text: "Login Failed",
+        text: "Report Failed",
         icon: "error",
         button: "OK",
         
