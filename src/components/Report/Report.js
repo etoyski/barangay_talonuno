@@ -28,12 +28,7 @@ export default function Report() {
     Image:"",
     
 });
-useEffect(() => {
-  axios
-    .get("http://localhost:5001/api/")
-    .then((res) => console.log(res.data))
-    .catch((e) => console.error(e));
-}, []);
+
 const handleChange = (e) => {
 
   setInputs(prev => ({
@@ -45,13 +40,13 @@ const handleChange = (e) => {
     try { 
         const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
            email:inputs.email,
-            type: inputs.type,
-            
+           // type: inputs.type,
             name: inputs.name,
             address: inputs.address,
+            addressdetail: inputs.addressdetail,
             report: inputs.report,
             Image: inputs.Image,
-        // confirmpassword: inputs.confirmpassword
+            
         })
         swal({
           title: "Report Submitted!",
@@ -113,14 +108,13 @@ const handleSubmit = (e) => {
           error={error}
         />
       </Grid>
-    <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={6}>
         <TextField
-          id="type"
-          name="type"
-          label="type"
+          id="name"
+          name="name"
+          label="name"
           fullWidth
-          onChange={handleChange} 
-          autoComplete="type"
+          autoComplete="name"
           variant="standard"
           required
           error={error}
@@ -140,15 +134,16 @@ const handleSubmit = (e) => {
           error={error}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12}>
         <TextField
-          id="name"
-          name="name"
-          label="name"
-          fullWidth
-          autoComplete="name"
-          variant="standard"
           required
+          id="addressdetail"
+          name="addressdetail"
+          label="addressdetail"
+          fullWidth
+          autoComplete="Your address detail"
+          variant="filled"
+          
           error={error}
         />
       </Grid>
