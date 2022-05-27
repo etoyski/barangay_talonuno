@@ -19,8 +19,7 @@ export default function Report() {
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
   const [inputs,setInputs] = useState({
-  
-    type: "", 
+    email:"",
     name:"",
     address:"",
     addressdetail:"",
