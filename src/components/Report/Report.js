@@ -19,9 +19,12 @@ export default function Report() {
   const navigate = useNavigate();
   const [inputs,setInputs] = useState({
   
-    location: "", 
-    Report_Type:"",
-    Report_Description:"",
+    type: "", 
+    name:"",
+    address:"",
+    addressdetail:"",
+    report:"",
+    Image:"",
     
 });
 const handleChange = (e) => {
@@ -33,22 +36,25 @@ const handleChange = (e) => {
   const sendRequest = async () => {
     setLoading(true)
     try { 
-        const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+        const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
            
-            email: inputs.email,
-            password: inputs.password,
+            type: inputs.type,
+            name: inputs.name,
+            address: inputs.address,
+            report: inputs.report,
+            Image: inputs.Image,
         // confirmpassword: inputs.confirmpassword
         })
         swal({
-          title: "Welcome!",
-          text: "Login Successful",
+          title: "Report Submitted!",
+          text: "Report Successful",
           icon: "success",
           button: "OK",
         });
           
             console.log(res.data.token);
             localStorage.setItem('T', res.data.token);
-           navigate('/mainpage');
+           //navigate('/report');
 
     }catch(error) {
       setError(true)
@@ -74,8 +80,7 @@ const handleSubmit = (e) => {
     sendRequest();
 
 };
-const center = [51.505, -0.09]
-const markers = [[51.505, -0.10], [51.505, -0.09], [51.505, -0.08]];
+
   return (
     
     <React.Fragment>
@@ -86,13 +91,24 @@ const markers = [[51.505, -0.10], [51.505, -0.09], [51.505, -0.08]];
       Submit A report
     </Typography>
     <Grid container spacing={3}  onSubmit={handleSubmit}>
-     
+    <Grid item xs={12} sm={6}>
+        <TextField
+          id="type"
+          name="type"
+          label="type"
+          fullWidth
+          autoComplete="type"
+          variant="standard"
+          required
+          error={error}
+        />
+      </Grid>
       <Grid item xs={12}>
         <TextField
           required
-          id="location"
-          name="location"
-          label="location"
+          id="address"
+          name="address"
+          label="address"
           fullWidth
           autoComplete="Your Address"
           variant="filled"
@@ -102,11 +118,11 @@ const markers = [[51.505, -0.10], [51.505, -0.09], [51.505, -0.08]];
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          id="Report"
-          name="Report Type"
-          label="Report Type"
+          id="name"
+          name="name"
+          label="name"
           fullWidth
-          autoComplete="shipping address-line2"
+          autoComplete="name"
           variant="standard"
           required
           error={error}
@@ -114,16 +130,29 @@ const markers = [[51.505, -0.10], [51.505, -0.09], [51.505, -0.08]];
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          id="Report"
-          name="Report Type"
-          label="Report Description"
+          id="report"
+          name="report"
+          label="Report Type"
           fullWidth
-          autoComplete="shipping address-line2"
+          autoComplete="Report Type"
           variant="standard"
           required
           error={error}
         />
       </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          id="Image"
+          name="Image"
+          label="Image"
+          fullWidth
+          autoComplete="Image"
+          variant="standard"
+          required
+          error={error}
+        />
+      </Grid>
+    
       
       <Grid item xs={12}>
         <FormControlLabel
