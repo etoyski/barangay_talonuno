@@ -19,7 +19,7 @@ export default function Report() {
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
   const [inputs,setInputs] = useState({
-   // email:"",
+   email:"",
     name:"",
     address:"",
     addressdetail:"",
@@ -38,7 +38,7 @@ const handleChange = (e) => {
     setLoading(true)
     try { 
         const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
-          // email:inputs.email,
+            email:inputs.email,
            // type: inputs.type,
             name: inputs.name,
             address: inputs.address,
@@ -100,6 +100,7 @@ const handleSubmit = (e) => {
           name="email"
           label="email address"
           fullWidth
+          value={inputs.email} 
           onChange={handleChange} 
           autoComplete="email"
           variant="standard"
@@ -114,6 +115,7 @@ const handleSubmit = (e) => {
           label="name"
           fullWidth
           autoComplete="name"
+          value={inputs.name} 
           onChange={handleChange} 
           variant="standard"
           required
@@ -128,6 +130,7 @@ const handleSubmit = (e) => {
           name="address"
           label="address"
           onChange={handleChange} 
+          value={inputs.address} 
           fullWidth
           autoComplete="Your Address"
           variant="filled"
@@ -141,6 +144,7 @@ const handleSubmit = (e) => {
           id="addressdetail"
           name="addressdetail"
           onChange={handleChange} 
+          value={inputs.addressdetail} 
           label="addressdetail"
           fullWidth
           autoComplete="Your address detail"
@@ -155,6 +159,7 @@ const handleSubmit = (e) => {
           name="report"
           label="Report Type"
           onChange={handleChange} 
+          value={inputs.report} 
           fullWidth
           autoComplete="Report Type"
           variant="standard"
@@ -167,6 +172,7 @@ const handleSubmit = (e) => {
           id="Image"
           name="Image"
           onChange={handleChange} 
+          value={inputs.Image} 
           label="Image"
           fullWidth
           autoComplete="Image"
