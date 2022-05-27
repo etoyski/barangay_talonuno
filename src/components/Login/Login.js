@@ -14,7 +14,7 @@ import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import swal from 'sweetalert';
-import CaptchaTest from '../Captcha/Captcha';
+
 
 function Copyright(props) {
   return (
@@ -73,7 +73,6 @@ const Login = () => {
             icon: "success",
             button: "OK",
           });
-          <CaptchaTest />
               console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
              navigate('/mainpage');
