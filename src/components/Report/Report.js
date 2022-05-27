@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import VerticalTabs from '../Tabs/Tabs';
-import { TextField } from '@mui/material';
+import { TextField,Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox'; 
@@ -90,7 +90,8 @@ const handleSubmit = (e) => {
     <Typography variant="h6" gutterBottom>
       Submit A report
     </Typography>
-    <Grid container spacing={3}  onSubmit={handleSubmit}>
+    <Box  component="form" onSubmit={handleSubmit}>
+    <Grid container spacing={3}  >
     <Grid item xs={12} sm={6}>
         <TextField
           id="type"
@@ -168,10 +169,12 @@ const handleSubmit = (e) => {
               sx={{ mt: 3, mb: 2 }}
               
               >
-           SignIn
+           Submit
           </LoadingButton>
         
     </Grid>
+    </Box>
+    
   </React.Fragment>
   );
 }
