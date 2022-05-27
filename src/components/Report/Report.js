@@ -19,7 +19,7 @@ export default function Report() {
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
   const [inputs,setInputs] = useState({
-   email:"",
+   //email:"",
     name:"",
     address:"",
     addressdetail:"",
@@ -38,7 +38,7 @@ const handleChange = (e) => {
     setLoading(true)
     try { 
         const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
-            email:inputs.email,
+            //email:inputs.email,
            // type: inputs.type,
             name: inputs.name,
             address: inputs.address,
@@ -94,7 +94,7 @@ const handleSubmit = (e) => {
     </Typography>
     <Box  component="form" onSubmit={handleSubmit}>
     <Grid container spacing={3}  >
-    <Grid item xs={12} sm={6}>
+    {/* <Grid item xs={12} sm={6}>
         <TextField
           id="email"
           name="email"
@@ -107,7 +107,7 @@ const handleSubmit = (e) => {
           required
           error={error}
         />
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} sm={6}>
         <TextField
           id="name"
