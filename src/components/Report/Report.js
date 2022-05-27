@@ -19,7 +19,7 @@ export default function Report() {
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
   const [inputs,setInputs] = useState({
-    email:"",
+   // email:"",
     name:"",
     address:"",
     addressdetail:"",
@@ -38,7 +38,7 @@ const handleChange = (e) => {
     setLoading(true)
     try { 
         const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
-           email:inputs.email,
+          // email:inputs.email,
            // type: inputs.type,
             name: inputs.name,
             address: inputs.address,
