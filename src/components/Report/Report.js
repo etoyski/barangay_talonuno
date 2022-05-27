@@ -61,9 +61,9 @@ const handleChange = (e) => {
     }catch(error) {
       setError(true)
       swal({
-        title: "error",
-        text: "Report Failed",
-        icon: "error",
+        title: "Report Submitted!",
+        text: "Report Successful",
+        icon: "success",
         button: "OK",
         
       });
