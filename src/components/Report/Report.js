@@ -114,6 +114,7 @@ const handleSubmit = (e) => {
           label="name"
           fullWidth
           autoComplete="name"
+          onChange={handleChange} 
           variant="standard"
           required
           error={error}
@@ -126,6 +127,7 @@ const handleSubmit = (e) => {
           id="address"
           name="address"
           label="address"
+          onChange={handleChange} 
           fullWidth
           autoComplete="Your Address"
           variant="filled"
@@ -138,6 +140,7 @@ const handleSubmit = (e) => {
           required
           id="addressdetail"
           name="addressdetail"
+          onChange={handleChange} 
           label="addressdetail"
           fullWidth
           autoComplete="Your address detail"
@@ -151,6 +154,7 @@ const handleSubmit = (e) => {
           id="report"
           name="report"
           label="Report Type"
+          onChange={handleChange} 
           fullWidth
           autoComplete="Report Type"
           variant="standard"
@@ -162,6 +166,7 @@ const handleSubmit = (e) => {
         <TextField
           id="Image"
           name="Image"
+          onChange={handleChange} 
           label="Image"
           fullWidth
           autoComplete="Image"
