@@ -203,6 +203,7 @@ import swal from 'sweetalert';
               label="address"
               name="address"
              // type={"email"}
+            
               autoComplete="email"
               autoFocus
             />
