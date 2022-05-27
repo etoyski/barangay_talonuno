@@ -37,8 +37,9 @@ const handleChange = (e) => {
     setLoading(true)
     try { 
         const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
-           
+           email:inputs.email,
             type: inputs.type,
+            
             name: inputs.name,
             address: inputs.address,
             report: inputs.report,
@@ -94,16 +95,31 @@ const handleSubmit = (e) => {
     <Grid container spacing={3}  >
     <Grid item xs={12} sm={6}>
         <TextField
+          id="email"
+          name="email"
+          label="email address"
+          fullWidth
+          onChange={handleChange} 
+          autoComplete="email"
+          variant="standard"
+          required
+          error={error}
+        />
+      </Grid>
+    <Grid item xs={12} sm={6}>
+        <TextField
           id="type"
           name="type"
           label="type"
           fullWidth
+          onChange={handleChange} 
           autoComplete="type"
           variant="standard"
           required
           error={error}
         />
       </Grid>
+    
       <Grid item xs={12}>
         <TextField
           required
