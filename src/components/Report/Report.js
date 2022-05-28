@@ -46,6 +46,10 @@ const handleChange = (e) => {
             report: inputs.report,
             Image: inputs.Image,
             
+        }, {
+          headers:{
+            "Authorization": `Bearer ${localStorage.getItem('T')}`
+          }
         })
         swal({
           title: "Report Submitted!",
