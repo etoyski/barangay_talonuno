@@ -114,10 +114,12 @@ const [value, setValue] = React.useState(null);
         {...defaultProps}
         id="clear-on-escape"
         clearOnEscape
+        onChange={handleChange}
+        value={inputs.type} 
+        error={error}
         renderInput={(params) => (
-          <TextField {...params} value={inputs.type} 
-          onChange={handleChange} 
-          error={error} label="Request Type" variant="standard" />
+          <TextField {...params}  
+           label="Request Type" variant="standard" />
         )}
       />
         </Grid>
