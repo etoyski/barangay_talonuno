@@ -87,7 +87,16 @@ export default function Request() {
      sendRequest();
  
  };
+const defaultProps = {
+  options: typeofrequest,
+  getOptionLabel: (option) => option.title,
+};
+  
+const flatProps = {
+  options: typeofrequest.map((option) => option.title),
+};
 
+const [value, setValue] = React.useState(null);
 
 
   return (
@@ -107,9 +116,9 @@ export default function Request() {
             name="type"
             label="type"
             fullWidth
-            autoComplete="Request Type"
+            autoComplete="Type of request"
             variant="standard"
-            value={inputs.type} 
+            value={inputs.name} 
             onChange={handleChange} 
             error={error}
           />
@@ -203,3 +212,10 @@ export default function Request() {
 </React.Fragment>
   );
 }
+const typeofrequest = [ 
+  { title: 'Barangay ID', id: 1 },
+  { title: 'Barangay Clearance', year: 2 },
+  { title: 'Barangay Residency', year: 3 },
+  { title: 'Green Card', year: 4 },
+
+];
