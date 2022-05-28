@@ -37,8 +37,6 @@ export default function  Mainpage  ()  {
             Welcome to Barangay Talon Uno Digital Reporting System!
         </Typography>
         </Paper>
-        
-        
             </Box>
       </Container>
       <Container fixed sx={{p:1}}>
@@ -50,8 +48,6 @@ export default function  Mainpage  ()  {
                Announcement:
             </Typography>
             <img width={500} height={350} src={bball} alt="" />
-        
-      
             </Box>
             
       </Container>
