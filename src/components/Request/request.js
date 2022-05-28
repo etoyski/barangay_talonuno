@@ -11,18 +11,82 @@ import VerticalTabs from '../Tabs/Tabs';
 import { Autocomplete, Checkbox, FormControlLabel, Grid, TextField } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState } from 'react';
+import swal from 'sweetalert';
+import axios from 'axios';
 
 export default function Request() {
   const [loading, setLoading] = useState(false);
   const [error,setError] = useState(false); 
   const [activeStep, setActiveStep] = React.useState(0);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //console.log(inputs);
+  const [inputs,setInputs] = useState({
+    //email:"",
+    type:"",
+    name:"",
+    address:"",
+    email:"",
+    phone:"",
+    purpose:""
+     
+ });
  
-    //sendRequest();
-
-};
+ const handleChange = (e) => {
+ 
+   setInputs(prev => ({
+       ...prev,
+       [e.target.name]: e.target.value
+   }))};
+   const sendRequest = async () => {
+     setLoading(true)
+     try { 
+         const res = await axios.post('https://barangay-talon-uno.vercel.app/main/request',{
+             //email:inputs.email,
+             type: inputs.type,
+             name: inputs.name,
+             address: inputs.address,
+             email: inputs.email,
+             phone: inputs.phone,
+             purpose: inputs.purpose,
+             
+         }, {
+           headers:{
+             "Authorization": `Bearer ${localStorage.getItem('T')}`
+           }
+         })
+         swal({
+           title: "Request Submitted!",
+           text: "Request Successful",
+           icon: "success",
+           button: "OK",
+         });
+           
+             console.log(res.data.token);
+             localStorage.setItem('T', res.data.token);
+            //navigate('/report');
+ 
+     }catch(error) {
+       setError(true)
+       swal({
+         title: "Request Not Submitted!",
+         text: "Request Unsuccessful",
+         icon: "error",
+         button: "OK",
+         
+       });
+             console.log(error.response);
+     }finally {
+       setLoading(false)
+      
+     }
+   
+ }
+ 
+ const handleSubmit = (e) => {
+     e.preventDefault();
+     //console.log(inputs);
+  
+     sendRequest();
+ 
+ };
 const defaultProps = {
   options: typeofrequest,
   getOptionLabel: (option) => option.title,
@@ -35,18 +99,6 @@ const flatProps = {
 const [value, setValue] = React.useState(null);
 
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
     <React.Fragment>
     
@@ -55,62 +107,89 @@ const [value, setValue] = React.useState(null);
   <Typography variant="h6" gutterBottom>
     Submit A Request
   </Typography>
-  <Grid container spacing={3}  onSubmit={handleSubmit}>
+  <Box  component="form" onSubmit={handleSubmit}>
+  <Grid container spacing={3}>
   <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-          />
-        </Grid>
-        
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="middleName"
-            name="middleName"
-            label="Middle name"
-            fullWidth
-            autoComplete="middle-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-          />
-        </Grid>
-   
-    <Grid item xs={12} sm={6}>
-    <Autocomplete
+  <Autocomplete
         {...defaultProps}
         id="clear-on-escape"
         clearOnEscape
         renderInput={(params) => (
-          <TextField {...params} label="Request Type" variant="standard" />
+          <TextField {...params} value={inputs.name} 
+          onChange={handleChange} 
+          error={error} label="Request Type" variant="standard" />
         )}
+      />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="name"
+            name="name"
+            label="Name"
+            fullWidth
+            autoComplete="Name"
+            variant="standard"
+            value={inputs.name} 
+            onChange={handleChange} 
+            error={error}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="address"
+            name="address"
+            label="Address"
+            fullWidth
+            autoComplete="Address"
+            variant="standard"
+            value={inputs.address} 
+            onChange={handleChange} 
+            error={error}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="email"
+            name="email"
+            label="Email Address"
+            fullWidth
+            autoComplete="Email Address"
+            variant="standard"
+            value={inputs.email} 
+            onChange={handleChange} 
+            error={error}
+          />
+        </Grid>
+   
+    <Grid item xs={12} sm={6}>
+    <TextField
+        id="phone"
+        name="phone"
+        label="Contact Number"
+        fullWidth
+        autoComplete="Contact Number"
+        variant="standard"
+        value={inputs.phone} 
+        onChange={handleChange} 
+        required
+        error={error}
       />
     </Grid>
     <Grid item xs={12} >
       <TextField
-        id="Request"
-        name="Request Type"
-        label="Request Description"
+        id="purpose"
+        name="purpose"
+        label="Request Purpose"
         fullWidth
-        autoComplete="Type your request descirption here"
+        autoComplete="Request Purpose"
         variant="standard"
-       
-    
+        value={inputs.purpose} 
+        onChange={handleChange} 
+        required
+        error={error}
       />
     </Grid>
     
@@ -127,6 +206,7 @@ const [value, setValue] = React.useState(null);
         </LoadingButton>
       
   </Grid>
+  </Box>
 </React.Fragment>
   );
 }
