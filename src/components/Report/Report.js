@@ -56,17 +56,11 @@ const handleChange = (e) => {
           
             console.log(res.data.token);
             localStorage.setItem('T', res.data.token);
-           //navigate('/report');
+           navigate('/mainpage');
 
     }catch(error) {
       setError(true)
-      swal({
-        title: "Report Submitted!",
-        text: "Report Successful",
-        icon: "success",
-        button: "OK",
-        
-      });
+     
             console.log(error.response.data);
     }finally {
       setLoading(false)
