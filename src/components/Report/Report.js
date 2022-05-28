@@ -67,7 +67,7 @@ const handleChange = (e) => {
         button: "OK",
         
       });
-            console.log(error.response.data);
+            console.log(error.response);
     }finally {
       setLoading(false)
      
