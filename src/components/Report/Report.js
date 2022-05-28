@@ -171,13 +171,12 @@ const handleSubmit = (e) => {
        
          <Autocomplete
         {...defaultProps}
-        id="report"
-        required
-        name="report"
         autoComplete
         includeInputInList
         renderInput={(params) => (
-          <TextField {...params} label="Report Type" error={error}value={inputs.report} variant="standard" />
+          <TextField {...params} label="Report Type" id="report"
+          required
+          name="report"error={error}value={inputs.report} variant="standard" />
         )}
       />
       </Grid>
