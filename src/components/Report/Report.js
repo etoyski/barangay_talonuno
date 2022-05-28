@@ -195,7 +195,7 @@ const handleSubmit = (e) => {
           variant="standard"
           required
           error={error}
-          type="file"
+         
         />
         
         
