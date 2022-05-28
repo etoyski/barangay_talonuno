@@ -110,18 +110,18 @@ const [value, setValue] = React.useState(null);
   <Box  component="form" onSubmit={handleSubmit}>
   <Grid container spacing={3}>
   <Grid item xs={12} sm={6}>
-  <Autocomplete
-        {...defaultProps}
-        id="clear-on-escape"
-        clearOnEscape
-        onChange={handleChange}
-        value={inputs.type} 
-        error={error}
-        renderInput={(params) => (
-          <TextField {...params}  
-           label="Request Type" variant="standard" />
-        )}
-      />
+  <TextField
+            required
+            id="type"
+            name="type"
+            label="type"
+            fullWidth
+            autoComplete="Request Type"
+            variant="standard"
+            value={inputs.type} 
+            onChange={handleChange} 
+            error={error}
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField

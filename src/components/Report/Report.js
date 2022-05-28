@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import VerticalTabs from '../Tabs/Tabs';
-import { TextField,Box, Autocomplete } from '@mui/material';
+import { TextField,Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox'; 
@@ -18,16 +18,6 @@ export default function Report() {
   const [error,setError] = useState(false); 
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
-  const defaultProps = {
-    options: reporttypes,
-    getOptionLabel: (option) => option.title,
-  };
-
-  const flatProps = {
-    options: reporttypes.map((option) => option.title),
-  };
-
-  const [value, setValue] = React.useState(null);
   const [inputs,setInputs] = useState({
    //email:"",
     name:"",
@@ -167,23 +157,20 @@ const handleSubmit = (e) => {
           error={error}
         />
       </Grid>
-       <Grid item xs={12} sm={6}>
-       
-         <Autocomplete
-        {...defaultProps}
-        id="clear-on-escape"
-        clearOnEscape
-        error={error} 
-        onChange={handleChange} 
-        value={inputs.report} 
-        includeInputInList
-        required
-        renderInput={(params) => (
-          <TextField {...params} 
+      <Grid item xs={12} sm={6}>
+        <TextField
+          id="report"
           name="report"
-          label="Report Type" variant="standard" />
-        )}
-      />
+          label="Report Type"
+          onChange={handleChange} 
+          value={inputs.report} 
+          fullWidth
+          autoComplete="Report Type"
+          variant="standard"
+          required
+          error={error}
+        />
+        
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
@@ -224,14 +211,3 @@ const handleSubmit = (e) => {
   </React.Fragment>
   );
 }
-const reporttypes = [
-  { title: 'Accident', id: 1 },
-  { title: 'Alarms and scandals', id: 2 },
-  { title: 'Fire Incident', id: 3 },
-  { title: 'Holdap', id: 4 },
-  { title: 'Light Threats', id: 5 },
-  { title: "Suspicious Illegal Activity", id: 6 },
-  { title: 'Theft ', id: 7 },
-  {title: 'Trespass', id: 8,
-},
-];
