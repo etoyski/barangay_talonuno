@@ -171,15 +171,16 @@ const handleSubmit = (e) => {
        
          <Autocomplete
         {...defaultProps}
-        id="report"
+        id="clear-on-escape"
         
-        autoComplete
+        clearOnEscape
        
         includeInputInList
         renderInput={(params) => (
           <TextField {...params} required
           name="report"
           error={error} 
+          onChange={handleChange} 
           value={inputs.report} 
           label="Report Type" variant="standard" />
         )}
