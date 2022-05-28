@@ -122,7 +122,7 @@ const handleSubmit = (e) => {
           error={error}
         />
       </Grid> */}
-      <Grid item xs={12} >
+      <Grid item xs={12} sm={6}>
         <TextField
           id="name"
           name="name"
@@ -172,31 +172,30 @@ const handleSubmit = (e) => {
          <Autocomplete
         {...defaultProps}
         id="report"
+        required
+        name="report"
+        error={error}
         autoComplete
+        value={inputs.report} 
         includeInputInList
         renderInput={(params) => (
-          <TextField {...params} label="Report Type" 
-          required
-          name="report"  onChange={handleChange} error={error} value={inputs.report} variant="standard" />
+          <TextField {...params} label="Report Type" variant="standard" />
         )}
       />
       </Grid>
       <Grid item xs={12} sm={6}>
         <TextField
-          required
           id="Image"
           name="Image"
           onChange={handleChange} 
           value={inputs.Image} 
           label="Image"
           fullWidth
-          autoComplete="Your address detail"
-          variant="filled"
-          
+          autoComplete="Image"
+          variant="standard"
+          required
           error={error}
         />
-        
-        
       </Grid>
     
       
@@ -231,5 +230,6 @@ const reporttypes = [
   { title: 'Light Threats', id: 5 },
   { title: "Suspicious Illegal Activity", id: 6 },
   { title: 'Theft ', id: 7 },
-  {title: 'Trespass', id: 8,},
+  {title: 'Trespass', id: 8,
+},
 ];
