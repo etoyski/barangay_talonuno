@@ -82,7 +82,7 @@ const Header = () => {
                        
                        {isloggedin ? ''  : <Tab  sx={{color:'darkgrey'}} onClick={() => navigate('/home')} to="/home" component={Link} label="Home" />} 
                        {isloggedin ? ''  : <Tab sx={{color:'black'}}  onClick={() => navigate('/about')}to="/about" component={Link} label="About" /> }
-                       {isloggedin ? ''  : <Tab sx={{color:'black'}}  onClick={() => navigate('/services')}to="/services" component={Link} label="Services" />}
+                        <Tab sx={{color:'black'}}  onClick={() => navigate('/services')}to="/services" component={Link} label="Services" />
                        {isloggedin ? ''  :<Tab sx={{color:'black'}}  onClick={() => navigate('/contactus')}to="/contactus" component={Link} label="Contact Us"/>}
                        
                        
