@@ -87,16 +87,7 @@ export default function Request() {
      sendRequest();
  
  };
-const defaultProps = {
-  options: typeofrequest,
-  getOptionLabel: (option) => option.title,
-};
-  
-const flatProps = {
-  options: typeofrequest.map((option) => option.title),
-};
 
-const [value, setValue] = React.useState(null);
 
 
   return (
@@ -212,10 +203,3 @@ const [value, setValue] = React.useState(null);
 </React.Fragment>
   );
 }
-const typeofrequest = [ 
-  { title: 'Barangay ID', id: 1 },
-  { title: 'Barangay Clearance', year: 2 },
-  { title: 'Barangay Residency', year: 3 },
-  { title: 'Green Card', year: 4 },
-
-];
