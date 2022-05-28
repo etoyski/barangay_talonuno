@@ -66,11 +66,11 @@ import swal from 'sweetalert';
       );
       swal({
         title: "success",
-        text: res.data,
+        text: "User Created",
         icon: "success",
         button: "OK",
       });
-      //console.log(res.data);
+      console.log(res.data);
       navigate("/login");
       
     } catch (error) {
