@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
+//import Header from './components/Header/Header';
 import { Route, Routes, Navigate} from 'react-router-dom';
 import Signup from './components/Signup/Signup';
 import Welcomepage from './components/mainpage/Welcomepage';
@@ -17,6 +17,7 @@ import Mainpage from './components/mainpage/Mainpage';
 import Report from './components/Report/Report';
 import Request from './components/Request/request';
 
+import Navbar from './components/Header/Navbar';
 
 
 
@@ -28,7 +29,7 @@ function App() {
   return (
     <React.Fragment>
     <header>
-      <Header />
+      <Navbar />
     </header>
     
     <main>
@@ -37,7 +38,7 @@ function App() {
       <Route path="/" element={<Navigate to="/home" />} >  </Route>
       <Route path="/home" element={<Home/>}/>
       <Route path="/welcomepage" element={<Welcomepage/>}/>
-      <Route path="/about" element={<About />}/> 
+      <Route path="/about" element={<About />}/> np
       <Route path="/services" element={<Services />}/> 
       <Route path="/contactus" element={<Contactus/>}/> 
       <Route path="/login" element={<Login/>}/> 
