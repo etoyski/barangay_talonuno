@@ -32,11 +32,12 @@ import swal from 'sweetalert';
     firstname: "",
     middlename: "",
     lastname: "",
+    contactnumber: "",
     email: "",
     address: "",
-    contactnumber: "",
-    password: "",
     birthday: "",
+    password: "",
+    confirmpassword: "",
   });
   
 
@@ -56,9 +57,9 @@ import swal from 'sweetalert';
           firstname: inputs.firstname,
           middlename: inputs.middlename,
           lastname: inputs.lastname,
+          number: Number(inputs.contactnumber),
           email: inputs.email,
           address: inputs.address,
-          number: Number(inputs.contactnumber),
           birthday: inputs.birthday,
           password: inputs.password,
           confirmpassword: inputs.confirmpassword
@@ -95,196 +96,212 @@ import swal from 'sweetalert';
     sendRequest();
   };
   return (
-    <ThemeProvider theme={theme}>
-    <Grid container component="main"  spacing={3} sx={{ height: '120vh', width: '100%' }}>
-      <CssBaseline />
-      <Grid
-        item
-        xs={false}
-        sm={3}
-        md={7}
-        sx={{
-          textAlign:'center',
-          backgroundImage: `url(${Logo})`,
-          width: '100%',
-          height: '100%',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'contain',
-          backgroundPosition: 'center',
-        }}
-
-      >
-        
-      </Grid>
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Box
-          sx={{
-            my: 8,
-            mx: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
+  
+<ThemeProvider theme={theme}>
+      
+      <Grid component={Paper} elevation={16} sx={{p:2}}>
+      
+      <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Card style={{ maxWidth: 500, padding: "20px 5px", margin: "0 auto" }}>
+            <CardContent>
+              <Typography gutterBottom variant="h5">
+                Sign Up
+            </Typography> 
+              <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
+                Fill up the required values to be able to create an account.
+            </Typography> 
               
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.firstname}  
-              id="firstname"
-              label="firstname"
-              name="firstname"
-             // type={"firstname"}
-              autoComplete="firstname"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.middlename}  
-              id="middlename"
-              label="middlename"
-              name="middlename"
-              type={"email"}
-              autoComplete="middlename"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.lastname}  
-              id="lastname"
-              label="lastname"
-              name="lastname"
-              //type={"email"}
-              autoComplete="lastname"
-              autoFocus
-              error={error}
-            />
-            <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.email}  
-              id="email"
-              label="Email Address"
-              name="email"
-              type={"email"}
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.address}  
-              id="address"
-              label="address"
-              name="address"
-             // type={"email"}
-            
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.contactnumber}  
-              id="contactnumber"
-              label="contactnumber"
-              name="contactnumber"
-              
-              autoComplete="contactnumber"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.birthday}  
-              id="birthday"
-              error={error}
-              name="birthday"
-              type="date"
-              autoComplete="birthday"
-              autoFocus
-            />
-           
+                <Grid container spacing={1}>
+                  <Grid xs={12} sm={6} item>
+                    <TextField 
+                    placeholder="Enter first name" 
+                    label="First Name" 
+                    variant="outlined"  
+                    name="firstname"
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.firstname} 
+                    fullWidth 
+                    required 
+                    />
+                  </Grid>
+                  <Grid xs={12} sm={6} item>
+                    <TextField 
+                    placeholder="Enter middle name" 
+                    label="Middle Name" 
+                    variant="outlined"  
+                    name="middlename"
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.middlename} 
+                    fullWidth
+                    required 
+                    />
+                  </Grid>
+                  <Grid xs={12} sm={6} item>
+                    <TextField
+                    placeholder="Enter last name" 
+                    name="lastname"
+                    label="Last Name" 
+                    variant="outlined" 
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.lastname}  fullWidth required />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                    placeholder="Enter Contact Number" 
+                    label="Phone" 
+                    name="contactnumber"
+                    variant="outlined" 
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.contactnumber}  
+                    fullWidth 
+                    required 
+                    />
+                  </Grid>
+                  <Divider />
+                  <Grid item xs={12}>
+                    <TextField 
+                    type="email" 
+                    placeholder="Enter email" 
+                    name="email"
+                    label="Email" 
+                    variant="outlined"  
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.email}  
+                    fullWidth 
+                    required 
+                    />
+                  </Grid>
+                  <Grid item xs={12}sm={6}>
+                    <TextField 
+                    disabled  
+                    placeholder="" 
+                    label="City" 
+                    name="city"
+                    variant="outlined" 
+                    defaultValue="Las Piñas City" 
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.city}  
+                    fullWidth   />
+                  </Grid>
+                  <Grid item xs={12}sm={6}>
+                    <TextField 
+                    disabled 
+                    placeholder="" 
+                    name="barangay"
+                    label="Barangay" 
+                    variant="outlined"
+                    defaultValue="Talon Uno"  
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.barangay} 
+                    fullWidth  
+                    
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField  
+                    placeholder="Enter Street Name" 
+                    label="Street Name" 
+                    name="address"
+                    variant="outlined"  
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.address} 
+                    fullWidth  />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="subheading"> Gender</Typography>
+                  <RadioGroup
+                   value={inputs.value}
+                   name="gender"
+          row
+          aria-labelledby="demo-row-radio-buttons-group-label"
           
-         
-
-            <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.password} 
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-             <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.confirmpassword} 
-              name="confirmpassword"
-              label="confirmpassword"
-              type="password"
-              id="confirmpassword"
-              autoComplete="confirmpassword"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Agree to Terms & Policy"
-            />
-           <LoadingButton 
-             loading = {loading}
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              >
-           SignIn
-          </LoadingButton>
-            
-            
-            
-          </Box>
-        </Box>
-      </Grid>
-    </Grid>
-  </ThemeProvider>
+        >
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+          
+        </RadioGroup>
+                  </Grid>
+                  <Grid item xs={12}>
+                  <Typography variant="subheading"> Birthdate</Typography>
+                  <TextField 
+                    type="date" 
+                    label="" 
+                    name="birthday"
+                    variant="outlined"  
+                    error={error}
+                    onChange={handleChange} 
+                    value={inputs.birthday} fullWidth required />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                  <TextField
+                
+                required
+                error={error}
+                fullWidth
+                onChange={handleChange} 
+                value={inputs.password} 
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                  <TextField
+    
+                required
+                error={error}
+                fullWidth
+                onChange={handleChange} 
+                value={inputs.confirmpassword} 
+                name="confirmpassword"
+                label="confirmpassword"
+                type="password"
+                id="confirmpassword"
+                autoComplete="current-password"
+              />
+                  </Grid>
+                  <Grid item xs={12}>
+                  <FormControlLabel
+                    
+                    control={<Checkbox required value="agree" color="primary" />}
+                    label="I agree to the terms and condition."
+                  />
+                </Grid>
+                  <Grid item xs={12}>
+                  <LoadingButton 
+               loading = {loading}
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                >
+               SignIn
+            </LoadingButton>
+                  </Grid>
+                  <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Link href="/login" variant="body2">
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
+              </Grid>
+                </Grid>
+            </CardContent>
+          </Card>
+         </Box>
+        </Grid>
+    </ThemeProvider>
   );
 };
 
