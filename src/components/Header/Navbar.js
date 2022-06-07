@@ -69,7 +69,7 @@ function Navbar() {
                   Contactus
                 </NavLinks>
               </NavItem>
-              {isloggedin ? <LogoutButton props = {setisloggedin}/> : <NavItemBtn>
+              {isloggedin ? ''  :  <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/signup'>
                     <Button primary>SIGN UP</Button>
@@ -82,7 +82,7 @@ function Navbar() {
                   </NavBtnLink>
                 )}
               </NavItemBtn>}
-              {isloggedin ? ''  :  <NavItemBtn>
+              {isloggedin ? <LogoutButton props = {setisloggedin}/> :  <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/login'>
                     <ButtonL primary>Login</ButtonL>
