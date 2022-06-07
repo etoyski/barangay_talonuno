@@ -18,7 +18,7 @@ import {
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
+  const [isloggedin, setisloggedin] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -69,7 +69,7 @@ function Navbar() {
                   Contactus
                 </NavLinks>
               </NavItem>
-              <NavItemBtn>
+              {isloggedin ? <LogoutButton props = {setisloggedin}/> : <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/signup'>
                     <Button primary>SIGN UP</Button>
@@ -81,8 +81,8 @@ function Navbar() {
                     </Button>
                   </NavBtnLink>
                 )}
-              </NavItemBtn>
-              <NavItemBtn>
+              </NavItemBtn>}
+              {isloggedin ? ''  :  <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/login'>
                     <ButtonL primary>Login</ButtonL>
@@ -93,7 +93,7 @@ function Navbar() {
                     Login                    </ButtonL>
                   </NavBtnLink>
                 )}
-              </NavItemBtn>
+                </NavItemBtn>} 
             </NavMenu>
           </NavbarContainer>
         </Nav>
@@ -101,5 +101,17 @@ function Navbar() {
     </>
   );
 }
-
+const LogoutButton = ({props})=> {
+  const navigate = useNavigate();
+  const loggedOut = () => {
+    localStorage.removeItem('T');
+    props(false);
+    navigate('/login')
+  }
+  return (
+    <React.Fragment>
+      <Button onClick={loggedOut}> Logout </Button>
+    </React.Fragment>
+  )
+}
 export default Navbar;
