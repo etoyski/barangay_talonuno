@@ -1,4 +1,4 @@
-import { Alert, Avatar, Box, Button, TextField, Typography } from "@mui/material";
+import { Alert, Avatar, Box, Button, Card, CardContent, RadioGroup, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -161,7 +161,6 @@ import swal from 'sweetalert';
                     required 
                     />
                   </Grid>
-                  <Divider />
                   <Grid item xs={12}>
                     <TextField 
                     type="email" 
