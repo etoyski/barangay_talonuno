@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Alert, Avatar , Box, Button, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import {Alert, Avatar , Box, Button, Card, CardContent, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -103,111 +103,102 @@ const Login = () => {
   };
   return (
     <ThemeProvider theme={theme}>
-    <Grid container component="main" sx={{ height: '90vh' }}>
       
-      <Grid
-        item
-        xs={false}
-        sm={3}
-        md={7}
-        sx={{
-          backgroundImage: `url(${Logo})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'contain',
-          backgroundPosition: 'center',
-        }}
-      />
-      
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Box
-          sx={{
-            my: 8,
-            mx: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.email}  
-              id="email"
-              label="Email Address"
-              name="email"
-              type="email"
-              autoComplete="email"
-              autoFocus
+    <Grid component={Paper} elevation={16} sx={{p:2}}>
+    
+    <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <Card style={{ maxWidth: 500, padding: "20px 5px", margin: "0 auto" }}>
+          <CardContent>
+            <Typography gutterBottom variant="h5">
+              Log In
+          </Typography> 
+            <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
               
-            />
-            <TextField
-              margin="normal"
-              required
-              error={error}
-              fullWidth
-              onChange={handleChange} 
-              value={inputs.password} 
-              name="password"
-              label="Password"
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              autoComplete="current-password"
-              inputProps={{ minLength: 6 }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={handleClick} onMouseDown={handleMouseDown}>
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <LoadingButton 
+          </Typography> 
+            
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <TextField 
+                  margin="normal"
+                  required
+                  error={error}
+                  fullWidth
+                  onChange={handleChange} 
+                  value={inputs.email}  
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  autoFocus
+                  />
+                </Grid>
+                
+                <Grid item xs={12} >
+                <TextField
+                margin="normal"
+                required
+                error={error}
+                fullWidth
+                onChange={handleChange} 
+                value={inputs.password} 
+                name="password"
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                autoComplete="current-password"
+                inputProps={{ minLength: 6 }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={handleClick} onMouseDown={handleMouseDown}>
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              
+                </Grid>
+                
+            
+                <Grid item xs={12}>
+                <FormControlLabel
+                  
+                  control={<Checkbox required value="remember" color="primary" />}
+                  label="Remember me"
+                />
+              </Grid>
+                <Grid item xs={12}>
+                <LoadingButton 
              loading = {loading}
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              
               >
-           SignIn
+             SignIn
           </LoadingButton>
-            
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
+                </Grid>
+                <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/login" variant="body2">
+                  Don't have an account? Sign up
                 </Link>
               </Grid>
             </Grid>
-            <Copyright sx={{ mt: 5 }} />
-          </Box>
-        </Box>
-        
+            <Grid container justifyContent="row-reverse">
+              <Grid item>
+                <Link href="/login" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+            </Grid>
+              </Grid>
+          </CardContent>
+        </Card>
+       </Box>
       </Grid>
-    </Grid>
   </ThemeProvider>
   )
 }

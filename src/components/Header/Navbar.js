@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
-import { Button } from '../../globalStyles';
+import { Button, ButtonL } from '../../globalStyles';
 import {
   Nav,
   NavbarContainer,
@@ -85,12 +85,12 @@ function Navbar() {
               <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/login'>
-                    <Button primary>Login</Button>
+                    <ButtonL primary>Login</ButtonL>
                   </NavBtnLink>
                 ) : (
                   <NavBtnLink to='/login'>
-                    <Button onClick={closeMobileMenu} fontBig primary>
-                    Login                    </Button>
+                    <ButtonL onClick={closeMobileMenu} fontBig primary>
+                    Login                    </ButtonL>
                   </NavBtnLink>
                 )}
               </NavItemBtn>

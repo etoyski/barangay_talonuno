@@ -36,11 +36,29 @@ export const Button = styled.button`
   &:hover {
     transition: all 0.3s ease-out;
     background: #fff;
-    background-color: ${({ primary }) => (primary ? '#0467FB' : '#4B59F7')};
+    background-color: ${({ primary }) => (primary ? '#5f9ea0' : '#4B59F7')};
   }
   @media screen and (max-width: 960px) {
     width: 100%;
   }
 `;
-
+export const ButtonL = styled.button`
+  border-radius: 4px;
+  background: ${({ primary }) => (primary ? '#ffff' : '#0467FB')};
+  white-space: nowrap;
+  padding: ${({ big }) => (big ? '12px 64px' : '10px 20px')};
+  color: #4B59F7;
+  font-size: ${({ fontBig }) => (fontBig ? '20px' : '16px')};
+  outline: none;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.3s ease-out;
+    background: #fff;
+    background-color: ${({ primary }) => (primary ? '#5f9ea0' : '#4B59F7')};
+  }
+  @media screen and (max-width: 960px) {
+    width: 100%;
+  }
+`;
 export default GlobalStyle;
