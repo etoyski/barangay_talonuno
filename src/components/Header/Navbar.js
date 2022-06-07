@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
+import { useNavigate } from 'react-router-dom';
 import { Button, ButtonL } from '../../globalStyles';
 import {
   Nav,
@@ -21,7 +22,7 @@ function Navbar() {
   const [isloggedin, setisloggedin] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
+  const navigate = useNavigate();
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
