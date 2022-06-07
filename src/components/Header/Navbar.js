@@ -36,7 +36,11 @@ function Navbar() {
   }, []);
 
   window.addEventListener('resize', showButton);
-
+  useEffect(()=> {
+    if (localStorage.getItem ('T')){
+        setisloggedin (true);
+    }
+}, [navigate] ) 
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
