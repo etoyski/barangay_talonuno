@@ -47,7 +47,7 @@ export default function  Mainpage  ()  {
             <Typography variant="h6">
                Announcement:
             </Typography>
-            <img width={500} height={350} src={bball} alt="" />
+            <img width={200} height={200} src={bball} alt="" />
             </Box>
             
       </Container>
