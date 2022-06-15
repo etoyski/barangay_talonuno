@@ -33,7 +33,6 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Login = () => {
-  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
