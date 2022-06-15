@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../globalStyles';
+import { Button, ButtonL } from '../../globalStyles';
 import {
   Nav,
   NavbarContainer,
@@ -20,11 +20,9 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [isloggedin, setisloggedin] = useState(false);
-  const navigate = useNavigate();
-
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
+  const navigate = useNavigate();
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -37,13 +35,12 @@ function Navbar() {
     showButton();
   }, []);
 
+  window.addEventListener('resize', showButton);
   useEffect(()=> {
     if (localStorage.getItem ('T')){
         setisloggedin (true);
     }
 }, [navigate] ) 
-  window.addEventListener('resize', showButton);
-
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -57,7 +54,7 @@ function Navbar() {
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
             <NavMenu onClick={handleClick} click={click}>
-              {isloggedin ? ''  : <NavItem>
+            {isloggedin ? ''  :  <NavItem>
                 <NavLinks to='/' onClick={closeMobileMenu}>
                   Home
                 </NavLinks>
@@ -77,7 +74,7 @@ function Navbar() {
                   Contactus
                 </NavLinks>
               </NavItem>
-              <NavItemBtn>
+              {isloggedin ? ''  :  <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/signup'>
                     <Button primary>SIGN UP</Button>
@@ -89,19 +86,19 @@ function Navbar() {
                     </Button>
                   </NavBtnLink>
                 )}
-              </NavItemBtn>
-              <NavItemBtn>
+              </NavItemBtn>}
+              {isloggedin ? <LogoutButton props = {setisloggedin}/> :  <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/login'>
-                    <Button primary>Login</Button>
+                    <ButtonL primary>Login</ButtonL>
                   </NavBtnLink>
                 ) : (
                   <NavBtnLink to='/login'>
-                    <Button onClick={closeMobileMenu} fontBig primary>
-                    Login                    </Button>
+                    <ButtonL onClick={closeMobileMenu} fontBig primary>
+                    Login                    </ButtonL>
                   </NavBtnLink>
                 )}
-              </NavItemBtn>
+                </NavItemBtn>} 
             </NavMenu>
           </NavbarContainer>
         </Nav>
@@ -109,5 +106,17 @@ function Navbar() {
     </>
   );
 }
-
+const LogoutButton = ({props})=> {
+  const navigate = useNavigate();
+  const loggedOut = () => {
+    localStorage.removeItem('T');
+    props(false);
+    navigate('/login')
+  }
+  return (
+    <React.Fragment>
+      <Button onClick={loggedOut}> Logout </Button>
+    </React.Fragment>
+  )
+}
 export default Navbar;
