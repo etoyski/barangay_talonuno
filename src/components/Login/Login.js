@@ -14,7 +14,8 @@ import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import swal from 'sweetalert';
-
+import { useCookies } from 'react-cookie';
+import useAuth from '../Auth/Auth';
 
 function Copyright(props) {
   return (
@@ -32,6 +33,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Login = () => {
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
@@ -41,23 +43,32 @@ const Login = () => {
   const handleMouseDown = (e) => {
     e.preventDefault();
   };
+  const [user, setUser] = useState();
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(['user']);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [inputs,setInputs] = useState({
   
     email: "", 
     password:"",
     
 });
+const handle = () => {
+  setCookie('email', email, { path: '/' });
+  setCookie('password', password, { path: '/' });
+};
   const handleChange = (e) => {
-
+   
     setInputs(prev => ({
         ...prev,
         [e.target.name]: e.target.value
     }))};
     const sendRequest = async () => {
+      
       setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
@@ -81,7 +92,7 @@ const Login = () => {
         setError(true)
         swal({
           title: "error",
-          text: "Login Failed",
+          text: "Login Failed, Please input valid credentials",
           icon: "error",
           button: "OK",
           
@@ -95,6 +106,7 @@ const Login = () => {
   }
 
   const handleSubmit = (e) => {
+    
       e.preventDefault();
       //console.log(inputs);
    
@@ -165,7 +177,7 @@ const Login = () => {
                 <Grid item xs={12}>
                 <FormControlLabel
                   
-                  control={<Checkbox required value="remember" color="primary" />}
+                  control={<Checkbox   onClick={handle} value="remember" color="primary" />}
                   label="Remember me"
                 />
               </Grid>
@@ -199,7 +211,18 @@ const Login = () => {
         </Card>
        </Box>
       </Grid>
+      {cookies.email && (
+      <div>
+         email: <p>{cookies.email}</p>
+      </div>
+      )}
+      {cookies.Password && (
+      <div>
+         password: <p>{cookies.password}</p>
+      </div>
+      )}
   </ThemeProvider>
+  
   )
 }
 
