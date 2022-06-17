@@ -17,7 +17,7 @@ import swal from 'sweetalert';
   const theme = createTheme();
 
   const Signup = () => {
-    const validator = require("email-validator");
+    
   const navigate = useNavigate();
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);

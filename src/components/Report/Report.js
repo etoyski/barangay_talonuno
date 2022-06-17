@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import VerticalTabs from '../Tabs/Tabs';
-import { TextField,Box, Autocomplete } from '@mui/material';
+import { TextField,Box, Autocomplete, Card, ThemeProvider, CardContent, createTheme, Paper, IconButton } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox'; 
@@ -10,7 +10,18 @@ import { useState } from 'react';
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1a746b',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#004d40',
+    },
+  },
+});
 
 
 export default function Report() {
@@ -103,12 +114,30 @@ const handleSubmit = (e) => {
     
       <VerticalTabs />
   
-    <Typography variant="h6" gutterBottom>
-      Submit A report
-    </Typography>
-    <Box  component="form" onSubmit={handleSubmit}>
-    <Grid container spacing={3}  >
-    {/* <Grid item xs={12} sm={6}>
+    
+    <ThemeProvider  theme={theme}>
+      
+      <Grid component={Paper} elevation={16} sx={{p:2}}>
+      
+      <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Card style={{ maxWidth: 800, padding: "20px 5px", margin: "0 auto" }}>
+            <CardContent>
+              <Box sx={{
+        width: 750,
+        height: 100,
+        backgroundColor: 'secondary.main',
+       
+        }}>
+              <Typography gutterBottom align='center' variant="h4" color="white" >
+                Submit a Report
+            </Typography> 
+              <Typography variant="caption" color="white" component="p" align='left' gutterBottom>
+                Fill up the required values.
+            </Typography> 
+            </Box>
+              
+                <Grid container spacing={1}>
+                <Grid item xs={12} sm={6}>
         <TextField
           id="email"
           name="email"
@@ -121,8 +150,8 @@ const handleSubmit = (e) => {
           required
           error={error}
         />
-      </Grid> */}
-      <Grid item xs={12} sm={6}>
+      </Grid> 
+       <Grid item xs={12} sm={6}>
         <TextField
           id="name"
           name="name"
@@ -186,6 +215,7 @@ const handleSubmit = (e) => {
       />
       </Grid>
       <Grid item xs={12} sm={6}>
+      
         <TextField
           id="Image"
           name="Image"
@@ -193,11 +223,16 @@ const handleSubmit = (e) => {
           value={inputs.Image} 
           label="Image"
           fullWidth
+          type ="file"
           autoComplete="Image"
           variant="standard"
           required
+          component="span"
+          accept="image/*"
           error={error}
+          
         />
+       
       </Grid>
     
       
@@ -206,8 +241,8 @@ const handleSubmit = (e) => {
           control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
           label="Use this address for reporting details"
         />
-      </Grid>
-      <LoadingButton 
+      </Grid> 
+       <LoadingButton 
              loading = {loading}
               type="submit"
               fullWidth
@@ -216,11 +251,16 @@ const handleSubmit = (e) => {
               
               >
            Submit
-          </LoadingButton>
+          </LoadingButton> 
+                  </Grid>
+                  
+                
+            </CardContent>
+          </Card>
+         </Box>
+        </Grid>
         
-    </Grid>
-    </Box>
-    
+    </ThemeProvider>
   </React.Fragment>
   );
 }
