@@ -194,6 +194,19 @@ function Navbar() {
               <AccountCircle />
             </IconButton>
           </Box>  :  ''}
+          {isloggedin ? <Box sx={{  display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              sx={{color:'#fff'}}
+              onClick={handleMobileMenuOpen}
+            >
+              <AccountCircle />
+            </IconButton>
+          </Box>  :  ''}
           {renderMobileMenu}
             </NavMenu>
             
