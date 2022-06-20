@@ -95,7 +95,7 @@ function Navbar() {
                 aria-haspopup="true"
                 onClick={handleMenu}
                sx={{
-                color='white'
+                color:'white'
 
                }}
 
