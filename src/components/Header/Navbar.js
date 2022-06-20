@@ -116,6 +116,11 @@ function Navbar() {
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                sx={{
+                  color:'white'
+  
+                 }}
+  
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
