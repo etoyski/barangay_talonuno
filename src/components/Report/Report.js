@@ -128,7 +128,7 @@ const handleSubmit = (e) => {
        
        
         }}>
-              <Typography gutterBottom align='center' variant="h4"  >
+              <Typography gutterBottom align='left' variant="h4"  >
                 Submit a Report
             </Typography> 
               <Typography variant="caption"  component="p" align='left' gutterBottom>
