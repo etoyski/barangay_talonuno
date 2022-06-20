@@ -94,7 +94,10 @@ function Navbar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="white"
+               sx={{
+                color='white'
+
+               }}
 
               >
                 <AccountCircle />
