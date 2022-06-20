@@ -160,7 +160,7 @@ function Navbar() {
                   </NavBtnLink>
                 )}
                 </NavItemBtn>} 
-                {isloggedin ? <NavItem sx={{  display: { xs: 'none', md: 'flex' } }}>
+                {isloggedin ? <Box sx={{  display: { xs: 'none', md: 'flex' } }}>
             <IconButton
               size="large"
               edge="end"
@@ -172,7 +172,7 @@ function Navbar() {
             >
               <AccountCircle />
             </IconButton>
-          </NavItem>  :  ''}
+          </Box>  :  ''}
             </NavMenu>
             
           </NavbarContainer>      
