@@ -35,6 +35,13 @@ function Navbar() {
     setAnchorEl(event.currentTarget);
   };
 
+  const showMenu = () => {
+    if (window.innerWidth <= 960) {
+      setAnchorEl(false);
+    } else {
+      setAnchorEl(true);
+    }
+  };
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -42,9 +49,9 @@ function Navbar() {
       setButton(true);
     }
   };
-
   useEffect(() => {
     showButton();
+    showMenu();
   }, []);
 
   window.addEventListener('resize', showButton);
