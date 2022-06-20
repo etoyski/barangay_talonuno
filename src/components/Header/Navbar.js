@@ -94,7 +94,8 @@ function Navbar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="inherit"
+                color="white"
+
               >
                 <AccountCircle />
               </IconButton>
