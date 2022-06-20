@@ -1,3 +1,4 @@
+import { IconButton, MenuItem } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
@@ -15,14 +16,25 @@ import {
   NavLinks,
   NavBtnLink
 } from './NavbarElements';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Menu from '@mui/material/Menu';
 
 function Navbar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [isloggedin, setisloggedin] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const navigate = useNavigate();
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -74,6 +86,38 @@ function Navbar() {
                   Contactus
                 </NavLinks>
               </NavItem>
+              {isloggedin && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div>
+          )}
               {isloggedin ? ''  :  <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/signup'>
