@@ -117,7 +117,7 @@ function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
                 sx={{
-                  color:'white'
+                  color:'#e1f5fe'
   
                  }}
   
