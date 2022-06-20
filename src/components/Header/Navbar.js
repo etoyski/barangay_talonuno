@@ -61,28 +61,7 @@ function Navbar() {
   const closeMobileMenu = () => setClick(false);
   const navigate = useNavigate();
 
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-          
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+ 
 
  
   const showButton = () => {
@@ -186,28 +165,27 @@ function Navbar() {
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls={mobileMenuId}
+              aria-controls={menuId}
               aria-haspopup="true"
               sx={{color:'#fff'}}
-              onClick={handleMobileMenuOpen}
+              onClick={() => navigate('/about')}
             >
               <AccountCircle />
             </IconButton>
           </Box>  :  ''}
           {isloggedin ? <Box sx={{  display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
+          <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls={mobileMenuId}
+              aria-controls={menuId}
               aria-haspopup="true"
               sx={{color:'#fff'}}
-              onClick={handleMobileMenuOpen}
+              onClick={() => navigate('/about')}
             >
               <AccountCircle />
             </IconButton>
           </Box>  :  ''}
-          {renderMobileMenu}
             </NavMenu>
             
           </NavbarContainer>      
