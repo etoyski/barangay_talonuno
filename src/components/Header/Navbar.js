@@ -25,6 +25,7 @@ function Navbar() {
     setAnchorEl(null);
   };
   const [click, setClick] = useState(false);
+  const [IconButton,setIconButton]= useState(true)
   const [button, setButton] = useState(true);
   const [isloggedin, setisloggedin] = useState(false);
   const handleClick = () => setClick(!click);
@@ -37,9 +38,9 @@ function Navbar() {
 
   const showMenu = () => {
     if (window.innerWidth <= 960) {
-      setAnchorEl(false);
+      setIconButton(false);
     } else {
-      setAnchorEl(true);
+      setIconButton(true);
     }
   };
   const showButton = () => {
