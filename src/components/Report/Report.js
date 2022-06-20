@@ -125,13 +125,13 @@ const handleSubmit = (e) => {
               <Box sx={{
         width: 750,
         height: 100,
-        backgroundColor: 'secondary.main',
+       
        
         }}>
-              <Typography gutterBottom align='center' variant="h4" color="white" >
+              <Typography gutterBottom align='center' variant="h4"  >
                 Submit a Report
             </Typography> 
-              <Typography variant="caption" color="white" component="p" align='left' gutterBottom>
+              <Typography variant="caption"  component="p" align='left' gutterBottom>
                 Fill up the required values.
             </Typography> 
             </Box>
