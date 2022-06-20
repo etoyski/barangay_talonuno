@@ -1,4 +1,4 @@
-import { IconButton, MenuItem } from '@mui/material';
+import { AppBar, IconButton, MenuItem, Toolbar } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
@@ -18,31 +18,52 @@ import {
 } from './NavbarElements';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { Box } from '@mui/system';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClose = () => {
-    setAnchorEl(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const menuId = 'primary-search-account-menu';
+  
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+
+
   const [click, setClick] = useState(false);
-  const [IconButton,setIconButton]= useState(true)
+  
   const [button, setButton] = useState(true);
   const [isloggedin, setisloggedin] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const navigate = useNavigate();
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+ 
 
-  const showMenu = () => {
-    if (window.innerWidth <= 960) {
-      setIconButton(false);
-    } else {
-      setIconButton(true);
-    }
-  };
+ 
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -52,7 +73,7 @@ function Navbar() {
   };
   useEffect(() => {
     showButton();
-    showMenu();
+    
   }, []);
 
   window.addEventListener('resize', showButton);
@@ -72,8 +93,26 @@ function Navbar() {
             </NavLogo>
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
-            </MobileIcon>
+            </MobileIcon>      
+
             <NavMenu onClick={handleClick} click={click}>
+           
+          
+            
+         {/* <NavItem sx={{  display: { xs: 'flex', md: 'none' } }} >
+         {isloggedin ? ''  :<IconButton
+            to='/about'
+              size="large"
+              aria-label="show more"
+              onClick={() => navigate('/about')}
+              aria-haspopup="true"
+              sx={{color:'#fff'}}
+            >
+              <AccountCircle />
+            </IconButton>}
+          </NavItem> */}
+     
+    
             {isloggedin ? ''  :  <NavItem>
                 <NavLinks to='/' onClick={closeMobileMenu}>
                   Home
@@ -94,47 +133,8 @@ function Navbar() {
                   Contactus
                 </NavLinks>
               </NavItem>
-              {isloggedin && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-               sx={{
-                color:'white'
-
-               }}
-
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                sx={{
-                  color:'#e1f5fe'
-  
-                 }}
-  
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
+              
+    
               {isloggedin ? ''  :  <NavItemBtn>
                 {button ? (
                   <NavBtnLink to='/signup'>
@@ -160,13 +160,32 @@ function Navbar() {
                   </NavBtnLink>
                 )}
                 </NavItemBtn>} 
+                {isloggedin ? <NavItem sx={{  display: { xs: 'none', md: 'flex' } }}>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              sx={{color:'#fff'}}
+              onClick={() => navigate('/about')}
+            >
+              <AccountCircle />
+            </IconButton>
+          </NavItem>  :  ''}
             </NavMenu>
-          </NavbarContainer>
+            
+          </NavbarContainer>      
+       
         </Nav>
+        
       </IconContext.Provider>
+      
     </>
   );
+  
 }
+
 const LogoutButton = ({props})=> {
   const navigate = useNavigate();
   const loggedOut = () => {
