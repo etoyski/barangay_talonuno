@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 //import Header from './components/Header/Header';
-import { Route, Routes, Navigate} from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate} from 'react-router-dom';
 import Signup from './components/Signup/Signup';
 import Welcomepage from './components/mainpage/Welcomepage';
 import Login from './components/Login/Login';
@@ -18,6 +18,7 @@ import Report from './components/Report/Report';
 import Request from './components/Request/request';
 
 import Navbar from './components/Header/Navbar';
+import { Alert } from '@mui/material';
 
 
 
@@ -26,6 +27,16 @@ import Navbar from './components/Header/Navbar';
 
 
 function App() {
+
+  const [isloggedin, setisloggedin] = useState(false);
+  const navigate = useNavigate();
+
+
+  useEffect(()=> {
+    if (localStorage.getItem ('T')){
+        setisloggedin (true);
+    }
+}, [navigate] ) 
   return (
     <React.Fragment>
     <header>
@@ -46,7 +57,7 @@ function App() {
       <Route path="/tabs" element={<VerticalTabs/>}/>
       <Route path="/speeddial" element={<ControlledOpenSpeedDial/>}/>
       <Route path="/mainpage" element={<Mainpage />}/>
-      <Route path="/report" element={<Report />}/>
+      {isloggedin ?  <Route path="/report" element={<Report />}/> : ''}
       <Route path="/request" element={<Request />}/>
       
       

@@ -70,9 +70,9 @@ import swal from 'sweetalert';
         text: "User Created",
         icon: "success",
         button: "OK",
-      });
+      })
       console.log(res.data);
-      navigate("/login");
+      this.history.navigate("/login");
       
     } catch (error) {
       setError(true)

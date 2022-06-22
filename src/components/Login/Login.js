@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Alert, Avatar , Box, Button, Card, CardContent, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -45,7 +45,8 @@ const Login = () => {
   const [user, setUser] = useState();
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState(false);  
+ 
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
   const [email, setEmail] = useState('');
