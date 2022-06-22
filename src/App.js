@@ -58,7 +58,7 @@ function App() {
       <Route path="/speeddial" element={<ControlledOpenSpeedDial/>}/>
       <Route path="/mainpage" element={<Mainpage />}/>
       {isloggedin ?  <Route path="/report" element={<Report />}/> : ''}
-      <Route path="/request" element={<Request />}/>
+      {isloggedin ? <Route path="/request" element={<Request />}/>: ''}
       
       
       </Routes>
