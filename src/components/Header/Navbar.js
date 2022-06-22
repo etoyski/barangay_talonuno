@@ -87,10 +87,13 @@ function Navbar() {
       <IconContext.Provider value={{ color: '#fff' }}>
         <Nav>
           <NavbarContainer>
-            <NavLogo to='/' onClick={closeMobileMenu}>
+            {isloggedin ?<NavLogo to='/mainpage' onClick={closeMobileMenu}>
               
               Talon Uno
-            </NavLogo>
+            </NavLogo> : <NavLogo to='/' onClick={closeMobileMenu}>
+              
+              Talon Uno
+            </NavLogo>}
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>      
