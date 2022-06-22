@@ -78,7 +78,7 @@ function Navbar() {
 
   window.addEventListener('resize', showButton);
   useEffect(()=> {
-    if (localStorage.getItem ('T')){
+    if (localStorage.getItem ('T','user')){
         setisloggedin (true);
     }
 }, [navigate] ) 
@@ -205,9 +205,8 @@ function Navbar() {
 const LogoutButton = ({props})=> {
   const navigate = useNavigate();
   const loggedOut = () => {
-    setUser({});
-    setUsername("");
-    setPassword("");
+    
+    
     //localStorage.removeItem('T');
     localStorage.clear();
 
