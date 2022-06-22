@@ -8,7 +8,7 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import CallIcon from '@mui/icons-material/Call';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import VerticalTabs from '../Tabs/Tabs';
-
+import './iframe.css';
 const iframe='<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3863.7950375320224!2d121.00048381521994!3d14.438972384887242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1e3afd12a73%3A0x5caf489f6d530339!2sTalon%20Uno%20Barangay%20Hall!5e0!3m2!1sen!2sph!4v1652612787805!5m2!1sen!2sph" width="1000" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 function Iframe(props) {
   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
@@ -153,15 +153,10 @@ const Contactus = () => {
         </Grid>
       </Grid>
     </Box>
-    <Card sx={{
-        width: 500,
-        height: 500,
-        p:10,
-        
-      }}>
+    <div className='myIframe'>
 
        <Iframe sx={{}}iframe={iframe} />
-       </Card>
+       </div>
   
       </Container>
 
