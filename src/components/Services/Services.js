@@ -16,7 +16,7 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import { useNavigate } from 'react-router-dom';
 const Services = () => {
   const navigate = useNavigate();
-  onst [isloggedin, setisloggedin] = useState(false);
+  const [isloggedin, setisloggedin] = useState(false);
   useEffect(()=> {
     if (localStorage.getItem ('T')){
         setisloggedin (true);
