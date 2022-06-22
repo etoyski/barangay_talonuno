@@ -134,7 +134,7 @@ const Services = () => {
     </CardActionArea>}
 
     <CardActions>
-        {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+        {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
           Request
         </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
           Request
@@ -239,12 +239,21 @@ const Services = () => {
       </CardActions>
   </Card>
   </Grid>
+
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        
-      />
+    {isloggedin ?<CardActionArea>
+      <CardMedia/>
+      <CardContent onClick={() => navigate('/request')}to="/request">
+        <Typography gutterBottom variant="h5" component="div">
+          <SupportOutlinedIcon />Libreng Libing Program
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          
+        </Typography>
+      </CardContent>
+    </CardActionArea> : <CardActionArea>
+      <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div">
           <SupportOutlinedIcon />Libreng Libing Program
@@ -253,20 +262,30 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea>}
     <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+       {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
           Request
-        </Button>
+        </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+          Request
+        </Button>} 
       </CardActions>
   </Card>
   </Grid>
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        
-      />
+    {isloggedin ? <CardActionArea>
+      <CardMedia/>
+      <CardContent onClick={() => navigate('/request')}to="/login">
+        <Typography gutterBottom variant="h5" component="div">
+         <AccountBalanceOutlinedIcon /> Bank Application
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          
+        </Typography>
+      </CardContent>
+    </CardActionArea> : <CardActionArea>
+      <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div">
          <AccountBalanceOutlinedIcon /> Bank Application
@@ -275,20 +294,31 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea>}
     <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+        {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
           Request
-        </Button>
+        </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+          Request
+        </Button>}
       </CardActions>
   </Card>
   </Grid>
+
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        
-      />
+    {isloggedin ? <CardActionArea>
+      <CardMedia/>
+      <CardContent onClick={() => navigate('/request')}to="/login">
+        <Typography gutterBottom variant="h5" component="div">
+        <ArticleOutlinedIcon /> Indigency
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          
+        </Typography>
+      </CardContent>
+    </CardActionArea> : <CardActionArea>
+      <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div">
         <ArticleOutlinedIcon /> Indigency
@@ -297,11 +327,13 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea>}
     <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login"> 
+        {isloggedin ?  <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login"> 
           Request
-        </Button>
+        </Button>: <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login"> 
+          Request
+        </Button>}
       </CardActions>
   </Card>
   </Grid>
