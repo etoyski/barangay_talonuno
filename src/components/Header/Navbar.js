@@ -205,7 +205,12 @@ function Navbar() {
 const LogoutButton = ({props})=> {
   const navigate = useNavigate();
   const loggedOut = () => {
-    localStorage.removeItem('T');
+    setUser({});
+    setUsername("");
+    setPassword("");
+    //localStorage.removeItem('T');
+    localStorage.clear();
+
     props(false);
     navigate('/login')
   }
