@@ -122,16 +122,16 @@ const [value, setValue] = React.useState(null);
       <Grid component={Paper} elevation={16} sx={{p:2}}>
       
       <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          <Card style={{ maxWidth: 800, padding: "20px 5px", margin: "0 auto" }}>
+          <Card style={{ maxWidth: 600, padding: "20px 5px", margin: "0 auto" }}>
             <CardContent>
               <Box sx={{
-        width: 750,
+        width: 700,
         height: 100,
        
        
         }}>
               <Typography gutterBottom align='left' variant="h4"  >
-                Submit a Report
+                Request a Document
             </Typography> 
               <Typography variant="caption"  component="p" align='left' gutterBottom>
                 Fill up the required values.
