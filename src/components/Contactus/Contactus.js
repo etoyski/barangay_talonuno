@@ -153,15 +153,15 @@ const Contactus = () => {
         </Grid>
       </Grid>
     </Box>
-    <Box sx={{
-        width: 1000,
-        height: 1000,
-        p:15,
+    <Card sx={{
+        width: 500,
+        height: 500,
+        p:10,
         
       }}>
 
        <Iframe sx={{}}iframe={iframe} />
-       </Box>
+       </Card>
   
       </Container>
 
