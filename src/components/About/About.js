@@ -1,5 +1,5 @@
 import { Container, CssBaseline, Divider, Grid, Modal, Paper, Popover, Typography } from '@mui/material';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import captain from '../../assets/captain.jpg'
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
@@ -15,6 +15,7 @@ import sk from '../../assets/sk.jpg';
 import treasurer from '../../assets/flor.jpg';
 import secre from '../../assets/domingo.jpg';
 import VerticalTabs from '../Tabs/Tabs';
+import { useNavigate } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#0a0b0d' : '#fff',
@@ -37,6 +38,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const About = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [isloggedin, setisloggedin] = useState(false);
+    const navigate = useNavigate();
 
     const handlePopoverOpen = (event) => {
       setAnchorEl(event.currentTarget);
