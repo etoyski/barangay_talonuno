@@ -69,8 +69,9 @@ const handle = () => {
         [e.target.name]: e.target.value
     }))};
     const sendRequest = async () => {
-      const user = { email: inputs.email,
-        password: inputs.password,};
+      const user = { 
+        email,
+        password};
       setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
@@ -124,6 +125,7 @@ const handle = () => {
       //console.log(inputs);
       sendRequest();
   };
+
   return (
     <ThemeProvider theme={theme}>
       
