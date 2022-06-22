@@ -23,6 +23,8 @@ const Services = () => {
     }
 }, [navigate] ) 
   return (
+    <React.Fragment>
+          {isloggedin ? <VerticalTabs /> : ''}
     <Box sx={{ flexGrow: 1, p:5,  }}>
         <Grid container spacing={5}>
         <Grid item xs="auto">
@@ -340,6 +342,7 @@ const Services = () => {
 </Grid>
      
   </Box>
+  </React.Fragment>
   );
 }
 
