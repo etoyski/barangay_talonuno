@@ -8,11 +8,23 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import VerticalTabs from '../Tabs/Tabs';
-import { Autocomplete, Checkbox, FormControlLabel, Grid, TextField } from '@mui/material';
+import { Autocomplete, Checkbox, FormControlLabel, Grid, TextField, ThemeProvider } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1a746b',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#004d40',
+    },
+  },
+});
 
 export default function Request() {
   const [loading, setLoading] = useState(false);
@@ -102,14 +114,32 @@ const [value, setValue] = React.useState(null);
   return (
     <React.Fragment>
     
-    <VerticalTabs />
-
-  <Typography variant="h6" gutterBottom>
-    Submit A Request
-  </Typography>
-  <Box  component="form" onSubmit={handleSubmit}>
-  <Grid container spacing={3}>
-  <Grid item xs={12} sm={6}>
+      <VerticalTabs />
+  
+    
+    <ThemeProvider  theme={theme}>
+      
+      <Grid component={Paper} elevation={16} sx={{p:2}}>
+      
+      <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Card style={{ maxWidth: 800, padding: "20px 5px", margin: "0 auto" }}>
+            <CardContent>
+              <Box sx={{
+        width: 750,
+        height: 100,
+       
+       
+        }}>
+              <Typography gutterBottom align='left' variant="h4"  >
+                Submit a Report
+            </Typography> 
+              <Typography variant="caption"  component="p" align='left' gutterBottom>
+                Fill up the required values.
+            </Typography> 
+            </Box>
+              
+                <Grid container spacing={1}>
+                <Grid item xs={12} sm={6}>
   <Autocomplete
         {...defaultProps}
         id="clear-on-escape"
@@ -192,22 +222,26 @@ const [value, setValue] = React.useState(null);
         error={error}
       />
     </Grid>
-    
-   
-    <LoadingButton 
-           loading = {loading}
-            type="submit"
-            fullWidth
-            variant="outlined"
-            sx={{ mt: 3, mb: 2 }}
-            
-            >
-         SignIn
-        </LoadingButton>
-      
-  </Grid>
-  </Box>
-</React.Fragment>
+       <LoadingButton 
+             loading = {loading}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              
+              >
+           Submit
+          </LoadingButton> 
+                  </Grid>
+                  
+                
+            </CardContent>
+          </Card>
+         </Box>
+        </Grid>
+        
+    </ThemeProvider>
+  </React.Fragment>
   );
 }
 const typeofrequest = [ 
