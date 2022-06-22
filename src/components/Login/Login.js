@@ -57,6 +57,7 @@ const Login = () => {
     password:"",
     
 });
+
 const handle = () => {
   setCookie('email', email, { path: '/' });
   setCookie('password', password, { path: '/' });
@@ -68,7 +69,8 @@ const handle = () => {
         [e.target.name]: e.target.value
     }))};
     const sendRequest = async () => {
-      
+      const user = { email: inputs.email,
+        password: inputs.password,};
       setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
@@ -76,7 +78,7 @@ const handle = () => {
               email: inputs.email,
               password: inputs.password,
           // confirmpassword: inputs.confirmpassword
-          })
+          },user)
           
           swal({
             title: "Welcome!",
@@ -84,8 +86,14 @@ const handle = () => {
             icon: "success",
             button: "OK",
           });
+              // set the state of the user
+               setUser(res.data)
+               // store the user in localStorage
+              localStorage.setItem('user', res.data)
               console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
+            
+          
              navigate('/mainpage');
   
       }catch(error) {
@@ -104,14 +112,17 @@ const handle = () => {
       }
     
   }
-
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
   const handleSubmit = (e) => {
-    
-      e.preventDefault();
+          e.preventDefault();
       //console.log(inputs);
-   
       sendRequest();
-
   };
   return (
     <ThemeProvider theme={theme}>
