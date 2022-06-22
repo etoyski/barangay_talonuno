@@ -70,8 +70,8 @@ const handle = () => {
     }))};
     const sendRequest = async () => {
       const user = { 
-        email: inputs.email,
-        password: inputs.password,};
+        email,
+        password};
       setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
