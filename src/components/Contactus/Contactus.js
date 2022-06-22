@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, CssBaseline, Divider, Grid, Popover, rgbToHex, styled, Typography } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
-import React from 'react'
+import React, { useEffect } from 'react'
 import bgImg from '../../assets/brgyhall.jpg'
 import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +21,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const Contactus = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isloggedin, setisloggedin] = useState(false);
+  const navigate = useNavigate();
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,9 +33,16 @@ const Contactus = () => {
   };
 
   const open = Boolean(anchorEl);
-  const navigate = useNavigate();
+  
+  useEffect(()=> {
+    if (localStorage.getItem ('T')){
+        setisloggedin (true);
+    }
+}, [navigate] ) 
   return (
     <React.Fragment>
+          {isloggedin ? <VerticalTabs /> : ''}
+
       <CssBaseline />
       <Container maxWidth="lg" sx={{p:2}}>
         <Box 
