@@ -14,6 +14,7 @@ import HealingOutlinedIcon from '@mui/icons-material/HealingOutlined';
 import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import { useNavigate } from 'react-router-dom';
+import VerticalTabs from '../Tabs/Tabs';
 const Services = () => {
   const navigate = useNavigate();
   const [isloggedin, setisloggedin] = useState(false);
