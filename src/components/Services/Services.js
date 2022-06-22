@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ArrowSmRightIcon, BriefcaseIcon, CashIcon, CreditCardIcon, IdentificationIcon} from '@heroicons/react/outline';
 import {ChipIcon, SupportIcon} from '@heroicons/react/solid'
@@ -16,6 +16,12 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import { useNavigate } from 'react-router-dom';
 const Services = () => {
   const navigate = useNavigate();
+  onst [isloggedin, setisloggedin] = useState(false);
+  useEffect(()=> {
+    if (localStorage.getItem ('T')){
+        setisloggedin (true);
+    }
+}, [navigate] ) 
   return (
     <Box sx={{ flexGrow: 1, p:5,  }}>
         <Grid container spacing={5}>
@@ -45,11 +51,23 @@ const Services = () => {
 
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
+  { isloggedin ?<CardActionArea>
       <CardMedia
         
       />
-      <CardContent>
+    <CardContent>
+        <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/request')}to="/login">
+        <ArticleOutlinedIcon /> Barangay Clearance
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          
+        </Typography>
+      </CardContent>
+    </CardActionArea> :<CardActionArea>
+      <CardMedia
+        
+      />
+    <CardContent>
         <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/login')}to="/login">
         <ArticleOutlinedIcon /> Barangay Clearance
         </Typography>
@@ -57,7 +75,7 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea>}
     <CardActions>
         <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
           Request
