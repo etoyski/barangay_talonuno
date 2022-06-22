@@ -27,31 +27,47 @@ const Services = () => {
         <Grid container spacing={5}>
         <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
+  { isloggedin ? <CardActionArea >
+      <CardMedia 
+      />
+      <CardContent  onClick={() => navigate('/request')}to="/login">
+        <Typography gutterBottom variant="h5" component="div">
+        <BadgeOutlinedIcon /> Barangay ID 
+        </Typography>
+        <Typography variant="body2" color="text.secondary"> 
+        </Typography>
+      </CardContent>
+    </CardActionArea> 
+
+    :
+    
     <CardActionArea >
-      <CardMedia
-        
+      <CardMedia 
       />
       <CardContent  onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div">
         <BadgeOutlinedIcon /> Barangay ID 
         </Typography>
-        
         <Typography variant="body2" color="text.secondary">
-          
         </Typography>
       </CardContent>
-    </CardActionArea>
-    <CardActions>
+    </CardActionArea>}
+
+    {isloggedin ?<CardActions>
+        <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+          Request
+        </Button>
+      </CardActions> : <CardActions>
         <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
           Request
         </Button>
-      </CardActions>
+      </CardActions>}
   </Card>
   </Grid>
 
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-  { isloggedin ?<CardActionArea>
+  { isloggedin ? <CardActionArea>
       <CardMedia
         
       />
@@ -63,29 +79,47 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea> :<CardActionArea>
-      <CardMedia
-        
-      />
+    </CardActionArea> 
+    :
+    <CardActionArea>
+      <CardMedia 
+      />  
     <CardContent>
         <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/login')}to="/login">
         <ArticleOutlinedIcon /> Barangay Clearance
+        </Typography>
+        <Typography variant="body2" color="text.secondary"> 
+        </Typography>
+      </CardContent>
+    </CardActionArea>}
+    
+    <CardActions>
+        {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+          Request
+        </Button> :<Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+          Request
+        </Button> }
+      </CardActions>
+  </Card>
+  </Grid>
+
+  <Grid item xs="auto">
+  <Card sx={{ p:3,maxWidth: 345 }}>
+  {isloggedin ? <CardActionArea>
+      <CardMedia
+        
+      />
+      <CardContent onClick={() => navigate('/request')}to="/login">
+        <Typography gutterBottom variant="h5" component="div">
+        <BadgeOutlinedIcon />  Barangay Residency
         </Typography>
         <Typography variant="body2" color="text.secondary">
           
         </Typography>
       </CardContent>
-    </CardActionArea>}
-    <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
-          Request
-        </Button>
-      </CardActions>
-  </Card>
-  </Grid>
-  <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
+    </CardActionArea> 
+    : 
+  <CardActionArea>
       <CardMedia
         
       />
@@ -97,42 +131,63 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea>}
+
     <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+        {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
           Request
-        </Button>
+        </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+          Request
+        </Button>}
       </CardActions>
   </Card>
   </Grid>
+
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        
-      />
+    {isloggedin ? <CardActionArea>
+      <CardMedia/>
+      <CardContent onClick={() => navigate('/request')}to="/login">
+        <Typography gutterBottom variant="h5" component="div">
+        <BadgeOutlinedIcon />  Post Residency
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        </Typography>
+      </CardContent>
+    </CardActionArea> : <CardActionArea>
+      <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div">
         <BadgeOutlinedIcon />  Post Residency
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea>}
     <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+        {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
           Request
-        </Button>
+        </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+          Request
+        </Button>}
       </CardActions>
   </Card>
   </Grid>
+
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        
-      />
+    {isloggedin ? <CardActionArea>
+      <CardMedia/>
+      <CardContent onClick={() => navigate('/request')}to="/login">
+        <Typography gutterBottom variant="h5" component="div">
+         <WorkOutlineOutlinedIcon /> Local Employment
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          
+        </Typography>
+      </CardContent>
+    </CardActionArea> : <CardActionArea>
+      <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div">
          <WorkOutlineOutlinedIcon /> Local Employment
@@ -141,20 +196,31 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea>}
     <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+        {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
           Request
-        </Button>
+        </Button>: <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+          Request
+        </Button>}
       </CardActions>
   </Card>
   </Grid>
+
   <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        
-      />
+    {isloggedin ? <CardActionArea>
+      <CardMedia/>
+      <CardContent onClick={() => navigate('/request')}to="/request">
+        <Typography gutterBottom variant="h5" component="div">
+          <HealingOutlinedIcon /> Green Card
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          
+        </Typography>
+      </CardContent>
+    </CardActionArea> : <CardActionArea>
+      <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div">
           <HealingOutlinedIcon /> Green Card
@@ -163,11 +229,13 @@ const Services = () => {
           
         </Typography>
       </CardContent>
-    </CardActionArea>
+    </CardActionArea> }
     <CardActions>
-        <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+        {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/request">
           Request
-        </Button>
+        </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+          Request
+        </Button>} 
       </CardActions>
   </Card>
   </Grid>
