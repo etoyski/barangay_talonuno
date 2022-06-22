@@ -14,6 +14,7 @@ import kgwd7 from '../../assets/tony.jpg';
 import sk from '../../assets/sk.jpg';
 import treasurer from '../../assets/flor.jpg';
 import secre from '../../assets/domingo.jpg';
+import VerticalTabs from '../Tabs/Tabs';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#0a0b0d' : '#fff',
@@ -35,6 +36,7 @@ const Item = styled(Paper)(({ theme }) => ({
   };
 const About = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [isloggedin, setisloggedin] = useState(false);
 
     const handlePopoverOpen = (event) => {
       setAnchorEl(event.currentTarget);
@@ -45,8 +47,15 @@ const About = () => {
     };
   
     const open = Boolean(anchorEl);
+
+    useEffect(()=> {
+      if (localStorage.getItem ('T')){
+          setisloggedin (true);
+      }
+  }, [navigate] ) 
   return (
-    
+    <React.Fragment>
+    {isloggedin ? <VerticalTabs /> : ''}
     
     <Box sx={{ flexGrow: 1, p:3,  backgroundColor: 'primary.dark',
     '&:hover': {
@@ -360,7 +369,7 @@ const About = () => {
 
 
  </Box>
-    
+ </React.Fragment>   
 
     
     
