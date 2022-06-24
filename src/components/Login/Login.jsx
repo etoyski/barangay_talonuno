@@ -38,7 +38,7 @@ const Login = () => {
       return;
     }
 
-    setOpen(false);
+    setLogged(false);
   };
 
 
