@@ -46,7 +46,7 @@ const Login = () => {
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);  
- 
+  
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
   const [email, setEmail] = useState('');
@@ -234,7 +234,7 @@ const handle = () => {
          password: <p>{cookies.password}</p>
       </div>
       )}
-      {isloggedin ? <Alert severity="success">This is a success alert — check it out!</Alert> : ""}
+      
       {error ?  <Alert severity="error">This is a error alert — check it out!</Alert> : ""}
   </ThemeProvider>
   
