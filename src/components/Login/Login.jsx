@@ -33,12 +33,14 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Login = () => {
+  const [open, setOpen] = React.useState(false);
+
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
 
-    setLogged(false);
+    setOpen(false);
   };
 
 
@@ -242,7 +244,7 @@ const handle = () => {
          password: <p>{cookies.password}</p>
       </div>
       )}
-      {logged ? <Snackbar open={logged} autoHideDuration={6000} onClose={handleClose}>
+      {logged ? <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           This is a success message!
         </Alert>
