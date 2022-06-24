@@ -234,9 +234,8 @@ const handle = () => {
          password: <p>{cookies.password}</p>
       </div>
       )}
-      {isloggedin ? <Alert severity="success">This is a success alert — check it out!</Alert> 
-      :
-       <Alert severity="error">This is a err alert — check it out!</Alert>}
+      {isloggedin ? <Alert severity="success">This is a success alert — check it out!</Alert> : ""}
+      {error ?  <Alert severity="error">This is a error alert — check it out!</Alert> : ""}
   </ThemeProvider>
   
   )
