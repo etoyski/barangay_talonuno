@@ -90,13 +90,13 @@ const handle = () => {
               password: inputs.password,
           // confirmpassword: inputs.confirmpassword
           },user)
-            setOpen(true)
-          // swal({
-          //   title: "Welcome!",
-          //   text: "Login Successful ",
-          //   icon: "success",
-          //   button: "OK",
-          // });
+            setOpen(true),
+           swal({
+             title: "Welcome!",
+             text: "Login Successful ",
+             icon: "success",
+             button: "OK",
+           });
               // set the state of the user
                setUser(res.data)
                // store the user in localStorage
