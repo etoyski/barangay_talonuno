@@ -1,35 +1,36 @@
-import { Alert, Snackbar } from '@mui/material';
-import React from 'react';
-import { useValue } from '../context/ContextProvider';
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
-const Notification = () => {
-  const {
-    state: { alert },
-    dispatch,
-  } = useValue();
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
+export default function CustomizedSnackbars() {
+  const [open, setOpen] = React.useState(false);
+
+ 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') return;
-    dispatch({ type: 'UPDATE_ALERT', payload: { ...alert, open: false } });
-  };
-  return (
-    <Snackbar
-      open={alert.open}
-      autoHideDuration={6000}
-      onClose={handleClose}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-    >
-      <Alert
-        onClose={handleClose}
-        severity={alert.severity}
-        sx={{ width: '100%' }}
-        variant="filled"
-        elevation={6}
-      >
-        {alert.message}
-      </Alert>
-    </Snackbar>
-  );
-};
+    if (reason === 'clickaway') {
+      return;
+    }
 
-export default Notification;
+    setOpen(false);
+  };
+
+  return (
+    <Stack spacing={2} sx={{ width: '100%' }}>
+     
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+        Login success        
+        </Alert>
+      </Snackbar>
+      <Alert severity="error">Login Failed</Alert>
+     
+      <Alert severity="success">Login success</Alert>
+    </Stack>
+  );
+}
