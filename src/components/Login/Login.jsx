@@ -33,6 +33,15 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Login = () => {
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
@@ -108,7 +117,7 @@ const handle = () => {
               console.log(error.response.data);
       }finally {
         setLoading(false)
-       
+        setLogged(true)
       }
     
   }
