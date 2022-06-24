@@ -90,7 +90,7 @@ const handle = () => {
               password: inputs.password,
           // confirmpassword: inputs.confirmpassword
           },user)
-            setLogged(true)
+            setOpen(true)
           // swal({
           //   title: "Welcome!",
           //   text: "Login Successful ",
@@ -119,7 +119,7 @@ const handle = () => {
               console.log(error.response.data);
       }finally {
         setLoading(false)
-        setLogged(true)
+        setOpen(true)
       }
     
   }
