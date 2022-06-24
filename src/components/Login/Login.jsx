@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Alert, Avatar , Box, Button, Card, CardContent, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import {Alert, Avatar , Box, Button, Card, CardContent, IconButton, InputAdornment, Snackbar, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -233,8 +233,17 @@ const handle = () => {
          password: <p>{cookies.password}</p>
       </div>
       )}
-      {logged ? <Alert severity="success">Login s</Alert> : ""}
-      {error ?  <Alert severity="error">Login Failed, Please input valid credentials</Alert> : ""}
+      {logged ? <Snackbar open={logged} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          This is a success message!
+        </Alert>
+      </Snackbar> : ""}
+
+      {error ?   <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          This is a success message!
+        </Alert>
+      </Snackbar> : ""}
   </ThemeProvider>
   
   )
