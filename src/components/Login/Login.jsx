@@ -83,7 +83,7 @@ const handle = () => {
           
           swal({
             title: "Welcome!",
-            text: "Login Successful",
+            text: "Login Successful ",
             icon: "success",
             button: "OK",
           });
@@ -235,7 +235,9 @@ const handle = () => {
       </div>
       )}
       
-      {error ?  <Alert severity="error">This is a error alert — check it out!</Alert> : ""}
+      {error ?  <Alert severity="error">Login Failed, Please input valid credentials</Alert> : <Alert variant="outlined" severity="success">
+  This is a success alert — check it out!
+</Alert>}
   </ThemeProvider>
   
   )
