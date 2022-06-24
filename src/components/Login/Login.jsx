@@ -90,7 +90,7 @@ const handle = () => {
               password: inputs.password,
           // confirmpassword: inputs.confirmpassword
           },user)
-            setOpen(true),
+           
            swal({
              title: "Welcome!",
              text: "Login Successful ",
