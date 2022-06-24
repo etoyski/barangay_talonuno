@@ -45,8 +45,7 @@ const Login = () => {
   const [user, setUser] = useState();
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(false);  
-  
+  const [logged, setLogged] = useState(false);  
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
   const [email, setEmail] = useState('');
@@ -80,13 +79,13 @@ const handle = () => {
               password: inputs.password,
           // confirmpassword: inputs.confirmpassword
           },user)
-          
-          swal({
-            title: "Welcome!",
-            text: "Login Successful ",
-            icon: "success",
-            button: "OK",
-          });
+            setLogged(true)
+          // swal({
+          //   title: "Welcome!",
+          //   text: "Login Successful ",
+          //   icon: "success",
+          //   button: "OK",
+          // });
               // set the state of the user
                setUser(res.data)
                // store the user in localStorage
@@ -234,10 +233,8 @@ const handle = () => {
          password: <p>{cookies.password}</p>
       </div>
       )}
-      
-      {error ?  <Alert severity="error">Login Failed, Please input valid credentials</Alert> : <Alert variant="outlined" severity="success">
-  This is a success alert — check it out!
-</Alert>}
+      {logged ? <Alert severity="success">Login s</Alert> : ""}
+      {error ?  <Alert severity="error">Login Failed, Please input valid credentials</Alert> : ""}
   </ThemeProvider>
   
   )
