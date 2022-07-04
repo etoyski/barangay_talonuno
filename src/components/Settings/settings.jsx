@@ -17,7 +17,7 @@ export default function GeneralSettings() {
   return (
     <div>
         
-        <Container>
+        <Container sx={{mt:2,mb:2}}>
 
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
