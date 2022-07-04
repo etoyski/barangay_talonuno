@@ -14,6 +14,8 @@ export default function GeneralSettings() {
 
   return (
     <div>
+        <Box sx={{ width: 700,
+        height: 100,}}>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -86,6 +88,7 @@ export default function GeneralSettings() {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      </Box>
     </div>
   );
 }
