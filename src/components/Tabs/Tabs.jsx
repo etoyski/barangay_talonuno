@@ -32,11 +32,11 @@ export default function VerticalTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example" >
+      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example"  variant="scrollable" scrollButtons="auto">
         <LinkTab icon={<HomeIcon />} iconPosition="start" label=""onClick={() => navigate('/mainpage')}to="/mainpage" />
         <LinkTab icon={<CampaignIcon />} iconPosition="start" label="Report" onClick={() => navigate('/report')}to="/report" />
         <LinkTab icon={<RequestPageIcon />} iconPosition="start" label="Request"  onClick={() => navigate('/request')}to="/request" />
-        <LinkTab icon={<HistoryIcon />} iconPosition="start" label="Activity Log"  onClick={() => navigate('/request')}to="/request" />
+        
       </Tabs>
     </Box>
   );
