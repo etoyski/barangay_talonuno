@@ -19,7 +19,7 @@ import Request from './components/Request/request';
 import EditUserProfile from './components/userprofile/edit-user-profile';
 import Navbar from './components/Header/Navbar';
 import { Alert } from '@mui/material';
-
+import GeneralSettings from './components/Settings/settings';
 
 
 
@@ -57,6 +57,7 @@ function App() {
       <Route path="/user-profile" element={<UserProfile/>}/>
       <Route path="/edit-user-profile" element={<EditUserProfile/>}/>
       <Route path="/speeddial" element={<ControlledOpenSpeedDial/>}/>
+      <Route path="/settings" element={<GeneralSettings/>}/>
       {isloggedin ?<Route path="/mainpage" element={<Mainpage />}/> : ''}
       {isloggedin ?  <Route path="/report" element={<Report />}/> : ''}
       {isloggedin ? <Route path="/request" element={<Request />}/>: ''}
