@@ -4,8 +4,9 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Box } from '@mui/system';
+import { Box, createTheme, ThemeProvider } from '@mui/system';
 
+const theme = createTheme();
 export default function GeneralSettings() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -15,6 +16,7 @@ export default function GeneralSettings() {
 
   return (
     <div>
+         <ThemeProvider theme={theme}>
         <Box sx={{ width: 700,
         height: 100,}}>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -90,6 +92,7 @@ export default function GeneralSettings() {
         </AccordionDetails>
       </Accordion>
       </Box>
+      </ThemeProvider>
     </div>
   );
 }
