@@ -222,9 +222,9 @@ function Navbar() {
         <Divider />
         <MenuItem>
           <ListItemIcon onClick={() => navigate('/user-profile')}>
-            <Settings fontSize="small" />
+            <Settings onClick={() => navigate('/user-profile')} fontSize="small" />
           </ListItemIcon>
-          onClick={() => navigate('/user-profile')} Settings
+          Settings
         </MenuItem>
       </Menu>
             </NavMenu>

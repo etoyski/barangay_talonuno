@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import RequestPageIcon from '@mui/icons-material/RequestPage';
 import HomeIcon from '@mui/icons-material/Home';
+import HistoryIcon from '@mui/icons-material/History';
 function LinkTab(props) {
     return (
       <Tab
@@ -35,6 +36,7 @@ export default function VerticalTabs() {
         <LinkTab icon={<HomeIcon />} iconPosition="start" label=""onClick={() => navigate('/mainpage')}to="/mainpage" />
         <LinkTab icon={<CampaignIcon />} iconPosition="start" label="Report" onClick={() => navigate('/report')}to="/report" />
         <LinkTab icon={<RequestPageIcon />} iconPosition="start" label="Request"  onClick={() => navigate('/request')}to="/request" />
+        <LinkTab icon={<HistoryIcon />} iconPosition="start" label="Activity Log"  onClick={() => navigate('/request')}to="/request" />
       </Tabs>
     </Box>
   );
