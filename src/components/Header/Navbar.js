@@ -118,8 +118,12 @@ function Navbar() {
                   Services
                 </NavLinks>
               </NavItem>
-             
-              
+              <NavItem>
+                <NavLinks to='/contactus' onClick={closeMobileMenu}>
+                  Contactus
+                </NavLinks>
+              </NavItem>
+           
     
               {isloggedin ? ''  :  <NavItemBtn>
                 {button ? (
