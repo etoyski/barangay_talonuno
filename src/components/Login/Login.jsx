@@ -32,7 +32,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-const Login = () => {
+const Login = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {

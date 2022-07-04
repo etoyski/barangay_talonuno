@@ -16,15 +16,14 @@ import ControlledOpenSpeedDial from './components/Speeddial/Speeddial';
 import Mainpage from './components/mainpage/Mainpage';
 import Report from './components/Report/Report';
 import Request from './components/Request/request';
-
+import EditUserProfile from './components/userprofile/edit-user-profile';
 import Navbar from './components/Header/Navbar';
 import { Alert } from '@mui/material';
 
 
 
 
-//import UserForm from './components/Report/UserForm';
-
+import UserProfile from './components/userprofile/user-profile';
 
 function App() {
 
@@ -55,11 +54,14 @@ function App() {
       <Route path="/login" element={<Login/>}/> 
       <Route path="/signup" element={<Signup/>}/>  
       <Route path="/tabs" element={<VerticalTabs/>}/>
+      <Route path="/user-profile" element={<UserProfile/>}/>
+      <Route path="/edit-user-profile" element={<EditUserProfile/>}/>
       <Route path="/speeddial" element={<ControlledOpenSpeedDial/>}/>
-      <Route path="/mainpage" element={<Mainpage />}/>
+      {isloggedin ?<Route path="/mainpage" element={<Mainpage />}/> : ''}
       {isloggedin ?  <Route path="/report" element={<Report />}/> : ''}
       {isloggedin ? <Route path="/request" element={<Request />}/>: ''}
-      
+     
+
       
       </Routes>
     </main>

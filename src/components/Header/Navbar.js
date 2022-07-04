@@ -1,4 +1,4 @@
-import { AppBar, IconButton, MenuItem, Toolbar } from '@mui/material';
+import { AppBar, Avatar, Divider, IconButton, ListItemIcon, MenuItem, Toolbar, Tooltip } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
@@ -22,29 +22,16 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Box } from '@mui/system';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Settings } from '@mui/icons-material';
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
+  const open = Boolean(anchorEl);
+  const handleClick1 = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -164,31 +151,84 @@ function Navbar() {
                 )}
                 </NavItemBtn>} 
                 {isloggedin ? <Box sx={{  display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              sx={{color:'#fff'}}
-              onClick={() => navigate('/about')}
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>  :  ''}
-          {isloggedin ? <Box sx={{  display: { xs: 'flex', md: 'none' } }}>
+            <Tooltip title="Account settings">
           <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              sx={{color:'#fff'}}
-              onClick={() => navigate('/about')}
-            >
-              <AccountCircle />
-            </IconButton>
+            onClick={handleClick1}
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+          </IconButton>
+        </Tooltip>
           </Box>  :  ''}
+
+
+          {isloggedin ? <Box sx={{  display: { xs: 'flex', md: 'none' } }}>
+          <Tooltip title="Account settings">
+          <IconButton
+            onClick={handleClick1}
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+          </IconButton>
+        </Tooltip>
+          </Box>  :  ''}
+          <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem>
+          <Avatar /> Profile
+        </MenuItem>
+        <MenuItem>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+      </Menu>
             </NavMenu>
             
           </NavbarContainer>      
