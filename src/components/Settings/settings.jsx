@@ -4,7 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Box, createTheme, ThemeProvider } from '@mui/system';
+import { Box, Container, createTheme } from '@mui/system';
 
 const theme = createTheme();
 export default function GeneralSettings() {
@@ -16,9 +16,9 @@ export default function GeneralSettings() {
 
   return (
     <div>
-         <ThemeProvider theme={theme}>
-        <Box sx={{ width: 700,
-        height: 100,}}>
+        
+        <Container>
+
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -90,9 +90,8 @@ export default function GeneralSettings() {
             amet egestas eros, vitae egestas augue. Duis vel est augue.
           </Typography>
         </AccordionDetails>
-      </Accordion>
-      </Box>
-      </ThemeProvider>
+      </Accordion>              
+      </Container>
     </div>
   );
 }
