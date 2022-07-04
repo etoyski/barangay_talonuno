@@ -218,12 +218,10 @@ function Navbar() {
         <MenuItem>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem>
-          <Avatar /> My account
-        </MenuItem>
+       
         <Divider />
         <MenuItem>
-          <ListItemIcon>
+          <ListItemIcon onClick={() => navigate('/about')}>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
