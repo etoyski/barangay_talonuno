@@ -13,9 +13,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 import { useCookies } from 'react-cookie';
 import useAuth from '../Auth/Auth';
+import Swal from 'sweetalert2';
 
 function Copyright(props) {
   return (
@@ -78,6 +79,7 @@ const handle = () => {
         ...prev,
         [e.target.name]: e.target.value
     }))};
+    
     const sendRequest = async () => {
       const user = { 
         email,
@@ -91,12 +93,22 @@ const handle = () => {
           // confirmpassword: inputs.confirmpassword
           },user)
            
-           swal({
-             title: "Welcome!",
-             text: "Login Successful ",
-             icon: "success",
-             button: "OK",
-           });
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Login Success'
+          });
               // set the state of the user
                setUser(res.data)
                // store the user in localStorage
@@ -109,12 +121,21 @@ const handle = () => {
   
       }catch(error) {
         setError(true)
-        swal({
-          title: "error",
-          text: "Login Failed, Please input valid credentials",
-          icon: "error",
-          button: "OK",
-          
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Login Failed'
         });
               console.log(error.response.data);
       }finally {
@@ -133,6 +154,7 @@ const handle = () => {
   const handleSubmit = (e) => {
           e.preventDefault();
       //console.log(inputs);
+      
       sendRequest();
   };
   

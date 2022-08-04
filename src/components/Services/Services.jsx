@@ -22,7 +22,8 @@ const Services = () => {
     if (localStorage.getItem ('T')){
         setisloggedin (true);
     }
-}, [navigate] ) 
+}, [navigate] );
+
   return (
     <React.Fragment>
           {isloggedin ? <VerticalTabs /> : ''}

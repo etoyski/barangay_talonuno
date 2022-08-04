@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
 import swal from 'sweetalert';
+import Swal from "sweetalert2";
 
   const theme = createTheme();
 
@@ -65,23 +66,43 @@ import swal from 'sweetalert';
           confirmpassword: inputs.confirmpassword
         }
       );
-      swal({
-        title: "success",
-        text: "User Created",
-        icon: "success",
-        button: "OK",
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
       })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Login Success'
+      });
       console.log(res.data);
       this.history.navigate("/login");
       
     } catch (error) {
       setError(true)
       setAlert(true)
-      swal({
-        title: "Error",
-        text: error.response,
-        icon: "error",
-        button: "OK",
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'Sign up Failed'
       });
       console.log(error.response);
     }
