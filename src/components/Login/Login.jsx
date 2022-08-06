@@ -78,9 +78,9 @@ const handle = () => {
       setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
-             
-              email: email,
-              password: password,
+              user,
+              // email: email,
+              // password: password,
           // confirmpassword: inputs.confirmpassword
           },user)
            
@@ -102,11 +102,11 @@ const handle = () => {
           });
            
 
-              const users = response.data
-              dispatch(loginSuccess(users))
-              console.log(res.data.token);
+          setUser(res.data)
+          // store the user in localStorage
+          localStorage.setItem('user', res.data)
               localStorage.setItem('T', res.data.token);
-              localStorage.setItem('user', JSON.stringify(users))
+              
               console.log('users', users)
           
              navigate('/mainpage');
@@ -144,13 +144,13 @@ const handle = () => {
     }
   }, []);
   const handleSubmit = (e) => {
-    const user = { email, password };
+    // const user = { email, password };
           e.preventDefault();
           
-          setUser(response.data)
+          setUser(res.data)
           // store the user in localStorage
-          localStorage.setItem('email', response.data)
-          console.log(response.data)      
+          localStorage.setItem('user', res.data)
+          console.log(res.data)      
       sendRequest();
   };
   
