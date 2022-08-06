@@ -102,9 +102,9 @@ const handle = () => {
           });
            
 
-          user(res.data)
+          setUser(res.data)
           // store the user in localStorage
-          localStorage.setItem('user', res.data.email);
+          localStorage.setItem('user', res.data.user.email);
               localStorage.setItem('T', res.data.token);
               
               console.log('user', user)
