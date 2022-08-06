@@ -43,30 +43,33 @@ const Login = (props) => {
     e.preventDefault();
   };
   const [user, setUser] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [logged, setLogged] = useState(false);  
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [inputs,setInputs] = useState({
   
-    email: "", 
-    password:"",
+//   const [inputs,setInputs] = useState({
+  
+//     email: "", 
+//     password:"",
     
-});
+// });
 
 const handle = () => {
   setCookie('email', email, { path: '/' });
   setCookie('password', password, { path: '/' });
 };
-  const handleChange = (e) => {
+  // const handleChange = (e) => {
    
-    setInputs(prev => ({
-        ...prev,
-        [e.target.name]: e.target.value
-    }))};
+  //   setInputs(prev => ({
+  //       ...prev,
+  //       [e.target.name]: e.target.value
+  //   }))};
     
     const sendRequest = async () => {
       const user = { 
@@ -76,8 +79,8 @@ const handle = () => {
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
              
-              email: inputs.email,
-              password: inputs.password,
+              email: email,
+              password: password,
           // confirmpassword: inputs.confirmpassword
           },user)
            
@@ -97,11 +100,7 @@ const handle = () => {
             icon: 'success',
             title: 'Login Success'
           });
-              // set the state of the user
-              //  setInputs('email',res.data);
-               // store the user in localStorage
-              // localStorage.setItem('email', res.data);
-              // console.log(res.data);
+           
 
               const users = response.data
               dispatch(loginSuccess(users))
@@ -145,9 +144,13 @@ const handle = () => {
     }
   }, []);
   const handleSubmit = (e) => {
+    const user = { email, password };
           e.preventDefault();
-      //console.log(inputs);
-      
+          
+          setUser(response.data)
+          // store the user in localStorage
+          localStorage.setItem('email', response.data)
+          console.log(response.data)      
       sendRequest();
   };
   
@@ -173,8 +176,8 @@ const handle = () => {
                   required
                   error={error}
                   fullWidth
-                  onChange={handleChange} 
-                  value={inputs.email}  
+                  onChange={({ target }) => setEmail(target.value)}
+                  value={email}  
                   id="email"
                   label="Email Address"
                   name="email"
@@ -190,8 +193,8 @@ const handle = () => {
                 required
                 error={error}
                 fullWidth
-                onChange={handleChange} 
-                value={inputs.password} 
+                onChange={({ target }) => setPassword(target.value)}
+                value={password} 
                 name="password"
                 label="Password"
                 type={showPassword ? 'text' : 'password'}
