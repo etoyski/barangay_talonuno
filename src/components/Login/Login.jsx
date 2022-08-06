@@ -144,7 +144,7 @@ const handle = () => {
     }
   }, []);
   const handleSubmit = (e) => {
-    // const user = { email, password };
+     const user = { email, password };
           e.preventDefault();
           
           setUser(res.data)
