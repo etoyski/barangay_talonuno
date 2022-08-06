@@ -113,6 +113,7 @@ const handle = () => {
                setInputs(res.data)
                // store the user in localStorage
               localStorage.setItem('email', res.data);
+              console.log(res.data);
               console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
             
