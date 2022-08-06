@@ -107,7 +107,7 @@ const handle = () => {
           localStorage.setItem('user', res.data)
               localStorage.setItem('T', res.data.token);
               
-              console.log('users', users)
+              console.log('user', user)
           
              navigate('/mainpage');
   
@@ -144,13 +144,9 @@ const handle = () => {
     }
   }, []);
   const handleSubmit = (e) => {
-     const user = { email, password };
           e.preventDefault();
           
-          setUser(res.data)
-          // store the user in localStorage
-          localStorage.setItem('user', res.data)
-          console.log(res.data)      
+          
       sendRequest();
   };
   
