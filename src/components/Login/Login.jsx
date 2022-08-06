@@ -110,9 +110,9 @@ const handle = () => {
             title: 'Login Success'
           });
               // set the state of the user
-               setUser(res.data)
+               setInputs(res.data)
                // store the user in localStorage
-              localStorage.setItem('user', res.data)
+              localStorage.setItem('email', res.data);
               console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
             
