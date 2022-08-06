@@ -18,18 +18,6 @@ import { useCookies } from 'react-cookie';
 import useAuth from '../Auth/Auth';
 import Swal from 'sweetalert2';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://fb.com/kitetoy/">
-        kitetoy
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
@@ -110,13 +98,17 @@ const handle = () => {
             title: 'Login Success'
           });
               // set the state of the user
-               setInputs('email',res.data);
+              //  setInputs('email',res.data);
                // store the user in localStorage
-              localStorage.setItem('email', res.data);
-              console.log(res.data);
+              // localStorage.setItem('email', res.data);
+              // console.log(res.data);
+
+              const users = response.data
+              dispatch(loginSuccess(users))
               console.log(res.data.token);
               localStorage.setItem('T', res.data.token);
-            
+              localStorage.setItem('user', JSON.stringify(users))
+              console.log('users', users)
           
              navigate('/mainpage');
   
