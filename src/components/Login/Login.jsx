@@ -78,9 +78,9 @@ const handle = () => {
       setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
-              user,
-              // email: email,
-              // password: password,
+            
+              email: email,
+              password: password,
           // confirmpassword: inputs.confirmpassword
           },user)
            
