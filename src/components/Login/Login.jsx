@@ -104,7 +104,7 @@ const handle = () => {
 
           setUser(res.data)
           // store the user in localStorage
-          localStorage.setItem('user', res.data.user);
+          localStorage.setItem('user', res.data.user, user);
               localStorage.setItem('T', res.data.token);
               
               console.log('user', user)
