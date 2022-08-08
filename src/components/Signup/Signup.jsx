@@ -18,7 +18,14 @@ import Swal from "sweetalert2";
   const theme = createTheme();
 
   const Signup = () => {
-    
+    const defaultProps = {
+      options: gendertypes,
+      getOptionLabel: (option) => option.title,
+    };
+  
+    const flatProps = {
+      options: gendertypes.map((option) => option.title),
+    };
   const navigate = useNavigate();
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
@@ -242,19 +249,21 @@ import Swal from "sweetalert2";
                     fullWidth  />
                   </Grid>
                   <Grid item xs={12}>
-                    <Typography variant="subheading"> Gender</Typography>
-                  <RadioGroup
-                   value={inputs.gender}
-                   name="gender"
-          row
-          aria-labelledby="demo-row-radio-buttons-group-label"
-          
-        >
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
-          <FormControlLabel value="other" control={<Radio />} label="Other" />
-          
-        </RadioGroup>
+                  <Autocomplete
+        {...defaultProps}
+        id="clear-on-escape"
+        error={error} 
+          onChange={handleChange} 
+          value={inputs.gender} 
+        autoComplete
+        includeInputInList
+        renderInput={(params) => (
+          <TextField {...params} required
+          name="Gender"
+
+          label="Gender" variant="standard" />
+        )}
+      />
                   </Grid>
                   <Grid item xs={12}>
                   <Typography variant="subheading"> Birthdate</Typography>
@@ -330,5 +339,10 @@ import Swal from "sweetalert2";
     </ThemeProvider>
   );
 };
+const gendertypes = [
+  { title: 'Male', id: 1 },
+  { title: 'Female', id: 2 },
+  { title: 'Rather not say', id: 3 },
 
+];
 export default Signup;
