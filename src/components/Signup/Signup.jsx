@@ -96,7 +96,7 @@ import Swal from "sweetalert2";
         title: 'User Created'
       });
       console.log(res.data);
-      this.history.navigate("/login");
+      navigate("/login");
       
     } catch (error) {
       setError(true)
