@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { Avatar, Card, CardContent, Container, CssBaseline, Fab, Grid, TextField, Typography } from '@mui/material';
+import { Avatar, Card, CardContent, Container, CssBaseline, Divider, Fab, Grid, TextField, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
@@ -15,22 +15,30 @@ export default function UserProfile() {
 
   return (
   
-    <ThemeProvider theme={theme}>
+    <React.Fragment>
+      
     
-    <Grid component={Paper} elevation={16} container spacing={3} sx={{p:2, flexGrow: 1}}>
-      <Box component="form"  sx={{ mt: 2 }} >
-      <Card style={{ maxWidth: 2000, padding: "30px 5px", marginRight: "6px" }}>
+    <ThemeProvider  theme={theme}>
+      
+      {/* <Grid component={Paper} elevation={16} sx={{p:2,alignItems: 'center'}}> */}
+      
+      <Box component="paper" elevation={16}  sx={{ mt: 1, p:2,alignItems: 'center',justifyContent: 'center',display: 'flex'}}>
+          <Card  display="flex"
+  justifyContent="center"
+  alignItems="center"
+  minHeight="100vh"
+  sx={{ width: 1000, padding: "10px ", marginRight: "16px", border:2,zIndex: 'tooltip' }}>
            <CardContent>
            <CardContent>
               <Typography gutterBottom variant="h5">
                 Profile
             </Typography> 
             <Box >
-            <Grid container spacing={1} justifyContent="center"
+            <Grid container spacing={1} justifyContent="left"
                 alignItems="center">
             <Grid xs="auto"  item>
             <Avatar  sx={{width: 90, height: 85 }} src="/broken-image.jpg"  />
-            <Typography variant="body2"> NAME sds</Typography>
+            <Typography variant="body2"> </Typography>
           
         </Grid>
         
@@ -38,8 +46,7 @@ export default function UserProfile() {
             
         </Box>
            </CardContent>
-      
-
+      <Divider sx={{height:3, border:0.3, bgcolor:'black'}} />
               
                 <Grid container spacing={1}>
                   <Grid xs={12} sm={4} item>
@@ -109,11 +116,10 @@ export default function UserProfile() {
             </CardContent>
             
           </Card>
-         
-        </Box>
-        
-        </Grid>
+         </Box>
+        {/* </Grid> */}
         
     </ThemeProvider>
+  </React.Fragment>
   );
 }

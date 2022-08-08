@@ -41,11 +41,14 @@ export default function EditUserProfile() {
   
     <ThemeProvider theme={theme}>
    
-    <Grid component={Paper} elevation={18} container spacing={3} sx={{p:2}}>
-    
-      <Box component="form"  sx={{ mt: 2 }} >
-        
-      <Card style={{ maxWidth: 1000, padding: "30px 5px", marginRight: "6px" }}>
+   {/* <Grid component={Paper} elevation={16} sx={{p:2}}> */}
+      
+   <Box component="paper" elevation={16}  sx={{ mt: 1, p:2,alignItems: 'center',justifyContent: 'center',display: 'flex'}}>
+          <Card  display="flex"
+  justifyContent="center"
+  alignItems="center"
+  minHeight="100vh"
+  sx={{ width: 1000, padding: "10px ", marginRight: "16px", border:2,zIndex: 'tooltip' }}>
       <IconButton aria-label="delete" sx={{height:50, weight:10}} onClick={() => navigate('/user-profile')}>
         <ArrowBackIcon />
       </IconButton>
@@ -221,7 +224,7 @@ export default function EditUserProfile() {
             </CardContent>
           </Card>
         </Box>
-        </Grid>
+        {/* </Grid> */}
     </ThemeProvider>
   );
 }
