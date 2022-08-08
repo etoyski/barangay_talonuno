@@ -41,14 +41,19 @@ function Navbar() {
 
 
   const [click, setClick] = useState(false);
-  
+  const [email, setEmail] = useState();
+  const [user, setUser] = useState();
   const [button, setButton] = useState(true);
   const [isloggedin, setisloggedin] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const navigate = useNavigate();
 
- 
+  useEffect(()=> {
+    if (localStorage.getItem ('T','user')){
+        setisloggedin (true);
+    }
+}, [navigate] ) 
 
  
   const showButton = () => {
@@ -160,11 +165,11 @@ function Navbar() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{user.email}</Avatar>
           </IconButton>
         </Tooltip>
           </Box>  :  ''}
-
+          
 
           {isloggedin ? <Box sx={{  display: { xs: 'flex', md: 'none' } }}>
           <Tooltip title="Account settings">

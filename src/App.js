@@ -32,7 +32,7 @@ function App() {
 
 
   useEffect(()=> {
-    if (localStorage.getItem ('T')){
+    if (localStorage.getItem ('T','user')){
         setisloggedin (true);
     }
 }, [navigate] ) 
