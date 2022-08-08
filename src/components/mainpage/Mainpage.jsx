@@ -7,7 +7,7 @@ import { useState } from 'react'
 export default function  Mainpage  ()  {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [email, setEmail] = useState();
+ 
   const [user, setUser] = useState();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,7 +35,7 @@ export default function  Mainpage  ()  {
       }}
     >
         <Typography variant="h5" gutterBottom component="div">
-            Welcome to Barangay Talon Uno Digital Reporting System!{user}
+            Welcome to Barangay Talon Uno Digital Reporting System! 
         </Typography>
         </Paper>
             </Box>

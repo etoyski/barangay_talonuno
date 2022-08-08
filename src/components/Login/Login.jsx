@@ -42,7 +42,7 @@ const Login = (props) => {
   const handleMouseDown = (e) => {
     e.preventDefault();
   };
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -104,7 +104,7 @@ const handle = () => {
 
           setUser(res.data)
           // store the user in localStorage
-          localStorage.setItem('user', res.data.user, user);
+          localStorage.setItem('email', this.state.details.email);
               localStorage.setItem('T', res.data.token);
               
               console.log('user', user)
