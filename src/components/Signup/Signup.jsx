@@ -25,7 +25,7 @@ import Swal from "sweetalert2";
   const [alert, setAlert] = useState(false);
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/")
+      .get("https://barangay-talon-uno.vercel.app/register")
       .then((res) => console.log(res.data))
       .catch((e) => console.error(e));
   }, []);
