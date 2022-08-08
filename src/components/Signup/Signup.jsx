@@ -35,7 +35,10 @@ import Swal from "sweetalert2";
     lastname: "",
     contactnumber: "",
     email: "",
-    address: "",
+    city: "",
+    barangay: "",
+    street: "",
+    gender:"",
     birthday: "",
     password: "",
     confirmpassword: "",
@@ -60,7 +63,10 @@ import Swal from "sweetalert2";
           lastname: inputs.lastname,
           number: Number(inputs.contactnumber),
           email: inputs.email,
-          address: inputs.address,
+          city: "",
+          barangay: "",
+          street: "",
+          gender:"",
           birthday: inputs.birthday,
           password: inputs.password,
           confirmpassword: inputs.confirmpassword
@@ -228,17 +234,17 @@ import Swal from "sweetalert2";
                     <TextField  
                     placeholder="Enter Street Name" 
                     label="Street Name" 
-                    name="address"
+                    name="street"
                     variant="outlined"  
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.address} 
+                    value={inputs.street} 
                     fullWidth  />
                   </Grid>
                   <Grid item xs={12}>
                     <Typography variant="subheading"> Gender</Typography>
                   <RadioGroup
-                   value={inputs.value}
+                   value={inputs.gender}
                    name="gender"
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
