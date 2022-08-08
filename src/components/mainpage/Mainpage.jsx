@@ -35,7 +35,7 @@ export default function  Mainpage  ()  {
       }}
     >
         <Typography variant="h5" gutterBottom component="div">
-            Welcome to Barangay Talon Uno Digital Reporting System!{user}
+            Welcome to Barangay Talon Uno Digital Reporting System!{user.name}
         </Typography>
         </Paper>
             </Box>
