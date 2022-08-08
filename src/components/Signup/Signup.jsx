@@ -93,7 +93,7 @@ import Swal from "sweetalert2";
       
       Toast.fire({
         icon: 'success',
-        title: 'Login Success'
+        title: 'User Created'
       });
       console.log(res.data);
       this.history.navigate("/login");
@@ -256,6 +256,7 @@ import Swal from "sweetalert2";
           onChange={handleChange} 
           value={inputs.gender} 
         autoComplete
+        variant="outlined" 
         includeInputInList
         renderInput={(params) => (
           <TextField {...params} required
