@@ -165,7 +165,7 @@ function Navbar() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>{user.email}</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{user}</Avatar>
           </IconButton>
         </Tooltip>
           </Box>  :  ''}
