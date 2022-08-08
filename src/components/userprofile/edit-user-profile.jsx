@@ -1,16 +1,41 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { Avatar, Button, Card, CardContent, Container, CssBaseline, Fab, Grid, IconButton, Popper, TextField, Typography } from '@mui/material';
+import { Avatar, Breadcrumbs, Button, Card, CardContent, Container, CssBaseline, Fab, Grid, IconButton, Popper, TextField, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import swal from 'sweetalert';
+import Chip from '@mui/material/Chip';
+import HomeIcon from '@mui/icons-material/Home';
+import { emphasize, styled } from '@mui/material/styles';
 
 const theme = createTheme();
-
+const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor =
+    theme.palette.mode === 'light'
+      ? theme.palette.grey[100]
+      : theme.palette.grey[800];
+      return {
+        backgroundColor,
+        height: theme.spacing(3),
+        color: theme.palette.text.primary,
+        fontWeight: theme.typography.fontWeightRegular,
+        '&:hover, &:focus': {
+          backgroundColor: emphasize(backgroundColor, 0.06),
+        },
+        '&:active': {
+          boxShadow: theme.shadows[1],
+          backgroundColor: emphasize(backgroundColor, 0.12),
+        },
+      };
+    }); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
+    function handleClick(event) {
+      event.preventDefault();
+      console.info('You clicked a breadcrumb.');
+    }
 export default function EditUserProfile() {
   const navigate = useNavigate();
   const [cancel, isCancelled] = useState(false);
@@ -40,7 +65,25 @@ export default function EditUserProfile() {
   return (
   
     <ThemeProvider theme={theme}>
-   
+     <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <StyledBreadcrumb
+          component="a"
+          onClick={() => navigate('/user-profile')}
+          label="User Profile"
+          icon={<HomeIcon fontSize="small" />}
+        />
+        <StyledBreadcrumb
+        component="a"
+        onClick={() => navigate('/edit-user-profile')}
+        label=" Edit User Profile"
+        icon={<HomeIcon fontSize="small" />}
+      />
+              </Breadcrumbs>
+              
+      
+              
+        </div>
    {/* <Grid component={Paper} elevation={16} sx={{p:2}}> */}
       
    <Box component="paper" elevation={16}  sx={{ mt: 1, p:2,alignItems: 'center',justifyContent: 'center',display: 'flex'}}>
