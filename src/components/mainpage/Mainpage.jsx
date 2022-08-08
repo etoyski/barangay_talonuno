@@ -16,7 +16,13 @@ export default function  Mainpage  ()  {
 
   const canBeOpen = open && Boolean(anchorEl);
   const id = canBeOpen ? 'transition-popper' : undefined;
-
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
   return (
 
    <React.Fragment>
@@ -35,7 +41,7 @@ export default function  Mainpage  ()  {
       }}
     >
         <Typography variant="h5" gutterBottom component="div">
-            Welcome to Barangay Talon Uno Digital Reporting System!{user.name}
+            Welcome to Barangay Talon Uno Digital Reporting System!{user}
         </Typography>
         </Paper>
             </Box>
