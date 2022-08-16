@@ -1,23 +1,22 @@
-import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,CircularProgress,Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
 import swal from 'sweetalert';
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
+import { register, reset } from "../../features/auth/authSlice";  
 
-  const theme = createTheme();
+const theme = createTheme();
 
-  const Signup = () => {
+  function Signup(){
     const defaultProps = {
       options: gendertypes,
       getOptionLabel: (option) => option.title,
@@ -27,16 +26,39 @@ import Swal from "sweetalert2";
       options: gendertypes.map((option) => option.title),
     };
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
+
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
   useEffect(() => {
-    axios
-      .get("https://barangay-talon-uno.vercel.app/register")
-      .then((res) => console.log(res.data))
-      .catch((e) => console.error(e));
-  }, []);
-  const [inputs, setInputs] = useState({
+    if(isError){
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'Error',
+        text: (message),
+      });
+    }
+    if(isSuccess || user){
+      navigate('/login')
+    }
+  })
+   
+  const [userData, setuserData] = useState({
     firstname: "",
     middlename: "",
     lastname: "",
@@ -51,34 +73,50 @@ import Swal from "sweetalert2";
     confirmpassword: "",
   });
   
+  const { firstname, middlename, lastname, contactnumber, email, city, barangay, street, gender, birthday, password, confirmpassword} = userData
 
   const handleChange = (e) => {
-    setInputs((prev) => ({
+    setuserData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-  //console.log(e.target.name,"value",e.target.value);
-  const sendRequest = async () => {
-    setLoading(true)
-    try {
-      const res = await axios.post(
-        "https://barangay-talon-uno.vercel.app/register",
-        {
-          firstname: inputs.firstname,
-          middlename: inputs.middlename,
-          lastname: inputs.lastname,
-          number: Number(inputs.contactnumber),
-          email: inputs.email,
-          city: inputs.city,
-          barangay: inputs.barangay,
-          street: inputs.street,
-          gender: inputs.gender,
-          birthday: inputs.birthday,
-          password: inputs.password,
-          confirmpassword: inputs.confirmpassword
-        }
-      );
+ 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== confirmpassword){
+      const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            
+            Toast.fire({
+              icon: 'error',
+              title: 'Password do not match'
+            });
+    }else {
+      const userData = {
+        firstname,
+        middlename,
+        lastname,
+        contactnumber,
+        email,
+        city,
+        barangay,
+        street,
+        birthday,
+        password,
+      }
+      dispatch (register(userData))
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -95,40 +133,13 @@ import Swal from "sweetalert2";
         icon: 'success',
         title: 'User Created'
       });
-      console.log(res.data);
-      navigate("/login");
-      
-    } catch (error) {
-      setError(true)
-      setAlert(true)
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
-        icon: 'error',
-        title: 'Sign up Failed'
-      });
-      console.log(error.response);
     }
-    finally {
-      setLoading(false)
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
     //console.log(inputs);
-    sendRequest();
-  };
+    //sendRequest();
+  }
+  if (isLoading) {
+    setLoading(true)
+  }
   return (
   
 <ThemeProvider theme={theme}>
@@ -154,7 +165,7 @@ import Swal from "sweetalert2";
                     name="firstname"
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.firstname} 
+                    value={firstname} 
                     fullWidth 
                     required 
                     />
@@ -167,7 +178,7 @@ import Swal from "sweetalert2";
                     name="middlename"
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.middlename} 
+                    value={middlename} 
                     fullWidth
                     required 
                     />
@@ -180,7 +191,7 @@ import Swal from "sweetalert2";
                     variant="outlined" 
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.lastname}  fullWidth required />
+                    value={lastname}  fullWidth required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField 
@@ -190,7 +201,7 @@ import Swal from "sweetalert2";
                     variant="outlined" 
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.contactnumber}  
+                    value={contactnumber}  
                     fullWidth 
                     required 
                     />
@@ -204,7 +215,7 @@ import Swal from "sweetalert2";
                     variant="outlined"  
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.email}  
+                    value={email}  
                     fullWidth 
                     required 
                     />
@@ -219,7 +230,7 @@ import Swal from "sweetalert2";
                     defaultValue="Las Piñas City" 
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.city}  
+                    value={city}  
                     fullWidth   />
                   </Grid>
                   <Grid item xs={12}sm={6}>
@@ -232,7 +243,7 @@ import Swal from "sweetalert2";
                     defaultValue="Talon Uno"  
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.barangay} 
+                    value={barangay} 
                     fullWidth  
                     
                     />
@@ -245,7 +256,7 @@ import Swal from "sweetalert2";
                     variant="outlined"  
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.street} 
+                    value={street} 
                     fullWidth  />
                   </Grid>
                   <Grid item xs={12}>
@@ -254,7 +265,7 @@ import Swal from "sweetalert2";
         id="clear-on-escape"
         error={error} 
           onChange={handleChange} 
-          value={inputs.gender} 
+          value={gender} 
         autoComplete
         variant="outlined" 
         includeInputInList
@@ -275,7 +286,7 @@ import Swal from "sweetalert2";
                     variant="outlined"  
                     error={error}
                     onChange={handleChange} 
-                    value={inputs.birthday} fullWidth required />
+                    value={birthday} fullWidth required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                   <TextField
@@ -284,7 +295,7 @@ import Swal from "sweetalert2";
                 error={error}
                 fullWidth
                 onChange={handleChange} 
-                value={inputs.password} 
+                value={password} 
                 name="password"
                 label="Password"
                 type="password"
@@ -299,7 +310,7 @@ import Swal from "sweetalert2";
                 error={error}
                 fullWidth
                 onChange={handleChange} 
-                value={inputs.confirmpassword} 
+                value={confirmpassword} 
                 name="confirmpassword"
                 label="confirmpassword"
                 type="password"

@@ -1,151 +1,93 @@
-import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { clearUser, setUser } from "./userSlice";
-import baseUrl from "../../utils/baseURL";
+import authService from "./authService";
+
+//Get user from local storage
+const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
-    loggedIn: false,
-    isLoading: true,
-};
+    user: user ? user : null,
+    isError: false,
+    isSuccess:false,
+    isLoading: false,
+    message: '',
+}
+//register user
+export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
+    try {
+        return await authService.register()
+    }catch(error){
+        const message = 
+        (error.response && 
+          error.response.data && 
+           error.data.message) ||
+            error.message || error.toString()
+    return thunkAPI.rejectWithValue(message)
+    }
+})
+// Login user
+export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
+    try {
+      return await authService.login(user)
+    } catch (error) {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  })
+  //Logout
+export const logout = createAsyncThunk('auth/logout', async () => {
+    await authService.logout()
+  })
 
-export const authSlice = createSlice({
-    name: "auth",
+export const authSlice = createSlice ({
+    name:'auth',
     initialState,
     reducers: {
-        reload: (state) => {
-            state.isLoading = true;
-        },
-        validateLogin: (state) => {
-            console.log("validate");
-            state.loggedIn = true;
-        },
-        login: (state, action) => {
-            console.log("login: ", action.payload)
-            state.loggedIn = action.payload.success;
-            state.isLoading = false;
-            action.payload.success &&
-                localStorage.setItem("user", action.payload.famID);
-        },
-        logout: (state) => {
-            state.loggedIn = false;
-        },
-        clearId: (state) => {
-            state.loggedIn = false;
-            state.isLoading = false;
-            localStorage.clear();
-        },
+        reset: (state) => {
+            state.isLoading = false
+            state.isSuccess = false
+            state.isError = false
+            state.message = ''
+        }
     },
     extraReducers: (builder) => {
-        builder.addCase(revalidateSession.pending, (state) => {
-            console.log("pending");
-            if (localStorage.getItem("user")) {
-                state.loggedIn = true;
-            } else {
-                state.loggedIn = false;
-            }
+        builder
+        .addCase(register.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(register.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.user = action.payload
+        })
+        .addCase(register.rejected, (state,action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+            state.user = null
+        })
+        .addCase(login.pending, (state) => {
+            state.isLoading = true
+          })
+          .addCase(login.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.user = action.payload
+          })
+          .addCase(login.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+            state.user = null
+          })
+          .addCase(logout.fulfilled, (state) => {
+            state.user = null
+          })
 
-            state.isLoading = true;
-        });
-        builder.addCase(revalidateSession.fulfilled, (state, { payload }) => {
-            console.log("Fulf", payload);
-            state.loggedIn = payload;
-            state.isLoading = false;
-        });
-        builder.addCase(revalidateSession.rejected, (state, { payload }) => {
-            state.loggedIn = payload;
-        });
     },
-});
+})
 
-// actions
-export const { login, logout, clearId, validateLogin, reload } =
-    authSlice.actions;
-
-// selector
-export const isLoggedIn = (state) => state.auth.loggedIn;
-export const isLoading = (state) => state.auth.isLoading;
-export const auth = (state) => state.auth;
-
-// reducers
-export const persistLogin = () => (dispatch) => {
-    dispatch(validateLogin());
-};
-
-export const checkSession = () => (dispatch) => {
-    if (localStorage.getItem("user") === null) {
-        // invalidate this user
-        console.log("Clearing Fields");
-        dispatch(clearId());
-        dispatch(clearUser());
-    } else {
-        console.log("Session Found!");
-        // dispatch(validateLogin());
-        dispatch(revalidateSession(localStorage.getItem("user")));
-    }
-};
-
-// const revalidateSession = createAsyncThunk(
-//     "auth/account/ses",
-//     async (data, { dispatch }) => {
-//         dispatch(reload());
-//         try {
-//             const ses = await axios.get(`${baseUrl}/account/ses`, {
-//                 headers: {
-//                     Authorization: `Bearer ${data}`,
-//                 },
-//                 withCredentials: true,
-//             });
-//             // get user data
-//             // dispatch(login(ses.data));
-//             dispatch(setUser(ses.data.user));
-
-//             return ses.data.success;
-//         } catch (e) {
-//             console.log("Rejected", e.response.data);
-//             dispatch(clearUser());
-//             localStorage.removeItem("fam-id");
-//             return false;
-//         }
-//     }
-// );
-
-export const logoutUser = (navigate) => async (dispatch) => {
-    try {
-        const res = await axios.get(`${baseUrl}/account/logout`);
-        
-        if ( res.data.logout ) {
-            localStorage.removeItem("user");
-            dispatch(clearUser());
-            dispatch(logout(res.data.logout));
-            console.log("Logout to all tabs");
-            navigate(0);
-        }
-    } catch (e) {
-        navigate("/");
-        console.log("Error", e);
-    }
-};
-
-export const loginUser =
-    ({ success, navigate, location }) =>
-    async (dispatch) => {
-        console.log("Apply refresh to all tabs after login", success); // only need to refresh page to validate login
-           
-        dispatch(login(success));
-        // dispatch(reload());
-        // location.state !== null
-        //     ? navigate(location.state) // navigate to last visited page
-        //     : navigate("/search");
-        // dispatch(checkSession());
-    };
-
-export const registerUser =
-    ({ navigate, data }) =>
-    (dispatch) => {
-        console.log("registering user....");
-        dispatch(login(data));
-        navigate("/login");
-    };
-
-
-export default authSlice.reducer;
+export const {reset} = authSlice.actions
+export default authSlice.reducer
