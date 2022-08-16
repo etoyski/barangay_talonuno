@@ -211,16 +211,7 @@ const onChange = (e) => {
         </Card>
        </Box>
       </Grid>
-      {cookies.email && (
-      <div>
-         email: <p>{cookies.email}</p>
-      </div>
-      )}
-      {cookies.Password && (
-      <div>
-         password: <p>{cookies.password}</p>
-      </div>
-      )}
+     
       {logged ? <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           This is a success message!
