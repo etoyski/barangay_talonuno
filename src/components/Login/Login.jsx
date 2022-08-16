@@ -17,11 +17,11 @@ import swal from 'sweetalert2';
 import { useCookies } from 'react-cookie';
 import useAuth from '../Auth/Auth';
 import Swal from 'sweetalert2';
-import { useSelector, useDispatch } from 'react-redux'
-import { login, reset } from '../../features/auth/authSlice'; 
+
+
 const theme = createTheme();
 
-function Login() {
+const Login = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
@@ -42,76 +42,113 @@ function Login() {
   const handleMouseDown = (e) => {
     e.preventDefault();
   };
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  )
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [logged, setLogged] = useState(false);  
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
+  const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
+  
+//   const [inputs,setInputs] = useState({
+  
+//     email: "", 
+//     password:"",
+    
+// });
 
-  const [userData, setuserData] = useState({
-    email: '',
-    password: '',
-  })
-  const { email, password } = userData
 const handle = () => {
   setCookie('email', email, { path: '/' });
   setCookie('password', password, { path: '/' });
 };
-useEffect(() => {
-  if(isError){
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+  // const handleChange = (e) => {
+   
+  //   setInputs(prev => ({
+  //       ...prev,
+  //       [e.target.name]: e.target.value
+  //   }))};
     
-    Toast.fire({
-      icon: 'error',
-      title: 'Error',
-      text: (message),
-    });
-  }
-  if (isSuccess || user) {
-    navigate('/mainpage')
-  }
+    const sendRequest = async () => {
+      const user = { 
+        email,
+        password};
+      setLoading(true)
+      try { 
+          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+            
+              email: email,
+              password: password,
+          // confirmpassword: inputs.confirmpassword
+          },user)
+           
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Login Success'
+          });
+           
 
-  dispatch(reset())
-}, [user, isError, isSuccess, message, navigate, dispatch])
-
-const onChange = (e) => {
-  setuserData((prevState) => ({
-    ...prevState,
-    [e.target.name]: e.target.value,
-  }))
-}
+          setUser(res.data)
+          // store the user in localStorage
+          localStorage.setItem('email',res.data.email);
+              localStorage.setItem('T', res.data.token);
+              
+              console.log('user', user)
+          
+             navigate('/mainpage');
   
+      }catch(error) {
+        setError(true)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Login Failed'
+        });
+              console.log(error.response.data);
+      }finally {
+        setLoading(false)
+        setOpen(true)
+      }
+    
+  }
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
   const handleSubmit = (e) => {
           e.preventDefault();
           
-          const userData = {
-            email,
-            password,
-          }
-      
-          dispatch(login(userData))
-        }
-      
-        if (isLoading) {
           
-        }
-      
-  
+      sendRequest();
+  };
   
   return (
     <ThemeProvider theme={theme}>
@@ -135,7 +172,7 @@ const onChange = (e) => {
                   required
                   error={error}
                   fullWidth
-                  onChange={onChange}
+                  onChange={({ target }) => setEmail(target.value)}
                   value={email}  
                   id="email"
                   label="Email Address"
@@ -152,7 +189,7 @@ const onChange = (e) => {
                 required
                 error={error}
                 fullWidth
-                onChange={onChange}
+                onChange={({ target }) => setPassword(target.value)}
                 value={password} 
                 name="password"
                 label="Password"
@@ -234,6 +271,7 @@ const onChange = (e) => {
       </Snackbar> : ""}
   </ThemeProvider>
   
-  )}
-     
+  )
+}
+
 export default Login
