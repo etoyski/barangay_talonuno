@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
-
+import { Provider } from 'react-redux';
+import { store } from './app/store';
  ReactDOM.render(
   <BrowserRouter>
   
   <React.StrictMode>
+  <Provider store={store}>
   <CssBaseline />
     <App />
+    </Provider>
   </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root')

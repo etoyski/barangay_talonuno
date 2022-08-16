@@ -16,6 +16,8 @@ import treasurer from '../../assets/flor.jpg';
 import secre from '../../assets/domingo.jpg';
 import VerticalTabs from '../Tabs/Tabs';
 import { useNavigate } from 'react-router-dom';
+import Fade from 'react-reveal/Fade';
+import Slide from 'react-reveal/Slide';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#0a0b0d' : '#fff',
@@ -59,16 +61,14 @@ const About = () => {
     <React.Fragment>
     {isloggedin ? <VerticalTabs /> : ''}
     
-    <Box sx={{ flexGrow: 1, p:3,  backgroundColor: 'primary.dark',
-    '&:hover': {
-      backgroundColor: 'primary.main',
-      opacity: [0.9, 0.8, 0.7],
-    },}}>
+    <Box sx={{ flexGrow: 1, p:3}}>
         <Container maxWidth="md">
+        <Fade right>
         <Typography color="primary" align='left' variant="string" component="h3">
         Talon Uno is a barangay in the city of Las Piñas. Its population as determined by the 2020 Census was 42,505. 
         This represented 7.01% of the total population of Las Piñas.
         </Typography>
+        </Fade>
         </Container>
         <Divider/>
         <Typography align='center' variant="h3" component="h3">
@@ -77,22 +77,21 @@ const About = () => {
         
     <Grid sx={{marginRight: 1, p: 1 }}  container spacing={3}>
       <Grid item xs="auto">
+      <Slide up>
         <Item>
     <div className='grid md:grid-cols-3 gap-1 px-2 text-center'>
-        <div className='border py-8 rounded-xl shadow-xl' >
+        <div className='border py-8 rounded-xl shadow-xl' >         
             <img width={300} height={300}  src={captain} alt="" />
         <Typography    gutterBottom variant="subtitle1" component="div">Hon. Emiliano B. Ramos</Typography>
-    
             <Typography variant="body2" color="text.secondary">Barangay Captain</Typography>
             </div>
         </div>
-    </Item>
-    
+     </Item>
+    </Slide>
  </Grid>
-
-
-
+   
       <Grid item xs="auto">
+      <Slide down>
         <Item aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup="true"
         onMouseEnter={handlePopoverOpen}
@@ -125,9 +124,11 @@ const About = () => {
             </div>
         </div>
     </Item>
+    </Slide>
 </Grid>
 
       <Grid item xs="auto">
+      <Slide up>
         <Item aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup="true"
         onMouseEnter={handlePopoverOpen}
@@ -160,10 +161,12 @@ const About = () => {
             </div>
         </div>
     </Item>
+    </Slide>
 </Grid>
 
 
       <Grid item xs="auto">
+      <Slide down>
         <Item  aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup="true"
         onMouseEnter={handlePopoverOpen}
@@ -196,6 +199,7 @@ const About = () => {
             </div>
             </div>
         </Item>
+        </Slide>
       </Grid>
       <Grid item xs="auto">
         <Item 

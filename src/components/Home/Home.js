@@ -6,8 +6,8 @@ import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia,
 import { styled } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 import { useTheme } from '@mui/material/styles';
-
-
+import Zoom from 'react-reveal/Zoom';
+import Roll from 'react-reveal/Roll';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,13 +61,20 @@ const Hero = () => {
         >
              
              
- 
+          <Zoom>
           <Typography align="left" variant="h2"  >Barangay Talon Uno</Typography>
+          </Zoom>
+          <Roll left>
         <Typography align="left" variant="h5"sx={{p:0.5,}} gutterBottom component="div">
      Make Changes Now...
     </Typography>
+    </Roll>
+    <Roll left>
+
+    
     <Button   onClick={() => navigate('/login')}to="/login"  size="large" variant="outlined" sx={{p:2,  width: 300, }}>GET STARTED</Button>
-          </Box>
+    </Roll>
+      </Box>
 
           <Grid container spacing={2} sx={{p:10}}>
   <Grid item xs="auto">

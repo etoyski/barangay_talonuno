@@ -20,7 +20,7 @@ import EditUserProfile from './components/userprofile/edit-user-profile';
 import Navbar from './components/Header/Navbar';
 import { Alert } from '@mui/material';
 import GeneralSettings from './components/Settings/settings';
-
+import Register from './components/Signup/useForm';
 
 
 import UserProfile from './components/userprofile/user-profile';
@@ -53,12 +53,13 @@ function App() {
       <Route path="/contactus" element={<Contactus/>}/> 
       <Route path="/login" element={<Login/>}/> 
       <Route path="/signup" element={<Signup/>}/>  
+      <Route path="/register" element={<Register/>}/> 
       <Route path="/tabs" element={<VerticalTabs/>}/>
       <Route path="/user-profile" element={<UserProfile/>}/>
       <Route path="/edit-user-profile" element={<EditUserProfile/>}/>
       <Route path="/speeddial" element={<ControlledOpenSpeedDial/>}/>
       <Route path="/settings" element={<GeneralSettings/>}/>
-      {isloggedin ?<Route path="/mainpage" element={<Mainpage />}/> : ''}
+      {isloggedin ?<Route path="/mainpage" element={<Mainpage />}/> : '' }
       {isloggedin ?  <Route path="/report" element={<Report />}/> : ''}
       {isloggedin ? <Route path="/request" element={<Request />}/>: ''}
      

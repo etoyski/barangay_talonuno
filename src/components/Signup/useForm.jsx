@@ -1,22 +1,32 @@
-import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,CircularProgress,Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,InputAdornment,Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
 import swal from 'sweetalert';
 import Swal from "sweetalert2";
-import { useSelector, useDispatch } from "react-redux";
-import { register, reset } from "../../features/auth/authSlice";  
 
-const theme = createTheme();
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { ref } from "yup";
+  const theme = createTheme();
+  const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  const PHNUM_REGEX = /^(9|\+639)\d{9}$/;
+  const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-  function Signup(){
+  
+  const Register = () => {
+   
+   
     const defaultProps = {
       options: gendertypes,
       getOptionLabel: (option) => option.title,
@@ -26,39 +36,16 @@ const theme = createTheme();
       options: gendertypes.map((option) => option.title),
     };
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
-
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
-  useEffect(() => {
-    if(isError){
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
-        icon: 'error',
-        title: 'Error',
-        text: (message),
-      });
-    }
-    if(isSuccess || user){
-      navigate('/login')
-    }
-  })
-   
-  const [userData, setuserData] = useState({
+  {/* useEffect(() => {
+    axios
+      .get("https://barangay-talon-uno.vercel.app/register")
+      .then((res) => console.log(res.data))
+      .catch((e) => console.error(e));
+  }, []); */}
+  {/* const [inputs, setInputs] = useState({
     firstname: "",
     middlename: "",
     lastname: "",
@@ -71,52 +58,36 @@ const theme = createTheme();
     birthday: "",
     password: "",
     confirmpassword: "",
-  });
+  }); */}
   
-  const { firstname, middlename, lastname, contactnumber, email, city, barangay, street, gender, birthday, password, confirmpassword} = userData
 
-  const handleChange = (e) => {
-    setuserData((prev) => ({
+  {/* const handleChange = (e) => {
+    setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  };
- 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (password !== confirmpassword){
-      const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-            
-            Toast.fire({
-              icon: 'error',
-              title: 'Password do not match'
-            });
-    }else {
-      const userData = {
-        firstname,
-        middlename,
-        lastname,
-        contactnumber,
-        email,
-        city,
-        barangay,
-        street,
-        birthday,
-        password,
-      }
-      dispatch (register(userData))
+  }; */}
+  //console.log(e.target.name,"value",e.target.value);
+  {/* const sendRequest = async () => {
+    setLoading(true)
+    try {
+      const res = await axios.post(
+        "https://barangay-talon-uno.vercel.app/register",
+        {
+          firstname: inputs.firstname,
+          middlename: inputs.middlename,
+          lastname: inputs.lastname,
+          number: Number(inputs.contactnumber),
+          email: inputs.email,
+          city: inputs.city,
+          barangay: inputs.barangay,
+          street: inputs.street,
+          gender: inputs.gender,
+          birthday: inputs.birthday,
+          password: inputs.password,
+          confirmpassword: inputs.confirmpassword
+        }
+      );
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -133,20 +104,82 @@ const theme = createTheme();
         icon: 'success',
         title: 'User Created'
       });
+      console.log(res.data);
+      navigate("/login");
+      
+    } catch (error) {
+      setError(true)
+      setAlert(true)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'Sign up Failed'
+      });
+      console.log(error.response);
     }
+    finally {
+      setLoading(false)
+    }
+  }; */}
+
+  {/* const handleSubmit = (e) => {
+    e.preventDefault();
     //console.log(inputs);
-    //sendRequest();
-  }
-  if (isLoading) {
-    setLoading(true)
-  }
+    sendRequest();
+  }; */}
+  const SignupSchema = Yup.object().shape({
+    firstname: Yup.string().required('This Field is Required'),
+    lastname: Yup.string().required('This Field is Required'),
+    middlename: Yup.string().required('This Field is Required'),
+    contactnumber: Yup.string().matches(PHNUM_REGEX, "Incorrect phone number format").required("This Field is Required"),
+    email: Yup.string().email('Invalid email').required('This Field is Required'),
+    street: Yup.string().required("This Field is Required"),
+    gender: Yup.string().required("This Field is Required"),
+    birthday: Yup.string().required("This Field is Required"),
+    password: Yup.string().min(8, "Minimum of 8 character is required").matches(PASSWORD_REGEX,"Please type a strong password").required("This Field is Required"),
+    confirmpassword: Yup.string().required("Confirm Password").oneOf([ref("password")], "Passwords do not match"),
+  });
+  const onSubmit = (values, props) => {
+    alert(JSON.stringify(values), null, 2)
+    props.resetForm();
+    setLoading(false)
+}
   return (
   
 <ThemeProvider theme={theme}>
-      
+  <Formik 
+  initialValues={{
+    firstname: '',
+    middlename: '',
+    lastname: '',
+    contactnumber: '',
+    email: '',
+    street: '',
+    gender: '',
+    birthday: '',
+    password: '',
+   confirmpassword: '',
+  }}
+  validationSchema={SignupSchema}
+  onSubmit={onSubmit}   
+     
+     >
+      {(props) => (
+
       <Grid component={Paper} elevation={16} sx={{p:2}}>
       
-      <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      <Box component="form"  sx={{ mt: 1 }}>
           <Card style={{ maxWidth: 500, padding: "20px 5px", margin: "0 auto" }}>
             <CardContent>
               <Typography gutterBottom variant="h5">
@@ -155,147 +188,155 @@ const theme = createTheme();
               <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
                 Fill up the required values to be able to create an account.
             </Typography> 
-              
+            <Form>
                 <Grid container spacing={1}>
                   <Grid xs={12} sm={6} item>
-                    <TextField 
+                    <Field 
+                    as={TextField}
+                    error={props.errors.firstname && props.touched.firstname}
                     placeholder="Enter first name" 
                     label="First Name" 
                     variant="outlined"  
                     name="firstname"
-                    error={error}
-                    onChange={handleChange} 
-                    value={firstname} 
+                    helperText={<ErrorMessage name="firstname" />}
                     fullWidth 
                     required 
                     />
                   </Grid>
                   <Grid xs={12} sm={6} item>
-                    <TextField 
+                    <Field 
+                     as={TextField}
+                     error={props.errors.middlename && props.touched.middlename}
                     placeholder="Enter middle name" 
                     label="Middle Name" 
                     variant="outlined"  
                     name="middlename"
-                    error={error}
-                    onChange={handleChange} 
-                    value={middlename} 
+                    helperText={<ErrorMessage name="middlename" />}
+                    
                     fullWidth
                     required 
                     />
                   </Grid>
                   <Grid xs={12} sm={6} item>
-                    <TextField
+                    <Field
+                     as={TextField}
+                     error={props.errors.lastname && props.touched.lastname}
                     placeholder="Enter last name" 
                     name="lastname"
+                    helperText={<ErrorMessage name="lastname" />}
                     label="Last Name" 
                     variant="outlined" 
-                    error={error}
-                    onChange={handleChange} 
-                    value={lastname}  fullWidth required />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField 
-                    placeholder="Enter Contact Number" 
-                    label="Phone" 
-                    name="contactnumber"
-                    variant="outlined" 
-                    error={error}
-                    onChange={handleChange} 
-                    value={contactnumber}  
                     fullWidth 
                     required 
                     />
                   </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Field
+                     as={TextField} 
+                     error={props.errors.contactnumber && props.touched.contactnumber}
+                    placeholder="Enter Contact Number" 
+                    label="Phone" 
+                    name="contactnumber"
+                    variant="outlined" 
+                    helperText={<ErrorMessage name="contactnumber" />}
+                    fullWidth 
+                    required 
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">+639</InputAdornment>,
+                    }}
+                    />
+                  </Grid>
                   <Grid item xs={12}>
-                    <TextField 
+                    <Field 
+                     as={TextField}
+                     error={props.errors.email && props.touched.email}
                     type="email" 
                     placeholder="Enter email" 
                     name="email"
                     label="Email" 
                     variant="outlined"  
-                    error={error}
-                    onChange={handleChange} 
-                    value={email}  
+                    helperText={<ErrorMessage name="email" />}
                     fullWidth 
                     required 
+                    
                     />
                   </Grid>
                   <Grid item xs={12}sm={6}>
-                    <TextField 
+                    <Field 
+                     as={TextField}
+                     //error={props.errors.ci && props.touched.firstname}
                     disabled  
                     placeholder="" 
                     label="City" 
                     name="city"
                     variant="outlined" 
                     defaultValue="Las Piñas City" 
-                    error={error}
-                    onChange={handleChange} 
-                    value={city}  
+                    
                     fullWidth   />
                   </Grid>
                   <Grid item xs={12}sm={6}>
-                    <TextField 
+                    <Field 
+                     as={TextField}
                     disabled 
                     placeholder="" 
                     name="barangay"
                     label="Barangay" 
                     variant="outlined"
                     defaultValue="Talon Uno"  
-                    error={error}
-                    onChange={handleChange} 
-                    value={barangay} 
+                   
                     fullWidth  
                     
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField  
+                    <Field
+                     as={TextField}  
+                     error={props.errors.street && props.touched.street}
+                     helperText={<ErrorMessage name="street" />}
                     placeholder="Enter Street Name" 
                     label="Street Name" 
                     name="street"
                     variant="outlined"  
-                    error={error}
-                    onChange={handleChange} 
-                    value={street} 
+                    
                     fullWidth  />
                   </Grid>
                   <Grid item xs={12}>
-                  <Autocomplete
+                   <Autocomplete
         {...defaultProps}
         id="clear-on-escape"
-        error={error} 
-          onChange={handleChange} 
-          value={gender} 
+        
+        error={props.errors.gender && props.touched.gender}
         autoComplete
         variant="outlined" 
         includeInputInList
         renderInput={(params) => (
-          <TextField {...params} required
+          <Field {...params} required
           name="Gender"
-
+          as = {TextField}
+          error={props.errors.gender && props.touched.gender}
           label="Gender" variant="standard" />
         )}
-      />
+      /> 
                   </Grid>
                   <Grid item xs={12}>
                   <Typography variant="subheading"> Birthdate</Typography>
-                  <TextField 
+                  <Field 
+                   as={TextField}
+                   error={props.errors.birthday && props.touched.birthday}
+                   helperText={<ErrorMessage name="birthday" />}
                     type="date" 
                     label="" 
                     name="birthday"
                     variant="outlined"  
-                    error={error}
-                    onChange={handleChange} 
-                    value={birthday} fullWidth required />
+                    fullWidth required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                  <TextField
-                
+                  <Field
+                 as={TextField}
                 required
-                error={error}
+                error={props.errors.password && props.touched.password}
                 fullWidth
-                onChange={handleChange} 
-                value={password} 
+                helperText={<ErrorMessage name="password" />}
                 name="password"
                 label="Password"
                 type="password"
@@ -304,13 +345,12 @@ const theme = createTheme();
               />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                  <TextField
-    
+                  <Field
+                as={TextField}
                 required
-                error={error}
+                error={props.errors.confirmpassword && props.touched.confirmpassword}
                 fullWidth
-                onChange={handleChange} 
-                value={confirmpassword} 
+                helperText={<ErrorMessage name="confirmpassword" />}
                 name="confirmpassword"
                 label="confirmpassword"
                 type="password"
@@ -344,17 +384,22 @@ const theme = createTheme();
                 </Grid>
               </Grid>
                 </Grid>
+                </Form>
             </CardContent>
           </Card>
          </Box>
         </Grid>
+      )}
+        </Formik>
     </ThemeProvider>
+    
   );
 };
+
 const gendertypes = [
   { title: 'Male', id: 1 },
   { title: 'Female', id: 2 },
   { title: 'Rather not say', id: 3 },
 
 ];
-export default Signup;
+export default Register;
