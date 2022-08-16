@@ -14,10 +14,11 @@ import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
 import swal from 'sweetalert';
 import Swal from "sweetalert2";
-
+import { loginUser } from "../../features/auth/authSlice";
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { ref } from "yup";
+
   const theme = createTheme();
   const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
   const PHNUM_REGEX = /^(9|\+639)\d{9}$/;
@@ -39,105 +40,7 @@ import { ref } from "yup";
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
-  {/* useEffect(() => {
-    axios
-      .get("https://barangay-talon-uno.vercel.app/register")
-      .then((res) => console.log(res.data))
-      .catch((e) => console.error(e));
-  }, []); */}
-  {/* const [inputs, setInputs] = useState({
-    firstname: "",
-    middlename: "",
-    lastname: "",
-    contactnumber: "",
-    email: "",
-    city: "Las Piñas City",
-    barangay: "Talon Uno",
-    street: "",
-    gender:"",
-    birthday: "",
-    password: "",
-    confirmpassword: "",
-  }); */}
   
-
-  {/* const handleChange = (e) => {
-    setInputs((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  }; */}
-  //console.log(e.target.name,"value",e.target.value);
-  {/* const sendRequest = async () => {
-    setLoading(true)
-    try {
-      const res = await axios.post(
-        "https://barangay-talon-uno.vercel.app/register",
-        {
-          firstname: inputs.firstname,
-          middlename: inputs.middlename,
-          lastname: inputs.lastname,
-          number: Number(inputs.contactnumber),
-          email: inputs.email,
-          city: inputs.city,
-          barangay: inputs.barangay,
-          street: inputs.street,
-          gender: inputs.gender,
-          birthday: inputs.birthday,
-          password: inputs.password,
-          confirmpassword: inputs.confirmpassword
-        }
-      );
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
-        icon: 'success',
-        title: 'User Created'
-      });
-      console.log(res.data);
-      navigate("/login");
-      
-    } catch (error) {
-      setError(true)
-      setAlert(true)
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
-        icon: 'error',
-        title: 'Sign up Failed'
-      });
-      console.log(error.response);
-    }
-    finally {
-      setLoading(false)
-    }
-  }; */}
-
-  {/* const handleSubmit = (e) => {
-    e.preventDefault();
-    //console.log(inputs);
-    sendRequest();
-  }; */}
   const SignupSchema = Yup.object().shape({
     firstname: Yup.string().required('This Field is Required'),
     lastname: Yup.string().required('This Field is Required'),

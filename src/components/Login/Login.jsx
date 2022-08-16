@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Alert, Avatar , Box, Button, Card, CardContent, IconButton, InputAdornment, Snackbar, TextField, Typography } from '@mui/material';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -17,13 +17,36 @@ import swal from 'sweetalert2';
 import { useCookies } from 'react-cookie';
 import useAuth from '../Auth/Auth';
 import Swal from 'sweetalert2';
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { Helmet } from "react-helmet";
+import { useDispatch } from "react-redux";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
+import baseUrl from '../../utils/baseURL';
+import { loginUser } from "../../features/auth/authSlice";
 
 
+const textColorPri = "#144ec7";
+const textColorSec = "#0028f3";
 const theme = createTheme();
-
+const validationSchema = yup.object({
+    email: yup
+        .string("Enter your email")
+        .email("Enter a valid email")
+        .required("Email is required"),
+    password: yup
+        .string("Enter your password")
+        .min(3, "Password should be of minimum 3 characters length")
+        .required("Password is required"),
+});
 const Login = (props) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const [submit, setSubmit] = useState(false);
   const [open, setOpen] = React.useState(false);
-
+  const [error,setError] = useState(false); 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -42,28 +65,44 @@ const Login = (props) => {
   const handleMouseDown = (e) => {
     e.preventDefault();
   };
-  const [user, setUser] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+ 
+  const formik = useFormik({
+    initialValues: {
+        email: "",
+        password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (e, { setFieldError }) => {
+        setLoading(true);
+        try {
+            const fetch = await axios.post(`${baseUrl}/login`, e, {
+                withCredentials: true,
+            });
+
+            console.log(fetch.data);
+            dispatch(
+                loginUser({ success: fetch.data, navigate, location })
+            );
+        } catch (e) {
+            setFieldError(e.response.data.param, e.response.data.errorMsg);
+            console.log(e.response);
+        } finally {
+            setSubmit(false);
+        }
+    },
+});
 
 
-  const [error,setError] = useState(false); 
+ 
   const [loading, setLoading] = useState(false);
-  const [logged, setLogged] = useState(false);  
-  const navigate = useNavigate();
+  
   const [cookies, setCookie] = useCookies(['user']);
-  
-//   const [inputs,setInputs] = useState({
-  
-//     email: "", 
-//     password:"",
-    
-// });
 
-const handle = () => {
-  setCookie('email', email, { path: '/' });
-  setCookie('password', password, { path: '/' });
-};
+
+ const handle = () => {
+   setCookie('email', formik.values.email, { path: '/' });
+  setCookie('password', formik.values.password, { path: '/' });
+ };
   // const handleChange = (e) => {
    
   //   setInputs(prev => ({
@@ -71,91 +110,90 @@ const handle = () => {
   //       [e.target.name]: e.target.value
   //   }))};
     
-    const sendRequest = async () => {
-      const user = { 
-        email,
-        password};
-      setLoading(true)
-      try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+//     const sendRequest = async () => {
+//       const user = { 
+//         email,
+//         password};
+//       setLoading(true)
+//       try { 
+//           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
             
-              email: email,
-              password: password,
-          // confirmpassword: inputs.confirmpassword
-          },user)
+//               email: email,
+//               password: password,
+//           // confirmpassword: inputs.confirmpassword
+//           },user)
            
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
+//           const Toast = Swal.mixin({
+//             toast: true,
+//             position: 'top-end',
+//             showConfirmButton: false,
+//             timer: 3000,
+//             timerProgressBar: true,
+//             didOpen: (toast) => {
+//               toast.addEventListener('mouseenter', Swal.stopTimer)
+//               toast.addEventListener('mouseleave', Swal.resumeTimer)
+//             }
+//           })
           
-          Toast.fire({
-            icon: 'success',
-            title: 'Login Success'
-          });
+//           Toast.fire({
+//             icon: 'success',
+//             title: 'Login Success'
+//           });
            
 
-          setUser(res.data)
-          // store the user in localStorage
-          localStorage.setItem('email',res.data.email);
-              localStorage.setItem('T', res.data.token);
+//           setUser(res.data)
+//           // store the user in localStorage
+//           localStorage.setItem('email',res.data.email);
+//               localStorage.setItem('T', res.data.token);
               
-              console.log('user', user)
+//               console.log('user', user)
           
-             navigate('/mainpage');
+//              navigate('/mainpage');
   
-      }catch(error) {
-        setError(true)
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
+//       }catch(error) {
+//         setError(true)
+//         const Toast = Swal.mixin({
+//           toast: true,
+//           position: 'top-end',
+//           showConfirmButton: false,
+//           timer: 3000,
+//           timerProgressBar: true,
+//           didOpen: (toast) => {
+//             toast.addEventListener('mouseenter', Swal.stopTimer)
+//             toast.addEventListener('mouseleave', Swal.resumeTimer)
+//           }
+//         })
         
-        Toast.fire({
-          icon: 'error',
-          title: 'Login Failed'
-        });
-              console.log(error.response.data);
-      }finally {
-        setLoading(false)
-        setOpen(true)
-      }
+//         Toast.fire({
+//           icon: 'error',
+//           title: 'Login Failed'
+//         });
+//               console.log(error.response.data);
+//       }finally {
+//         setLoading(false)
+//         setOpen(true)
+//       }
     
+//   }
+//   useEffect(() => {
+//     const loggedInUser = localStorage.getItem("user");
+//     if (loggedInUser) {
+//       const foundUser = JSON.parse(loggedInUser);
+//       setUser(foundUser);
+//     }
+//   }, []);
+useEffect(() => {
+  if (localStorage.getItem("user")) {
+      navigate("/", { replace: true });
   }
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-    }
-  }, []);
-  const handleSubmit = (e) => {
-          e.preventDefault();
-          
-          
-      sendRequest();
-  };
+}, [navigate]);
   
   return (
     <ThemeProvider theme={theme}>
       
     <Grid component={Paper} elevation={16} sx={{p:2}}>
     
-    <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
+    <Box component="form"  autoComplete="true" onSubmit={formik.handleSubmit} sx={{ mt: 1 }}>
         <Card style={{ maxWidth: 500, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
             <Typography gutterBottom variant="h5">
@@ -169,35 +207,88 @@ const handle = () => {
                 <Grid item xs={12}>
                   <TextField 
                   margin="normal"
-                  required
-                  error={error}
-                  fullWidth
-                  onChange={({ target }) => setEmail(target.value)}
-                  value={email}  
+                              
+                  fullWidth 
                   id="email"
                   label="Email Address"
                   name="email"
                   type="email"
                   autoComplete="email"
                   autoFocus
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={
+                      formik.touched.email && Boolean(formik.errors.email)
+                  }
+                  helperText={formik.touched.email && formik.errors.email}
+                  InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <EmailOutlinedIcon
+                                color={
+                                    formik.touched.email &&
+                                    Boolean(formik.errors.email)
+                                        ? "error"
+                                        : "primary"
+                                }
+                            />
+                        </InputAdornment>
+                    ),
+                    sx: {
+                        color:
+                            formik.touched.email &&
+                            Boolean(formik.errors.email)
+                                ? "red"
+                                : textColorPri,
+                    },
+                }}
+                variant="outlined"
+                focused
                   />
                 </Grid>
                 
                 <Grid item xs={12} >
                 <TextField
                 margin="normal"
-                required
-                error={error}
+  
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
                 name="password"
                 label="Password"
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 autoComplete="current-password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                error={
+                    formik.touched.password &&
+                    Boolean(formik.errors.password)
+                }
+                helperText={
+                    formik.touched.password && formik.errors.password
+                }
                 inputProps={{ minLength: 6 }}
+                
                 InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                        <KeyOutlinedIcon
+                            color={
+                                formik.touched.password &&
+                                Boolean(formik.errors.password)
+                                    ? "error"
+                                    : "primary"
+                            }
+                            sx={{ transform: "rotate(90deg)" }}
+                        />
+                    </InputAdornment>
+                ),
+                sx: {
+                    color:
+                        formik.touched.password &&
+                        Boolean(formik.errors.password)
+                            ? "red"
+                            : textColorPri,
+                },
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton onClick={handleClick} onMouseDown={handleMouseDown}>
@@ -258,11 +349,11 @@ const handle = () => {
          password: <p>{cookies.password}</p>
       </div>
       )}
-      {logged ? <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           This is a success message!
         </Alert>
-      </Snackbar> : ""}
+      </Snackbar>
 
       {error ?   <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
