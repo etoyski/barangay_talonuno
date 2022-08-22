@@ -175,7 +175,7 @@ const handle = () => {
                   //error={error}
                   fullWidth
                   onChange={({ target }) => setEmail(target.value)}
-                  value={user.user.email}  
+                  value={user.email}  
                   id="email"
                   label="Email Address"
                   name="email"
@@ -192,7 +192,7 @@ const handle = () => {
                 //error={error}
                 fullWidth
                 onChange={({ target }) => setPassword(target.value)}
-                value={user.user.password} 
+                value={user.password} 
                 name="password"
                 label="Password"
                 type={showPassword ? 'text' : 'password'}
