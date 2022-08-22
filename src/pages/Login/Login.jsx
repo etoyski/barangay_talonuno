@@ -110,7 +110,7 @@ const handle = () => {
               localStorage.setItem('T', res.data.token);
               
               console.log('user', user)
-          
+              dispatch(loginUser({email}))
              navigate('/mainpage');
   
       }catch(error) {
@@ -131,7 +131,7 @@ const handle = () => {
           icon: 'error',
           title: 'Login Failed'
         });
-              console.log(error.response.data);
+              //console.log(error.response.data);
       }finally {
         setLoading(false)
         setOpen(true)
@@ -148,7 +148,7 @@ const handle = () => {
   const handleSubmit = (e) => {
           e.preventDefault();
           
-          dispatch(loginUser({email}))
+         
       sendRequest();
   };
   
