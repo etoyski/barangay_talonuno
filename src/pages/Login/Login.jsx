@@ -84,7 +84,7 @@ const handle = () => {
               email: email,
               password: password,
           // confirmpassword: inputs.confirmpassword
-          },user)
+          }, dispatch(loginUser({email})))
            
           const Toast = Swal.mixin({
             toast: true,
@@ -110,7 +110,7 @@ const handle = () => {
               localStorage.setItem('T', res.data.token);
               
               console.log('user', userInfo)
-              dispatch(loginUser({email}))
+             
              navigate('/mainpage');
   
       }catch(error) {
@@ -175,7 +175,7 @@ const handle = () => {
                   error={error}
                   fullWidth
                   onChange={(e) => setEmail(e.target.value)}
-                  value={user.userInfo.email}  
+                  value={userInfo.email}  
                   id="email"
                   label="Email Address"
                   name="email"
