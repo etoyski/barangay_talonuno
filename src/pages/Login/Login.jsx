@@ -84,7 +84,8 @@ const handle = () => {
               email: email,
               password: password,
           // confirmpassword: inputs.confirmpassword
-          }, dispatch(loginUser({email})))
+         
+          })
            
           const Toast = Swal.mixin({
             toast: true,
@@ -103,8 +104,8 @@ const handle = () => {
             title: 'Login Success'
           });
            
-         
-          setUser(res.data)
+          dispatch(loginUser({email}))
+          //setUser(res.data)
           // store the user in localStorage
           localStorage.setItem('email',res.data.email);
               localStorage.setItem('T', res.data.token);
