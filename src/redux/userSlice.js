@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const loginUser = createAsyncThunk ("users/login", async (user) => {
     const res = await axios.post(
-        "https://barangay-talon-uno.vercel.app/login",
+        'https://barangay-talon-uno.vercel.app/login',
         user
     );
     return res.data;
