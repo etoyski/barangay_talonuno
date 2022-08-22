@@ -73,78 +73,78 @@ const handle = () => {
   //       [e.target.name]: e.target.value
   //   }))};
     
-    const sendRequest = async () => {
-      const user = { 
-        email,
-        password};
-      setLoading(true)
-      try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+  //   const sendRequest = async () => {
+  //     const user = { 
+  //       email,
+  //       password};
+  //     setLoading(true)
+  //     try { 
+  //         const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
             
-              email: email,
-              password: password,
-          // confirmpassword: inputs.confirmpassword
-          },user)
+  //             email: email,
+  //             password: password,
+  //         // confirmpassword: inputs.confirmpassword
+  //         },user)
            
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
+  //         const Toast = Swal.mixin({
+  //           toast: true,
+  //           position: 'top-end',
+  //           showConfirmButton: false,
+  //           timer: 3000,
+  //           timerProgressBar: true,
+  //           didOpen: (toast) => {
+  //             toast.addEventListener('mouseenter', Swal.stopTimer)
+  //             toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //           }
+  //         })
           
-          Toast.fire({
-            icon: 'success',
-            title: 'Login Success'
-          });
+  //         Toast.fire({
+  //           icon: 'success',
+  //           title: 'Login Success'
+  //         });
            
          
-          setUser(res.data)
-          // store the user in localStorage
-          localStorage.setItem('email',res.data.email);
-              localStorage.setItem('T', res.data.token);
+  //         setUser(res.data)
+  //         // store the user in localStorage
+  //         localStorage.setItem('email',res.data.email);
+  //             localStorage.setItem('T', res.data.token);
               
-              console.log('user', user)
+  //             console.log('user', user)
           
-             navigate('/mainpage');
+  //            navigate('/mainpage');
   
-      }catch(error) {
-        //setError(true)
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
+  //     }catch(error) {
+  //       //setError(true)
+  //       const Toast = Swal.mixin({
+  //         toast: true,
+  //         position: 'top-end',
+  //         showConfirmButton: false,
+  //         timer: 3000,
+  //         timerProgressBar: true,
+  //         didOpen: (toast) => {
+  //           toast.addEventListener('mouseenter', Swal.stopTimer)
+  //           toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //         }
+  //       })
         
-        Toast.fire({
-          icon: 'error',
-          title: 'Login Failed'
-        });
-              console.log(error.response.data);
-      }finally {
-        setLoading(false)
-        setOpen(true)
-      }
+  //       Toast.fire({
+  //         icon: 'error',
+  //         title: 'Login Failed'
+  //       });
+  //             console.log(error.response.data);
+  //     }finally {
+  //       setLoading(false)
+  //       setOpen(true)
+  //     }
     
-  }
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-    }
-  }, []);
+  // }
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem("user");
+  //   if (loggedInUser) {
+  //     const foundUser = JSON.parse(loggedInUser);
+  //     setUser(foundUser);
+  //   }
+  // }, []);
   const handleSubmit = (e) => {
           e.preventDefault();
           dispatch(loginUser({email}))
@@ -266,11 +266,11 @@ const handle = () => {
         </Alert>
       </Snackbar> : ""}
 
-      {error ?   <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar  autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
          Login Failed! Please input valid credentials
         </Alert>
-      </Snackbar> : ""}
+      </Snackbar> 
   </ThemeProvider>
   
   )
