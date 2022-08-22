@@ -131,7 +131,7 @@ const handle = () => {
           icon: 'error',
           title: 'Login Failed'
         });
-              //console.log(error.response.data);
+              console.log(error.response.data);
       }finally {
         setLoading(false)
         setOpen(true)
