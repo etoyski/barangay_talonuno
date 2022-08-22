@@ -103,7 +103,7 @@ const handle = () => {
             title: 'Login Success'
           });
            
-          dispatch(loginUser({email}))
+         
           setUser(res.data)
           // store the user in localStorage
           localStorage.setItem('email',res.data.email);
@@ -148,7 +148,7 @@ const handle = () => {
   const handleSubmit = (e) => {
           e.preventDefault();
           
-          
+          dispatch(loginUser({email}))
       sendRequest();
   };
   
