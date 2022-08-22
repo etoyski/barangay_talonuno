@@ -172,7 +172,7 @@ const handle = () => {
                   <TextField 
                   margin="normal"
                   required
-                  error={error}
+                 // error={error}
                   fullWidth
                   onChange={({ target }) => setEmail(target.value)}
                   value={user.email}  
@@ -189,7 +189,7 @@ const handle = () => {
                 <TextField
                 margin="normal"
                 required
-                error={error}
+                //error={error}
                 fullWidth
                 onChange={({ target }) => setPassword(target.value)}
                 value={password} 
