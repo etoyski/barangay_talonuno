@@ -107,9 +107,9 @@ const handle = () => {
           dispatch(loginUser({email}))
           //setUser(res.data)
           // store the user in localStorage
-          localStorage.setItem('email',res.data.email);
+          localStorage.setItem('email',res.data.userInfo);
               localStorage.setItem('T', res.data.token);
-              localStorage.setItem('user', res.data.userInfo);
+             // localStorage.setItem('user', res.data.userInfo);
               console.log('user', userInfo)
              
              navigate('/mainpage');
