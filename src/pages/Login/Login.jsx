@@ -43,7 +43,7 @@ const Login = (props) => {
   const handleMouseDown = (e) => {
     e.preventDefault();
   };
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -53,8 +53,7 @@ const Login = (props) => {
   const [logged, setLogged] = useState(false);  
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
-  const {userInfo, pending, error} = useSelector((state) => state.user);
-  const dispatch = useDispatch;
+  const user = useSelector((state) => state.user);  const dispatch = useDispatch;
 //   const [inputs,setInputs] = useState({
   
 //     email: "", 
@@ -176,7 +175,7 @@ const handle = () => {
                   error={error}
                   fullWidth
                   onChange={({ target }) => setEmail(target.value)}
-                  value={email}  
+                  value={user.user.email}  
                   id="email"
                   label="Email Address"
                   name="email"
@@ -193,7 +192,7 @@ const handle = () => {
                 error={error}
                 fullWidth
                 onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                value={user.user.password} 
                 name="password"
                 label="Password"
                 type={showPassword ? 'text' : 'password'}
@@ -223,6 +222,7 @@ const handle = () => {
               </Grid>
                 <Grid item xs={12}>
                 <LoadingButton 
+                disabled={user.pending}
              loading = {loading}
               type="submit"
               fullWidth
