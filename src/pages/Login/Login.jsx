@@ -74,70 +74,71 @@ const handle = () => {
   //   }))};
     
     const sendRequest = async () => {
-      const user = { 
-        email,
-        password};
-      setLoading(true)
-      try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+      dispatch(loginUser({email}));
+      // const user = { 
+      //   email,
+      //   password};
+  //     setLoading(true)
+  //     try { 
+  //         // const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
             
-              email: email,
-              password: password,
-          // confirmpassword: inputs.confirmpassword
-          },user)
+  //         //     email: email,
+  //         //     password: password,
+  //         dispatch(loginUser({email}));
+  //         }
            
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
+  //         const Toast = Swal.mixin({
+  //           toast: true,
+  //           position: 'top-end',
+  //           showConfirmButton: false,
+  //           timer: 3000,
+  //           timerProgressBar: true,
+  //           didOpen: (toast) => {
+  //             toast.addEventListener('mouseenter', Swal.stopTimer)
+  //             toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //           }
+  //         })
           
-          Toast.fire({
-            icon: 'success',
-            title: 'Login Success'
-          });
+  //         Toast.fire({
+  //           icon: 'success',
+  //           title: 'Login Success'
+  //         });
            
-          dispatch(loginUser({email}))
-          setUser(res.data)
-          // store the user in localStorage
-          localStorage.setItem('email',res.data.email);
-              localStorage.setItem('T', res.data.token);
+          
+  //         setUser(res.data)
+  //         // store the user in localStorage
+  //         localStorage.setItem('email',res.data.email);
+  //             localStorage.setItem('T', res.data.token);
               
-              console.log('user', user)
+  //             console.log('user', user)
           
-             navigate('/mainpage');
+  //            navigate('/mainpage');
   
-      }catch(error) {
-        //setError(true)
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
+  //     }catch(error) {
+  //       //setError(true)
+  //       const Toast = Swal.mixin({
+  //         toast: true,
+  //         position: 'top-end',
+  //         showConfirmButton: false,
+  //         timer: 3000,
+  //         timerProgressBar: true,
+  //         didOpen: (toast) => {
+  //           toast.addEventListener('mouseenter', Swal.stopTimer)
+  //           toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //         }
+  //       })
         
-        Toast.fire({
-          icon: 'error',
-          title: 'Login Failed'
-        });
-              console.log(error.response.data);
-      }finally {
-        setLoading(false)
-        setOpen(true)
-      }
+  //       Toast.fire({
+  //         icon: 'error',
+  //         title: 'Login Failed'
+  //       });
+  //             console.log(error.response.data);
+  //     }finally {
+  //       setLoading(false)
+  //       setOpen(true)
+  //     }
     
-  }
+  // }
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -275,5 +276,5 @@ const handle = () => {
   
   )
 }
-
+}
 export default Login
