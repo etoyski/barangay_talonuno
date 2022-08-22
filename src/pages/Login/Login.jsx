@@ -267,7 +267,7 @@ const handle = () => {
         </Alert>
       </Snackbar> : ""}
 
-        <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar  autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
          Login Failed! Please input valid credentials
         </Alert>
