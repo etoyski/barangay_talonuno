@@ -175,7 +175,7 @@ const handle = () => {
                   error={error}
                   fullWidth
                   onChange={(e) => setEmail(e.target.value)}
-                  value={user.userInfo.email}  
+                  value={userInfo.email}  
                   id="email"
                   label="Email Address"
                   name="email"
