@@ -138,13 +138,13 @@ const handle = () => {
   //     }
     
   // }
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem("user");
+  //   if (loggedInUser) {
+  //     const foundUser = JSON.parse(loggedInUser);
+  //     setUser(foundUser);
+  //   }
+  // }, []);
   const handleSubmit = (e) => {
           e.preventDefault();
           
@@ -172,7 +172,7 @@ const handle = () => {
                   <TextField 
                   margin="normal"
                   required
-                  error={error}
+                  //error={error}
                   fullWidth
                   onChange={({ target }) => setEmail(target.value)}
                   value={user.user.email}  
@@ -189,7 +189,7 @@ const handle = () => {
                 <TextField
                 margin="normal"
                 required
-                error={error}
+                //error={error}
                 fullWidth
                 onChange={({ target }) => setPassword(target.value)}
                 value={user.user.password} 
@@ -267,11 +267,11 @@ const handle = () => {
         </Alert>
       </Snackbar> : ""}
 
-      {error ?   <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
          Login Failed! Please input valid credentials
         </Alert>
-      </Snackbar> : ""}
+      </Snackbar> 
   </ThemeProvider>
   
   )
