@@ -12,8 +12,8 @@ export const userSlice = createSlice({
     name: "user",
     initialState:{
         userInfo:{
-            name: "",
-            email: "",
+            name: null,
+            email: null,
         },
     pending:false,
     error: false,
