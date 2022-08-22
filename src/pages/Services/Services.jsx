@@ -14,7 +14,7 @@ import HealingOutlinedIcon from '@mui/icons-material/HealingOutlined';
 import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import { useNavigate } from 'react-router-dom';
-import VerticalTabs from '../Tabs/Tabs';
+import VerticalTabs from '../../components/Tabs/Tabs';
 const Services = () => {
   const navigate = useNavigate();
   const [isloggedin, setisloggedin] = useState(false);
@@ -28,7 +28,7 @@ const Services = () => {
     <React.Fragment>
           {isloggedin ? <VerticalTabs /> : ''}
     <Box sx={{ flexGrow: 1, p:5,  }}>
-        <Grid container spacing={5}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item xs="auto">
   <Card sx={{ p:3,maxWidth: 345 }}>
   { isloggedin ? <CardActionArea >

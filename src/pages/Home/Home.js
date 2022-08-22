@@ -12,7 +12,6 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import { useNavigate } from 'react-router-dom';
 
 
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -43,8 +42,9 @@ const Hero = () => {
   };
   return (
     <React.Fragment>
+     
       <CssBaseline />
-      <Container fixed sx={{p:2}} >
+            <Container fixed sx={{p:2}} >
       
         <Box
          xs={false}

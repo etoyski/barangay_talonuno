@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import VerticalTabs from '../Tabs/Tabs';
+import VerticalTabs from '../../components/Tabs/Tabs';
 import { TextField,Box, Autocomplete, Card, ThemeProvider, CardContent, createTheme, Paper, IconButton } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';

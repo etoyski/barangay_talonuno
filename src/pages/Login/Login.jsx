@@ -15,9 +15,10 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import swal from 'sweetalert2';
 import { useCookies } from 'react-cookie';
-import useAuth from '../Auth/Auth';
+//import useAuth from '../Auth/Auth';
 import Swal from 'sweetalert2';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../redux/userSlice';
 
 const theme = createTheme();
 
@@ -47,12 +48,13 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
 
 
-  const [error,setError] = useState(false); 
+  //const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [logged, setLogged] = useState(false);  
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
-  
+  const {userInfo, pending, error} = useSelector((state) => state.user);
+  const dispatch = useDispatch;
 //   const [inputs,setInputs] = useState({
   
 //     email: "", 
@@ -101,7 +103,7 @@ const handle = () => {
             title: 'Login Success'
           });
            
-
+          dispatch(loginUser({email}))
           setUser(res.data)
           // store the user in localStorage
           localStorage.setItem('email',res.data.email);
@@ -112,7 +114,7 @@ const handle = () => {
              navigate('/mainpage');
   
       }catch(error) {
-        setError(true)
+        //setError(true)
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',

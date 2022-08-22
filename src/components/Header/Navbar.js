@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Divider, IconButton, ListItemIcon, MenuItem, Toolbar, Tooltip } from '@mui/material';
+import { AppBar, Avatar, Divider, IconButton, ListItemIcon, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
@@ -23,6 +23,7 @@ import { Box } from '@mui/system';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Settings } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -39,7 +40,7 @@ function Navbar() {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
-
+  const name = useSelector((state) => state.user.userInfo.name);
   const [click, setClick] = useState(false);
   const [email, setEmail] = useState();
   const [user, setUser] = useState();
@@ -128,7 +129,11 @@ function Navbar() {
                   Contactus
                 </NavLinks>
               </NavItem>
-           
+            <NavItem>
+              <Typography sx={{color: 'white'}}>
+                user : {name}
+              </Typography>
+            </NavItem>
     
               {isloggedin ? ''  :  <NavItemBtn>
                 {button ? (
@@ -165,7 +170,7 @@ function Navbar() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>{user}</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{name}</Avatar>
           </IconButton>
         </Tooltip>
           </Box>  :  ''}

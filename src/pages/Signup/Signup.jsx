@@ -1,22 +1,23 @@
-import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,CircularProgress,Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
 import swal from 'sweetalert';
 import Swal from "sweetalert2";
-import { useSelector, useDispatch } from "react-redux";
-import { register, reset } from "../../features/auth/authSlice";  
 
-const theme = createTheme();
+  const theme = createTheme();
 
-  function Signup(){
+  const Signup = () => {
     const defaultProps = {
       options: gendertypes,
       getOptionLabel: (option) => option.title,
@@ -26,39 +27,18 @@ const theme = createTheme();
       options: gendertypes.map((option) => option.title),
     };
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
-
   const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
+  const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  const PHNUM_REGEX = /^(9|\+639)\d{9}$/;
   useEffect(() => {
-    if(isError){
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
-        icon: 'error',
-        title: 'Error',
-        text: (message),
-      });
-    }
-    if(isSuccess || user){
-      navigate('/login')
-    }
-  })
-   
-  const [userData, setuserData] = useState({
+    axios
+      .get("https://barangay-talon-uno.vercel.app/register")
+      .then((res) => console.log(res.data))
+      .catch((e) => console.error(e));
+  }, []);
+  const [inputs, setInputs] = useState({
     firstname: "",
     middlename: "",
     lastname: "",
@@ -73,50 +53,34 @@ const theme = createTheme();
     confirmpassword: "",
   });
   
-  const { firstname, middlename, lastname, contactnumber, email, city, barangay, street, gender, birthday, password, confirmpassword} = userData
 
   const handleChange = (e) => {
-    setuserData((prev) => ({
+    setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
- 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (password !== confirmpassword){
-      const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-            
-            Toast.fire({
-              icon: 'error',
-              title: 'Password do not match'
-            });
-    }else {
-      const userData = {
-        firstname,
-        middlename,
-        lastname,
-        contactnumber,
-        email,
-        city,
-        barangay,
-        street,
-        birthday,
-        password,
-      }
-      dispatch (register(userData))
+  //console.log(e.target.name,"value",e.target.value);
+  const sendRequest = async () => {
+    setLoading(true)
+    try {
+      const res = await axios.post(
+        "https://barangay-talon-uno.vercel.app/register",
+        {
+          firstname: inputs.firstname,
+          middlename: inputs.middlename,
+          lastname: inputs.lastname,
+          number: Number(inputs.contactnumber),
+          email: inputs.email,
+          city: inputs.city,
+          barangay: inputs.barangay,
+          street: inputs.street,
+          gender: inputs.gender,
+          birthday: inputs.birthday,
+          password: inputs.password,
+          confirmpassword: inputs.confirmpassword
+        }
+      );
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -133,13 +97,97 @@ const theme = createTheme();
         icon: 'success',
         title: 'User Created'
       });
+      console.log(res.data);
+      navigate("/login");
+      
+    } catch (error) {
+      setError(true)
+      setAlert(true)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'Sign up Failed'
+      });
+      console.log(error.response);
     }
+    finally {
+      setLoading(false)
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     //console.log(inputs);
-    //sendRequest();
-  }
-  if (isLoading) {
-    setLoading(true)
-  }
+  
+ if (! inputs.email){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-start',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    icon: 'error',
+    title: 'Email is Required'
+  });
+  
+ }
+ else if (! inputs.firstname){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-start',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    icon: 'error',
+    title: 'Firstname is Required'
+  });
+}
+  else if (inputs.password !== inputs.confirmpassword){
+      const Toast = Swal.mixin({
+              toast: true,
+              position: 'bottom-start',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            
+            Toast.fire({
+              icon: 'error',
+              title: 'Password do not match'
+            });
+    }else{
+    sendRequest();
+}
+  };
   return (
   
 <ThemeProvider theme={theme}>
@@ -165,9 +213,9 @@ const theme = createTheme();
                     name="firstname"
                     error={error}
                     onChange={handleChange} 
-                    value={firstname} 
+                    value={inputs.firstname} 
                     fullWidth 
-                    required 
+
                     />
                   </Grid>
                   <Grid xs={12} sm={6} item>
@@ -178,7 +226,7 @@ const theme = createTheme();
                     name="middlename"
                     error={error}
                     onChange={handleChange} 
-                    value={middlename} 
+                    value={inputs.middlename} 
                     fullWidth
                     required 
                     />
@@ -191,7 +239,7 @@ const theme = createTheme();
                     variant="outlined" 
                     error={error}
                     onChange={handleChange} 
-                    value={lastname}  fullWidth required />
+                    value={inputs.lastname}  fullWidth required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField 
@@ -201,7 +249,7 @@ const theme = createTheme();
                     variant="outlined" 
                     error={error}
                     onChange={handleChange} 
-                    value={contactnumber}  
+                    value={inputs.contactnumber}  
                     fullWidth 
                     required 
                     />
@@ -215,9 +263,9 @@ const theme = createTheme();
                     variant="outlined"  
                     error={error}
                     onChange={handleChange} 
-                    value={email}  
+                    value={inputs.email}  
                     fullWidth 
-                    required 
+                   // required 
                     />
                   </Grid>
                   <Grid item xs={12}sm={6}>
@@ -230,7 +278,7 @@ const theme = createTheme();
                     defaultValue="Las Piñas City" 
                     error={error}
                     onChange={handleChange} 
-                    value={city}  
+                    value={inputs.city}  
                     fullWidth   />
                   </Grid>
                   <Grid item xs={12}sm={6}>
@@ -243,7 +291,7 @@ const theme = createTheme();
                     defaultValue="Talon Uno"  
                     error={error}
                     onChange={handleChange} 
-                    value={barangay} 
+                    value={inputs.barangay} 
                     fullWidth  
                     
                     />
@@ -256,7 +304,7 @@ const theme = createTheme();
                     variant="outlined"  
                     error={error}
                     onChange={handleChange} 
-                    value={street} 
+                    value={inputs.street} 
                     fullWidth  />
                   </Grid>
                   <Grid item xs={12}>
@@ -265,7 +313,7 @@ const theme = createTheme();
         id="clear-on-escape"
         error={error} 
           onChange={handleChange} 
-          value={gender} 
+          value={inputs.gender} 
         autoComplete
         variant="outlined" 
         includeInputInList
@@ -286,7 +334,7 @@ const theme = createTheme();
                     variant="outlined"  
                     error={error}
                     onChange={handleChange} 
-                    value={birthday} fullWidth required />
+                    value={inputs.birthday} fullWidth required />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                   <TextField
@@ -295,10 +343,11 @@ const theme = createTheme();
                 error={error}
                 fullWidth
                 onChange={handleChange} 
-                value={password} 
+                value={inputs.password} 
                 name="password"
                 label="Password"
                 type="password"
+                inputProps={{ minLength: 6 }}
                 id="password"
                 autoComplete="current-password"
               />
@@ -310,7 +359,7 @@ const theme = createTheme();
                 error={error}
                 fullWidth
                 onChange={handleChange} 
-                value={confirmpassword} 
+                value={inputs.confirmpassword} 
                 name="confirmpassword"
                 label="confirmpassword"
                 type="password"

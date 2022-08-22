@@ -7,7 +7,7 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import VerticalTabs from '../Tabs/Tabs';
+import VerticalTabs from '../../components/Tabs/Tabs';
 import { Autocomplete, Card, CardContent, Checkbox, createTheme, FormControlLabel, Grid, TextField, ThemeProvider } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useState } from 'react';

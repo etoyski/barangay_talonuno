@@ -1,6 +1,6 @@
 import { Box, Button, Container, Fade, Paper, Popper, Typography } from '@mui/material'
 import React from 'react'
-import VerticalTabs from '../Tabs/Tabs'
+import VerticalTabs from '../../components/Tabs/Tabs'
 import bball from '../../assets/bball.jpg'
 import { useState } from 'react'
 
