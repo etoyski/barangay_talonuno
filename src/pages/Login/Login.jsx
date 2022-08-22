@@ -74,9 +74,9 @@ const handle = () => {
   //   }))};
     
     const sendRequest = async () => {
-      const user = { 
-        email,
-        password};
+      // const user = { 
+      //   email,
+      //   password};
       setLoading(true)
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
@@ -109,7 +109,7 @@ const handle = () => {
           localStorage.setItem('email',res.data.email);
               localStorage.setItem('T', res.data.token);
               
-              console.log('user', user)
+              console.log('user', userInfo)
               dispatch(loginUser({email}))
              navigate('/mainpage');
   
