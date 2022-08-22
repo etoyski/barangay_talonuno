@@ -43,7 +43,7 @@ const Login = (props) => {
   const handleMouseDown = (e) => {
     e.preventDefault();
   };
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -53,8 +53,8 @@ const Login = (props) => {
   const [logged, setLogged] = useState(false);  
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
-  const {userInfo, pending, error} = useSelector((state) => state.user);
-  const dispatch = useDispatch;
+  const user = useSelector((state) => state.user);
+    const dispatch = useDispatch;
 //   const [inputs,setInputs] = useState({
   
 //     email: "", 
@@ -175,7 +175,7 @@ const handle = () => {
                   error={error}
                   fullWidth
                   onChange={({ target }) => setEmail(target.value)}
-                  value={email}  
+                  value={user.email}  
                   id="email"
                   label="Email Address"
                   name="email"
