@@ -34,7 +34,7 @@ export default function Report() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect( () => {
+  React.useEffect( () => {
     let token = localStorage.getItem("T");
     let email = localStorage.getItem("email");
 
