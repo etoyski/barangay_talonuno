@@ -10,14 +10,27 @@ export const loginUser = createAsyncThunk(
         return res.data;
     }
 );
+
 export const validateToken = createAsyncThunk(
-    "users/validate",
-    async (token) => {
-        const res = await axios.post(
-            "https://barangay-talon-uno.vercel.app/validate",
-            token
-        );
-        return res.data;
+    "users/verify",
+    async ({ token, email, navigate }, { dispatch }) => {
+        try {
+            const res = await axios.post(
+                "https://barangay-talon-uno.vercel.app/verify",
+                email,
+                {
+                    Authorization: "Bearer " + token,
+                }
+            );
+
+            return res.data.verify;
+        } catch (error) {
+            if (!error.response.data.verify) {
+                navigate("/login");
+                dispatch(validate());
+            }
+            return res.data.verify;
+        }
     }
 );
 
@@ -32,6 +45,9 @@ export const userSlice = createSlice({
         error: false,
     },
     reducers: {
+        validate: (state) => {
+            localStorage.clear();
+        },
         // setUser: (state, {payload}) => {
         // state.userInfo = payload;
         // },

@@ -11,6 +11,7 @@ import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import { validateToken } from '../../redux/userSlice';
 const theme = createTheme({
   palette: {
     primary: {
@@ -29,6 +30,14 @@ export default function Report() {
   const [error,setError] = useState(false); 
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
+
+  useEffect( () => {
+    let token = localStorage.getItem("T");
+    let email = localStorage.getItem("email");
+
+    dispatch( validateToken({ token, email, navigate }) );
+  }, [])
+
   const defaultProps = {
     options: reporttypes,
     getOptionLabel: (option) => option.title,

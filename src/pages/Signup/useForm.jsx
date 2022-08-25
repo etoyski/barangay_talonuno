@@ -74,14 +74,16 @@ import baseUrl from "../../utils/baseURL";
    confirmpassword: '',
   }}
   validationSchema={SignupSchema}
-  onSubmit={onSubmit}   
+  onSubmit={(values) => {
+    console.log(values)
+  }}  
      
      >
       {(props) => (
 
       <Grid component={Paper} elevation={16} sx={{p:2}}>
       
-      <Box component="form"  sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={props.handleSubmit}    sx={{ mt: 1 }}>
           <Card style={{ maxWidth: 500, padding: "20px 5px", margin: "0 auto" }}>
             <CardContent>
               <Typography gutterBottom variant="h5">

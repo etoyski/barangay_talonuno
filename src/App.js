@@ -29,13 +29,15 @@ function App() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem("T", "user")) {
+        if (localStorage.getItem("T", "email")) {
             let token = localStorage.getItem("T");
-            // validateToken(token) = value true or false
-            setisloggedin(validateToken(token));
+            let email = localStorage.getItem("email");
+            // validateToken({token, email}) = value true or false
+            setisloggedin(validateToken({ token, email }));
             setisloggedin(true);
         }
     }, [navigate]);
+
     return (
         <React.Fragment>
             <header>

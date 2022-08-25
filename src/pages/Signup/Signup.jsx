@@ -119,7 +119,8 @@ import Swal from "sweetalert2";
         icon: 'error',
         title: 'Sign up Failed'
       });
-      console.log(error.response);
+
+      console.log("error signup: ", error.response.data);
     }
     finally {
       setLoading(false)
