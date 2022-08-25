@@ -3,11 +3,15 @@ import React from 'react'
 import VerticalTabs from '../../components/Tabs/Tabs'
 import bball from '../../assets/bball.jpg'
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 
 export default function  Mainpage  ()  {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const useri = useSelector( ({ user }) => user)
  
+  console.log(useri);
   const [user, setUser] = useState();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

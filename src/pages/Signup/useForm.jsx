@@ -54,7 +54,7 @@ import baseUrl from "../../utils/baseURL";
   });
   const onSubmit = (values, props) => {
     alert(JSON.stringify(values), null, 2)
-    props.resetForm();
+    // props.resetForm();
     setLoading(false)
 }
   return (

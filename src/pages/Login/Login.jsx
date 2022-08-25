@@ -54,7 +54,7 @@ const Login = (props) => {
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['user']);
   const {userInfo, pending, error} = useSelector((state) => state.user);
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 //   const [inputs,setInputs] = useState({
   
 //     email: "", 
@@ -79,7 +79,7 @@ const handle = () => {
       //   password};
       setLoading(true)
       try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+          const res = await axios.post('http://localhost:5000/login',{
             
               email: email,
               password: password,
@@ -104,13 +104,14 @@ const handle = () => {
             title: 'Login Success'
           });
            
-          dispatch(loginUser({email}))
           //setUser(res.data)
           // store the user in localStorage
-          localStorage.setItem('user',res.data.userInfo);
+          localStorage.setItem('user',res.data.fullname);
               localStorage.setItem('T', res.data.token);
              // localStorage.setItem('user', res.data.userInfo);
               console.log('user', userInfo)
+
+            dispatch(loginUser(email))
              
              navigate('/mainpage');
   
@@ -132,7 +133,7 @@ const handle = () => {
           icon: 'error',
           title: 'Login Failed'
         });
-              console.log(error.response.data);
+              console.log(error);
       }finally {
         setLoading(false)
         setOpen(true)
@@ -142,9 +143,15 @@ const handle = () => {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
+      const foundUser = loggedInUser;
       setUser(foundUser);
     }
+
+    // redux state
+    // swal
+
+    
+
   }, []);
   const handleSubmit = (e) => {
           e.preventDefault();
@@ -176,7 +183,7 @@ const handle = () => {
                   error={error}
                   fullWidth
                   onChange={(e) => setEmail(e.target.value)}
-                  value={userInfo.email}  
+                  value={email}  
                   id="email"
                   label="Email Address"
                   name="email"
