@@ -29,7 +29,7 @@ export const validateToken = createAsyncThunk(
                 navigate("/login");
                 dispatch(validate());
             }
-            return res.data.verify;
+            return error.response.data.verify;
         }
     }
 );
@@ -89,7 +89,7 @@ export const userSlice = createSlice({
     },
 });
 
-export const { updateStart, updateSuccess, updateErro, update } =
+export const { updateStart, updateSuccess, updateErro, update, validate } =
     userSlice.actions;
 
 export default userSlice.reducer;

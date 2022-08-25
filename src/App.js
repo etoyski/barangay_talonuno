@@ -22,6 +22,7 @@ import GeneralSettings from "./pages/Settings/settings";
 import Register from "./pages/Signup/useForm";
 
 import UserProfile from "./pages/userprofile/user-profile";
+import { validateToken } from "./redux/userSlice";
 
 function App() {
     // const [name, setName] = useState('etoy');
@@ -33,7 +34,7 @@ function App() {
             let token = localStorage.getItem("T");
             let email = localStorage.getItem("email");
             // validateToken({token, email}) = value true or false
-            setisloggedin(validateToken({ token, email }));
+            setisloggedin(validateToken({ token, email, navigate }));
             setisloggedin(true);
         }
     }, [navigate]);

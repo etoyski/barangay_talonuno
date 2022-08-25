@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { validateToken } from '../../redux/userSlice';
+import { useDispatch } from 'react-redux';
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -30,6 +32,7 @@ export default function Report() {
   const [error,setError] = useState(false); 
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect( () => {
     let token = localStorage.getItem("T");
