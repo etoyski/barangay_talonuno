@@ -50,11 +50,14 @@ function Navbar() {
   const closeMobileMenu = () => setClick(false);
   const navigate = useNavigate();
 
-  useEffect(()=> {
-    if (localStorage.getItem ('T','user')){
-        setisloggedin (true);
+  useEffect(() => {
+    if (localStorage.getItem("T", "user")) {
+        let token = localStorage.getItem("T");
+        // validateToken(token) = value true or false
+        setisloggedin(validateToken(token));
+        setisloggedin(true);
     }
-}, [navigate] ) 
+}, [navigate]);
 
  
   const showButton = () => {

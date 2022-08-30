@@ -32,7 +32,7 @@ function App() {
         if (localStorage.getItem("T", "user")) {
             let token = localStorage.getItem("T");
             // validateToken(token) = value true or false
-            setisloggedin(validateToken(token));
+           setisloggedin(validateToken(token));
             setisloggedin(true);
         }
     }, [navigate]);
