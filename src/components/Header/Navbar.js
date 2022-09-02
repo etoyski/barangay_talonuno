@@ -24,6 +24,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Settings } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
+import { validateToken } from '../../redux/userSlice';
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
