@@ -117,7 +117,7 @@ const handle = () => {
 
             dispatch(loginUser(email))
              
-             navigate('/otp');
+             navigate('/mainpage');
   
       }catch(error) {
         //setError(true)
