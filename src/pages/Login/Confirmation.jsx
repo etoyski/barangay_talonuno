@@ -6,9 +6,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Container } from '@mui/material';
+import { Container, Paper } from '@mui/material';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Box } from '@mui/system';
 
 export default function OTP() {
   const [open, setOpen] = React.useState(false);
@@ -40,9 +41,9 @@ export default function OTP() {
   
     <div>
     <Container maxWidth="sm" component="main">
-       
-       
-        <Dialog component="form"  onSubmit={handleSubmit} open={open} onClose={handleClose}>
+        <Box>
+            <Paper>
+            <Dialog component="form"  onSubmit={handleSubmit} open={open} onClose={handleClose}>
         <DialogTitle>OTP</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -65,6 +66,10 @@ export default function OTP() {
           <Button onClick={handleClose}>Submit</Button>
         </DialogActions>
       </Dialog>
+            </Paper>
+        </Box>
+       
+        
       
     </Container>
     
