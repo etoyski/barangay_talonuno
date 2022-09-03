@@ -23,6 +23,7 @@ import Register from "./pages/Signup/useForm";
 
 import UserProfile from "./pages/userprofile/user-profile";
 import { validateToken } from "./redux/userSlice";
+import OTP from "./pages/Login/Confirmation";
 
 function App() {
     // const [name, setName] = useState('etoy');
@@ -32,14 +33,12 @@ function App() {
     useEffect(() => {
         if (localStorage.getItem("T", "email")) {
             let token = localStorage.getItem("T");
-// <<<<<<< HEAD
             // validateToken(token) = value true or false
            setisloggedin(validateToken(token));
-// =======
+
             let email = localStorage.getItem("email");
             // validateToken({token, email}) = value true or false
             setisloggedin(validateToken({ token, email, navigate }));
-//>>>>>>> cdc57f5784980b54d7b46dd75a3a611ba8b7ae5f
             setisloggedin(true);
         }
     }, [navigate]);
@@ -57,7 +56,8 @@ function App() {
                     </Route>
                     <Route path="/home" element={<Home />} />
                     <Route path="/welcomepage" element={<Welcomepage />} />
-                    <Route path="/about" element={<About />} /> np
+                    <Route path="/about" element={<About />} /> 
+                    <Route path="/otp" element={<OTP />} /> 
                     <Route path="/services" element={<Services />} />
                     <Route path="/contactus" element={<Contactus />} />
                     <Route path="/login" element={<Login />} />

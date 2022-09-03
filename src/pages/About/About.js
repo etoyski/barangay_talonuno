@@ -62,7 +62,7 @@ const About = () => {
     {isloggedin ? <VerticalTabs /> : ''}
     
     <Box sx={{ flexGrow: 1, p:3}}>
-        <Container maxWidth="md">
+        <Container maxWidth="md" component="main">
         <Fade right>
         <Typography color="primary" align='left' variant="string" component="h3">
         Talon Uno is a barangay in the city of Las Piñas. Its population as determined by the 2020 Census was 42,505. 

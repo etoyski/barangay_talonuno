@@ -15,6 +15,9 @@ import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import { useNavigate } from 'react-router-dom';
 import VerticalTabs from '../../components/Tabs/Tabs';
+import Roll from 'react-reveal/Roll';
+import ActionAreaCard from '../Home/cards';
+import Slide from 'react-reveal/Slide';
 const Services = () => {
   const navigate = useNavigate();
   const [isloggedin, setisloggedin] = useState(false);
@@ -26,16 +29,27 @@ const Services = () => {
 
   return (
     <React.Fragment>
+      <Container maxWidth="lg" >
+        <Slide left>
+        <Typography variant="h3" align='left'>
+          Services Offered
+        </Typography>
+        </Slide>
+      </Container>
           {isloggedin ? <VerticalTabs /> : ''}
-    <Box sx={{ flexGrow: 1, p:5,  }}>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          <Container maxWidth="lg">
+
+        
+    <Box sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start ">
         <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+          <Roll left>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }} style={{backgroundColor: "#F5EDDC "}}>
   { isloggedin ? <CardActionArea >
       <CardMedia 
       />
       <CardContent  onClick={() => navigate('/request')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
         <BadgeOutlinedIcon /> Barangay ID 
         </Typography>
         <Typography variant="body2" color="text.secondary"> 
@@ -49,15 +63,16 @@ const Services = () => {
       <CardMedia 
       />
       <CardContent  onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
         <BadgeOutlinedIcon /> Barangay ID 
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-        </Typography>
+        <br/>
+        <br/>
       </CardContent>
     </CardActionArea>}
 
     {isloggedin ?<CardActions>
+      <br/>
         <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
           Request
         </Button>
@@ -67,16 +82,18 @@ const Services = () => {
         </Button>
       </CardActions>}
   </Card>
+  </Roll>
   </Grid>
 
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll left>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300  }}style={{backgroundColor: "#F5EDDC "}}>
   { isloggedin ? <CardActionArea>
       <CardMedia
         
       />
     <CardContent>
-        <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/request')}to="/login">
+        <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/request')}to="/login" color="#1b5e20">
         <ArticleOutlinedIcon /> Barangay Clearance
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -89,9 +106,10 @@ const Services = () => {
       <CardMedia 
       />  
     <CardContent>
-        <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/login')}to="/login">
+        <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/login')}to="/login" color="#1b5e20">
         <ArticleOutlinedIcon /> Barangay Clearance
         </Typography>
+        
         <Typography variant="body2" color="text.secondary"> 
         </Typography>
       </CardContent>
@@ -105,16 +123,18 @@ const Services = () => {
         </Button> }
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
 
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll right>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
   {isloggedin ? <CardActionArea>
       <CardMedia
         
       />
       <CardContent onClick={() => navigate('/request')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
         <BadgeOutlinedIcon />  Barangay Residency
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -128,7 +148,7 @@ const Services = () => {
         
       />
       <CardContent onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
         <BadgeOutlinedIcon />  Barangay Residency
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -145,25 +165,27 @@ const Services = () => {
         </Button>}
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
 
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll left>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
     {isloggedin ? <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
         <BadgeOutlinedIcon />  Post Residency
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-        </Typography>
+        </Typography>       
       </CardContent>
     </CardActionArea> : <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
         <BadgeOutlinedIcon />  Post Residency
         </Typography>
+        <br/>
+        <br/>
         <Typography variant="body2" color="text.secondary">
         </Typography>
       </CardContent>
@@ -176,14 +198,16 @@ const Services = () => {
         </Button>}
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
 
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll rigt>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
     {isloggedin ? <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
          <WorkOutlineOutlinedIcon /> Local Employment
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -193,7 +217,7 @@ const Services = () => {
     </CardActionArea> : <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
          <WorkOutlineOutlinedIcon /> Local Employment
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -209,26 +233,31 @@ const Services = () => {
         </Button>}
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
 
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll left>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
     {isloggedin ? <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/request">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
           <HealingOutlinedIcon /> Green Card
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <br/>
+        <Typography variant="body2" color="text.secondary" >
           
         </Typography>
       </CardContent>
     </CardActionArea> : <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
           <HealingOutlinedIcon /> Green Card
         </Typography>
+        <br/>
+        <br/>
         <Typography variant="body2" color="text.secondary">
           
         </Typography>
@@ -242,14 +271,16 @@ const Services = () => {
         </Button>} 
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
 
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll right>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
     {isloggedin ?<CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/request">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
           <SupportOutlinedIcon />Libreng Libing Program
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -259,7 +290,7 @@ const Services = () => {
     </CardActionArea> : <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
           <SupportOutlinedIcon />Libreng Libing Program
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -275,9 +306,11 @@ const Services = () => {
         </Button>} 
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll left>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
     {isloggedin ? <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/login">
@@ -291,9 +324,11 @@ const Services = () => {
     </CardActionArea> : <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div"color="#1b5e20">
          <AccountBalanceOutlinedIcon /> Bank Application
         </Typography>
+        <br/>
+        <br/>
         <Typography variant="body2" color="text.secondary">
           
         </Typography>
@@ -307,27 +342,31 @@ const Services = () => {
         </Button>}
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
 
   <Grid item xs="auto">
-  <Card sx={{ p:3,maxWidth: 345 }}>
+  <Roll right>
+  <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}} >
     {isloggedin ? <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#90B77D">
         <ArticleOutlinedIcon /> Indigency
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="#90B77D">
           
         </Typography>
       </CardContent>
     </CardActionArea> : <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
         <ArticleOutlinedIcon /> Indigency
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <br/>
+        <br/>
+        <Typography variant="body2" color="lightgreen">
           
         </Typography>
       </CardContent>
@@ -340,10 +379,13 @@ const Services = () => {
         </Button>}
       </CardActions>
   </Card>
+  </Roll>
   </Grid>
 </Grid>
      
   </Box>
+  </Container>
+  <ActionAreaCard/>
   </React.Fragment>
   );
 }

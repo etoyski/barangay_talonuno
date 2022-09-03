@@ -45,7 +45,7 @@ const Contactus = () => {
           {isloggedin ? <VerticalTabs /> : ''}
 
       <CssBaseline />
-      <Container maxWidth="lg" sx={{p:2}}>
+      <Container maxWidth="lg" component="main" sx={{p:2}}>
         <Box 
          xs={false}
          sm={3}
@@ -72,9 +72,9 @@ const Contactus = () => {
          
       <Grid container spacing={3}>
         <Grid item xs="auto">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, height:150, width:450 }} >
       <CardMedia
-        
+        height="160"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -114,7 +114,7 @@ const Contactus = () => {
     </Card>
         </Grid>
         <Grid item xs="auto">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345,height:150, width:450  }}>
       <CardMedia
         
       />
@@ -133,7 +133,7 @@ const Contactus = () => {
     </Card>
         </Grid>
         <Grid item xs>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345,height:150, width:450 }}>
       <CardMedia
         
       />

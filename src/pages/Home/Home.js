@@ -16,9 +16,9 @@ import ActionAreaCard from './cards';
 import serviceCard from './services-cards/service-cards';
 import './iFrame.css';
 import { useEffect } from 'react';
+import LightSpeed from 'react-reveal/LightSpeed';
 
-
-
+import Slide from 'react-reveal/Slide';
 
 const iframe='<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBrgyTalon1&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
 function Iframe(props) {
@@ -69,29 +69,36 @@ const Hero = () => {
     <React.Fragment>
 
       <CssBaseline />
+      <LightSpeed Left>
       <Slider/>
+      </LightSpeed>
+      <Slide left>
       <ActionAreaCard/>
+      </Slide>
+    
+      
       <hr/> 
       <Container maxWidth="md" component="main" sx={{p:2}} >
       
       
       <Grid container spacing={2} alignItems="flex-end">
         <Grid item  xs={7} sx={{ maxWidth: 345 }}>
+        <Slide right>
             <Paper >
             <Item ><div className='myIframe2'>
         <Iframe2 iframe2={iframe2} />
         </div></Item>
             </Paper>
-         
+            </Slide>
         </Grid>
         <Grid item  xs={5} sx={{ maxWidth: 345 }}>
+          <Slide right>
             <Paper elevation={0} sx={{width:355}}>
-            <Item >
-              
-        <Iframe iframe={iframe} />
+         <Item >        
+      <Iframe iframe={iframe} />
         </Item>
             </Paper>
-         
+            </Slide>
         </Grid>
       </Grid>
     
@@ -144,6 +151,7 @@ const Hero = () => {
           s ={8}
           md={4}
         >
+          <Slide left>
           <Card sx={{ maxWidth: 345 }}  style={{backgroundColor: "#277BC0"}}>
       {isloggedin ? <CardActionArea onClick={() => navigate('/report')}to="/login">
         <CardMedia
@@ -181,6 +189,7 @@ const Hero = () => {
         </CardContent>
       </CardActionArea>}
     </Card>
+    </Slide>
         </Grid>
         <Grid
           item
@@ -188,6 +197,7 @@ const Hero = () => {
           s ={8}
           md={4}
         >
+          <Slide right>
           <Card sx={{ maxWidth: 345 }} style={{backgroundColor: "teal"}}>
       {isloggedin ? <CardActionArea onClick={() => navigate('/request')}to="/login">
         <CardMedia
@@ -223,6 +233,7 @@ const Hero = () => {
         </CardContent>
       </CardActionArea>}
     </Card>
+    </Slide>
         </Grid>
         <Grid
           item
@@ -230,6 +241,7 @@ const Hero = () => {
           s ={8}
           md={4}
         >
+          <Slide right>
           <Card sx={{ maxWidth: 345 }}style={{backgroundColor: "#D61C4E "}}>
           
         
@@ -253,7 +265,43 @@ const Hero = () => {
         </CardContent>
       </CardActionArea>
     </Card>
+    </Slide>  
         </Grid> 
+    </Grid>
+  </Container>
+  <br/>
+  <Container maxWidth="md" component="main">
+      <Typography variant="h4" component="div" align="center" color="black">
+        Barangay Talon Uno
+      </Typography>
+      <br/>
+      <Grid container spacing={5} alignItems="flex-end">
+        <Grid
+          item
+          xs={12}
+          s ={8}
+          md={4}
+        >
+          <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="160"
+          image="
+          https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+          alt="bg"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="subheading" component="div">
+           Mission, Vision and goal
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    </Grid>
     </Grid>
   </Container>
     </React.Fragment>
