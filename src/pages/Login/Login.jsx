@@ -19,7 +19,12 @@ import { useCookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/userSlice';
-
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { Container } from '@mui/system';
 const theme = createTheme();
 
 const Login = (props) => {
@@ -33,6 +38,30 @@ const Login = (props) => {
     setOpen(false);
   };
 
+  const {otp, setOtp} = useState("")
+  const navigate = useNavigate();
+
+
+
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+
+  const handleSubmitOTP = () => {
+    if ( otp != null) {
+        console.log("Enter OTP")
+    }else if (otp !== otp){
+        console.log("Invalid OTP")
+    }else{
+        console.log("OTP Verified")
+        navigate('/mainpage');
+    }
+  };
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -51,7 +80,7 @@ const Login = (props) => {
   //const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
   const [logged, setLogged] = useState(false);  
-  const navigate = useNavigate();
+ 
   const [cookies, setCookie] = useCookies(['user']);
   const {userInfo, pending, error} = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -116,7 +145,7 @@ const handle = () => {
               console.log('user', userInfo)
 
             dispatch(loginUser(email))
-             
+             setOpen(true)
              navigate('/mainpage');
   
       }catch(error) {
@@ -283,9 +312,50 @@ const handle = () => {
          Login Failed! Please input valid credentials
         </Alert>
       </Snackbar> : ""}
+
+    {/*  dialog box */}
+      <div>
+    <Container maxWidth="sm" component="main">
+        <Box>
+            <Paper>
+            <Dialog component="form"  onSubmit={handleSubmitOTP} open={open} onClose={handleClose}>
+        <DialogTitle>OTP</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To proceed to this website, please enter your OTP here. 
+            Kindly check your email, or check into your spam folder.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="OTP"
+            type="text"
+            value={otp}
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          
+          <Button onClick={handleClose}>Submit</Button>
+        </DialogActions>
+      </Dialog>
+            </Paper>
+        </Box>
+       
+        
+      
+    </Container>
+    
+    </div>
   </ThemeProvider>
   
   )
 }
 
 export default Login
+
+
+
+

@@ -257,7 +257,7 @@ const Hero = () => {
           <Typography gutterBottom variant="h5" component="div" color="white">
           <br/> Traffic Report <br/>   
           </Typography>
-          <IconButton color="secondary" href='https://twitter.com/MMDA'>  <Typography variant="body2" color="white">
+          <IconButton color="secondary" href='https://twitter.com/MMDA' onClick={() => navigate('/https://twitter.com/MMDA')}to="/https://twitter.com/MMDA">  <Typography variant="body2" color="white">
            Go to site
            </Typography>
           <ArrowCircleRightIcon /> </IconButton>
@@ -292,9 +292,61 @@ const Hero = () => {
           alt="bg"
         />
         <CardContent>
-          <Typography gutterBottom variant="subheading" component="div">
-           Mission, Vision and goal
+        <Button variant="text" color="primary">
+            Mission, Vision & Goal 
+          </Button>
+          <Typography variant="body2" color="text.secondary">
+           
           </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    </Grid>
+    <Grid
+          item
+          xs={12}
+          s ={8}
+          md={4}
+        >
+          <Card sx={{ maxWidth: 345  }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="160"
+          image="
+          https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+          alt="bg"
+        />
+        <CardContent onClick={() => navigate('/about')}to="/about">
+        <Button variant="text" color="primary" onClick={() => navigate('/about')}to="/about">
+            Barangay Officials 
+          </Button>
+          <Typography variant="body2" color="text.secondary">
+           
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    </Grid>
+    <Grid
+          item
+          xs={12}
+          s ={8}
+          md={4}
+        >
+          <Card sx={{ maxWidth: 345  }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="160"
+          image="
+          https://images.unsplash.com/photo-1529928520614-7c76e2d99740?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+          alt="bg"
+        />
+        <CardContent  >
+          <Button variant="text" color="primary">
+            Location 
+          </Button>
           <Typography variant="body2" color="text.secondary">
            
           </Typography>

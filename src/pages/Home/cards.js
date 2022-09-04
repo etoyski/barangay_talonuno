@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid, Paper } from '@mui/material';
+import { Button, CardActionArea, Grid, Paper } from '@mui/material';
 import Third from "../../assets/bg6.jpg";
 import { Box, Container } from '@mui/system';
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -43,6 +43,9 @@ export default function ActionAreaCard() {
           <Typography variant="body2" color="text.secondary">
            
           </Typography>
+          <Button variant="text" href="https://president.gov.ph/">
+            Visit
+          </Button> 
         </CardContent>
       </CardActionArea>
     </Card>
@@ -66,6 +69,9 @@ export default function ActionAreaCard() {
           <Typography gutterBottom variant="h5" component="div">
             Office of the <br/> <b>Mayor</b>
           </Typography>
+          <Button variant="text" href="https://laspinascity.gov.ph/">
+            Visit
+          </Button>
           <Typography variant="body2" color="text.secondary">
            
           </Typography>
@@ -95,6 +101,9 @@ export default function ActionAreaCard() {
           <Typography variant="body2" color="text.secondary">
            
           </Typography>
+          <Button variant="text" href="https://barangay-talonuno.vercel.app/home">
+            Visit
+          </Button>
         </CardContent>
       </CardActionArea>
     </Card>
