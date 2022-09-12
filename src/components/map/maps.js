@@ -70,7 +70,7 @@ const GPS = () => {
                 position={[location.coordinates.lat, location.coordinates.lng]}
                 >
                      <Popup>
-                     reverseGeoCoding(latlng)
+                     <b>{location.coordinates.lat} </b>
                 </Popup>
                 </Marker>
             )}
