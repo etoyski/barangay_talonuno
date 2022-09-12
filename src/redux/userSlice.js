@@ -30,7 +30,7 @@ export const validateToken = createAsyncThunk(
             return res.data.verify;
         } catch (error) {
             if (!error.response.data.verify) {
-                dispatch(login(res.data.verify));
+                dispatch(login(error.response.data.verify));
                 navigate("/login");
                 dispatch(validate());
             }

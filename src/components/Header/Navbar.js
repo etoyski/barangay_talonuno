@@ -55,7 +55,7 @@ function Navbar() {
     const [email, setEmail] = useState();
     const [user, setUser] = useState();
     const [button, setButton] = useState(true);
-    // const [isloggedin, setisloggedin] = useState(false);
+    const [loggedIn, setisloggedin] = useState(false);
     const isloggedin = useSelector((state) => state.user.isLoggedIn);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
