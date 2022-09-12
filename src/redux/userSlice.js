@@ -4,7 +4,10 @@ import axios from "axios";
 export const loginUser = createAsyncThunk(
     "users/login",
     async (user, { dispatch }) => {
-        const res = await axios.post("https://barangay-talon-uno.vercel.app/login", user);
+        const res = await axios.post(
+            "https://barangay-talon-uno.vercel.app/login",
+            user
+        );
         console.log("uservalidate: ", res.data.fullname);
         dispatch(update({ name: res.data.fullname }));
         return res.data;
@@ -23,9 +26,11 @@ export const validateToken = createAsyncThunk(
                 }
             );
 
+            dispatch(login(res.data.verify));
             return res.data.verify;
         } catch (error) {
             if (!error.response.data.verify) {
+                dispatch(login(res.data.verify));
                 navigate("/login");
                 dispatch(validate());
             }
@@ -43,10 +48,14 @@ export const userSlice = createSlice({
         },
         pending: false,
         error: false,
+        isLoggedIn: false,
     },
     reducers: {
         validate: (state) => {
             localStorage.clear();
+        },
+        login: (state, { payload }) => {
+            state.isLoggedIn = payload;
         },
         // setUser: (state, {payload}) => {
         // state.userInfo = payload;
@@ -89,7 +98,13 @@ export const userSlice = createSlice({
     },
 });
 
-export const { updateStart, updateSuccess, updateErro, update, validate } =
-    userSlice.actions;
+export const {
+    updateStart,
+    updateSuccess,
+    updateErro,
+    update,
+    validate,
+    login,
+} = userSlice.actions;
 
 export default userSlice.reducer;

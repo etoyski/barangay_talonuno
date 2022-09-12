@@ -24,24 +24,41 @@ import UserProfile from "./pages/userprofile/user-profile";
 import { validateToken } from "./redux/userSlice";
 import OTP from "./pages/Login/Confirmation";
 import GPS from "./components/map/maps";
+import { useDispatch, useSelector } from "react-redux";
+
+const LoginAdmin = React.lazy(() =>
+    import("./admin/src/views/pages/login/Login")
+);
+const RegisterAdmin = React.lazy(() =>
+    import("./admin/src/views/pages/register/Register")
+);
+const Page404 = React.lazy(() =>
+    import("./admin/src/views/pages/page404/Page404")
+);
+const Page500 = React.lazy(() =>
+    import("./admin/src/views/pages/page500/Page500")
+);
 
 function App() {
     // const [name, setName] = useState('etoy');
-    const [isloggedin, setisloggedin] = useState(false);
+    const isloggedin = useSelector((state) => state.user.isLoggedIn);
+    // const dispatch = useDispatch();
+    // const [isloggedin, setisloggedin] = useState(false);
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (localStorage.getItem("T", "email")) {
-    //         let token = localStorage.getItem("T");
-    //         // validateToken(token) = value true or false
-    //        setisloggedin(validateToken(token));
+    useEffect(() => {
+        if (localStorage.getItem("T") && localStorage.getItem("email")) {
+            let token = localStorage.getItem("T");
+            // dispatch()
+            // validateToken(token) = value true or false
+            //    setisloggedin(validateToken(token));
 
-    //         let email = localStorage.getItem("email");
-    //         // validateToken({token, email}) = value true or false
-    //         setisloggedin(validateToken({ token, email, navigate }));
-    //         setisloggedin(true);
-    //     }
-    // }, [navigate]);
+            let email = localStorage.getItem("email");
+            validateToken({ token, email, navigate });
+            // setisloggedin(validateToken({ token, email, navigate }));
+            // setisloggedin(true);
+        }
+    }, [navigate]);
 
     return (
         <React.Fragment>
@@ -90,6 +107,11 @@ function App() {
                     ) : (
                         ""
                     )}
+
+                    <Route path="/admin/login" element={<LoginAdmin />} />
+                    <Route path="/admin/register" element={<RegisterAdmin />} />
+                    <Route path="/admin/page404" element={<Page404 />} />
+                    <Route path="/admin/page500" element={<Page500 />} />
                 </Routes>
             </main>
 
