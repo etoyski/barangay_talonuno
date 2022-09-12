@@ -230,15 +230,16 @@ function Navbar() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+        <Typography> Name</Typography>  
+          {/* <Avatar /> {name}User */}
         </MenuItem>
        
         <Divider />
-        <MenuItem>
-          <ListItemIcon onClick={() => navigate('/settings')}>
-            <Settings onClick={() => navigate('/settings')} fontSize="small" />
+         <MenuItem  onClick={() => navigate('/user-profile')}>
+          <ListItemIcon onClick={() => navigate('/user-profile')}>
+            <Avatar onClick={() => navigate('/user-profile')} fontSize="small" />
           </ListItemIcon>
-          Settings
+          Profile  
         </MenuItem>
       </Menu>
             </NavMenu>

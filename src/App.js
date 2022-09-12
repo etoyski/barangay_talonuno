@@ -20,10 +20,10 @@ import Navbar from "./components/Header/Navbar";
 import { Alert } from "@mui/material";
 import GeneralSettings from "./pages/Settings/settings";
 import Register from "./pages/Signup/useForm";
-
 import UserProfile from "./pages/userprofile/user-profile";
 import { validateToken } from "./redux/userSlice";
 import OTP from "./pages/Login/Confirmation";
+import GPS from "./components/map/maps";
 
 function App() {
     // const [name, setName] = useState('etoy');
@@ -55,6 +55,7 @@ function App() {
                         {" "}
                     </Route>
                     <Route path="/home" element={<Home />} />
+                    <Route path="/map" element={<GPS />} />
                     <Route path="/welcomepage" element={<Welcomepage />} />
                     <Route path="/about" element={<About />} /> 
                     <Route path="/otp" element={<OTP />} /> 

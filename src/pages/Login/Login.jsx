@@ -25,6 +25,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Container } from '@mui/system';
+import EmailIcon from '@mui/icons-material/Email';
+import PasswordIcon from '@mui/icons-material/Password';
 const theme = createTheme();
 
 const Login = (props) => {
@@ -211,6 +213,13 @@ const handle = () => {
               <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <TextField 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <EmailIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   margin="normal"
                   required
                   error={error}
@@ -218,7 +227,7 @@ const handle = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}  
                   id="email"
-                  label="Email Address"
+                  label="Email "
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -230,6 +239,7 @@ const handle = () => {
                 <TextField
                 margin="normal"
                 required
+                
                 error={error}
                 fullWidth
                 onChange={({ target }) => setPassword(target.value)}
