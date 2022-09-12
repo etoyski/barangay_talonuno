@@ -4,7 +4,7 @@ import axios from "axios";
 export const loginUser = createAsyncThunk(
     "users/login",
     async (user, { dispatch }) => {
-        const res = await axios.post("http://localhost:5000/login", user);
+        const res = await axios.post("https://barangay-talon-uno.vercel.app/login", user);
         console.log("uservalidate: ", res.data.fullname);
         dispatch(update({ name: res.data.fullname }));
         return res.data;
