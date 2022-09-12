@@ -30,18 +30,18 @@ function App() {
     const [isloggedin, setisloggedin] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (localStorage.getItem("T", "email")) {
-            let token = localStorage.getItem("T");
-            // validateToken(token) = value true or false
-           setisloggedin(validateToken(token));
+    // useEffect(() => {
+    //     if (localStorage.getItem("T", "email")) {
+    //         let token = localStorage.getItem("T");
+    //         // validateToken(token) = value true or false
+    //        setisloggedin(validateToken(token));
 
-            let email = localStorage.getItem("email");
-            // validateToken({token, email}) = value true or false
-            setisloggedin(validateToken({ token, email, navigate }));
-            setisloggedin(true);
-        }
-    }, [navigate]);
+    //         let email = localStorage.getItem("email");
+    //         // validateToken({token, email}) = value true or false
+    //         setisloggedin(validateToken({ token, email, navigate }));
+    //         setisloggedin(true);
+    //     }
+    // }, [navigate]);
 
     return (
         <React.Fragment>
@@ -57,8 +57,8 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/map" element={<GPS />} />
                     <Route path="/welcomepage" element={<Welcomepage />} />
-                    <Route path="/about" element={<About />} /> 
-                    <Route path="/otp" element={<OTP />} /> 
+                    <Route path="/about" element={<About />} />
+                    <Route path="/otp" element={<OTP />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/contactus" element={<Contactus />} />
                     <Route path="/login" element={<Login />} />
