@@ -18,7 +18,7 @@ import { useCookies } from 'react-cookie';
 //import useAuth from '../Auth/Auth';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../redux/userSlice';
+import { loginUser, update } from '../../redux/userSlice';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -146,9 +146,13 @@ const handle = () => {
              // localStorage.setItem('user', res.data.userInfo);
               console.log('user', userInfo)
 
-            dispatch(loginUser(email))
+//             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
+             dispatch(update({ name: res.data.fullname, email: res.data.email }))
              setOpen(true)
-             navigate('/mainpage');
+             // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
+             // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
+             navigate('/mainpage'); 
+        
   
       }catch(error) {
         //setError(true)
