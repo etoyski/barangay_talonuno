@@ -72,8 +72,8 @@ export const userSlice = createSlice({
         //     state.pending = false;
         // },
         update: (state, action) => {
-            state.name = action.payload.name;
-            state.email = action.payload.email;
+            state.userInfo.name = action.payload.name;
+            state.userInfo.email = action.payload.email;
         },
         //     remove: (state) => {
         //         state = null;
