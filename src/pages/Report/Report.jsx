@@ -13,6 +13,7 @@ import axios from 'axios';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { validateToken } from '../../redux/userSlice';
 import { useDispatch } from 'react-redux';
+import GPS from '../../components/map/maps';
 
 const theme = createTheme({
   palette: {
@@ -149,6 +150,9 @@ const handleSubmit = (e) => {
             </Box>
               
                 <Grid container spacing={1}>
+                  <Grid item xs={12} sm={6}>
+                  <GPS />
+                  </Grid>
                 <Grid item xs={12} sm={6}>
         <TextField
           id="email"

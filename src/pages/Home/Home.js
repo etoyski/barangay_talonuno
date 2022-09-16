@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import LightSpeed from 'react-reveal/LightSpeed';
 import Second from "../../assets/brgyhall.jpg";
 import Slide from 'react-reveal/Slide';
+import GPS from '../../components/map/maps';
 
 const iframe='<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBrgyTalon1&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
 function Iframe(props) {
@@ -67,7 +68,7 @@ const Hero = () => {
 
   return (
     <React.Fragment>
-
+   
       <CssBaseline />
       <LightSpeed Left>
       <Slider/>
@@ -79,7 +80,7 @@ const Hero = () => {
       
       <hr/> 
       <Container maxWidth="md" component="main" sx={{p:2}} >
-      
+
       
       <Grid container spacing={2} alignItems="flex-end">
         <Grid item  xs={7} sx={{ maxWidth: 345 }}>
