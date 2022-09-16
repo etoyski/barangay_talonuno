@@ -24,22 +24,26 @@ import UserProfile from "./pages/userprofile/user-profile";
 import { validateToken } from "./redux/userSlice";
 import OTP from "./pages/Login/Confirmation";
 import GPS from "./components/map/maps";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
     // const [name, setName] = useState('etoy');
-    const [isloggedin, setisloggedin] = useState(false);
+    const isloggedin = useSelector((state) => state.user.isLoggedIn);
+    // const dispatch = useDispatch();
+    // const [isloggedin, setisloggedin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem("T", "email")) {
+        if (localStorage.getItem("T") && localStorage.getItem("email")) {
             let token = localStorage.getItem("T");
+            // dispatch()
             // validateToken(token) = value true or false
-           setisloggedin(validateToken(token));
+            //    setisloggedin(validateToken(token));
 
             let email = localStorage.getItem("email");
-            // validateToken({token, email}) = value true or false
-            setisloggedin(validateToken({ token, email, navigate }));
-            setisloggedin(true);
+            validateToken({ token, email, navigate });
+            // setisloggedin(validateToken({ token, email, navigate }));
+            // setisloggedin(true);
         }
     }, [navigate]);
 
@@ -57,8 +61,8 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/map" element={<GPS />} />
                     <Route path="/welcomepage" element={<Welcomepage />} />
-                    <Route path="/about" element={<About />} /> 
-                    <Route path="/otp" element={<OTP />} /> 
+                    <Route path="/about" element={<About />} />
+                    <Route path="/otp" element={<OTP />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/contactus" element={<Contactus />} />
                     <Route path="/login" element={<Login />} />

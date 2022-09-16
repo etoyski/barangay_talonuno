@@ -38,6 +38,7 @@ export default function Report() {
   React.useEffect( () => {
     let token = localStorage.getItem("T");
     let email = localStorage.getItem("email");
+    
 
     dispatch( validateToken({ token, email, navigate }) );
   }, [])
