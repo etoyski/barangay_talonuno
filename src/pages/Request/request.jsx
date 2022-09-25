@@ -153,10 +153,10 @@ const [value, setValue] = React.useState(null);
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            required
+            disabled
             id="name"
             name="name"
-            label="Name"
+            label={localStorage.getItem("user")} 
             fullWidth
             autoComplete="Name"
             variant="standard"
@@ -184,7 +184,7 @@ const [value, setValue] = React.useState(null);
             required
             id="email"
             name="email"
-            label="Email Address"
+            label={localStorage.getItem("email")} 
             fullWidth
             autoComplete="Email Address"
             variant="standard"

@@ -100,6 +100,7 @@ function App() {
             <footer>
                 <StickyFooter />
             </footer>
+            
         </React.Fragment>
     );
 }

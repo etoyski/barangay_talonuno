@@ -151,7 +151,7 @@ function Navbar() {
                             </NavItem>
                             <NavItem>
                                 <Typography sx={{ color: "white" }}>
-                                    user : {localStorage.getItem("user")}
+                                    {/* user : {localStorage.getItem("user")} */}
                                 </Typography>
                             </NavItem>
 
@@ -301,7 +301,7 @@ function Navbar() {
                                 }}
                             >
                                 <MenuItem>
-                                    <Typography> Name</Typography>
+                                    <Typography> {localStorage.getItem("user")}</Typography>
                                     {/* <Avatar /> {name}User */}
                                 </MenuItem>
 
