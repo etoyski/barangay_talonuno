@@ -181,7 +181,7 @@ const [value, setValue] = React.useState(null);
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            required
+            disabled
             id="email"
             name="email"
             label={localStorage.getItem("email")} 

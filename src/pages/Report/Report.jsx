@@ -40,7 +40,7 @@ export default function Report() {
     let email = localStorage.getItem("email");
     
 
-    dispatch( validateToken({ token, email, navigate }) );
+ //   dispatch( validateToken({ token, email, navigate }) );
   }, [])
 
   const defaultProps = {
@@ -151,7 +151,7 @@ const handleSubmit = (e) => {
             </Box>
               
                 <Grid container spacing={1}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={12}>
                   <GPS />
                   </Grid>
                 <Grid item xs={12} sm={6}>
