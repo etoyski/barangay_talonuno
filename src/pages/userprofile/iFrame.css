@@ -1,0 +1,37 @@
+.myIframe {
+  position: relative;
+  padding-bottom: 65.25%;
+  padding-top: 30px;
+  align-items:flex-end;
+  align-content: flex-end;
+  height: 100;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; /*<<--- THIS IS THE KEY*/ 
+  /*border: solid black 1px;*/
+}
+  .myIframe iframe {
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+  }
+
+  .myIframe2 {
+    position: relative;
+    padding-bottom: 5.25%;
+    padding-top: 10px;
+    align-items: center;
+    align-content: center;
+    height: 10;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; /*<<--- THIS IS THE KEY*/ 
+    /*border: solid black 1px;*/
+  }
+  .myIframe2 iframe2 {
+    /*position: absolute;*/
+    top: 0;
+    left: 20;
+    width: 100%;
+    height: 150%;
+  }

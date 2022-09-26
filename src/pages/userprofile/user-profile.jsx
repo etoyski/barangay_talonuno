@@ -89,7 +89,7 @@ export default function UserProfile() {
               
                 <Grid container spacing={1}>
                   <Grid xs={12} sm={4} item>
-                  <Typography variant="h6"> Firstname: </Typography>
+                  <Typography variant="h6"> Firstname: {localStorage.getItem("user")}</Typography>
                   </Grid>
                   <Grid xs={12} sm={4} item>
                   <Typography variant="h6"> </Typography>
@@ -106,7 +106,7 @@ export default function UserProfile() {
                   <Typography variant="h6"> Lastname: </Typography>
                   </Grid>
                   <Grid xs={12} sm={6} item>
-                  <Typography variant="h6"> Email: </Typography>
+                  <Typography variant="h6"> Email: {localStorage.getItem("email")} </Typography>
                   </Grid> <Grid xs={12} sm={6} item>
                   <Typography variant="h6"> Email: </Typography>
                   </Grid>

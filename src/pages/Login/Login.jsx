@@ -54,15 +54,94 @@ const Login = (props) => {
   //   setOpen(false);
   // };
 
-  const handleSubmitOTP = () => {
-    if ( otp != null) {
-        console.log("Enter OTP")
-    }else if (otp !== otp){
-        console.log("Invalid OTP")
-    }else{
-        console.log("OTP Verified")
-        navigate('/mainpage');
-    }
+  const handleSubmitOTP  = async () => {
+    try {
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/verify',{
+                  
+                    otp: otp,
+               
+                })
+       const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Invalid OTP'
+              });
+      
+      }catch(error){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Login Failed'
+        });
+              console.log(error);
+      }finally {
+        navigate('/mainpage'); 
+      }
+    // if ( otp != null) {
+
+    //     console.log("Enter OTP")
+    // }else if (otp !== otp){
+    //     console.log("Invalid OTP")
+    //     const Toast = Swal.mixin({
+    //       toast: true,
+    //       position: 'top-end',
+    //       showConfirmButton: false,
+    //       timer: 3000,
+    //       timerProgressBar: true,
+    //       didOpen: (toast) => {
+    //         toast.addEventListener('mouseenter', Swal.stopTimer)
+    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+    //       }
+    //     })
+        
+    //     Toast.fire({
+    //       icon: 'success',
+    //       title: 'Invalid OTP'
+    //     });
+    // }else{
+    //     console.log("OTP Verified")
+    //     console.log(otp)
+    //     const Toast = Swal.mixin({
+    //       toast: true,
+    //       position: 'top-end',
+    //       showConfirmButton: false,
+    //       timer: 3000,
+    //       timerProgressBar: true,
+    //       didOpen: (toast) => {
+    //         toast.addEventListener('mouseenter', Swal.stopTimer)
+    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+    //       }
+    //     })
+        
+    //     Toast.fire({
+    //       icon: 'success',
+    //       title: 'Login Success'
+    //     });
+    //     navigate('/mainpage'); 
+    //     //navigate('/mainpage');
+    // }
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -109,6 +188,7 @@ const handle = () => {
       //   email,
       //   password};
       setLoading(true)
+     
       try { 
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
             
@@ -117,24 +197,9 @@ const handle = () => {
           // confirmpassword: inputs.confirmpassword
          
           })
-           
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
           
-          Toast.fire({
-            icon: 'success',
-            title: 'Login Success'
-          });
-           
+         
+          setOpen(true)
           //setUser(res.data)
           // store the user in localStorage
 // <<<<<<< HEAD
@@ -152,7 +217,7 @@ const handle = () => {
              setOpen(true)
              // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
              // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
-             navigate('/mainpage'); 
+             
         
   
       }catch(error) {
@@ -175,8 +240,9 @@ const handle = () => {
         });
               console.log(error);
       }finally {
+        
         setLoading(false)
-        setOpen(true)
+        
       }
     
   }
@@ -341,6 +407,7 @@ const handle = () => {
             Kindly check your email, or check into your spam folder.
           </DialogContentText>
           <TextField
+          required
             autoFocus
             margin="dense"
             id="name"
@@ -353,7 +420,7 @@ const handle = () => {
         </DialogContent>
         <DialogActions>
           
-          <Button onClick={handleClose}>Submit</Button>
+          <Button onClick={handleSubmitOTP} onSubmit={handleSubmitOTP}>Submit</Button>
         </DialogActions>
       </Dialog>
             </Paper>

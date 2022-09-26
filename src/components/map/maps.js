@@ -18,7 +18,7 @@ const markerIcon = new L.Icon({
     iconSize: [35,45],
     iconAnchor: [17,46],
     popupAnchor: [0, -46],
-
+//iconAnchor:[15,45]
 });
 const GPS = () => {
     const [center, setCenter] = useState({ lat:14.4445, lng: 120.9939 });
