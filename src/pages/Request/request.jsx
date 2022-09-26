@@ -170,7 +170,7 @@ const [value, setValue] = React.useState(null);
             required
             id="address"
             name="address"
-            label="Address"
+            label={localStorage.getItem("address")} 
             fullWidth
             autoComplete="Address"
             variant="standard"
@@ -198,7 +198,7 @@ const [value, setValue] = React.useState(null);
     <TextField
         id="phone"
         name="phone"
-        label="Contact Number"
+        label={localStorage.getItem("contact")} 
         fullWidth
         autoComplete="Contact Number"
         variant="standard"
