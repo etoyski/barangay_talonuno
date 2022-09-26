@@ -54,31 +54,13 @@ const Login = (props) => {
   //   setOpen(false);
   // };
 
-  const handleSubmitOTP  = async () => {
-    try {
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/verify',{
-                  
-                    otp: otp,
-               
-                })
-       const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              
-              Toast.fire({
-                icon: 'success',
-                title: 'Invalid OTP'
-              });
-      
-      }catch(error){
+  const handleSubmitOTP = () => {
+    
+    if ( otp != null) {
+
+        console.log("Enter OTP")
+    }else if (otp !== otp){
+        console.log("Invalid OTP")
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -92,56 +74,31 @@ const Login = (props) => {
         })
         
         Toast.fire({
-          icon: 'error',
-          title: 'Login Failed'
+          icon: 'success',
+          title: 'Invalid OTP'
         });
-              console.log(error);
-      }finally {
+    }else{
+        console.log("OTP Verified")
+        console.log(otp)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Login Success'
+        });
         navigate('/mainpage'); 
-      }
-    // if ( otp != null) {
-
-    //     console.log("Enter OTP")
-    // }else if (otp !== otp){
-    //     console.log("Invalid OTP")
-    //     const Toast = Swal.mixin({
-    //       toast: true,
-    //       position: 'top-end',
-    //       showConfirmButton: false,
-    //       timer: 3000,
-    //       timerProgressBar: true,
-    //       didOpen: (toast) => {
-    //         toast.addEventListener('mouseenter', Swal.stopTimer)
-    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-    //       }
-    //     })
-        
-    //     Toast.fire({
-    //       icon: 'success',
-    //       title: 'Invalid OTP'
-    //     });
-    // }else{
-    //     console.log("OTP Verified")
-    //     console.log(otp)
-    //     const Toast = Swal.mixin({
-    //       toast: true,
-    //       position: 'top-end',
-    //       showConfirmButton: false,
-    //       timer: 3000,
-    //       timerProgressBar: true,
-    //       didOpen: (toast) => {
-    //         toast.addEventListener('mouseenter', Swal.stopTimer)
-    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-    //       }
-    //     })
-        
-    //     Toast.fire({
-    //       icon: 'success',
-    //       title: 'Login Success'
-    //     });
-    //     navigate('/mainpage'); 
-    //     //navigate('/mainpage');
-    // }
+        //navigate('/mainpage');
+    }
   };
 
   const [showPassword, setShowPassword] = useState(false);
