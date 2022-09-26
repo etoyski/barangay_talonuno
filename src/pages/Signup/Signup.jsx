@@ -208,6 +208,7 @@ import Swal from "sweetalert2";
                 <Grid container spacing={1}>
                   <Grid xs={12} sm={6} item>
                     <TextField 
+                    required
                     placeholder="Enter first name" 
                     label="First Name" 
                     variant="outlined"  
@@ -229,7 +230,7 @@ import Swal from "sweetalert2";
                     onChange={handleChange} 
                     value={inputs.middlename} 
                     fullWidth
-                    required 
+                     
                     />
                   </Grid>
                   <Grid xs={12} sm={6} item>

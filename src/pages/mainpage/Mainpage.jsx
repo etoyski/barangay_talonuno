@@ -97,7 +97,7 @@ const UserProfile = () => {
                             
                             <Stack direction="row" flexWrap="wrap" gap={1}>
                                 <Details
-                                    label="Manila, PH"
+                                    label=  {localStorage.getItem("address")}
                                     icon={
                                         <LocationOnOutlinedIcon color="info" />
                                     }
@@ -105,7 +105,7 @@ const UserProfile = () => {
                                     variant="outlined"
                                 />
                                 <Details
-                                    label="0999 798 2135"
+                                    label=  {localStorage.getItem("number")}
                                     icon={
                                         <LocalPhoneOutlinedIcon color="info" />
                                     }
