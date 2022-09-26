@@ -105,7 +105,7 @@ const UserProfile = () => {
                                     variant="outlined"
                                 />
                                 <Details
-                                    label=  {localStorage.getItem("number")}
+                                    label=  {localStorage.getItem("contact")}
                                     icon={
                                         <LocalPhoneOutlinedIcon color="info" />
                                     }
