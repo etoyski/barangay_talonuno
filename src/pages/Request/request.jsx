@@ -167,7 +167,7 @@ const [value, setValue] = React.useState(null);
         </Grid>
         <Grid item xs={12}>
           <TextField
-            required
+            disabled
             id="address"
             name="address"
             label={localStorage.getItem("address")} 
@@ -204,7 +204,7 @@ const [value, setValue] = React.useState(null);
         variant="standard"
         value={inputs.phone} 
         onChange={handleChange} 
-        required
+        disabled
         error={error}
       />
     </Grid>
