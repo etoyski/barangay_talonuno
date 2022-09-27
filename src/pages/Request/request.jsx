@@ -68,7 +68,7 @@ export default function Request() {
          }, 
          {
            headers:{
-             "Authorization": `Bearer ${localStorage.getItem('T')}`
+             "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`
            }
          })
          swal({

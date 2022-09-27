@@ -241,7 +241,7 @@ const handle = () => {
           //  localStorage.setItem('address',res.data.address);
           //  localStorage.setItem('contact',res.data.contact);
 // // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
-               //localStorage.setItem('T', res.data.token);
+               localStorage.setItem('T', res.data.token);
 //              // localStorage.setItem('user', res.data.userInfo);
                console.log('user', userInfo)
                console.log('email', res.data.email)
