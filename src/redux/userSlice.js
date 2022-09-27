@@ -21,8 +21,13 @@ export const validateToken = createAsyncThunk(
             const res = await axios.post(
                 "https://barangay-talon-uno.vercel.app/verify",
                 email,
+                // {
+                //     Authorization: "Bearer " + token,
+                // }
                 {
-                    Authorization: "Bearer " + token,
+                    headers: {
+                        Authorization: "Bearer " + token,
+                    }
                 }
             );
 
