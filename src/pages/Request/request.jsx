@@ -30,6 +30,12 @@ export default function Request() {
   const [loading, setLoading] = useState(false);
   const [error,setError] = useState(false); 
   const [activeStep, setActiveStep] = React.useState(0);
+  React.useEffect(() => {
+    axios
+      .get("https://barangay-talon-uno.vercel.app/main/request")
+      .then((res) => console.log(res.data))
+      .catch((e) => console.error(e));
+  }, []);
   const [inputs,setInputs] = useState({
     //email:"",
     type:"",
@@ -73,7 +79,7 @@ export default function Request() {
          });
            
              console.log(res.data.token);
-             localStorage.setItem('T', res.data.token);
+             //localStorage.setItem('T', res.data.token);
             //navigate('/report');
  
      }catch(error) {
