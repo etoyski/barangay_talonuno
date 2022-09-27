@@ -60,7 +60,7 @@ const Login = (props) => {
       const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
         email: localStorage.getItem("email", res.data.email),
          otp: otp,
-     
+        
       })
       const Toast = Swal.mixin({
         toast: true,
@@ -151,34 +151,34 @@ const handle = () => {
   setCookie('email', email, { path: '/' });
   setCookie('password', password, { path: '/' });
 };
-const sendOTP = async () => {
-  setLoading(true)
-  try { 
-    const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
-      email: localStorage.getItem("email", res.data.email)
+// const sendOTP = async () => {
+//   setLoading(true)
+//   try { 
+//     const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+//       email: localStorage.getItem("email", res.data.email)
       
-    })
-  }catch(error){
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+//     })
+//   }catch(error){
+//     const Toast = Swal.mixin({
+//       toast: true,
+//       position: 'top-end',
+//       showConfirmButton: false,
+//       timer: 3000,
+//       timerProgressBar: true,
+//       didOpen: (toast) => {
+//         toast.addEventListener('mouseenter', Swal.stopTimer)
+//         toast.addEventListener('mouseleave', Swal.resumeTimer)
+//       }
+//     })
     
-    Toast.fire({
-      icon: 'error',
-      title: 'Invalid Email'
-    });
-  }finally {
-    setLoading(false)
-  }
-}
+//     Toast.fire({
+//       icon: 'error',
+//       title: 'Invalid Email'
+//     });
+//   }finally {
+//     setLoading(false)
+//   }
+// }
   // const handleChange = (e) => {
    
   //   setInputs(prev => ({
@@ -208,11 +208,12 @@ const sendOTP = async () => {
 // <<<<<<< HEAD
            localStorage.setItem('email',res.data.email);
 // // =======
-           localStorage.setItem('user',res.data.fullname);
-           localStorage.setItem('address',res.data.address);
-           localStorage.setItem('contact',res.data.contact);
+          
+          //  localStorage.setItem('user',res.data.fullname);
+          //  localStorage.setItem('address',res.data.address);
+          //  localStorage.setItem('contact',res.data.contact);
 // // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
-               localStorage.setItem('T', res.data.token);
+               //localStorage.setItem('T', res.data.token);
 //              // localStorage.setItem('user', res.data.userInfo);
                console.log('user', userInfo)
 
@@ -247,8 +248,12 @@ const sendOTP = async () => {
       }finally {
         
         setLoading(false)
-        
+        const res1 = await axios.post('https://barangay-talon-uno.vercel.app/auth',
+      {
+        email: localStorage.getItem("email", res1.data.email),
+      });
       }
+    
     
   }
   useEffect(() => {
@@ -423,8 +428,8 @@ const sendOTP = async () => {
           />
         </DialogContent>
         <DialogActions>
-          <LoadingButton onSubmit={sendOTP}  loading = {loading}
-              type="submit"> Send OTP</LoadingButton>
+          {/* <LoadingButton onSubmit={sendOTP}  loading = {loading}
+              type="submit"> Send OTP</LoadingButton> */}
           <Button onClick={handleSubmitOTP} type="submit" onSubmit={handleSubmitOTP}>Submit</Button>
         </DialogActions>
       </Dialog>
