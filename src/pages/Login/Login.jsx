@@ -54,52 +54,70 @@ const Login = (props) => {
   //   setOpen(false);
   // };
 
-  const handleSubmitOTP = () => {
+  const handleSubmitOTP = async () => {
     
-    if ( otp != null) {
+    try { 
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+        
+         otp: otp,
+      // confirmpassword: inputs.confirmpassword
+     
+      })
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'OTP Matched! Login Success'
+      });
+     
+      // setOpen(true)
+      
+       localStorage.setItem('email',res.data.email);
 
-        console.log("Enter OTP")
-    }else if (otp !== otp){
-        console.log("Invalid OTP")
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'success',
-          title: 'Invalid OTP'
-        });
-    }else{
-        console.log("OTP Verified")
-        console.log(otp)
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'success',
-          title: 'Login Success'
-        });
-        navigate('/mainpage'); 
-        //navigate('/mainpage');
-    }
-  };
+       localStorage.setItem('user',res.data.fullname);
+       localStorage.setItem('address',res.data.address);
+       localStorage.setItem('contact',res.data.contact);
+           localStorage.setItem('T', res.data.token);
+      //    ;
+           console.log('user', userInfo)
+
+//            dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
+          dispatch(update({ name: res.data.fullname, email: res.data.email }))
+          dispatch(login(true))
+          navigate("/mainpage")
+
+
+  }catch(error) {
+    //setError(true)
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'OTP Invalid'
+    });
+          console.log(error);
+  }
+}
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -156,24 +174,24 @@ const handle = () => {
           })
           
          
-          setOpen(true)
+          //setOpen(true)
           //setUser(res.data)
           // store the user in localStorage
 // <<<<<<< HEAD
-          localStorage.setItem('email',res.data.email);
-// =======
-          localStorage.setItem('user',res.data.fullname);
-          localStorage.setItem('address',res.data.address);
-          localStorage.setItem('contact',res.data.contact);
-// >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
-              localStorage.setItem('T', res.data.token);
-             // localStorage.setItem('user', res.data.userInfo);
-              console.log('user', userInfo)
+//           localStorage.setItem('email',res.data.email);
+// // =======
+//           localStorage.setItem('user',res.data.fullname);
+//           localStorage.setItem('address',res.data.address);
+//           localStorage.setItem('contact',res.data.contact);
+// // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
+//               localStorage.setItem('T', res.data.token);
+//              // localStorage.setItem('user', res.data.userInfo);
+//               console.log('user', userInfo)
 
-//             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
-             dispatch(update({ name: res.data.fullname, email: res.data.email }))
-             dispatch(login(true))
-             setOpen(true)
+// //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
+//              dispatch(update({ name: res.data.fullname, email: res.data.email }))
+//              dispatch(login(true))
+             //setOpen(true)
              // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
              // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
              
