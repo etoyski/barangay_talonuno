@@ -36,6 +36,7 @@ const Login = (props) => {
       .then((res) => console.log(res.data))
       .catch((e) => console.error(e));
   }, []);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
@@ -65,7 +66,8 @@ const Login = (props) => {
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
         email: localStorage.getItem("email", res.data.email),
-         otp: otp,
+
+         otp: localStorage.getItem("otp", res.data.otp),
         
       })
       const Toast = Swal.mixin({
@@ -282,6 +284,7 @@ const handle = () => {
           
          
       sendRequest();
+      sendOTP();
   };
   
   return (
