@@ -250,8 +250,10 @@ const handle = () => {
         setLoading(false)
         const res1 = await axios.post('https://barangay-talon-uno.vercel.app/auth',
       {
-        email: localStorage.setItem("email", res1.data.email),
+        email: localStorage.getItem("email", res1.data.email),
+        
       });
+      console.log("email", res1.data.email)
       }
     
     
