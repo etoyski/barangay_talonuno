@@ -70,40 +70,62 @@ const Login = (props) => {
          otp: localStorage.getItem("otp", res.data.otp),
         
       })
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
+      if (otp !== otp ){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'OTP Invalid'
+        });
+              console.log(error);
       
-      Toast.fire({
-        icon: 'success',
-        title: 'OTP Matched! Login Success'
-      });
-      console.log(res.gen)
-     setOtp()
-      // setOpen(true)
+      }else{
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'OTP Matched! Login Success'
+        });
+        console.log(res.gen)
+       setOtp()
+        // setOpen(true)
+        
+         localStorage.setItem('email',res.data.email);
+  
+         localStorage.setItem('user',res.data.fullname);
+         localStorage.setItem('address',res.data.address);
+         localStorage.setItem('contact',res.data.contact);
+             localStorage.setItem('T', res.data.token);
+        //    ;
+             console.log('user', userInfo)
+  
+  //            dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
+            dispatch(update({ name: res.data.fullname, email: res.data.email }))
+            dispatch(login(true))
+            navigate("/mainpage")
+  
+      }
       
-       localStorage.setItem('email',res.data.email);
-
-       localStorage.setItem('user',res.data.fullname);
-       localStorage.setItem('address',res.data.address);
-       localStorage.setItem('contact',res.data.contact);
-           localStorage.setItem('T', res.data.token);
-      //    ;
-           console.log('user', userInfo)
-
-//            dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
-          dispatch(update({ name: res.data.fullname, email: res.data.email }))
-          dispatch(login(true))
-          navigate("/mainpage")
-
 
   }catch(error) {
     //setError(true)
