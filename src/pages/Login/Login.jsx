@@ -284,7 +284,7 @@ const handle = () => {
           
          
       sendRequest();
-      sendOTP();
+      
   };
   
   return (
