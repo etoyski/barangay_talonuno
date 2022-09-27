@@ -196,9 +196,7 @@ const handle = () => {
           const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
             
               email: email,
-              password: password,
-          // confirmpassword: inputs.confirmpassword
-         
+              password: password, 
           })
           
          
@@ -216,11 +214,13 @@ const handle = () => {
                //localStorage.setItem('T', res.data.token);
 //              // localStorage.setItem('user', res.data.userInfo);
                console.log('user', userInfo)
-
+               console.log('email', res.data.email)
+               
+               
 // //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
 //              dispatch(update({ name: res.data.fullname, email: res.data.email }))
            //   dispatch(login(true))
-             setOpen(true)
+             
              // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
              // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
              
@@ -255,7 +255,7 @@ const handle = () => {
       });
       console.log("email", res1.data.email)
       }
-    
+      setOpen(true)
     
   }
   useEffect(() => {
