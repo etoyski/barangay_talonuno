@@ -431,7 +431,7 @@ const handle = () => {
             autoFocus
             margin="dense"
             id="name"
-            label="OTP"
+            label={localStorage.getItem("otp", res.data.otp)}
             type="text"
             value={otp}
             fullWidth
