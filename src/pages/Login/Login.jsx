@@ -60,7 +60,6 @@ const Login = (props) => {
       const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
         
          otp: otp,
-      // confirmpassword: inputs.confirmpassword
      
       })
       const Toast = Swal.mixin({
@@ -79,7 +78,8 @@ const Login = (props) => {
         icon: 'success',
         title: 'OTP Matched! Login Success'
       });
-     
+      console.log(res.gen)
+     setOtp()
       // setOpen(true)
       
        localStorage.setItem('email',res.data.email);
