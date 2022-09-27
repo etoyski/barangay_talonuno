@@ -30,6 +30,12 @@ import PasswordIcon from '@mui/icons-material/Password';
 const theme = createTheme();
 
 const Login = (props) => {
+  useEffect(() => {
+    axios
+      .get("https://barangay-talon-uno.vercel.app/auth")
+      .then((res) => console.log(res.data))
+      .catch((e) => console.error(e));
+  }, []);
   const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
@@ -215,7 +221,7 @@ const handle = () => {
 //              // localStorage.setItem('user', res.data.userInfo);
                console.log('user', userInfo)
                console.log('email', res.data.email)
-               
+               setOpen(true)
                
 // //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
 //              dispatch(update({ name: res.data.fullname, email: res.data.email }))
@@ -255,7 +261,7 @@ const handle = () => {
       });
       console.log("email", res1.data.email)
       }
-      setOpen(true)
+     
     
   }
   useEffect(() => {
