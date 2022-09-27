@@ -404,7 +404,7 @@ const sendOTP = async () => {
     <Container maxWidth="sm" component="main">
         <Box>
             <Paper>
-            <Dialog component="form"  onSubmit={handleSubmitOTP} open={open} onClose={handleClose}>
+            <Dialog component="form" onSubmit={handleSubmitOTP} open={open} onClose={handleClose}>
         <DialogTitle>OTP</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -412,7 +412,6 @@ const sendOTP = async () => {
             Kindly check your email, or check into your spam folder.
           </DialogContentText>
           <TextField
-          required
             autoFocus
             margin="dense"
             id="name"
