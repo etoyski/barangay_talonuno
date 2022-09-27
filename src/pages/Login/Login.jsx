@@ -58,7 +58,7 @@ const Login = (props) => {
     
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
-        
+        email: localStorage.getItem("email", res.data.email),
          otp: otp,
      
       })
@@ -151,6 +151,34 @@ const handle = () => {
   setCookie('email', email, { path: '/' });
   setCookie('password', password, { path: '/' });
 };
+const sendOTP = async () => {
+  setLoading(true)
+  try { 
+    const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+      email: localStorage.getItem("email", res.data.email)
+      
+    })
+  }catch(error){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Invalid Email'
+    });
+  }finally {
+    setLoading(false)
+  }
+}
   // const handleChange = (e) => {
    
   //   setInputs(prev => ({
@@ -178,19 +206,19 @@ const handle = () => {
           //setUser(res.data)
           // store the user in localStorage
 // <<<<<<< HEAD
-//           localStorage.setItem('email',res.data.email);
+           localStorage.setItem('email',res.data.email);
 // // =======
-//           localStorage.setItem('user',res.data.fullname);
-//           localStorage.setItem('address',res.data.address);
-//           localStorage.setItem('contact',res.data.contact);
+           localStorage.setItem('user',res.data.fullname);
+           localStorage.setItem('address',res.data.address);
+           localStorage.setItem('contact',res.data.contact);
 // // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
-//               localStorage.setItem('T', res.data.token);
+               localStorage.setItem('T', res.data.token);
 //              // localStorage.setItem('user', res.data.userInfo);
-//               console.log('user', userInfo)
+               console.log('user', userInfo)
 
 // //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
 //              dispatch(update({ name: res.data.fullname, email: res.data.email }))
-//              dispatch(login(true))
+           //   dispatch(login(true))
              setOpen(true)
              // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
              // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
@@ -396,8 +424,9 @@ const handle = () => {
           />
         </DialogContent>
         <DialogActions>
-          
-          <Button onClick={handleSubmitOTP} onSubmit={handleSubmitOTP}>Submit</Button>
+          <LoadingButton onSubmit={sendOTP}  loading = {loading}
+              type="submit"> Send OTP</LoadingButton>
+          <Button onClick={handleSubmitOTP} type="submit" onSubmit={handleSubmitOTP}>Submit</Button>
         </DialogActions>
       </Dialog>
             </Paper>
