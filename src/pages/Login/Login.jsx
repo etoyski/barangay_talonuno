@@ -42,7 +42,7 @@ const Login = (props) => {
     setOpen(false);
   };
 
-  const {otp, setOtp} = useState("")
+  const {otp, setOtp} = useState('')
   const navigate = useNavigate();
 
 
@@ -477,6 +477,7 @@ const handle = () => {
             autoFocus
             margin="dense"
             id="name"
+            onChange={({ target }) => setOtp(target.value)}
             label={localStorage.getItem("otp")} 
             type="text"
             value={otp}
