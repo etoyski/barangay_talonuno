@@ -48,10 +48,32 @@ const Login = (props) => {
 
 
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const sendOTP = async () => {
+    try { 
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+        email: localStorage.setItem("email", res.data.email)
+        
+      })
+      setOpen(true)
+    }catch(error){
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'Invalid Email'
+      });
   };
-
+  }
   // const handleClose = () => {
   //   setOpen(false);
   // };
@@ -204,12 +226,12 @@ const handle = () => {
 //     setLoading(false)
 //   }
 // }
-  // const handleChange = (e) => {
+  const handleChange = (e) => {
    
-  //   setInputs(prev => ({
-  //       ...prev,
-  //       [e.target.name]: e.target.value
-  //   }))};
+    setInputs(prev => ({
+        ...prev,
+        [e.target.name]: e.target.value
+    }))};
     
     const sendRequest = async () => {
       // const user = { 
@@ -427,6 +449,39 @@ const handle = () => {
 
     {/*  dialog box */}
       <div>
+      <Container maxWidth="sm" component="main">
+        <Box>
+            <Paper>
+            <Dialog component="form" onSubmit={sendOTP} open={open} onClose={handleClose}>
+        <DialogTitle>OTP</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To proceed to this website, please enter your OTP here. 
+            Kindly check your email : {localStorage.getItem("email")}, or check into your spam folder.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label={localStorage.getItem("otp")} 
+            type="text"
+            value={otp}
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <LoadingButton onSubmit={sendOTP}  loading = {loading}
+              type="submit"> Send OTP</LoadingButton> 
+          {/* <Button onClick={handleSubmitOTP} type="submit" onSubmit={handleSubmitOTP}>Submit</Button> */}
+        </DialogActions>
+      </Dialog>
+            </Paper>
+        </Box>
+       
+        
+      
+    </Container>
     <Container maxWidth="sm" component="main">
         <Box>
             <Paper>
