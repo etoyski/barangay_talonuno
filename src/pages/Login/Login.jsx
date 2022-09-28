@@ -83,8 +83,6 @@ const Login = (props) => {
     
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
-        email: localStorage.getItem("email", res.data.email),
-
          otp: otp,
         
       });
@@ -156,7 +154,7 @@ const Login = (props) => {
       
       Toast.fire({
         icon: 'error',
-        title: 'OTP Invalid!'
+        title: 'something went wrong'
       });
       console.log("error")
     }
