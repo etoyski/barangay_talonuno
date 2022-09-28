@@ -33,7 +33,7 @@ const Login = (props) => {
 
 
   const [open, setOpen] = React.useState(false);
-
+  const [match, isMatch] = useState(false);
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -48,14 +48,78 @@ const Login = (props) => {
 
 
 
-  const sendOTP = async () => {
-    setOpen(true)
-    try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
-        email: "johnred143.jr@gmail.com"
+  // const sendOTP = async () => {
+  //   setOpen(true)
+  //   try { 
+  //     const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+  //       email: "johnred143.jr@gmail.com"
         
+  //     })
+  //     console.log(res.data);
+  //   }catch(error){
+  //     const Toast = Swal.mixin({
+  //       toast: true,
+  //       position: 'top-end',
+  //       showConfirmButton: false,
+  //       timer: 3000,
+  //       timerProgressBar: true,
+  //       didOpen: (toast) => {
+  //         toast.addEventListener('mouseenter', Swal.stopTimer)
+  //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //       }
+  //     })
+      
+  //     Toast.fire({
+  //       icon: 'error',
+  //       title: 'Invalid Email'
+  //     });
+  // };
+  // }
+  // // const handleClose = () => {
+  // //   setOpen(false);
+  // // };
+
+  const handleSubmitOTP = async () => {
+    
+    try { 
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+        email: localStorage.getItem("email", res.data.email),
+
+         otp: otp,
+        
+      });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
       })
-      console.log(res.data);
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'OTP Matched! Login Success'
+      });
+      console.log(res.gen)
+     setOtp()
+      // setOpen(true)
+      
+       localStorage.setItem('email',res.data.email);
+
+       localStorage.setItem('user',res.data.fullname);
+       localStorage.setItem('address',res.data.address);
+       localStorage.setItem('contact',res.data.contact);
+           localStorage.setItem('T', res.data.token);
+      //    ;
+           console.log('user', userInfo)
+
+          dispatch(update({ name: res.data.fullname, email: res.data.email }))
+          dispatch(login(true))
+          navigate("/mainpage")
     }catch(error){
       const Toast = Swal.mixin({
         toast: true,
@@ -71,100 +135,13 @@ const Login = (props) => {
       
       Toast.fire({
         icon: 'error',
-        title: 'Invalid Email'
+        title: 'OTP Invalid'
       });
-  };
-  }
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  const handleSubmitOTP = async () => {
+            console.log(error);
+    }
+        
     
-    try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
-        email: localStorage.getItem("email", res.data.email),
-
-         otp: otp,
-        
-      })
-      if (otp !== otp ){
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'error',
-          title: 'OTP Invalid'
-        });
-              console.log(error);
-      
-      }else{
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'success',
-          title: 'OTP Matched! Login Success'
-        });
-        console.log(res.gen)
-       setOtp()
-        // setOpen(true)
-        
-         localStorage.setItem('email',res.data.email);
-  
-         localStorage.setItem('user',res.data.fullname);
-         localStorage.setItem('address',res.data.address);
-         localStorage.setItem('contact',res.data.contact);
-             localStorage.setItem('T', res.data.token);
-        //    ;
-             console.log('user', userInfo)
-  
-            dispatch(update({ name: res.data.fullname, email: res.data.email }))
-            dispatch(login(true))
-            navigate("/mainpage")
-  
-      }
-      
-
-  }catch(error) {
-    //setError(true)
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-    
-    Toast.fire({
-      icon: 'error',
-      title: 'OTP Invalid'
-    });
-          console.log(error);
   }
-}
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -240,9 +217,9 @@ const handle = () => {
       setLoading(true)
      
       try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
             
-              email: "johnred143.jr@gmail.com",
+              email: email,
               password: password, 
           })
           
