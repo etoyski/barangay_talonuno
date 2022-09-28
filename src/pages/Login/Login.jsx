@@ -226,12 +226,12 @@ const handle = () => {
 //     setLoading(false)
 //   }
 // }
-  const handleChange = (e) => {
+  // const handleChange = (e) => {
    
-    setInputs(prev => ({
-        ...prev,
-        [e.target.name]: e.target.value
-    }))};
+  //   setInputs(prev => ({
+  //       ...prev,
+  //       [e.target.name]: e.target.value
+  //   }))};
     
     const sendRequest = async () => {
       // const user = { 
