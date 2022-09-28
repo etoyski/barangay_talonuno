@@ -270,15 +270,8 @@ const handle = () => {
           title: 'Login Failed'
         });
               console.log(error);
-      }finally {
-        
+      }finally {        
         setLoading(false)
-        const res1 = await axios.post('https://barangay-talon-uno.vercel.app/auth',
-      {
-        email: localStorage.getItem("email", res1.data.email),
-        
-      });
-      console.log("email", res1.data.email)
       }
      
     
