@@ -30,12 +30,7 @@ import PasswordIcon from '@mui/icons-material/Password';
 const theme = createTheme();
 
 const Login = (props) => {
-  useEffect(() => {
-    axios
-      .get("https://barangay-talon-uno.vercel.app/auth")
-      .then((res) => console.log(res.data))
-      .catch((e) => console.error(e));
-  }, []);
+
 
   const [open, setOpen] = React.useState(false);
 
