@@ -240,9 +240,9 @@ const handle = () => {
       setLoading(true)
      
       try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+          const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
             
-              email: email,
+              email: "johnred143.jr@gmail.com",
               password: password, 
           })
           
