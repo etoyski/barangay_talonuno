@@ -59,10 +59,10 @@ const Login = (props) => {
   const handleSubmitOTP = async () => {
     
     try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
         email: localStorage.getItem("email", res.data.email),
 
-         otp: otp,
+         otps: otp,
         
       })
       if (otp !== otp ){
@@ -218,7 +218,7 @@ const handle = () => {
       setLoading(true)
      
       try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+          const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
             
               email: email,
               password: password, 
