@@ -88,7 +88,7 @@ const Login = (props) => {
          otpss: otp,
         
       });
-      if (otp === otpss){
+      if (otp === otp){
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
