@@ -55,7 +55,7 @@ const Login = (props) => {
         email: "johnred143.jr@gmail.com"
         
       })
-      
+      console.log(res.data);
     }catch(error){
       const Toast = Swal.mixin({
         toast: true,
