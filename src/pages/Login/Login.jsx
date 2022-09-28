@@ -59,10 +59,10 @@ const Login = (props) => {
   const handleSubmitOTP = async () => {
     
     try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
         email: localStorage.getItem("email", res.data.email),
 
-         otps: otp,
+         otp: otp,
         
       })
       if (otp !== otp ){
@@ -218,7 +218,7 @@ const handle = () => {
       setLoading(true)
      
       try { 
-          const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
+          const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
             
               email: email,
               password: password, 
@@ -435,7 +435,7 @@ const handle = () => {
         <DialogContent>
           <DialogContentText>
             To proceed to this website, please enter your OTP here. 
-            Kindly check your email, or check into your spam folder.
+            Kindly check your email : {localStorage.getItem("email")}, or check into your spam folder.
           </DialogContentText>
           <TextField
             autoFocus
