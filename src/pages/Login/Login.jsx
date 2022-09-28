@@ -85,7 +85,7 @@ const Login = (props) => {
       const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
         email: localStorage.getItem("email", res.data.email),
 
-         otpss: otp,
+         otp: otp,
         
       });
       if (otp !== otp){
