@@ -426,7 +426,7 @@ const handle = () => {
 
     {/*  dialog box */}
       <div>
-      <Container maxWidth="sm" component="main">
+      {/* <Container maxWidth="sm" component="main">
         <Box>
             <Paper>
             <Dialog component="form" onSubmit={sendOTP} open={open} onClose={handleClose}>
@@ -447,18 +447,18 @@ const handle = () => {
             variant="standard"
           />
         </DialogContent>
-        <DialogActions>
-          <LoadingButton onSubmit={sendOTP}  loading = {loading}
-              type="submit"> Send OTP</LoadingButton> 
+        <DialogActions> */}
+          {/* <LoadingButton onSubmit={sendOTP}  loading = {loading}
+              type="submit"> Send OTP</LoadingButton>  */}
           {/* <Button onClick={handleSubmitOTP} type="submit" onSubmit={handleSubmitOTP}>Submit</Button> */}
-        </DialogActions>
+        {/* </DialogActions>
       </Dialog>
             </Paper>
         </Box>
        
         
       
-    </Container>
+    </Container> */}
     <Container maxWidth="sm" component="main">
         <Box>
             <Paper>
