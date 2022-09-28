@@ -85,10 +85,10 @@ const Login = (props) => {
       const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
         email: localStorage.getItem("email", res.data.email),
 
-         otp: otp,
+         otpss: otp,
         
       });
-      if (otp === otp){
+      if (otp === otpss){
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -116,11 +116,12 @@ const Login = (props) => {
           localStorage.setItem('contact',res.data.contact);
               localStorage.setItem('T', res.data.token);
          //    ;
-              console.log('user', userInfo)
+              console.log('user', res.data.fullname);
    
              dispatch(update({ name: res.data.fullname, email: res.data.email }))
              dispatch(login(true))
              navigate("/mainpage")
+             console.log("Login Success")
        
     }else{
       const Toast = Swal.mixin({
