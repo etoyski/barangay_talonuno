@@ -49,12 +49,13 @@ const Login = (props) => {
 
 
   const sendOTP = async () => {
+    setOpen(true)
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
         email: localStorage.setItem("email", res.data.email)
         
       })
-      setOpen(true)
+      
     }catch(error){
       const Toast = Swal.mixin({
         toast: true,
