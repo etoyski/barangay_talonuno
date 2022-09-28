@@ -86,7 +86,7 @@ const Login = (props) => {
          otp: otp,
         
       });
-      if (otp !== otp){
+      if (!otp){
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -502,7 +502,7 @@ const handle = () => {
         <DialogActions>
           {/* <LoadingButton onSubmit={sendOTP}  loading = {loading}
               type="submit"> Send OTP</LoadingButton> */}
-          <Button onClick={handleSubmitOTP} type="submit" onSubmit={handleSubmitOTP}>Submit</Button>
+          <Button  type="submit" >Submit</Button>
         </DialogActions>
       </Dialog>
             </Paper>
