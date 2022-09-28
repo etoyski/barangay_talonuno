@@ -52,7 +52,7 @@ const Login = (props) => {
     setOpen(true)
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
-        email: localStorage.setItem("email", res.data.email)
+        email: "johnred143.jr@gmail.com"
         
       })
       
@@ -137,7 +137,6 @@ const Login = (props) => {
         //    ;
              console.log('user', userInfo)
   
-  //            dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
             dispatch(update({ name: res.data.fullname, email: res.data.email }))
             dispatch(login(true))
             navigate("/mainpage")
