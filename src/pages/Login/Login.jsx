@@ -88,7 +88,7 @@ const Login = (props) => {
          otpss: otp,
         
       });
-      if (otp === otp){
+      if (otp !== otp){
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -102,26 +102,10 @@ const Login = (props) => {
         })
         
         Toast.fire({
-          icon: 'success',
-          title: 'OTP Matched! Login Success'
+          icon: 'error',
+          title: 'OTP Invalid!'
         });
         console.log(res.gen)
-        setOtp()
-         // setOpen(true)
-         
-          localStorage.setItem('email',res.data.email);
-   
-          localStorage.setItem('user',res.data.fullname);
-          localStorage.setItem('address',res.data.address);
-          localStorage.setItem('contact',res.data.contact);
-              localStorage.setItem('T', res.data.token);
-         //    ;
-              console.log('user', res.data.fullname);
-   
-             dispatch(update({ name: res.data.fullname, email: res.data.email }))
-             dispatch(login(true))
-             navigate("/mainpage")
-             console.log("Login Success")
        
     }else{
       const Toast = Swal.mixin({
@@ -137,15 +121,30 @@ const Login = (props) => {
       })
       
       Toast.fire({
-        icon: 'error',
-        title: 'OTP Invalid'
+        icon: 'success',
+        title: 'OTP Matched! Login Success'
       });
-            console.log(error);
+      console.log(res.gen)
+      setOtp()
+       // setOpen(true)
+       
+        localStorage.setItem('email',res.data.email);
+ 
+        localStorage.setItem('user',res.data.fullname);
+        localStorage.setItem('address',res.data.address);
+        localStorage.setItem('contact',res.data.contact);
+            localStorage.setItem('T', res.data.token);
+       //    ;
+            console.log('user', res.data.fullname);
+ 
+           dispatch(update({ name: res.data.fullname, email: res.data.email }))
+           dispatch(login(true))
+           navigate("/mainpage")
+           console.log("Login Success")
+    }}catch(error){
+      console.log("error")
     }
-        } catch (error){
-      console.log(error);
-        
-        }
+    
   }
 
   const [showPassword, setShowPassword] = useState(false);
