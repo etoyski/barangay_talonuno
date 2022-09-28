@@ -25,7 +25,7 @@ import { validateToken } from "./redux/userSlice";
 import OTP from "./pages/Login/Confirmation";
 import GPS from "./components/map/maps";
 import { useDispatch, useSelector } from "react-redux";
-
+import GPS2 from "./components/mapbox/mapBox";
 function App() {
     // const [name, setName] = useState('etoy');
     //const isloggedin = useSelector((state) => state.user.isLoggedIn);
@@ -59,6 +59,7 @@ function App() {
                         {" "}
                     </Route>
                     <Route path="/home" element={<Home />} />
+                    <Route path="/gps" element={<GPS2 />} />
                     <Route path="/map" element={<GPS />} />
                     <Route path="/welcomepage" element={<Welcomepage />} />
                     <Route path="/about" element={<About />} />
