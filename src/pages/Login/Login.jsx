@@ -125,7 +125,7 @@ const Login = (props) => {
         title: 'OTP Matched! Login Success'
       });
       console.log(res.gen)
-      setOtp()
+      
        // setOpen(true)
        
         localStorage.setItem('email',res.data.email);
@@ -142,6 +142,22 @@ const Login = (props) => {
            navigate("/mainpage")
            console.log("Login Success")
     }}catch(error){
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'OTP Invalid!'
+      });
       console.log("error")
     }
     
@@ -476,9 +492,9 @@ const handle = () => {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
+            id="otp"
             onChange={({ target }) => setOtp(target.value)}
-            label={localStorage.getItem("otp")} 
+            
             type="text"
             value={otp}
             fullWidth
