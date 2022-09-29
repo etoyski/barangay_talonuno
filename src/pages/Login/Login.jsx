@@ -63,7 +63,7 @@ const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [otp, setOtp] = useState('')
+  const [otp2, setOtp] = useState('')
 
   //const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
@@ -203,7 +203,7 @@ const handle = () => {
           email:localStorage.getItem('email'),
           password:localStorage.getItem('password'),  
           
-          otp2: otp, 
+          otp1: otp2, 
       })
       
      
@@ -450,7 +450,7 @@ handleSubmitOTP();
             onChange={({ target }) => setOtp(target.value)}
             
             type="text"
-            value={otp}
+            value={otp2}
             fullWidth
             variant="standard"
           />
