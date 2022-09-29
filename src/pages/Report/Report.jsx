@@ -158,13 +158,12 @@ const handleSubmit = (e) => {
         <TextField
           id="email"
           name="email"
-          label="email address"
+          label={localStorage.getItem('email')}
           fullWidth
           value={inputs.email} 
           onChange={handleChange} 
           autoComplete="email"
           variant="standard"
-          required
           error={error}
         />
       </Grid> 

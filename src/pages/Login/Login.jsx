@@ -86,7 +86,7 @@ const Login = (props) => {
          otp: otp,
         
       });
-      if (!otp){
+      if (otp !== otp){
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -154,7 +154,7 @@ const Login = (props) => {
       
       Toast.fire({
         icon: 'error',
-        title: 'something went wrong'
+        title: (console.log(error))
       });
       console.log("error")
     }
