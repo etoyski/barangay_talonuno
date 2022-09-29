@@ -202,9 +202,17 @@ const handle = () => {
 
   }, []);
   const handleSubmitOTP = async () => {
+    
     setLoading(true)
+    useEffect( () => { axios.get('https://barangay-talon-uno.vercel.app/otp'), {
+      headers:{
+        "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`   
+      }
+    
+    } }, [ ])
+
     try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',{
           
           otp1: otp, 
       })
