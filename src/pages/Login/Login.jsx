@@ -201,7 +201,7 @@ const handle = () => {
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
         
-          otp: otp, 
+          otp2: otp, 
       })
       
      
