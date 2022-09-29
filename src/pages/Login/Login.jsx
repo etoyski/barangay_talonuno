@@ -203,7 +203,7 @@ const handle = () => {
           email:localStorage.getItem('email'),
           password:localStorage.getItem('password'),  
           
-          otp1: otp2, 
+          otp2: otp2, 
       })
       
      
