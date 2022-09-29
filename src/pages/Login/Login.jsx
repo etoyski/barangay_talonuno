@@ -84,7 +84,7 @@ const Login = (props) => {
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
         
-          otp2: otp, 
+          otp: otp, 
       })
       
      
