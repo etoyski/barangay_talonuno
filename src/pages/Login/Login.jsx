@@ -83,81 +83,57 @@ const Login = (props) => {
     
     try { 
       const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
-         otp: otp,
         
-      });
-      if (otp !== otp){
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-        
-        Toast.fire({
-          icon: 'error',
-          title: 'OTP Invalid!'
-        });
-        console.log(res.gen)
-       
-    }else{
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
+          otp2: otp, 
       })
       
-      Toast.fire({
-        icon: 'success',
-        title: 'OTP Matched! Login Success'
-      });
-      console.log(res.gen)
-      
-       // setOpen(true)
-       
-        localStorage.setItem('email',res.data.email);
- 
+     
+      //setOpen(true)
+      //setUser(res.data)
+      // store the user in localStorage
+// <<<<<<< HEAD
+       localStorage.setItem('email',res.data.email);
+// // =======
         localStorage.setItem('user',res.data.fullname);
         localStorage.setItem('address',res.data.address);
         localStorage.setItem('contact',res.data.contact);
-            localStorage.setItem('T', res.data.token);
-       //    ;
-            console.log('user', res.data.fullname);
- 
-           dispatch(update({ name: res.data.fullname, email: res.data.email }))
-           dispatch(login(true))
-           navigate("/mainpage")
-           console.log("Login Success")
-    }}catch(error){
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
-        icon: 'error',
-        title: (console.log(error))
-      });
-      console.log("error")
-    }
+// // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
+           localStorage.setItem('T', res.data.token);
+          localStorage.setItem('user', res.data.userInfo);
+           console.log('user', userInfo)
+           console.log('email', res.data.email)
+           navigate('/mainpage')
+           
+// //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
+       dispatch(update({ name: res.data.fullname, email: res.data.email }))
+       dispatch(login(true))
+         // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
+         // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
+         
+    
+
+  }catch(error) {
+    //setError(true)
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Login Failed'
+    });
+          console.log(error);
+  }finally {        
+    setLoading(false)
+  }
     
   }
 
@@ -252,9 +228,9 @@ const handle = () => {
            // localStorage.setItem('address',res.data.address);
            // localStorage.setItem('contact',res.data.contact);
 // // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
-               localStorage.setItem('T', res.data.token);
+              // localStorage.setItem('T', res.data.token);
              // localStorage.setItem('user', res.data.userInfo);
-               console.log('user', userInfo)
+             //  console.log('user', res.data.user)
                console.log('email', res.data.email)
                setOpen(true)
               // navigate('/mainpage')
