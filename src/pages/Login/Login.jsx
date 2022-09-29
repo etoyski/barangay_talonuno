@@ -117,7 +117,12 @@ const handle = () => {
   //       ...prev,
   //       [e.target.name]: e.target.value
   //   }))};
-    
+  useEffect(() => {
+    axios
+      .get("https://barangay-talon-uno.vercel.app/login")
+      .then((res) => console.log(res.data))
+      .catch((e) => console.error(e));
+  }, []);   
     const sendRequest = async () => {
       // const user = { 
       //   email,
@@ -199,7 +204,7 @@ const handle = () => {
   const handleSubmitOTP = async () => {
     setLoading(true)
     try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',{
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
           
           otp1: otp, 
       })
