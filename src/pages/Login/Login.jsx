@@ -31,7 +31,6 @@ const theme = createTheme();
 
 const Login = (props) => {
 
-<script crossorigin src="https://barangay-talon-uno.vercel.app/"></script>
 
   const [open, setOpen] = React.useState(false);
   const [match, isMatch] = useState(false);
@@ -64,7 +63,7 @@ const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [otp2, setOtp] = useState('')
+  const [otp, setOtp] = useState('')
 
   //const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
@@ -200,11 +199,9 @@ const handle = () => {
   const handleSubmitOTP = async () => {
     setLoading(true)
     try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/login',{
-          email:localStorage.getItem('email'),
-          password:localStorage.getItem('password'),  
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',{
           
-          otp: otp2, 
+          otp1: otp, 
       })
       
      
@@ -451,7 +448,7 @@ handleSubmitOTP();
             onChange={({ target }) => setOtp(target.value)}
             
             type="text"
-            value={otp2}
+            value={otp}
             fullWidth
             variant="standard"
           />
