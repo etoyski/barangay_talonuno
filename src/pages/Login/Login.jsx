@@ -214,83 +214,83 @@ const sendOTP = async () => {
 //submit otp
 
   }, []);
-  const handleSubmitOTP = async () => {
+//   const handleSubmitOTP = async () => {
     
-    setLoading(true)
-    useEffect( () => { axios.get('https://barangay-talon-uno.vercel.app/otp'), {
-      headers:{
-        "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`   
-      }
+//     setLoading(true)
+//     useEffect( () => { axios.get('https://barangay-talon-uno.vercel.app/otp'), {
+//       headers:{
+//         "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`   
+//       }
     
-    } }, [ ])
+//     } }, [ ])
 
-    try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',{
+//     try { 
+//       const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',{
           
-          otp1: otp, 
-      })
+//           otp1: otp, 
+//       })
       
      
-      //setOpen(true)
-      //setUser(res.data)
-      // store the user in localStorage
-// <<<<<<< HEAD
-       localStorage.setItem('email',res.data.email);
-// // =======
-        localStorage.setItem('user',res.data.fullname);
-        localStorage.setItem('address',res.data.address);
-        localStorage.setItem('contact',res.data.contact);
-// // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
-           localStorage.setItem('T', res.data.token);
-          localStorage.setItem('user', res.data.userInfo);
-           console.log('user', userInfo)
-           console.log('email', res.data.email)
-           navigate('/mainpage')
+//       //setOpen(true)
+//       //setUser(res.data)
+//       // store the user in localStorage
+// // <<<<<<< HEAD
+//        localStorage.setItem('email',res.data.email);
+// // // =======
+//         localStorage.setItem('user',res.data.fullname);
+//         localStorage.setItem('address',res.data.address);
+//         localStorage.setItem('contact',res.data.contact);
+// // // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
+//            localStorage.setItem('T', res.data.token);
+//           localStorage.setItem('user', res.data.userInfo);
+//            console.log('user', userInfo)
+//            console.log('email', res.data.email)
+//            navigate('/mainpage')
            
-// //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
-       dispatch(update({ name: res.data.fullname, email: res.data.email }))
-       dispatch(login(true))
-         // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
-         // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
+// // //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
+//        dispatch(update({ name: res.data.fullname, email: res.data.email }))
+//        dispatch(login(true))
+//          // alisin mo to tas lalabas na ung otp modal kasi nag nanavigate agad sya kaya di na gumagana ung setOpen(true) mo sa taas and sa finally
+//          // other way is ilipat mo na lang ung navigate('/mainpage') sa otp modal pagka success ng otp auth
          
     
 
-  }catch(error) {
-    //setError(true)
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+//   }catch(error) {
+//     //setError(true)
+//     const Toast = Swal.mixin({
+//       toast: true,
+//       position: 'top-end',
+//       showConfirmButton: false,
+//       timer: 3000,
+//       timerProgressBar: true,
+//       didOpen: (toast) => {
+//         toast.addEventListener('mouseenter', Swal.stopTimer)
+//         toast.addEventListener('mouseleave', Swal.resumeTimer)
+//       }
+//     })
     
-    Toast.fire({
-      icon: 'error',
-      title: 'Login Failed'
-    });
-          console.log(error);
-  }finally {        
-    setLoading(false)
-  }
+//     Toast.fire({
+//       icon: 'error',
+//       title: 'Login Failed'
+//     });
+//           console.log(error);
+//   }finally {        
+//     setLoading(false)
+//   }
     
-  }
-  const handleSubmit = (e) => {
-          e.preventDefault();
+//   }
+//   const handleSubmit = (e) => {
+//           e.preventDefault();
           
          
-      sendRequest();
+//       sendRequest();
       
-  };
+//   };
   const handleSubmit2 = (e) => {
     e.preventDefault();
     
    
-handleSubmitOTP();
+sendOTP();
 
 };
   
@@ -460,7 +460,7 @@ handleSubmitOTP();
     <Container maxWidth="sm" component="main">
         <Box>
             <Paper>
-            <Dialog component="form" onSubmit={sendOTP} open={open} onClose={handleClose}>
+            <Dialog component="form" onSubmit={handleSubmit2} open={open} onClose={handleClose}>
         <DialogTitle>OTP</DialogTitle>
         <DialogContent>
           <DialogContentText>
