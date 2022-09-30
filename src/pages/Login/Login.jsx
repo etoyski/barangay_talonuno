@@ -119,9 +119,9 @@ const sendOTP = async () => {
         icon: 'success',
         title: 'Login Success'
       });
-           localStorage.setItem('user',res.data.fullname);
-           localStorage.setItem('address',res.data.address);
-           localStorage.setItem('contact',res.data.contact);
+          //  localStorage.setItem('user',res.data.fullname);
+          //  localStorage.setItem('address',res.data.address);
+          //  localStorage.setItem('contact',res.data.contact);
                       //localStorage.setItem('T', res.data.token);
           localStorage.setItem('user', res.data.userInfo);
            console.log('user', userInfo)
