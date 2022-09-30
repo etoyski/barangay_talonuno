@@ -83,46 +83,56 @@ const handle = () => {
   setCookie('email', email, { path: '/' });
   setCookie('password', password, { path: '/' });
 };
-// const sendOTP = async () => {
-//   setLoading(true)
-//   try { 
-//     const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
-//       email: localStorage.getItem("email", res.data.email)
+const sendOTP = async () => {
+  setOpen(true)
+ //dito mo ilagay yung header  axios  need mo sa auth token 
+ 
+  try { 
+
+    const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',
+  
+    {
+      email: localStorage.getItem("email", res.data.email),
+      opt:otp
       
-//     })
-//   }catch(error){
-//     const Toast = Swal.mixin({
-//       toast: true,
-//       position: 'top-end',
-//       showConfirmButton: false,
-//       timer: 3000,
-//       timerProgressBar: true,
-//       didOpen: (toast) => {
-//         toast.addEventListener('mouseenter', Swal.stopTimer)
-//         toast.addEventListener('mouseleave', Swal.resumeTimer)
-//       }
-//     })
+      },
+      {
+        headers:{
+          "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`   
+        }
+      },
+      )
     
-//     Toast.fire({
-//       icon: 'error',
-//       title: 'Invalid Email'
-//     });
-//   }finally {
-//     setLoading(false)
-//   }
-// }
-  // const handleChange = (e) => {
-   
-  //   setInputs(prev => ({
-  //       ...prev,
-  //       [e.target.name]: e.target.value
-  //   }))};
-  useEffect(() => {
-    axios
-      .get("https://barangay-talon-uno.vercel.app/login")
-      .then((res) => console.log(res.data))
-      .catch((e) => console.error(e));
-  }, []);   
+    console.log(res.data);
+
+  }catch(error){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Invalid Email'
+    });
+};
+}
+// const handleClose = () => {
+//   setOpen(false);
+// };
+  // useEffect(() => {
+  //   axios
+  //     .get("https://barangay-talon-uno.vercel.app/login")
+  //     .then((res) => console.log(res.data))
+  //     .catch((e) => console.error(e));
+  // }, []);   
     const sendRequest = async () => {
       // const user = { 
       //   email,
@@ -199,6 +209,9 @@ const handle = () => {
     // swal
 
     
+//modal-- not equal no login
+//login -- open modal 
+//submit otp
 
   }, []);
   const handleSubmitOTP = async () => {
@@ -447,7 +460,7 @@ handleSubmitOTP();
     <Container maxWidth="sm" component="main">
         <Box>
             <Paper>
-            <Dialog component="form" onSubmit={handleSubmit2} open={open} onClose={handleClose}>
+            <Dialog component="form" onSubmit={sendOTP} open={open} onClose={handleClose}>
         <DialogTitle>OTP</DialogTitle>
         <DialogContent>
           <DialogContentText>

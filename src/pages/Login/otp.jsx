@@ -42,19 +42,32 @@ const Login = (props) => {
     setOpen(false);
   };
 
-  const {otp, setOtp} = useState("")
+  const [otp, setOtp] = useState("")
   const navigate = useNavigate();
 
 
-
+//eto gamitin mo wag yung wag yung handle submit otp
 
   const sendOTP = async () => {
     setOpen(true)
+   //dito mo ilagay yung header  axios  need mo sa auth token 
+   
     try { 
-      const res = await axios.post('https://barangay-talon-uno.vercel.app/auth',{
-        email: "johnred143.jr@gmail.com"
+
+      const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',
+    
+      {
+        email: localStorage.getItem("email", res.data.email),
+        opt:otp
         
-      })
+        },
+        {
+          headers:{
+            "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`   
+          }
+        },
+        )
+      
       console.log(res.data);
 
     }catch(error){
