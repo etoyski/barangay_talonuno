@@ -94,7 +94,7 @@ const sendOTP = async () => {
   
     {
       email: localStorage.getItem('email'),
-      otp:otp
+      otp:otp,
       
     },
       {
