@@ -103,7 +103,23 @@ const sendOTP = async () => {
         }
       }
       )
-      localStorage.setItem('user',res.data.fullname);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Login Success'
+      });
+           localStorage.setItem('user',res.data.fullname);
            localStorage.setItem('address',res.data.address);
            localStorage.setItem('contact',res.data.contact);
                       //localStorage.setItem('T', res.data.token);
@@ -167,6 +183,9 @@ const sendOTP = async () => {
           // store the user in localStorage
 // <<<<<<< HEAD
            localStorage.setItem('email',res.data.email);
+           localStorage.setItem('user',res.data.fullname);
+           localStorage.setItem('address',res.data.address);
+           localStorage.setItem('contact',res.data.contact);
 // // =======
            // localStorage.setItem('user',res.data.fullname);
            // localStorage.setItem('address',res.data.address);
