@@ -63,7 +63,8 @@ const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [otp, setOtp] = useState('')
+  // const [otp, setOtp] = useState('')
+  const [otp, setOtp] = useState("")
 
   //const [error,setError] = useState(false); 
   const [loading, setLoading] = useState(false);
@@ -93,9 +94,9 @@ const sendOTP = async () => {
   
     {
       email: localStorage.getItem('email'),
-      opt:otp
+      otp:otp
       
-      },
+    },
       {
         headers:
         {
@@ -119,10 +120,10 @@ const sendOTP = async () => {
         icon: 'success',
         title: 'Login Success'
       });
-          //  localStorage.setItem('user',res.data.fullname);
-          //  localStorage.setItem('address',res.data.address);
-          //  localStorage.setItem('contact',res.data.contact);
-                      //localStorage.setItem('T', res.data.token);
+      localStorage.setItem('email',res.data.email);
+      localStorage.setItem('user',res.data.fullname);
+      localStorage.setItem('address',res.data.address);
+      localStorage.setItem('contact',res.data.contact);
           localStorage.setItem('user', res.data.userInfo);
            console.log('user', userInfo)
            console.log('email', res.data.email)
@@ -134,7 +135,7 @@ const sendOTP = async () => {
       
     
     console.log(res.data);
-
+    
   }catch(error){
     const Toast = Swal.mixin({
       toast: true,
@@ -186,6 +187,7 @@ const sendOTP = async () => {
            localStorage.setItem('user',res.data.fullname);
            localStorage.setItem('address',res.data.address);
            localStorage.setItem('contact',res.data.contact);
+
 // // =======
            // localStorage.setItem('user',res.data.fullname);
            // localStorage.setItem('address',res.data.address);
