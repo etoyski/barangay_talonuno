@@ -100,8 +100,20 @@ const sendOTP = async () => {
         headers:{
           "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`   
         }
-      },
-      )
+      })
+      localStorage.setItem('user',res.data.fullname);
+           localStorage.setItem('address',res.data.address);
+           localStorage.setItem('contact',res.data.contact);
+                      //localStorage.setItem('T', res.data.token);
+          localStorage.setItem('user', res.data.userInfo);
+           console.log('user', userInfo)
+           console.log('email', res.data.email)
+           navigate('/mainpage')
+           
+// //             dispatch(loginUser(email)) ito pala dahilan nung nag e error na login double login nangyayari sa axios mo tas dito sa redux loginUser()
+       dispatch(update({ name: res.data.fullname, email: res.data.email }))
+       dispatch(login(true))
+      
     
     console.log(res.data);
 
@@ -157,7 +169,7 @@ const sendOTP = async () => {
            // localStorage.setItem('address',res.data.address);
            // localStorage.setItem('contact',res.data.contact);
 // // >>>>>>> dff0005ffb12d3ecfc51295cb170c478a2d34b27
-              // localStorage.setItem('T', res.data.token);
+               localStorage.setItem('T', res.data.token);
              // localStorage.setItem('user', res.data.userInfo);
              //  console.log('user', res.data.user)
                console.log('email', res.data.email)
@@ -279,13 +291,17 @@ const sendOTP = async () => {
 //   }
     
 //   }
-//   const handleSubmit = (e) => {
-//           e.preventDefault();
+
+//handle login
+   const handleSubmit = (e) => {
+           e.preventDefault();
           
          
-//       sendRequest();
+      sendRequest();
       
-//   };
+   };
+   //-------------------------
+   //otp handler
   const handleSubmit2 = (e) => {
     e.preventDefault();
     
