@@ -86,21 +86,23 @@ const handle = () => {
 const sendOTP = async () => {
   setOpen(true)
  //dito mo ilagay yung header  axios  need mo sa auth token 
- 
+  
   try { 
 
     const res = await axios.post('https://barangay-talon-uno.vercel.app/otp',
   
     {
-      email: localStorage.getItem("email", res.data.email),
+      email: localStorage.getItem('email'),
       opt:otp
       
       },
       {
-        headers:{
-          "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`   
+        headers:
+        {
+          "Authorization": "Bearer " + `${localStorage.getItem('T')}`   
         }
-      })
+      }
+      )
       localStorage.setItem('user',res.data.fullname);
            localStorage.setItem('address',res.data.address);
            localStorage.setItem('contact',res.data.contact);
@@ -134,6 +136,7 @@ const sendOTP = async () => {
       icon: 'error',
       title: 'Invalid Email'
     });
+    console.log("error: ", error.response.data);
 };
 }
 // const handleClose = () => {

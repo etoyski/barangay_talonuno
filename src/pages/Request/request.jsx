@@ -67,7 +67,8 @@ export default function Request() {
              
          }, 
          {
-           headers:{
+           headers:
+           {
              "Authorization": "Bearer " + ` ${localStorage.getItem('T')}`
            }
          })
