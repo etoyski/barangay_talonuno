@@ -79,7 +79,7 @@ const UserProfile = () => {
                                     alignItems="start"
                                 >
                                     <Typography variant="h5" fontWeight="bold" textTransform="capitalize">
-                                    {localStorage.getItem("user")}
+                                    {sessionStorage.getItem("user")}
                                     </Typography>
                                     <Chip
                                         icon={<VerifiedIcon />}

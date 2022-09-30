@@ -122,6 +122,7 @@ const sendOTP = async () => {
       });
       localStorage.setItem('email',res.data.email);
       localStorage.setItem('user',res.data.fullname);
+      sessionStorage.setItem('user',res.data.fullname);
       localStorage.setItem('address',res.data.address);
       localStorage.setItem('contact',res.data.contact);
           localStorage.setItem('user', res.data.userInfo);

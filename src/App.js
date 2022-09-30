@@ -21,29 +21,31 @@ import { Alert } from "@mui/material";
 import GeneralSettings from "./pages/Settings/settings";
 import Register from "./pages/Signup/useForm";
 import UserProfile from "./pages/userprofile/user-profile";
-import { validateToken } from "./redux/userSlice";
+import { login, validateToken } from "./redux/userSlice";
 import OTP from "./pages/Login/Confirmation";
 import GPS from "./components/map/maps";
 import { useDispatch, useSelector } from "react-redux";
 import GPS2 from "./components/mapbox/mapBox";
 function App() {
     // const [name, setName] = useState('etoy');
-    //const isloggedin = useSelector((state) => state.user.isLoggedIn);
-    // const dispatch = useDispatch();
+   // const isloggedin = useSelector((state) => state.user.isLoggedIn);
+ const dispatch = useDispatch();
      const [isloggedin, setisloggedin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem("T") && localStorage.getItem("email")) {
-            let token = localStorage.getItem("T");
-            // dispatch()
+        if (localStorage.getItem("T") !== undefined) {
+            // let token = localStorage.getItem("T");
+            dispatch(login(true))
             // validateToken(token) = value true or false
             //    setisloggedin(validateToken(token));
 
-            let email = localStorage.getItem("email");
+            //let email = localStorage.getItem("email");
             //validateToken({ token, email, navigate });
             // setisloggedin(validateToken({ token, email, navigate }));
              setisloggedin(true);
+        }else {
+            dispatch(login(false))
         }
     }, [navigate]);
 

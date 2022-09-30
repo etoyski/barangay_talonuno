@@ -62,11 +62,12 @@ function Navbar() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem("T", "user")) {
+        if (localStorage.getItem("T") !== undefined) {
+            
             let token = localStorage.getItem("T");
             // validateToken(token) = value true or false
             // setisloggedin(validateToken(token));
-            // setisloggedin(true);
+         setisloggedin(true);
         }
     }, [navigate]);
 
@@ -191,7 +192,7 @@ function Navbar() {
                                                 fontBig
                                                 primary
                                             >
-                                                Login{" "}
+                                                Login
                                             </ButtonL>
                                         </NavBtnLink>
                                     )}
@@ -219,7 +220,7 @@ function Navbar() {
                                             <Avatar
                                                 sx={{ width: 32, height: 32 }}
                                             >
-                                                {name}
+                                                {localStorage.getItem('user')}
                                             </Avatar>
                                         </IconButton>
                                     </Tooltip>
@@ -250,7 +251,7 @@ function Navbar() {
                                             <Avatar
                                                 sx={{ width: 32, height: 32 }}
                                             >
-                                                M
+                                                
                                             </Avatar>
                                         </IconButton>
                                     </Tooltip>

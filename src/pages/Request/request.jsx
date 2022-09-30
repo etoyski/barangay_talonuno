@@ -164,7 +164,8 @@ const [value, setValue] = React.useState(null);
             disabled
             id="name"
             name="name"
-            label={localStorage.getItem("user")} 
+            
+            label={sessionStorage.getItem("user")} 
             fullWidth
             autoComplete="Name"
             variant="standard"
