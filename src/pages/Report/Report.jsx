@@ -35,7 +35,7 @@ export default function Report() {
   const dispatch = useDispatch();
   const [isloggedin, setisloggedin] = useState(false);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (localStorage.getItem("T") !== undefined) {
         // let token = localStorage.getItem("T");
@@ -104,7 +104,7 @@ const handleChange = (e) => {
         });
           
             console.log(res.data.token);
-            localStorage.setItem('T', res.data.token);
+           // localStorage.setItem('T', res.data.token);
            //navigate('/report');
 
     }catch(error) {
