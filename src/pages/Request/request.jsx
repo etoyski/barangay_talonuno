@@ -81,10 +81,10 @@ export default function Request() {
          const res = await axios.post('https://barangay-talon-uno.vercel.app/main/request',{
              //email:inputs.email,
              type: inputs.type,
-             name: inputs.name,
-             address: inputs.address,
-             email: inputs.email,
-             phone: inputs.phone,
+             name: `${sessionStorage.getItem("user")}`,
+             address: `${localStorage.getItem("address")}`,
+             email: `${localStorage.getItem("email")}`,
+             phone: `${localStorage.getItem("contact")}`,
              purpose: inputs.purpose,
              
          }, 
@@ -102,6 +102,7 @@ export default function Request() {
          });
            
              console.log(res.data.token);
+             console.log(res.data.email);
              //localStorage.setItem('T', res.data.token);
             //navigate('/report');
  
@@ -191,7 +192,7 @@ const [value, setValue] = React.useState(null);
             fullWidth
             autoComplete="Name"
             variant="standard"
-            value={inputs.name} 
+            value={sessionStorage.getItem('user')}
             onChange={handleChange} 
             error={error}
           />
@@ -205,7 +206,7 @@ const [value, setValue] = React.useState(null);
             fullWidth
             autoComplete="Address"
             variant="standard"
-            value={inputs.address} 
+            value={localStorage.getItem("address")} 
             onChange={handleChange} 
             error={error}
           />
@@ -219,7 +220,8 @@ const [value, setValue] = React.useState(null);
             fullWidth
             autoComplete="Email Address"
             variant="standard"
-            value={inputs.email} 
+            value={localStorage.getItem("email")} 
+            
             onChange={handleChange} 
             error={error}
           />
@@ -233,7 +235,7 @@ const [value, setValue] = React.useState(null);
         fullWidth
         autoComplete="Contact Number"
         variant="standard"
-        value={inputs.phone} 
+        value={localStorage.getItem("contact")} 
         onChange={handleChange} 
         disabled
         error={error}
