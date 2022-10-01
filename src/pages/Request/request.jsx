@@ -80,7 +80,7 @@ export default function Request() {
      try { 
          const res = await axios.post('https://barangay-talon-uno.vercel.app/main/request',{
              //email:inputs.email,
-             type: inputs.type,
+             reqs: inputs.type,
              name: `${sessionStorage.getItem("user")}`,
              address: `${localStorage.getItem("address")}`,
              email: `${localStorage.getItem("email")}`,
