@@ -11,9 +11,10 @@ import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import { validateToken } from '../../redux/userSlice';
+import { login, validateToken } from '../../redux/userSlice';
 import { useDispatch } from 'react-redux';
 import GPS from '../../components/map/maps';
+import { useEffect } from 'react';
 
 const theme = createTheme({
   palette: {
@@ -27,21 +28,30 @@ const theme = createTheme({
   },
 });
 
-
 export default function Report() {
   const [loading, setLoading] = useState(false);
   const [error,setError] = useState(false); 
   const [alert, setAlert] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  React.useEffect( () => {
-    let token = localStorage.getItem("T");
-    let email = localStorage.getItem("email");
-    
-
- //   dispatch( validateToken({ token, email, navigate }) );
-  }, [])
+  const [isloggedin, setisloggedin] = useState(false);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (localStorage.getItem("T") !== undefined) {
+        // let token = localStorage.getItem("T");
+        dispatch(login(true))
+        // validateToken(token) = value true or false
+        //    setisloggedin(validateToken(token));
+  
+        //let email = localStorage.getItem("email");
+        //validateToken({ token, email, navigate });
+        // setisloggedin(validateToken({ token, email, navigate }));
+         setisloggedin(true);
+    }else {
+        dispatch(login(false))
+    }
+  }, [navigate]);
+  
 
   const defaultProps = {
     options: reporttypes,
@@ -73,17 +83,17 @@ const handleChange = (e) => {
     setLoading(true)
     try { 
         const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
-            //email:inputs.email,
+            email:`${localStorage.getItem('email')}`,
            // type: inputs.type,
-            name: inputs.name,
-            address: inputs.address,
+            name: `${sessionStorage.getItem('user')}`,
+            address: `${localStorage.getItem('address')}`,
             addressdetail: inputs.addressdetail,
             report: inputs.report,
             Image: inputs.Image,
             
         }, {
           headers:{
-            "Authorization": `Bearer ${localStorage.getItem('T')}`
+            "Authorization": "Bearer " + `${localStorage.getItem('T')}`  
           }
         })
         swal({
@@ -158,9 +168,11 @@ const handleSubmit = (e) => {
         <TextField
           id="email"
           name="email"
-          label={localStorage.getItem('email')}
+          // label={localStorage.getItem('email')}
+          disabled
           fullWidth
-          value={inputs.email} 
+          label="email"
+          value={localStorage.getItem('email')} 
           onChange={handleChange} 
           autoComplete="email"
           variant="standard"
@@ -169,27 +181,29 @@ const handleSubmit = (e) => {
       </Grid> 
        <Grid item xs={12} sm={6}>
         <TextField
+        disabled
           id="name"
           name="name"
-          label="name"
+          // label={sessionStorage.getItem('user')}
           fullWidth
+          label="name"
           autoComplete="name"
-          value={inputs.name} 
+          value={sessionStorage.getItem('user')} 
           onChange={handleChange} 
           variant="standard"
-          required
           error={error}
         />
       </Grid>
     
       <Grid item xs={12}>
         <TextField
-          required
+          disabled
           id="address"
           name="address"
-          label="address"
+          // label={localStorage.getItem('address')}
           onChange={handleChange} 
-          value={inputs.address} 
+          label="address"
+          value={localStorage.getItem('address')}
           fullWidth
           autoComplete="Your Address"
           variant="filled"
@@ -213,7 +227,20 @@ const handleSubmit = (e) => {
         />
       </Grid>
        <Grid item xs={12} sm={6}>
-       
+       <TextField
+          required
+          id="report"
+          name="report"
+          onChange={handleChange} 
+          value={inputs.report} 
+          label="Report"
+          fullWidth
+          autoComplete="Your address detail"
+          variant="filled"
+          
+          error={error}
+        />
+{/*        
          <Autocomplete
         {...defaultProps}
         id="clear-on-escape"
@@ -225,10 +252,10 @@ const handleSubmit = (e) => {
         renderInput={(params) => (
           <TextField {...params} required
           name="report"
-
+          value={inputs.report}
           label="Report Type" variant="standard" />
         )}
-      />
+      /> */}
       </Grid>
       <Grid item xs={12} sm={6}>
       
@@ -242,7 +269,7 @@ const handleSubmit = (e) => {
           type ="file"
           autoComplete="Image"
           variant="standard"
-          required
+        
           component="span"
           accept="image/*"
           error={error}
