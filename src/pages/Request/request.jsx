@@ -175,6 +175,7 @@ const [value, setValue] = React.useState(null);
         {...defaultProps}
         id="clear-on-escape"
         clearOnEscape
+        value={inputs.type}
         renderInput={(params) => (
           <TextField {...params} value={inputs.type} 
           onChange={handleChange} 
