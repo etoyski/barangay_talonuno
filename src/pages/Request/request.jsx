@@ -182,11 +182,11 @@ const flatProps = {
       <TextField
             required
             id="type"
-            name="Report Type"
+            name="type"
             
             label="Report Type"
             fullWidth
-            autoComplete="Name"
+            autoComplete="type"
             variant="standard"
             value={inputs.type}
             onChange={handleChange} 
