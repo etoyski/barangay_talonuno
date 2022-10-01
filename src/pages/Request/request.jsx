@@ -13,7 +13,10 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useState } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
-
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 const theme = createTheme({
   palette: {
     primary: {
@@ -30,12 +33,31 @@ export default function Request() {
   const [loading, setLoading] = useState(false);
   const [error,setError] = useState(false); 
   const [activeStep, setActiveStep] = React.useState(0);
-  React.useEffect(() => {
-    axios
-      .get("https://barangay-talon-uno.vercel.app/main/request")
-      .then((res) => console.log(res.data))
-      .catch((e) => console.error(e));
-  }, []);
+  const dispatch = useDispatch();
+  const [isloggedin, setisloggedin] = useState(false);
+  const navigate = useNavigate();
+  // React.useEffect(() => {
+  //   axios
+  //     .get("https://barangay-talon-uno.vercel.app/main/request")
+  //     .then((res) => console.log(res.data))
+  //     .catch((e) => console.error(e));
+  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("T") !== undefined) {
+        // let token = localStorage.getItem("T");
+        dispatch(login(true))
+        // validateToken(token) = value true or false
+        //    setisloggedin(validateToken(token));
+
+        //let email = localStorage.getItem("email");
+        //validateToken({ token, email, navigate });
+        // setisloggedin(validateToken({ token, email, navigate }));
+         setisloggedin(true);
+    }else {
+        dispatch(login(false))
+    }
+}, [navigate]);
+
   const [inputs,setInputs] = useState({
     //email:"",
     type:"",

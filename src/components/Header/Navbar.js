@@ -220,7 +220,7 @@ function Navbar() {
                                             <Avatar
                                                 sx={{ width: 32, height: 32 }}
                                             >
-                                                {localStorage.getItem('user')}
+                                                {sessionStorage.getItem('user')}
                                             </Avatar>
                                         </IconButton>
                                     </Tooltip>
@@ -302,7 +302,7 @@ function Navbar() {
                                 }}
                             >
                                 <MenuItem>
-                                    <Typography> {localStorage.getItem("user")}</Typography>
+                                    <Typography> {sessionStorage.getItem("user")}</Typography>
                                     {/* <Avatar /> {name}User */}
                                 </MenuItem>
 
