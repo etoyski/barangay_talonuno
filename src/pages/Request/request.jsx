@@ -80,7 +80,7 @@ export default function Request() {
      try { 
          const res = await axios.post('https://barangay-talon-uno.vercel.app/main/request',{
              //email:inputs.email,
-             reqs: inputs.type,
+             type: inputs.type,
              name: `${sessionStorage.getItem("user")}`,
              address: `${localStorage.getItem("address")}`,
              email: `${localStorage.getItem("email")}`,
@@ -139,9 +139,6 @@ const flatProps = {
   options: typeofrequest.map((option) => option.title),
 };
 
-const [value, setValue] = React.useState(null);
-
-
   return (
     <React.Fragment>
     
@@ -171,7 +168,7 @@ const [value, setValue] = React.useState(null);
               
                 <Grid container spacing={1}>
                 <Grid item xs={12} sm={6}>
-  <Autocomplete
+  {/* <Autocomplete
         {...defaultProps}
         id="clear-on-escape"
         clearOnEscape
@@ -181,7 +178,20 @@ const [value, setValue] = React.useState(null);
           onChange={handleChange} 
           error={error} label="Request Type" variant="standard" />
         )}
-      />
+      /> */}
+      <TextField
+            required
+            id="type"
+            name="Report Type"
+            
+            label="Report Type"
+            fullWidth
+            autoComplete="Name"
+            variant="standard"
+            value={inputs.type}
+            onChange={handleChange} 
+            error={error}
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField

@@ -124,7 +124,7 @@ export default function ActionAreaCard() {
           component="img"
             height="160"
           image="
-          https://pbs.twimg.com/media/FcbOHzmagAAQgp5?format=jpg&name=small"
+          https://pbs.twimg.com/media/FcbPE8AaMAAlJJ-?format=jpg&name=900x900"
           alt="bg"
         />
         <CardContent>

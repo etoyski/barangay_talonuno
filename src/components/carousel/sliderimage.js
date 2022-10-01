@@ -38,6 +38,6 @@ export default [
   {
     title: "Seventh Slide",
     description: "This is the Seventh slider Image of our carousel",
-    urls: "https://mdbootstrap.com/img/Photos/Slides/img%20(102).jpg",
+    urls: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t1.15752-9/309400843_1172542516948953_4515447576892420999_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=ae9488&_nc_ohc=8nDYUZO4HfIAX8snH6y&_nc_ht=scontent.fmnl17-1.fna&oh=03_AVIlQFqIetJIuovz-KCC8dydVlb9JX6rHHwQ53JFki8Utg&oe=635E198B",
   },
 ];
