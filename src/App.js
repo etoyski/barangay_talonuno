@@ -27,6 +27,7 @@ import GPS from "./components/map/maps";
 import { useDispatch, useSelector } from "react-redux";
 import GPS2 from "./components/mapbox/mapBox";
 import ScrollToTop from "./globals.js/ScrollToTop";
+import ViewReport from "./pages/Report/ViewReport";
 function App() {
     // const [name, setName] = useState('etoy');
     const isloggedin = useSelector((state) => state.user.isLoggedIn);
@@ -66,6 +67,7 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/gps" element={<GPS2 />} />
                     <Route path="/map" element={<GPS />} />
+                    <Route path="/viewreport" element={<ViewReport />} />
                     <Route path="/welcomepage" element={<Welcomepage />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/otp" element={<OTP />} />

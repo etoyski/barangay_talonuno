@@ -188,6 +188,9 @@ import { useDispatch, useSelector } from "react-redux";
 //     userData,
 // } from "../redux/slicer/userSlice";
 import LoadingButton from "@mui/lab/LoadingButton";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Input = styled("input")({
     display: "none",
@@ -196,12 +199,30 @@ const Input = styled("input")({
 
 const UserProfile = () => {
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+
     // const user = useSelector(userData);
     // const loading = useSelector(loadComponent);
-    const [loading,isLoading] = useState(false);
+    //const [loading,isLoading] = useState(false);
     const [isMentor, setIsMentor] = useState(false);
+    const navigate = useNavigate;
+    const [error,setError] =useState();
     const [profileImage, setProfileImage] = useState(null);
-
+    const [inputs, setInputs] = useState({
+      firstname: "",
+      middlename: "",
+      lastname: "",
+      email:"",
+      number: "",
+    });
+    
+   
+    const handleChange = (e) => {
+      setInputs((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    };
     // useEffect(() => {
     //     setProfileImage(user?.img);
     // }, [user]);
@@ -222,13 +243,80 @@ const UserProfile = () => {
         //     // dispatch(uploadImage(profileImage));
         // }
     };
+    const sendRequest = async () => {
+      setLoading(true)
+      try {
+        const res = await axios.post(
+          "https://barangay-talon-uno.vercel.app/register",
+          {
+            firstname: inputs.firstname,
+            middlename: inputs.middlename,
+            lastname: inputs.lastname,
+            number: Number(inputs.contactnumber),
+            //email: inputs.email,
+            email:`${localStorage.getItem('email')}`
+          }
+        );
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'User Edited'
+        });
+        console.log(res.data);
+        navigate("/user-profile");
+        
+      } catch (error) {
+        setError(true)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: 'Edit failed'
+        });
+  
+        console.log("edit failed: ", error.response.data);
+      }
+      finally {
+        setLoading(false)
+      }
+    };
 
+     
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      //console.log(inputs);
+   
+      sendRequest();
+  
+  };
+  
     return (
         <React.Fragment>
             {/* <Header title="Settings - Account" /> */}
             {/* <AppbarS  pace color="#f2f4fb" /> */}
 
-            <Box bgcolor="#f2f4fb" pb={10}>
+            <Box bgcolor="#f2f4fb" pb={10} component="form" onSubmit={handleSubmit}>
                 <Container sx={{ pt: { xs: 5, sm: 10 } }}>
                     <Typography variant="h4" fontWeight="bold">
                         Personal Info
@@ -258,27 +346,44 @@ const UserProfile = () => {
                                         Fullname
                                     </Typography>
                                     <TextField
-                                        value={sessionStorage.getItem('user')}
+                                    fullwidth
+                                    name={localStorage.getItem('firstname')}
+                                    label={sessionStorage.getItem('user')}
+                                    onChange={handleChange}
+                                    value={inputs.firstname}
+                                        fullWidth
+                                        size="small"
+                                    />
+                                </Box>
+                                </Stack>
+                                {/* <Box width="100%">
+                                    <Typography fontWeight={300}>
+                                      Middlename
+                                    </Typography>
+                                    <TextField
+                                        onChange={handleChange}
+                                        value={inputs.middlename}
                                         fullWidth
                                         size="small"
                                     />
                                 </Box>
                                 <Box width="100%">
                                     <Typography fontWeight={300}>
-                                      Email
+                                      Lastname
                                     </Typography>
                                     <TextField
-                                        value={sessionStorage.getItem('user')}
+                                        onChange={handleChange}
+                                        value={inputs.lastname}
                                         fullWidth
                                         size="small"
                                     />
                                 </Box>
-                            </Stack>
+                            </Stack> */}
 
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Email</Typography>
                                 <TextField
-                                    // value={user?.email}
+                                     value={localStorage.getItem('email')}
                                     fullWidth
                                     size="small"
                                     InputProps={{
@@ -290,6 +395,22 @@ const UserProfile = () => {
                                     }}
                                 />
                             </Box>
+                            <Box mt={2}>
+                                <Typography fontWeight={300}>Contact Number</Typography>
+                                <TextField
+                                    onChange={handleChange}
+                                     value={localStorage.getItem('contact')}
+                                    fullWidth
+                                    size="small"
+                                    // InputProps={{
+                                    //     startAdornment: (
+                                    //         <InputAdornment position="start">
+                                    //             <EmailOutlinedIcon color="inherit" />
+                                    //         </InputAdornment>
+                                    //     ),
+                                    // }}
+                                />
+                            </Box>
                         </Box>
 
                         <Stack
@@ -298,7 +419,7 @@ const UserProfile = () => {
                             gap={2}
                             alignItems="center"
                         >
-                            <Box width="100%">
+                            {/* <Box width="100%">
                                 <Typography fontWeight={300}>
                                     Birthdate
                                 </Typography>
@@ -307,7 +428,7 @@ const UserProfile = () => {
                                     size="small"
                                     defaultValue="2000-10-23"
                                 />
-                            </Box>
+                            </Box> */}
                         </Stack>
 
                         <ProfileImage
@@ -320,6 +441,7 @@ const UserProfile = () => {
                         <Stack direction="row" pt={2} pb={3} gap={2}>
                             <LoadingButton
                                 fullWidth
+                                type="submit"
                                 variant="contained"
                                 onClick={uploadImg}
                                 loading={loading}
@@ -327,7 +449,7 @@ const UserProfile = () => {
                                 {loading ? "loading" : "Save"}
                             </LoadingButton>
 
-                            <Button fullWidth variant="outlined" color="error">
+                            <Button fullWidth variant="outlined" color="error" onClick={() => navigate('/mainpage')}>
                                 Cancel
                             </Button>
                         </Stack>
@@ -335,6 +457,7 @@ const UserProfile = () => {
                 </Container>
             </Box>
         </React.Fragment>
+
     );
 };
 
