@@ -154,7 +154,7 @@ function Navbar() {
                                     to="/contactus"
                                     onClick={closeMobileMenu}
                                 >
-                                    Contactus
+                                    Contact us
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
