@@ -72,7 +72,7 @@ function Navbar() {
             dispatch(login(true))
             console.log("logged in")
         }else{
-            console.log("logged out")
+            console.log("loggedout")
         }
     }, [navigate]);
 
@@ -89,9 +89,8 @@ function Navbar() {
 
     window.addEventListener("resize", showButton);
     useEffect(() => {
-        if (!localStorage.getItem("T")) {
-            setisloggedin(false);
-            console.log(localStorage.getItem("T"))
+        if (localStorage.getItem("T", "user")) {
+            setisloggedin(true);
         }
     }, [navigate]);
     return (
@@ -153,7 +152,7 @@ function Navbar() {
                                     to="/contactus"
                                     onClick={closeMobileMenu}
                                 >
-                                    Contact us
+                                    Contactus
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
@@ -184,7 +183,7 @@ function Navbar() {
                                 </NavItemBtn>
                             )}
                             {isloggedin ? (
-                                <LogoutButton props={setisloggedin(false)} />
+                                <LogoutButton props={setisloggedin} />
                             ) : (
                                 <NavItemBtn>
                                     {button ? (
