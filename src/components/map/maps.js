@@ -12,7 +12,7 @@ import cities from "./cities.json";
 import useGeoLocation from './useGeoLocation';
 import Swal from 'sweetalert2';
 import { Box, Button } from '@mui/material';
-
+//installed with peer deps
 const markerIcon = new L.Icon({
     iconUrl: require("../../assets/locmarker.png"),
     iconSize: [35,45],
@@ -76,7 +76,7 @@ const GPS = () => {
             )}
 
             </MapContainer>
-            <Button onClick={showMyLocation}> Get Location</Button>
+            {/* <Button onClick={showMyLocation}> Get Location</Button> */}
         </Container>
         <Container maxWidth="md">
             <Box>

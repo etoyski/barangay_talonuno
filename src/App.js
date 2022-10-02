@@ -26,11 +26,12 @@ import OTP from "./pages/Login/Confirmation";
 import GPS from "./components/map/maps";
 import { useDispatch, useSelector } from "react-redux";
 import GPS2 from "./components/mapbox/mapBox";
+import ScrollToTop from "./globals.js/ScrollToTop";
 function App() {
     // const [name, setName] = useState('etoy');
-    const isloggedin = useSelector((state) => state.user.isLoggedIn);
+   // const isloggedin = useSelector((state) => state.user.isLoggedIn);
  const dispatch = useDispatch();
-    // const [isloggedin, setisloggedin] = useState(false);
+     const [isloggedin, setisloggedin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,14 +44,16 @@ function App() {
             //let email = localStorage.getItem("email");
             //validateToken({ token, email, navigate });
             // setisloggedin(validateToken({ token, email, navigate }));
-             //setisloggedin(true);
+             setisloggedin(true);
         }else {
             dispatch(login(false))
+            setisloggedin(false)
         }
     }, [navigate]);
 
     return (
         <React.Fragment>
+            <ScrollToTop />
             <header>
                 <Navbar />
             </header>
@@ -72,16 +75,16 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/tabs" element={<VerticalTabs />} />
-                    <Route path="/user-profile" element={<UserProfile />} />
-                    <Route
+                   {isloggedin ? (  <Route path="/user-profile" element={<UserProfile />}  /> ) : "" }
+                    {isloggedin ? (<Route
                         path="/edit-user-profile"
                         element={<EditUserProfile />}
-                    />
+                    /> ) : "" }
                     <Route
                         path="/speeddial"
                         element={<ControlledOpenSpeedDial />}
                     />
-                    <Route path="/settings" element={<GeneralSettings />} />
+                    {isloggedin ? (<Route path="/settings" element={<GeneralSettings />} /> ) : ""}
                     {isloggedin ? (
                         <Route path="/mainpage" element={<Mainpage />} />
                     ) : (

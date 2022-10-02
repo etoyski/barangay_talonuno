@@ -33,8 +33,8 @@ import { Box } from "@mui/system";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Settings } from "@mui/icons-material";
-import { useSelector } from "react-redux";
-import { validateToken } from "../../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, validateToken } from "../../redux/userSlice";
 
 function Navbar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -60,6 +60,7 @@ function Navbar() {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (localStorage.getItem("T") !== undefined) {
@@ -67,7 +68,11 @@ function Navbar() {
             let token = localStorage.getItem("T");
             // validateToken(token) = value true or false
             // setisloggedin(validateToken(token));
-         setisloggedin(true);
+                //  setisloggedin(true);
+            dispatch(login(true))
+            console.log("logged in")
+        }else{
+            console.log("logged out")
         }
     }, [navigate]);
 
@@ -84,8 +89,9 @@ function Navbar() {
 
     window.addEventListener("resize", showButton);
     useEffect(() => {
-        if (localStorage.getItem("T", "user")) {
-            setisloggedin(true);
+        if (!localStorage.getItem("T")) {
+            setisloggedin(false);
+            console.log(localStorage.getItem("T"))
         }
     }, [navigate]);
     return (
@@ -147,7 +153,7 @@ function Navbar() {
                                     to="/contactus"
                                     onClick={closeMobileMenu}
                                 >
-                                    Contactus
+                                    Contact us
                                 </NavLinks>
                             </NavItem>
                             <NavItem>
@@ -178,7 +184,7 @@ function Navbar() {
                                 </NavItemBtn>
                             )}
                             {isloggedin ? (
-                                <LogoutButton props={setisloggedin} />
+                                <LogoutButton props={setisloggedin(false)} />
                             ) : (
                                 <NavItemBtn>
                                     {button ? (
@@ -335,10 +341,12 @@ function Navbar() {
 
 const LogoutButton = ({ props }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const loggedOut = () => {
         //localStorage.removeItem('T');
         localStorage.clear();
-
+        sessionStorage.clear();
+        dispatch(login(false));
         props(false);
         navigate("/login");
     };

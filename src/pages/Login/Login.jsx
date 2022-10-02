@@ -431,9 +431,9 @@ sendOTP();
             </Grid>
             <Grid container justifyContent="row-reverse">
               <Grid item>
-                <Link href="/login" variant="body2">
+                {/* <Link href="/login" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
             </Grid>
               </Grid>
