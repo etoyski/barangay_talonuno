@@ -29,13 +29,13 @@ import GPS2 from "./components/mapbox/mapBox";
 import ScrollToTop from "./globals.js/ScrollToTop";
 function App() {
     // const [name, setName] = useState('etoy');
-   // const isloggedin = useSelector((state) => state.user.isLoggedIn);
+    const isloggedin = useSelector((state) => state.user.isLoggedIn);
  const dispatch = useDispatch();
-     const [isloggedin, setisloggedin] = useState(false);
+     //const [isloggedin, setisloggedin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem("T") !== undefined) {
+        if (localStorage.getItem("T") !== null) {
             // let token = localStorage.getItem("T");
             dispatch(login(true))
             // validateToken(token) = value true or false
@@ -44,10 +44,10 @@ function App() {
             //let email = localStorage.getItem("email");
             //validateToken({ token, email, navigate });
             // setisloggedin(validateToken({ token, email, navigate }));
-             setisloggedin(true);
+             //setisloggedin(true);
         }else {
             dispatch(login(false))
-            setisloggedin(false)
+            //setisloggedin(false)
         }
     }, [navigate]);
 

@@ -6,19 +6,19 @@ import { Button } from "@mui/material";
 export default [
   {
     title: "Our Home",
-    description: "This is the first slider Image of our carousel",
+    // description: "This is the first slider Image of our carousel",
     urls: Second,
     button:  <Button sx={{ justifyContent: "center", mt:30 }} size="small" variant="outlined">Learn More</Button>
   },
   {
-    title: "Second Slide",
+   // title: "Second Slide",
     description: "This is the second slider Image of our carousel",
     urls: Second,
   },
 
   {
-    title: "Seventh Slide",
-    description: "This is the Seventh slider Image of our carousel",
+    //title: "Seventh Slide",
+   // description: "This is the Seventh slider Image of our carousel",
     urls: "https://scontent.fmnl17-1.fna.fbcdn.net/v/t1.15752-9/309400843_1172542516948953_4515447576892420999_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=ae9488&_nc_ohc=8nDYUZO4HfIAX8snH6y&_nc_ht=scontent.fmnl17-1.fna&oh=03_AVIlQFqIetJIuovz-KCC8dydVlb9JX6rHHwQ53JFki8Utg&oe=635E198B",
     // },",
   },

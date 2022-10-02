@@ -63,7 +63,7 @@ function Navbar() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (localStorage.getItem("T") !== undefined) {
+        if (localStorage.getItem("T") !== null) {
             
             let token = localStorage.getItem("T");
             // validateToken(token) = value true or false
@@ -71,6 +71,7 @@ function Navbar() {
                 //  setisloggedin(true);
             dispatch(login(true))
             console.log("logged in")
+            console.log(user)
         }else{
             console.log("loggedout")
         }
@@ -89,8 +90,9 @@ function Navbar() {
 
     window.addEventListener("resize", showButton);
     useEffect(() => {
-        if (localStorage.getItem("T", "user")) {
-            setisloggedin(true);
+        if (localStorage.getItem("T")) {
+            dispatch(login(true));
+            console.log("1")
         }
     }, [navigate]);
     return (
