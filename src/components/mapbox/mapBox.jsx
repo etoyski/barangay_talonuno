@@ -25,7 +25,7 @@ function GPS2() {
           width: "500px",
           height: "500px",
           borderRadius: "15px",
-          border: "2px solid red"
+          border: "1px solid red"
         }}
         initialViewState={{
           longitude: lng,

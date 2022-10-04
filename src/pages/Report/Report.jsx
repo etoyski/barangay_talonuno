@@ -15,6 +15,7 @@ import { login, validateToken } from '../../redux/userSlice';
 import { useDispatch } from 'react-redux';
 import GPS from '../../components/map/maps';
 import { useEffect } from 'react';
+import GPS2 from '../../components/mapbox/mapBox';
 
 const theme = createTheme({
   palette: {
@@ -162,7 +163,7 @@ const handleSubmit = (e) => {
               
                 <Grid container spacing={1}>
                   <Grid item xs={12} sm={12}>
-                  <GPS />
+                  <GPS2 />
                   </Grid>
                 <Grid item xs={12} sm={6}>
         <TextField

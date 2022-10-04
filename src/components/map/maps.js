@@ -24,8 +24,9 @@ const GPS = () => {
     const [center, setCenter] = useState({ lat:14.4445, lng: 120.9939 });
     const ZOOM_LEVEL = 9;
     const mapRef = useRef();
-
+    const [userLoc, setuserLoc] =useState();
     const location = useGeoLocation();
+
     const showMyLocation = () => {
         if (location.loaded && !location.error){
             mapRef.current.leafletElement.flyTo(
@@ -70,7 +71,7 @@ const GPS = () => {
                 position={[location.coordinates.lat, location.coordinates.lng]}
                 >
                      <Popup>
-                     <b>{location.coordinates.lat} </b>
+                     <b>user loc: {location.coordinates.lat} </b>
                 </Popup>
                 </Marker>
             )}
