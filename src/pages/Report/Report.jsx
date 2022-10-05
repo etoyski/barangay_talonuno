@@ -28,6 +28,7 @@ const theme = createTheme({
     },
   },
 });
+const options = ['Crime Related', 'Fire', 'Health Emergency', 'Calamity Related'];
 
 export default function Report() {
   const [loading, setLoading] = useState(false);
@@ -63,13 +64,14 @@ export default function Report() {
     options: reporttypes.map((option) => option.title),
   };
 
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(options[0]);
+  const [inputValue, setInputValue] = React.useState('');
   const [inputs,setInputs] = useState({
    //email:"",
     name:"",
     address:"",
     addressdetail:"",
-    report:"",
+    //report:"",
     Image:"",
     
 });
@@ -89,7 +91,7 @@ const handleChange = (e) => {
             name: `${sessionStorage.getItem('user')}`,
             address: `${localStorage.getItem('address')}`,
             addressdetail: `${localStorage.getItem('gps')}`,
-            report: inputs.report,
+            report: value,
             Image: inputs.Image,
             
         }, {
@@ -228,19 +230,20 @@ const handleSubmit = (e) => {
         />
       </Grid>
        <Grid item xs={12} sm={6}>
-       <TextField
-          required
-          id="report"
-          name="report"
-          onChange={handleChange} 
-          value={inputs.report} 
-          label="Report"
-          fullWidth
-          autoComplete="Your address detail"
-          variant="filled"
-          
-          error={error}
-        />
+       <Autocomplete
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        id="controllable-states-demo"
+        options={options}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Controllable" />}
+      />
 {/*        
          <Autocomplete
         {...defaultProps}

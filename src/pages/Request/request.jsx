@@ -28,6 +28,7 @@ const theme = createTheme({
     },
   },
 });
+const options = ['Barangay ID', 'Barangay Clearance', 'Barangay ID'];
 
 export default function Request() {
   const [loading, setLoading] = useState(false);
@@ -36,6 +37,9 @@ export default function Request() {
   const dispatch = useDispatch();
   const [isloggedin, setisloggedin] = useState(false);
   const navigate = useNavigate();
+  const [value, setValue] = React.useState(options[0]);
+  const [inputValue, setInputValue] = React.useState('');
+
   // React.useEffect(() => {
   //   axios
   //     .get("https://barangay-talon-uno.vercel.app/main/request")
@@ -80,7 +84,7 @@ export default function Request() {
      try { 
          const res = await axios.post('https://barangay-talon-uno.vercel.app/main/request',{
              //email:inputs.email,
-             type: inputs.type,
+             type: value,
              name: `${sessionStorage.getItem("user")}`,
              address: `${localStorage.getItem("address")}`,
              email: `${localStorage.getItem("email")}`,
@@ -168,6 +172,21 @@ const flatProps = {
               
                 <Grid container spacing={1}>
                 <Grid item xs={12} sm={6}>
+                <Autocomplete
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        id="controllable-states-demo"
+        options={options}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Controllable" />}
+      />
+
   {/* <Autocomplete
         {...defaultProps}
         id="clear-on-escape"
@@ -179,7 +198,7 @@ const flatProps = {
           error={error} label="Request Type" variant="standard" />
         )}
       /> */}
-      <TextField
+      {/* <TextField
             required
             id="type"
             name="type"
@@ -191,7 +210,7 @@ const flatProps = {
             value={inputs.type}
             onChange={handleChange} 
             error={error}
-          />
+          /> */}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
