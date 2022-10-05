@@ -187,11 +187,12 @@ import { useDispatch, useSelector } from "react-redux";
 //     uploadImage,
 //     userData,
 // } from "../redux/slicer/userSlice";
+import PhoneIcon from '@mui/icons-material/Phone';
 import LoadingButton from "@mui/lab/LoadingButton";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+import HomeIcon from '@mui/icons-material/Home';
 const Input = styled("input")({
     display: "none",
 });
@@ -346,6 +347,8 @@ const UserProfile = () => {
                                         Fullname
                                     </Typography>
                                     <TextField
+                                    textTransform="capitalize"
+                                    disabled
                                     fullwidth
                                     name={localStorage.getItem('firstname')}
                                     label={sessionStorage.getItem('user')}
@@ -383,6 +386,7 @@ const UserProfile = () => {
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Email</Typography>
                                 <TextField
+                                disabled
                                      value={localStorage.getItem('email')}
                                     fullWidth
                                     size="small"
@@ -402,13 +406,29 @@ const UserProfile = () => {
                                      value={localStorage.getItem('contact')}
                                     fullWidth
                                     size="small"
-                                    // InputProps={{
-                                    //     startAdornment: (
-                                    //         <InputAdornment position="start">
-                                    //             <EmailOutlinedIcon color="inherit" />
-                                    //         </InputAdornment>
-                                    //     ),
-                                    // }}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <PhoneIcon color="inherit" />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Box>
+                            <Box mt={2}>
+                                <Typography fontWeight={300}>Contact Number</Typography>
+                                <TextField
+                                    onChange={handleChange}
+                                     value={localStorage.getItem('address')}
+                                    fullWidth
+                                    size="small"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <HomeIcon color="inherit" />
+                                            </InputAdornment>
+                                        ),
+                                    }}
                                 />
                             </Box>
                         </Box>

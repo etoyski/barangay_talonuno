@@ -242,7 +242,7 @@ const handleSubmit = (e) => {
         id="controllable-states-demo"
         options={options}
         sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" />}
+        renderInput={(params) => <TextField {...params} label="Report Type" />}
       />
 {/*        
          <Autocomplete

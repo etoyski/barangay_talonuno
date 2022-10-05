@@ -309,7 +309,7 @@ function Navbar() {
                                 }}
                             >
                                 <MenuItem>
-                                    <Typography> {sessionStorage.getItem("user")}</Typography>
+                                    <Typography textTransform="capitalize"> {sessionStorage.getItem("user")}</Typography>
                                     {/* <Avatar /> {name}User */}
                                 </MenuItem>
 

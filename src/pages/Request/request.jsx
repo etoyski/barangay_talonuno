@@ -183,8 +183,8 @@ const flatProps = {
         }}
         id="controllable-states-demo"
         options={options}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" />}
+        sx={{ width: 250 }}
+        renderInput={(params) => <TextField {...params} label="Request Type" />}
       />
 
   {/* <Autocomplete
@@ -218,7 +218,7 @@ const flatProps = {
             id="name"
             name="name"
             
-            label={sessionStorage.getItem("user")} 
+            label="name"
             fullWidth
             autoComplete="Name"
             variant="standard"
@@ -232,7 +232,7 @@ const flatProps = {
             disabled
             id="address"
             name="address"
-            label={localStorage.getItem("address")} 
+            label="address"
             fullWidth
             autoComplete="Address"
             variant="standard"
@@ -246,7 +246,7 @@ const flatProps = {
             disabled
             id="email"
             name="email"
-            label={localStorage.getItem("email")} 
+            label="email"
             fullWidth
             autoComplete="Email Address"
             variant="standard"
@@ -261,7 +261,7 @@ const flatProps = {
     <TextField
         id="phone"
         name="phone"
-        label={localStorage.getItem("contact")} 
+        label="contact number"
         fullWidth
         autoComplete="Contact Number"
         variant="standard"

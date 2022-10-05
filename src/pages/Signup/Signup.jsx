@@ -1,4 +1,4 @@
-import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Alert, Autocomplete, Avatar, Box, Button, Card, CardContent,InputAdornment,Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,9 @@ import Logo from '../../assets/brgylogo.jpg'
 import LoadingButton from "@mui/lab/LoadingButton";
 import swal from 'sweetalert';
 import Swal from "sweetalert2";
-
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import LockIcon from '@mui/icons-material/Lock';
+import BusinessIcon from '@mui/icons-material/Business';
   const theme = createTheme();
 
   const Signup = () => {
@@ -22,7 +24,8 @@ import Swal from "sweetalert2";
       options: gendertypes,
       getOptionLabel: (option) => option.title,
     };
-  
+    const options = ['Male', 'Female', 'Prefer Not To Say'];
+
     const flatProps = {
       options: gendertypes.map((option) => option.title),
     };
@@ -32,6 +35,9 @@ import Swal from "sweetalert2";
   const [alert, setAlert] = useState(false);
   const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
   const PHNUM_REGEX = /^(9|\+639)\d{9}$/;
+  const [value, setValue] = React.useState(options[0]);
+  const [inputValue, setInputValue] = React.useState('');
+  
   useEffect(() => {
     axios
       .get("https://barangay-talon-uno.vercel.app/register")
@@ -75,7 +81,7 @@ import Swal from "sweetalert2";
           city: inputs.city,
           barangay: inputs.barangay,
           street: inputs.street,
-          gender: inputs.gender,
+          gender: value,
           birthday: inputs.birthday,
           password: inputs.password,
           confirmpassword: inputs.confirmpassword
@@ -254,6 +260,9 @@ import Swal from "sweetalert2";
                     value={inputs.contactnumber}  
                     fullWidth 
                     required 
+                     InputProps={{
+                      startAdornment: <InputAdornment position="start">+639</InputAdornment>,
+                    }}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -267,7 +276,14 @@ import Swal from "sweetalert2";
                     onChange={handleChange} 
                     value={inputs.email}  
                     fullWidth 
-                   // required 
+                    required 
+                   InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <EmailOutlinedIcon color="inherit" />
+                        </InputAdornment>
+                    ),
+                }}
                     />
                   </Grid>
                   <Grid item xs={12}sm={6}>
@@ -307,24 +323,30 @@ import Swal from "sweetalert2";
                     error={error}
                     onChange={handleChange} 
                     value={inputs.street} 
-                    fullWidth  />
+                    fullWidth  
+                    InputProps={{
+                      startAdornment: (
+                          <InputAdornment position="start">
+                              <BusinessIcon color="inherit" />
+                          </InputAdornment>
+                      ),
+                  }}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                   <Autocomplete
-        {...defaultProps}
-        id="clear-on-escape"
-        error={error} 
-          onChange={handleChange} 
-          value={inputs.gender} 
-        autoComplete
-        variant="outlined" 
-        includeInputInList
-        renderInput={(params) => (
-          <TextField {...params} required
-          name="Gender"
-
-          label="Gender" variant="standard" />
-        )}
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        id="controllable-states-demo"
+        options={options}
+        sx={{ width: 460 }}
+        renderInput={(params) => <TextField {...params} label="Gender" />}
       />
                   </Grid>
                   <Grid item xs={12}>
@@ -352,6 +374,13 @@ import Swal from "sweetalert2";
                 inputProps={{ minLength: 6 }}
                 id="password"
                 autoComplete="current-password"
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                          <LockIcon color="inherit" />
+                      </InputAdornment>
+                  ),
+              }}
               />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -367,6 +396,13 @@ import Swal from "sweetalert2";
                 type="password"
                 id="confirmpassword"
                 autoComplete="current-password"
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                          <LockIcon color="inherit" />
+                      </InputAdornment>
+                  ),
+              }}
               />
                   </Grid>
                   <Grid item xs={12}>

@@ -12,9 +12,10 @@ import cities from "./cities.json";
 import useGeoLocation from './useGeoLocation';
 import Swal from 'sweetalert2';
 import { Box, Button } from '@mui/material';
+import { useEffect } from 'react';
 //installed with peer deps
 const markerIcon = new L.Icon({
-    iconUrl: require("../../assets/locmarker.png"),
+    iconUrl: require("../../assets/location.png"),
     iconSize: [35,45],
     iconAnchor: [17,46],
     popupAnchor: [0, -46],
@@ -45,23 +46,22 @@ axios.request(options).then(function (response) {
 }).catch(function (error) {
 	console.error(error);
 });
-    const showMyLocation = () => {
-        if (location.loaded && !location.error){
-            mapRef.current.leafletElement.flyTo(
-                [location.coordinates.lat,location.coordinates.lng],
-                 ZOOM_LEVEL, 
-                 {animate: true}
-                 );
-        }else{
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'User Denied Access',
-                showConfirmButton: false,
-                timer: 2200,             
-             });
-        }
-    };
+
+//    useEffect(() => {
+//         if (location.loaded && !location.error){
+//             mapRef.current.leafletElement.flyTo(
+//                 [location.coordinates.lat,location.coordinates.lng],
+//                  ZOOM_LEVEL, 
+//                  {animate: true}
+//                  );
+//         }else{
+//             mapRef.current.leafletElement.flyTo(
+//                 [location.coordinates.lat,location.coordinates.lng],
+//                  ZOOM_LEVEL, 
+//                  {animate: true}
+//                  );
+//         }
+//     },[]);
     return(
         <>
         <Container maxWidth="lg">
@@ -82,8 +82,10 @@ axios.request(options).then(function (response) {
                     <b>{city.city}, {city.country}</b>
                 </Popup>
             </Marker>)}; */}
+            
             {location.loaded && !location.error && 
             (
+                
                 <Marker 
                 icon={markerIcon}
                 position={[location.coordinates.lat, location.coordinates.lng]}
@@ -92,7 +94,7 @@ axios.request(options).then(function (response) {
                      <b> {userLoc}</b>
                 </Popup>
                 </Marker>
-            )}
+            ) }
         
             </MapContainer>
             {/* <Button onClick={showMyLocation}> Get Location</Button> */}
