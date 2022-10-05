@@ -18,12 +18,13 @@ function GPS2() {
     <div className="App">
     {/* {console.log(process.env.REACT_APP_MAP_KEY)} */}
       
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
     <Map
         mapboxAccessToken="pk.eyJ1Ijoiam9obnJlZDE0MyIsImEiOiJjbDd6eHpzejMwMHZ1NDF0OXNhenZ5Z2ZxIn0.nNF5rACu_UGIldnxJez_Ow"
+        
         style={{
-          width: "500px",
-          height: "500px",
+          width: "300px",
+          height: "300px",
           borderRadius: "15px",
           border: "1px solid red"
         }}
@@ -31,7 +32,7 @@ function GPS2() {
           longitude: lng,
           latitude: lat,
         }}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapStyle="mapbox://styles/mapbox/streets-v11"
       >
         <Marker longitude={lng} latitude={lat} />
         <NavigationControl position="bottom-right" />

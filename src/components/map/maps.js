@@ -24,9 +24,27 @@ const GPS = () => {
     const [center, setCenter] = useState({ lat:14.4445, lng: 120.9939 });
     const ZOOM_LEVEL = 9;
     const mapRef = useRef();
-    const [userLoc, setuserLoc] =useState();
+    const [userLoc, setuserLoc] =useState("");
     const location = useGeoLocation();
+    const axios = require("axios");
 
+const options = {
+  method: 'GET',
+  url: 'https://trueway-geocoding.p.rapidapi.com/ReverseGeocode',
+  params: {location: '15.3780224, 120.5927936', language: 'en'},
+  headers: {
+    'X-RapidAPI-Key': '144c2c4729mshf9d8eac19730591p1ce751jsn00f27a0c1e16',
+    'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
+  }
+};
+
+axios.request(options).then(function (response) {
+	console.log(response.data.results[0]);
+    setuserLoc(response.data.results[0].address);
+    localStorage.setItem('gps', response.data.results[0].address)
+}).catch(function (error) {
+	console.error(error);
+});
     const showMyLocation = () => {
         if (location.loaded && !location.error){
             mapRef.current.leafletElement.flyTo(
@@ -71,11 +89,11 @@ const GPS = () => {
                 position={[location.coordinates.lat, location.coordinates.lng]}
                 >
                      <Popup>
-                     <b>user loc: {location.coordinates.lat} </b>
+                     <b> {userLoc}</b>
                 </Popup>
                 </Marker>
             )}
-
+        
             </MapContainer>
             {/* <Button onClick={showMyLocation}> Get Location</Button> */}
         </Container>

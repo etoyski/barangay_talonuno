@@ -88,7 +88,7 @@ const handleChange = (e) => {
            // type: inputs.type,
             name: `${sessionStorage.getItem('user')}`,
             address: `${localStorage.getItem('address')}`,
-            addressdetail: inputs.addressdetail,
+            addressdetail: `${localStorage.getItem('gps')}`,
             report: inputs.report,
             Image: inputs.Image,
             
@@ -163,7 +163,7 @@ const handleSubmit = (e) => {
               
                 <Grid container spacing={1}>
                   <Grid item xs={12} sm={12}>
-                  <GPS2 />
+                  <GPS />
                   </Grid>
                 <Grid item xs={12} sm={6}>
         <TextField
@@ -214,11 +214,11 @@ const handleSubmit = (e) => {
       </Grid>
       <Grid item xs={12}>
         <TextField
-          required
+          disabled
           id="addressdetail"
           name="addressdetail"
           onChange={handleChange} 
-          value={inputs.addressdetail} 
+          value={localStorage.getItem('gps')}
           label="addressdetail"
           fullWidth
           autoComplete="Your address detail"
