@@ -90,7 +90,7 @@ useEffect(() => {
   return (
   <>
   <VerticalTabs/>
-    <Box sx={{p:5, ml:20}} alignItems="center">
+    <Box sx={{p:3, ml:5}} alignItems="center">
       <Container alignItems="center">
         
         <ButtonGroup
