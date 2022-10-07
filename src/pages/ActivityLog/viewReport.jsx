@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import {Typography, Paper, Grid, Stack, Divider, ButtonGroup, Button} from '@mui/material';
+import {Typography, Paper, Grid, Stack, Divider} from '@mui/material';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -26,6 +26,7 @@ import { useDispatch } from 'react-redux';
 import {login} from '../../redux/userSlice'
 import { useNavigate } from 'react-router-dom';
 import VerticalTabs from '../../components/Tabs/Tabs';
+import AcitivityLog from './viewActivities';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -37,7 +38,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function AcitivityLog() {
+export default function ViewReports() {
   const [expanded, setExpanded] = React.useState("");
   const [report, setReport] = useState([])
   const [request, setRequest] = useState([])
@@ -89,34 +90,21 @@ useEffect(() => {
 //moved box up to container
   return (
   <>
-  <VerticalTabs/>
-    <Box sx={{p:5, ml:20}} alignItems="center">
-      <Container alignItems="center">
-        
-        <ButtonGroup
-      
-      variant="contained"
-      aria-label="Disabled elevation buttons"
-    >
-      <Button  onClick={() => navigate('/viewreports')}to="/viewreports">View Reports</Button>
-      <Button onClick={() => navigate('/viewrequest')}to="/viewrequests">View Requests</Button>
-    </ButtonGroup>
-      </Container>
-    </Box>
-  {/* <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
+  <AcitivityLog/>
+  <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
     <Container sx={{mt:2}} >
     
    
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start ">
         <Grid item xs="auto">
         
-      { request.map( (user,index) => (
+      { report.map( (user,index) => (
         <>
         <Typography variant="h6" color="black">
           Email: {user.email}
         </Typography>
         {
-            user.request.map((req, index) => (
+            user.reports.map((rep, index) => (
 <Card sx={{ maxWidth: 345,mt:5 }} key={index}>
 
 <ExpandMore
@@ -131,33 +119,28 @@ useEffect(() => {
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">
-    Name: {req.name}
+    Name: {rep.name}
   </Typography>
 </CardContent>
 
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Address: {req.address}
+    Address: {rep.address}
+  </Typography>
+</CardContent>
+<CardContent>
+       <Typography variant="body2" color="text.secondary">
+         Address: {rep.addressdetail}
+       </Typography>
+     </CardContent>
+<CardContent>
+  <Typography variant="body2" color="text.secondary">
+    Report Type: {rep.report}
   </Typography>
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Status:{req.phone}
-  </Typography>
-</CardContent>
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-    Report Type: {req.type}
-  </Typography>
-</CardContent>
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-    Purpose:{req.purpose}
-  </Typography>
-</CardContent>
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-    Status:{req.process}
+    Status:{rep.process}
   </Typography>
 </CardContent>
 </Collapse>
@@ -181,7 +164,7 @@ useEffect(() => {
     </Container>
     </Box>
     
-    <Divider/> */}
+    <Divider/>
     
     </>
   );

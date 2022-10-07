@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import {Typography, Paper, Grid, Stack, Divider, ButtonGroup, Button} from '@mui/material';
+import {Typography, Paper, Grid, Stack, Divider} from '@mui/material';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -26,6 +26,7 @@ import { useDispatch } from 'react-redux';
 import {login} from '../../redux/userSlice'
 import { useNavigate } from 'react-router-dom';
 import VerticalTabs from '../../components/Tabs/Tabs';
+import AcitivityLog from './viewActivities';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -37,7 +38,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function AcitivityLog() {
+export default function ViewRequest() {
   const [expanded, setExpanded] = React.useState("");
   const [report, setReport] = useState([])
   const [request, setRequest] = useState([])
@@ -89,21 +90,8 @@ useEffect(() => {
 //moved box up to container
   return (
   <>
-  <VerticalTabs/>
-    <Box sx={{p:5, ml:20}} alignItems="center">
-      <Container alignItems="center">
-        
-        <ButtonGroup
-      
-      variant="contained"
-      aria-label="Disabled elevation buttons"
-    >
-      <Button  onClick={() => navigate('/viewreports')}to="/viewreports">View Reports</Button>
-      <Button onClick={() => navigate('/viewrequest')}to="/viewrequests">View Requests</Button>
-    </ButtonGroup>
-      </Container>
-    </Box>
-  {/* <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
+  <AcitivityLog/>
+  <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
     <Container sx={{mt:2}} >
     
    
@@ -181,7 +169,7 @@ useEffect(() => {
     </Container>
     </Box>
     
-    <Divider/> */}
+    <Divider/>
     
     </>
   );

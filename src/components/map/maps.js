@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 const markerIcon = new L.Icon({
     iconUrl: require("../../assets/location.png"),
     iconSize: [35,45],
-    iconAnchor: [17,46],
+    iconAnchor: [17,45],
     popupAnchor: [0, -46],
 //iconAnchor:[15,45]
 });
@@ -28,11 +28,14 @@ const GPS = () => {
     const [userLoc, setuserLoc] =useState("");
     const location = useGeoLocation();
     const axios = require("axios");
-
+    //const lat = location.coordinates.lat
+    //const lng = location.coordinates.lng
+     const [lat,setLat]= useState([location.coordinates.lat]);
+     const [lng,setLng]= useState([location.coordinates.lat]);
 const options = {
   method: 'GET',
   url: 'https://trueway-geocoding.p.rapidapi.com/ReverseGeocode',
-  params: {location: '15.3780224, 120.5927936', language: 'en'},
+  params: {location: `${[location.coordinates.lat, location.coordinates.lng]}`, language: 'en'},
   headers: {
     'X-RapidAPI-Key': '144c2c4729mshf9d8eac19730591p1ce751jsn00f27a0c1e16',
     'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
@@ -90,8 +93,10 @@ axios.request(options).then(function (response) {
                 icon={markerIcon}
                 position={[location.coordinates.lat, location.coordinates.lng]}
                 >
+                    
                      <Popup>
                      <b> {userLoc}</b>
+                     
                 </Popup>
                 </Marker>
             ) }

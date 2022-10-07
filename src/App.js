@@ -28,7 +28,10 @@ import { useDispatch, useSelector } from "react-redux";
 import GPS2 from "./components/mapbox/mapBox";
 import ScrollToTop from "./globals.js/ScrollToTop";
 import ViewReport from "./pages/ActivityLog/viewActivities";
-import adminDashboard from "./admin/pages/dashboard";
+import ViewReports from "./pages/ActivityLog/viewReport";
+import ViewRequest from "./pages/ActivityLog/viewRequest";
+import AcitivityLog from "./pages/ActivityLog/viewActivities";
+
 function App() {
     // const [name, setName] = useState('etoy');
     const isloggedin = useSelector((state) => state.user.isLoggedIn);
@@ -68,7 +71,7 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/gps" element={<GPS2 />} />
                     <Route path="/map" element={<GPS />} />
-                    <Route path="/viewreport" element={<ViewReport />} />
+                    <Route path="/viewrequest" element={<ViewRequest />} />
                     <Route path="/welcomepage" element={<Welcomepage />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/otp" element={<OTP />} />
@@ -77,6 +80,8 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/viewreports" element={<ViewReports />} />
+                    <Route path="/activitylog" element={<AcitivityLog />} />
                     <Route path="/tabs" element={<VerticalTabs />} />
                    {isloggedin ? (  <Route path="/user-profile" element={<UserProfile />}  /> ) : "" }
                     {isloggedin ? (<Route
