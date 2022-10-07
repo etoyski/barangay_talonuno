@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 const markerIcon = new L.Icon({
     iconUrl: require("../../assets/location.png"),
     iconSize: [35,45],
-    iconAnchor: [17,45],
+    iconAnchor: [17,46],
     popupAnchor: [0, -46],
 //iconAnchor:[15,45]
 });
