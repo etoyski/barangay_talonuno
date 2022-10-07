@@ -93,19 +93,20 @@ useEffect(() => {
   <AcitivityLog/>
   <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
     <Container sx={{mt:2}} maxWidth="md" >
-    
+    <Typography variant='h6' textTransform="capitalize">Showing All Request of <b>{sessionStorage.getItem("user")} </b></Typography>
+      <Divider/>
    
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start ">
         <Grid item xs="auto">
         
       { report.map( (user,index) => (
         <>
-        <Typography variant="h6" color="black">
+        {/* <Typography variant="h6" color="black">
           Email: {user.email}
-        </Typography>
+        </Typography> */}
         {
             user.reports.map((rep, index) => (
-<Card sx={{ maxWidth: 345,mt:5 }} key={index}>
+<Card sx={{ maxWidth: 300,mt:5 }} key={index}>
 
 <ExpandMore
     expand={true}
