@@ -523,3 +523,4 @@ const ProfileImage = ({ profileImage, previewImg }) => {
 };
 
 export default UserProfile;
+
