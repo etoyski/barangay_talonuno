@@ -2,7 +2,7 @@ import { Paper, Typography } from '@mui/material'
 import { Box, Container } from '@mui/system'
 import React from 'react'
 
-const emailVerification = () => {
+const emailConfirm = () => {
   return (
     <Box bgcolor="#f2f4fb" mt={2} pb={10} height="100vh">
     <Container>
@@ -16,4 +16,4 @@ const emailVerification = () => {
   )
 }
 
-export default emailVerification
+export default emailConfirm
