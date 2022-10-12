@@ -4,7 +4,7 @@
   padding-top: 30px;
   align-items:flex-end;
   align-content: flex-end;
-  height: 100;
+  height: 80;
   overflow: auto;
   -webkit-overflow-scrolling: touch; /*<<--- THIS IS THE KEY*/ 
   /*border: solid black 1px;*/
@@ -14,7 +14,7 @@
     top: 0;
     left: 0;
     width: 80%;
-    height: 100%;
+    height: 70%;
   }
 
   .myIframe2 {

@@ -31,7 +31,7 @@ import ViewReport from "./pages/ActivityLog/viewActivities";
 import ViewReports from "./pages/ActivityLog/viewReport";
 import ViewRequest from "./pages/ActivityLog/viewRequest";
 import AcitivityLog from "./pages/ActivityLog/viewActivities";
-
+import emailVerification from "./pages/Verification/emailVerification";
 function App() {
     // const [name, setName] = useState('etoy');
     const isloggedin = useSelector((state) => state.user.isLoggedIn);
@@ -83,6 +83,7 @@ function App() {
                     <Route path="/viewreports" element={<ViewReports />} />
                     <Route path="/activitylog" element={<AcitivityLog />} />
                     <Route path="/tabs" element={<VerticalTabs />} />
+                    <Route path="/confirm" element={<emailVerification />} />
                    {isloggedin ? (  <Route path="/user-profile" element={<UserProfile />}  /> ) : "" }
                     {isloggedin ? (<Route
                         path="/edit-user-profile"

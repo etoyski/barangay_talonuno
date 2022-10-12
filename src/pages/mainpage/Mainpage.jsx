@@ -26,11 +26,22 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 //import Header from "../components/Header";
 import { useSelector } from "react-redux";
 import VerticalTabs from "../../components/Tabs/Tabs";
+import ActionAreaCard from "../Home/cards";
 // import { userData } from "../redux/slicer/userSlice";
+import { makeStyles, styled } from '@mui/material/styles';
 
-
-
-
+const iframe='<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBrgyTalon1&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="420" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
+function Iframe(props) {
+  return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
+}
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+  
 const Details = ({ icon, label, variant, size }) => {
     return (
         <Chip
@@ -46,9 +57,22 @@ const Details = ({ icon, label, variant, size }) => {
 
 const UserProfile = () => {
     //const user = useSelector(userData);
-
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     //console.log(user)
+    const current = new Date();
+    const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
+    //const time = current.toLocaleTimeString("en-US");
+    const day = weekday[current.getDay()];
+    const [time, setTime] = React.useState();
 
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleString());
+    }, 1000);
+    return () => {
+        clearInterval(timer);
+      };
+    }, []);
     return (    
         <React.Fragment>
             {/* <Header title="Dashboard" /> */}
@@ -141,22 +165,24 @@ const UserProfile = () => {
                     >
                         <Box width="100%">
                             <Typography variant="h5" fontWeight="bold" mb={2}>
-                                Activity
+                                    
                             </Typography>
 
                             <Divider />
-
-                            <Activity />
+                            <ActionAreaCard/>
                         </Box>
 
                         <Box width="100%">
+                            <Typography variant="h5" fontWeight="" mb={2}>
+                                Announcement as of 
+                            </Typography>
                             <Typography variant="h5" fontWeight="bold" mb={2}>
-                                Announcement
+                                 {day} {time}
                             </Typography>
 
                             <Divider />
 
-                            <Section title="Today">
+                            <Section title="Updates">
                                 <Stack direction="column" gap={2}>
                                     <Box width="100%">
                                  
@@ -166,7 +192,7 @@ const UserProfile = () => {
                                                 fontWeight={300}
                                                 p={1}
                                             >
-                                                8:00am Meet Up
+                                               
                                             </Typography>
                                         </Divider>
                                         <Paper
@@ -187,29 +213,18 @@ const UserProfile = () => {
                                                 justifyContent="space-between"
                                                 gap={1}
                                             >
-                                                <Box>
-                                                    <Typography
-                                                        fontWeight="bold"
-                                                        color="inherit"
-                                                    >
-                                                         {localStorage.getItem("user")}
-                                                    </Typography>
-                                                    <Typography
-                                                        variant="body2"
-                                                        fontWeight={300}
-                                                    >
-                                                       {localStorage.getItem("email")}
-                                                    </Typography>
-                                                </Box>
-                                                <IconButton>
-                                                    <CloseRoundedIcon color="primary" />
-                                                </IconButton>
+                                              
+                                              <Paper elevation={0} sx={{width:355}}>
+                                        <Item >        
+                                         <Iframe iframe={iframe} />
+                                          </Item>
+                                             </Paper>
                                             </Stack>
                                         </Paper>
                                     </Box>
 
                                     <Box width="100%">
-                                        <Divider>
+                                        {/* <Divider>
                                             <Typography
                                                 variant="body2"
                                                 fontWeight={300}
@@ -217,7 +232,7 @@ const UserProfile = () => {
                                             >
                                                 10:00pm Online
                                             </Typography>
-                                        </Divider>
+                                        </Divider> */}
                                         {/* <Paper
                                             sx={{
                                                 backgroundColor: (theme) =>

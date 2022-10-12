@@ -96,16 +96,18 @@ useEffect(() => {
     <Typography variant='h6' textTransform="capitalize">Showing All Report of <b>{sessionStorage.getItem("user")} </b></Typography>
       <Divider/>
    
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start ">
-        <Grid item xs="auto">
+        
         
       { report.map( (user,index) => (
         <>
+           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start ">
+        <Grid item xs="auto"  alignItems="flex-start ">
         {/* <Typography variant="h6" color="black">
           Email: {user.email}
         </Typography> */}
         {
             user.reports.map((rep, index) => (
+           
 <Card sx={{ maxWidth: 300,mt:5 }} key={index}>
 
 <ExpandMore
@@ -151,6 +153,8 @@ useEffect(() => {
 
             ))
         }
+        </Grid>
+      </Grid>
         </>
 ))
         
@@ -159,8 +163,7 @@ useEffect(() => {
              
      
      
-      </Grid>
-      </Grid>
+    
       
     </Container>
     </Box>
