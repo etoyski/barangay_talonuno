@@ -91,17 +91,30 @@ useEffect(() => {
   return (
   <>
   <AcitivityLog/>
-  <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
-    <Container sx={{mt:2}} maxWidth="md" >
+  <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:2,  }} alignItems="flex-start">
+    <Container sx={{mt:2}} maxWidth="lg" >
     <Typography variant='h6' textTransform="capitalize">Showing All Report of <b>{sessionStorage.getItem("user")} </b></Typography>
       <Divider/>
-   
+      <Grid
+        container
+        spacing={2}
+        sx={{
+         pl:4,
+          borderTop: 'var(--Grid-borderWidth) solid',
+          borderLeft: 'var(--Grid-borderWidth) solid',
+          borderColor: 'divider',
+          '& > div': {
+            borderRight: 'var(--Grid-borderWidth) solid',
+            borderBottom: 'var(--Grid-borderWidth) solid',
+            borderColor: 'divider',
+          },
+        }}
+      >
         
         
       { report.map( (user,index) => (
         <>
-           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start ">
-        <Grid item xs="auto"  alignItems="flex-start ">
+          
         {/* <Typography variant="h6" color="black">
           Email: {user.email}
         </Typography> */}
@@ -153,14 +166,14 @@ useEffect(() => {
 
             ))
         }
-        </Grid>
-      </Grid>
+       
         </>
 ))
         
 }       
 
-             
+</Grid>
+      
      
      
     

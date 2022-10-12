@@ -104,7 +104,7 @@ import BusinessIcon from '@mui/icons-material/Business';
         title: 'User Created'
       });
       console.log(res.data);
-      navigate("/login");
+      navigate("/confirm");
       
     } catch (error) {
       setError(true)
