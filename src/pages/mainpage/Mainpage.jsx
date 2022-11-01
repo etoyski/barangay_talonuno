@@ -29,7 +29,11 @@ import VerticalTabs from "../../components/Tabs/Tabs";
 import ActionAreaCard from "../Home/cards";
 // import { userData } from "../redux/slicer/userSlice";
 import { makeStyles, styled } from '@mui/material/styles';
-
+import { LoadingButton } from "@mui/lab";
+import axios from "axios";
+import swal from 'sweetalert';
+import EmergencyShareIcon from '@mui/icons-material/EmergencyShare';
+import { useNavigate } from "react-router-dom";
 const iframe='<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBrgyTalon1&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="420" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
 function Iframe(props) {
   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
@@ -57,6 +61,8 @@ const Details = ({ icon, label, variant, size }) => {
 
 const UserProfile = () => {
     //const user = useSelector(userData);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     //console.log(user)
     const current = new Date();
@@ -64,7 +70,58 @@ const UserProfile = () => {
     //const time = current.toLocaleTimeString("en-US");
     const day = weekday[current.getDay()];
     const [time, setTime] = React.useState();
+    const [error,setError] = useState(false); 
 
+    const sendRequest = async () => {
+        setLoading(true)
+        try { 
+            const res = await axios.post('https://barangay-talon-uno.vercel.app/main/report',{
+                email:`${localStorage.getItem('email')}`,
+               // type: inputs.type,
+                name: `${sessionStorage.getItem('user')}`,
+                address: `${localStorage.getItem('address')}`,
+                addressdetail: `${localStorage.getItem('gps')}`,
+                report: 'EMERGENCY/SOS',
+                Image: '',
+                
+            }, {
+              headers:{
+                "Authorization": "Bearer " + `${localStorage.getItem('T')}`  
+              }
+            })
+            swal({
+              title: "Report Submitted!",
+              text: "Report Successful",
+              icon: "success",
+              button: "OK",
+            });
+              
+                console.log(res.data.token);
+               // localStorage.setItem('T', res.data.token);
+               //navigate('/report');
+    
+        }catch(error) {
+          setError(true)
+          swal({
+            title: "Report Not Submitted!",
+            text: "Report Unsuccessful",
+            icon: "error",
+            button: "OK",
+            
+          });
+                console.log(error.response);
+        }finally {
+          setLoading(false)
+        }
+      
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        //console.log(inputs);
+     
+        sendRequest();
+    
+    };
   React.useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date().toLocaleString());
@@ -96,6 +153,7 @@ const UserProfile = () => {
                             justifyContent="space-between"
                             gap={2}
                         >
+                            
                             <Box>
                                 <Stack
                                     direction="row"
@@ -149,7 +207,23 @@ const UserProfile = () => {
                     </Stack>
                 </Stack>
             </Container>
-
+            <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <LoadingButton 
+             loading = {loading}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2, height:50}}
+              color="error"
+              startIcon={<EmergencyShareIcon style={{width:'23px', height: '23px'}}/>}
+                                     
+              >
+           
+          <Typography variant="h5" href='tel: 177'> SOS</Typography>
+          </LoadingButton>         
+      
+        </Box>
+           
             <Box bgcolor="#f2f4fb" mt={2} pb={10} height="100vh">
                 <Container sx={{ pt: 5, pb: 5 }}>
                     <Stack

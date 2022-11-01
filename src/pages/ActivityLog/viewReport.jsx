@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import {Typography, Paper, Grid, Stack, Divider} from '@mui/material';
+import {Typography, Paper, Grid, Stack, Divider, Button} from '@mui/material';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -42,6 +42,7 @@ export default function ViewReports() {
   const [expanded, setExpanded] = React.useState("");
   const [report, setReport] = useState([])
   const [request, setRequest] = useState([])
+  const [statuss, setStatuss] = useState('')
 const dispatch = useDispatch();
 const navigate = useNavigate()
 const getData = async () => {
@@ -70,7 +71,18 @@ useEffect(() => {
 
 
 }, []);
+// const handleFilter = async (status) => {
+ 
+//  return await axios
+//  .get(`https://barangay-talon-uno.vercel.app/log?process=${status}`)
+//  .then((response) => {
 
+//   setReport(response.data.replog.filter( (i) => i.email === localStorage.getItem("email") ))
+//   setStatus(response.data);
+
+//  })
+//  .catch((err) => console.log(err));
+// }
    useEffect(() => {
        if (localStorage.getItem("T") !== null) {
            // let token = localStorage.getItem("T");
@@ -87,6 +99,9 @@ useEffect(() => {
            //setisloggedin(false)
        }
    }, [navigate]);
+const handleFilter = async () => {
+  setStatuss('')
+}
 //moved box up to container
   return (
   <>
@@ -95,6 +110,21 @@ useEffect(() => {
     <Container sx={{mt:2}} maxWidth="lg" >
     <Typography variant='h6' textTransform="capitalize">Showing All Report of <b>{sessionStorage.getItem("user")} </b></Typography>
       <Divider/>
+      <Typography> Filter Status By: </Typography>
+      <Stack direction="row" spacing={1}>
+      <Button variant="contained" color="error" onClick={() => setStatuss("Cancelled")}>
+        Cancelled
+      </Button>
+      <Button variant="contained" color="warning" onClick={() => setStatuss("Pending")}>
+        Pending
+      </Button>
+      <Button variant="contained" color="success" onClick={() => setStatuss("Success")}>
+        Success
+      </Button>
+      <Button variant="contained" color="primary" onClick={() => setStatuss("")}>
+        Show All
+      </Button>
+    </Stack>
       <Grid
         container
         spacing={2}
@@ -119,7 +149,7 @@ useEffect(() => {
           Email: {user.email}
         </Typography> */}
         {
-            user.reports.map((rep, index) => (
+            user.reports.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).map((rep, index) => (
            
 <Card sx={{ maxWidth: 300,mt:5 }} key={index}>
 
