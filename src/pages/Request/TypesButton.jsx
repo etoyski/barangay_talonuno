@@ -37,8 +37,8 @@ useEffect(()=> {
 { isloggedin ? <CardActionArea >
   <CardMedia 
   />
-  <CardContent  onClick={() => navigate('/request')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+  <CardContent  onClick={() => navigate('/form=barangayid')}to="/form=barangayid">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:5, ml:3}}>
     <BadgeOutlinedIcon /> Barangay ID 
     </Typography>
     <Typography variant="body2" color="text.secondary"> 
@@ -52,7 +52,7 @@ useEffect(()=> {
   <CardMedia 
   />
   <CardContent  onClick={() => navigate('/login')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:5, ml:3}}>
     <BadgeOutlinedIcon /> Barangay ID 
     </Typography>
     <br/>
@@ -62,13 +62,13 @@ useEffect(()=> {
 
 {isloggedin ?<CardActions>
   <br/>
-    <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+    {/* <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
       Request
-    </Button>
+    </Button> */}
   </CardActions> : <CardActions>
-    <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+    {/* <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
       Request
-    </Button>
+    </Button> */}
   </CardActions>}
 </Card>
 </Roll>
@@ -82,7 +82,7 @@ useEffect(()=> {
     
   />
 <CardContent>
-    <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/request')}to="/login" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/request')}to="/login" color="#1b5e20" sx={{mt:4, ml:3}}>
     <ArticleOutlinedIcon /> Barangay Clearance
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -95,7 +95,7 @@ useEffect(()=> {
   <CardMedia 
   />  
 <CardContent>
-    <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/login')}to="/login" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" onClick={() => navigate('/login')}to="/login" color="#1b5e20" sx={{mt:5, ml:3}}>
     <ArticleOutlinedIcon /> Barangay Clearance
     </Typography>
     
@@ -105,11 +105,11 @@ useEffect(()=> {
 </CardActionArea>}
 
 <CardActions>
-    {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
-      Request
-    </Button> :<Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
-      Request
-    </Button> }
+      {/* {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+        Request
+      </Button> :<Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
+        Request
+      </Button> } */}
   </CardActions>
 </Card>
 </Roll>
@@ -123,7 +123,7 @@ useEffect(()=> {
     
   />
   <CardContent onClick={() => navigate('/request')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:5, ml:3}}>
     <BadgeOutlinedIcon />  Barangay Residency
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -137,7 +137,7 @@ useEffect(()=> {
     
   />
   <CardContent onClick={() => navigate('/login')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" >
     <BadgeOutlinedIcon />  Barangay Residency
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -147,11 +147,11 @@ useEffect(()=> {
 </CardActionArea>}
 
 <CardActions>
-    {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+    {/* {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
       Request
     </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
       Request
-    </Button>}
+    </Button>} */}
   </CardActions>
 </Card>
 </Roll>
@@ -163,14 +163,14 @@ useEffect(()=> {
 {isloggedin ? <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/request')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:4, ml:3}}>
     <BadgeOutlinedIcon />  Post Residency
     </Typography>       
   </CardContent>
 </CardActionArea> : <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/login')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:4, ml:3}}>
     <BadgeOutlinedIcon />  Post Residency
     </Typography>
     <br/>
@@ -180,11 +180,11 @@ useEffect(()=> {
   </CardContent>
 </CardActionArea>}
 <CardActions>
-    {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+    {/* {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
       Request
     </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
       Request
-    </Button>}
+    </Button>} */}
   </CardActions>
 </Card>
 </Roll>
@@ -196,7 +196,7 @@ useEffect(()=> {
 {isloggedin ? <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/request')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:4, ml:3}}>
      <WorkOutlineOutlinedIcon /> Local Employment
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -206,7 +206,7 @@ useEffect(()=> {
 </CardActionArea> : <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/login')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:4, ml:3}}>
      <WorkOutlineOutlinedIcon /> Local Employment
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -215,11 +215,11 @@ useEffect(()=> {
   </CardContent>
 </CardActionArea>}
 <CardActions>
-    {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+    {/* {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
       Request
     </Button>: <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
       Request
-    </Button>}
+    </Button>} */}
   </CardActions>
 </Card>
 </Roll>
@@ -231,7 +231,7 @@ useEffect(()=> {
 {isloggedin ? <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/request')}to="/request">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:5, ml:3}}>
       <HealingOutlinedIcon /> Green Card
     </Typography>
     <br/>
@@ -242,7 +242,7 @@ useEffect(()=> {
 </CardActionArea> : <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/login')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:5, ml:3}}>
       <HealingOutlinedIcon /> Green Card
     </Typography>
     <br/>
@@ -253,11 +253,11 @@ useEffect(()=> {
   </CardContent>
 </CardActionArea> }
 <CardActions>
-    {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/request">
+    {/* {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/request">
       Request
     </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
       Request
-    </Button>} 
+    </Button>}  */}
   </CardActions>
 </Card>
 </Roll>
@@ -269,7 +269,7 @@ useEffect(()=> {
 {isloggedin ?<CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/request')}to="/request">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:4, ml:3}}>
       <SupportOutlinedIcon />Libreng Libing Program
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -279,7 +279,7 @@ useEffect(()=> {
 </CardActionArea> : <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/login')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:4, ml:3}}>
       <SupportOutlinedIcon />Libreng Libing Program
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -288,11 +288,11 @@ useEffect(()=> {
   </CardContent>
 </CardActionArea>}
 <CardActions>
-   {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+   {/* {isloggedin ?<Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
       Request
     </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
       Request
-    </Button>} 
+    </Button>}  */}
   </CardActions>
 </Card>
 </Roll>
@@ -303,7 +303,7 @@ useEffect(()=> {
 {isloggedin ? <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/request')}to="/login">
-    <Typography gutterBottom variant="h5" component="div">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:4, ml:3}}>
      <AccountBalanceOutlinedIcon /> Bank Application
     </Typography>
     <Typography variant="body2" color="text.secondary">
@@ -324,11 +324,11 @@ useEffect(()=> {
   </CardContent>
 </CardActionArea>}
 <CardActions>
-    {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
+    {/* {isloggedin ? <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login">
       Request
     </Button> : <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login">
       Request
-    </Button>}
+    </Button>} */}
   </CardActions>
 </Card>
 </Roll>
@@ -340,7 +340,7 @@ useEffect(()=> {
 {isloggedin ? <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/request')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#90B77D">
+    <Typography gutterBottom variant="h5" component="div" color="#1b5e20" sx={{mt:5, ml:3}}>
     <ArticleOutlinedIcon /> Indigency
     </Typography>
     <Typography variant="body2" color="#90B77D">
@@ -350,7 +350,7 @@ useEffect(()=> {
 </CardActionArea> : <CardActionArea>
   <CardMedia/>
   <CardContent onClick={() => navigate('/login')}to="/login">
-    <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
+    <Typography gutterBottom variant="h5" component="div" color="#90B77D" sx={{mt:5, ml:3}}>
     <ArticleOutlinedIcon /> Indigency
     </Typography>
     <br/>
@@ -361,11 +361,11 @@ useEffect(()=> {
   </CardContent>
 </CardActionArea>}
 <CardActions>
-    {isloggedin ?  <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login"> 
+    {/* {isloggedin ?  <Button size="small" color="primary" onClick={() => navigate('/request')}to="/login"> 
       Request
     </Button>: <Button size="small" color="primary" onClick={() => navigate('/login')}to="/login"> 
       Request
-    </Button>}
+    </Button>} */}
   </CardActions>
 </Card>
 </Roll>

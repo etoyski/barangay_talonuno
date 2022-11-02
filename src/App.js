@@ -34,6 +34,7 @@ import AcitivityLog from "./pages/ActivityLog/viewActivities";
 import ConfirmEmail from "./pages/Verification/confirmEmail";
 import ConfirmedEmail from "./pages/Verification/confirmed";
 import RequestLanding from "./pages/Request/RequestLanding";
+import BarangayID from "./pages/DocumentForms/BarangayID";
 function App() {
     // const [name, setName] = useState('etoy');
     const isloggedin = useSelector((state) => state.user.isLoggedIn);
@@ -87,6 +88,8 @@ function App() {
                     <Route path="/tabs" element={<VerticalTabs />} />
                     <Route path="/confirm" element={<ConfirmEmail />} />
                     
+                    <Route path="/form=barangayid" element={<BarangayID />} />
+
                     <Route path="/accountconfirmed" element={<ConfirmedEmail />} />
                    {isloggedin ? (  <Route path="/user-profile" element={<UserProfile />}  /> ) : "" }
                     {isloggedin ? (<Route
