@@ -165,9 +165,9 @@ export default function NotifIcon() {
           <TimelineDot />
           <TimelineConnector />
         </TimelineSeparator>
-        <Paper component="card" sx={{width:270, mr:6}}>
+        <Paper component="card" sx={{width:260, mr:6}}>
         <List style={{maxHeight: '100%', overflow: 'auto'}}>
-        <TimelineContent><b>Added a new activity</b></TimelineContent>
+        <TimelineContent><b><Typography textTransform="capitalize"  > {rep.name} </Typography> Added a new activity</b></TimelineContent>
         <TimelineContent>Type of Activity: {rep.report}</TimelineContent>
         <TimelineContent>Status: {rep.process}</TimelineContent>
         </List>
