@@ -48,7 +48,12 @@ const dispatch = useDispatch();
 const navigate = useNavigate()
 const getData = async () => {
     try {
-        const res = await axios.get("https://barangay-talon-uno.vercel.app/log")
+        const res = await axios.get("https://barangay-talon-uno.vercel.app/log",  {
+          headers:
+          {
+           "Authorization": "Bearer " + `${localStorage.getItem('T')}`  
+          }
+        })
 
         console.log("data: ", res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") ) );
         console.log("data: ", res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ) );
@@ -102,7 +107,7 @@ useEffect(() => {
       <Button variant="contained" color="error" onClick={() => setStatuss("Cancelled")}>
         Cancelled
       </Button>
-      <Button variant="contained" color="warning" onClick={() => setStatuss("In Process")}>
+      <Button variant="contained" color="warning" onClick={() => setStatuss("In process")}>
         Pending
       </Button>
       <Button variant="contained" color="success" onClick={() => setStatuss("Success")}>
@@ -146,7 +151,12 @@ useEffect(() => {
     <ExpandMoreIcon />
   </ExpandMore>
 <Collapse in={true} timeout="auto" unmountOnExit>
-
+<CardContent>
+  
+  <Typography variant="body2" color="text.secondary">
+    TimeStamp: {req.RequestTime}
+  </Typography>
+</CardContent>
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">

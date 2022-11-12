@@ -33,6 +33,8 @@ const Login = (props) => {
 
 
   const [open, setOpen] = React.useState(false);
+  const [openr, setOpenr] = React.useState(false);
+  const [fpass, setFpass] = useState('')
   const [match, isMatch] = useState(false);
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -41,11 +43,19 @@ const Login = (props) => {
 
     setOpen(false);
   };
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
+    setOpenr(false);
+  };
   const navigate = useNavigate();
 
 
-
+  const handleClickOpen = () => {
+    setOpenr(true);
+  };
 
   
   
@@ -431,9 +441,9 @@ sendOTP();
             </Grid>
             <Grid container justifyContent="row-reverse">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Button variant="text" onClick={handleClickOpen} >
                   Forgot password?
-                </Link>
+                </Button>
               </Grid>
             </Grid>
               </Grid>
@@ -451,7 +461,7 @@ sendOTP();
          password: <p>{cookies.password}</p>
       </div>
       )}
-      {logged ? <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      {/* {logged ? <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           This is a success message!
         </Alert>
@@ -461,7 +471,7 @@ sendOTP();
         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
          Login Failed! Please input valid credentials
         </Alert>
-      </Snackbar> : ""}
+      </Snackbar> : ""} */}
 
     {/*  dialog box */}
       <div>
@@ -541,6 +551,49 @@ sendOTP();
       
     </Container>
     
+    <Container maxWidth="sm" component="main">
+        <Box>
+            <Paper>
+            <Dialog component="form" onSubmit={handleSubmit2} open={openr} onClose={handleClose1}>
+        <DialogTitle>Forgot Password?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+          You will receive an email after you submit your email address associated with your account.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="otp"
+            onChange={({ target }) => setFpass(target.value)}
+            label="Email"
+           
+            type="email"
+            value={fpass}
+            fullWidth
+            variant="standard"
+            helperText="e.g abcd@gmail.com"
+          />
+        </DialogContent>
+        <DialogActions>
+          {/* <LoadingButton onSubmit={sendOTP}  loading = {loading}
+              type="submit"> Send OTP</LoadingButton> */}
+          <LoadingButton 
+             loading = {loading}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              >
+             Submit
+          </LoadingButton>
+        </DialogActions>
+      </Dialog>
+            </Paper>
+        </Box>
+       
+        
+      
+    </Container>
     </div>
   </ThemeProvider>
   

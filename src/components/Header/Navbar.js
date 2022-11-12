@@ -35,6 +35,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Settings } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { login, validateToken } from "../../redux/userSlice";
+import Notif from "../Notification/NotifBadge";
 
 function Navbar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -99,6 +100,7 @@ function Navbar() {
         <>
             <IconContext.Provider value={{ color: "#fff" }}>
                 <Nav>
+                   
                     <NavbarContainer>
                         {isloggedin ? (
                             <NavLogo to="/mainpage" onClick={closeMobileMenu}>
@@ -126,11 +128,14 @@ function Navbar() {
               <AccountCircle />
             </IconButton>}
           </NavItem> */}
-
+                    <NavItem>
+                    
+                    </NavItem>
                             {isloggedin ? (
                                 ""
                             ) : (
                                 <NavItem>
+                                    
                                     <NavLinks to="/" onClick={closeMobileMenu}>
                                         Home
                                     </NavLinks>

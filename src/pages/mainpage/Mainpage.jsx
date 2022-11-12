@@ -34,6 +34,9 @@ import axios from "axios";
 import swal from 'sweetalert';
 import EmergencyShareIcon from '@mui/icons-material/EmergencyShare';
 import { useNavigate } from "react-router-dom";
+import BasicTimeline from "../../components/Notification/NotifBadge";
+import NotifIcon from "../../components/Notification/NotifIcon";
+import NotifRep from "../../components/Notification/NotifBadge";
 const iframe='<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBrgyTalon1&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="420" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
 function Iframe(props) {
   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
@@ -202,6 +205,7 @@ const UserProfile = () => {
                                     size="small"
                                     variant="outlined"
                                 />
+                                <NotifIcon/>
                             </Stack>
                         </Stack>
                     </Stack>
@@ -244,6 +248,7 @@ const UserProfile = () => {
 
                             <Divider />
                             <ActionAreaCard/>
+                          
                         </Box>
 
                         <Box width="100%">

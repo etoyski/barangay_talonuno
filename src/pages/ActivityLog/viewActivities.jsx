@@ -26,6 +26,7 @@ import { useDispatch } from 'react-redux';
 import {login} from '../../redux/userSlice'
 import { useNavigate } from 'react-router-dom';
 import VerticalTabs from '../../components/Tabs/Tabs';
+import BasicTimeline from '../../components/Notification/NotifBadge';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -90,6 +91,9 @@ useEffect(() => {
   return (
   <>
   <VerticalTabs/>
+  <Container>
+    {/* <BasicTimeline/> */}
+  </Container>
     <Box sx={{p:3, ml:5}} alignItems="center">
       <Container alignItems="center">
         

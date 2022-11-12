@@ -47,7 +47,12 @@ const dispatch = useDispatch();
 const navigate = useNavigate()
 const getData = async () => {
     try {
-        const res = await axios.get("https://barangay-talon-uno.vercel.app/log")
+        const res = await axios.get("https://barangay-talon-uno.vercel.app/log",  {
+          headers:
+          {
+           "Authorization": "Bearer " + `${localStorage.getItem('T')}`  
+          }
+        })
 
         console.log("data: ", res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") ) );
         console.log("data: ", res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ) );
@@ -161,7 +166,12 @@ const handleFilter = async () => {
     <ExpandMoreIcon />
   </ExpandMore>
 <Collapse in={true} timeout="auto" unmountOnExit>
-
+<CardContent>
+  
+  <Typography variant="body2" color="text.secondary">
+    Time Stamp: {rep.ReportTime}
+  </Typography>
+</CardContent>
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">

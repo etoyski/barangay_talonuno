@@ -193,6 +193,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
+import swal from "sweetalert";
 const Input = styled("input")({
     display: "none",
 });
@@ -244,6 +245,25 @@ const UserProfile = () => {
         //     // dispatch(uploadImage(profileImage));
         // }
     };
+    const cancel = () =>{
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to cancel editing your profile?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Edit user Cancelled", {
+                
+              });
+              navigate('/mainpage')
+            } else {
+              navigate('/mainpage')
+            }
+          });
+        }
     const sendRequest = async () => {
       setLoading(true)
       try {
@@ -307,7 +327,7 @@ const UserProfile = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       //console.log(inputs);
-   
+        
       sendRequest();
   
   };
@@ -316,7 +336,7 @@ const UserProfile = () => {
         <React.Fragment>
             {/* <Header title="Settings - Account" /> */}
             {/* <AppbarS  pace color="#f2f4fb" /> */}
-
+           
             <Box bgcolor="#f2f4fb" pb={10} component="form" onSubmit={handleSubmit}>
                 <Container sx={{ pt: { xs: 5, sm: 10 } }}>
                     <Typography variant="h4" fontWeight="bold">
@@ -431,6 +451,7 @@ const UserProfile = () => {
                                     }}
                                 />
                             </Box>
+                            
                         </Box>
 
                         <Stack
@@ -469,7 +490,7 @@ const UserProfile = () => {
                                 {loading ? "loading" : "Save"}
                             </LoadingButton>
 
-                            <Button fullWidth variant="outlined" color="error" onClick={() => navigate('/mainpage')}>
+                            <Button fullWidth variant="outlined" color="error" onClick={cancel}>
                                 Cancel
                             </Button>
                         </Stack>
