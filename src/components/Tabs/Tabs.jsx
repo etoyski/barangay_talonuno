@@ -35,7 +35,7 @@ export default function VerticalTabs() {
       <Tabs value={value} onChange={handleChange} aria-label="nav tabs example"  variant="scrollable" scrollButtons="auto">
         <LinkTab icon={<HomeIcon />} iconPosition="start" label=""onClick={() => navigate('/mainpage')}to="/mainpage" />
         <LinkTab icon={<CampaignIcon />} iconPosition="start" label="Report" onClick={() => navigate('/report')}to="/report" />
-        <LinkTab icon={<RequestPageIcon />} iconPosition="start" label="Request"  onClick={() => navigate('/request')}to="/request" />
+        <LinkTab icon={<RequestPageIcon />} iconPosition="start" label="Request"  onClick={() => navigate('/reqdoc')}to="/reqdoc" />
         <LinkTab icon={<HistoryIcon />} iconPosition="start" label="Activity Log"  onClick={() => navigate('/activitylog')}to="/activitylog" />
       </Tabs>
     </Box>

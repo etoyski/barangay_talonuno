@@ -3,50 +3,97 @@ import React from 'react'
 import EmailIcon from '@mui/icons-material/Email';
 import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
+import { Container } from '@mui/system';
 
 
 const options = ['Male', 'Female'];
 const optionsStatus = ['Single', 'Engaged','Married','Divorced','Widowed'];
-const BarangayID = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const docs = ['Barangay ID', 'Barangay Clearance', 'Barangay ID'];
+
+const BarangayForm = ({step,setActivestep}) => {
+
+
+  const [irbi, setIrbi] = useState('');
+  const [region, setRegion] = useState('');
+  const [province, setProvince] = useState('');
+  const [city, setCity] = useState('');
+  const [barangay, setBarangay] = useState('');
+  const [date, setDate] = useState('');
+  const [precintno, setPrecintno] = useState('');
+  const [vrr, setVrr] = useState('');
+  const [contactno , setContactno] = useState('');
+  const [lastname, setLastname] = useState(''); 
+  const [firstname, setFirstname] = useState('');
+  const [middlename, setMiddlename] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
+  const [dob, setDob] = useState('');
+  const [status, setStatus] = useState('');
+  const [birthplace, setBirthplace] = useState('');
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [presentaddress, setPresentaddress] = useState('');
+  const [provincialaddress, setProvincialaddress] = useState('');
+  //emergencycontact
+  const [emergencyname, setEmergencyname] = useState('');
+  const [emergencyrelationship, setEmergencyrelationship] = useState('');
+  const [emergencyaddress, setEmergencyaddress] = useState('');
+  const [emergencynumber, setEmergencynumber] = useState('');
+  const [emergencyres, setEmergencyres] = useState('');
+
   const [loading, setLoading] = useState(false);
   const [error,setError] = useState(false); 
   const [inputValue, setInputValue] = React.useState('');
+  const [inputValue2, setInputValue2] = React.useState('');
+  const [inputValue3, setInputValue3] = React.useState('');
   const [value, setValue] = React.useState(options[0]);
+  const [value2, setValue2] = React.useState(optionsStatus[0]);
+  // const [value3, setValue3] = React.useState(docs[0]);
     console.log("sd")
 
     const handleSubmit = (e) => {
       e.preventDefault();
-     
-    
-
-};
+      setActivestep((currentState)=> currentState +1 );
+    };
   return (
     <>
+    <Container maxWidth="xl">
     <Grid component={Paper} elevation={16} sx={{p:2}}>
     
     <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
-        <Card style={{ maxWidth: 1500,height:1800, padding: "20px 5px", margin: "0 auto" }}>
+        <Card style={{ maxWidth: 1500,height:2750, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
-            <Grid container >
-              <Grid item xs={12}>
-              <Typography gutterBottom variant="h5" sx={{ml:50}}>
+            
+              <Typography gutterBottom variant="h5" >
            SANGGUNIANG BARANGAY OF TALON UNO
           </Typography> 
-              </Grid>
-              <Grid item xs={12}>
-              <Typography gutterBottom variant="body2" sx={{ml:62}}>
+            
+         
+              <Typography gutterBottom variant="body2" >
            INDIVIDUAL RECORD OF BARANGAY INHABITANT
           </Typography> 
-              </Grid>
-            </Grid>
+             
           
           <br/>
             <Typography variant="body2" color="error" component="p" gutterBottom>
-              Please fill out the required values
+              Please fill out the  values
           </Typography> 
-      
+          {/* <Autocomplete
+        value={value3}
+        onChange={(event, newValue3) => {
+          setValue3(newValue3);
+        }}
+        inputValue={inputValue3}
+        onInputChange={(event, newInputValue3) => {
+          setInputValue3(newInputValue3);
+        }}
+        id="controllable-states-demo"
+        options={docs}
+        sx={{ width: 250 }}
+        renderInput={(params) => <TextField {...params} label="Request Type" />}
+      /> */}
+
           <br/>
           <Divider/>
           <br/>
@@ -56,7 +103,9 @@ const BarangayID = () => {
               IRBI NO. : 
               <TextField 
                 
-
+                name='irbi'
+                onChange={(e) => setIrbi(e.target.value)}
+                value={irbi}
                 variant="standard"
               />
                </Typography>
@@ -64,14 +113,15 @@ const BarangayID = () => {
           <Grid item  xs={12} sm={6}>
             <Typography> Date: 
               <TextField 
-              required
+              
                     type="date" 
                     label="" 
                     name="date"
                     variant="outlined"  
                     error={error}
                     sx={{ml:2,mb:1}}
-                    //onChange={handleChange} 
+                    onChange={(e) => setDate(e.target.value)}
+                    value={date}
            />           </Typography>
            </Grid>
           <Grid item  xs={12} sm={6}>
@@ -80,7 +130,10 @@ const BarangayID = () => {
               <TextField 
               sx={{ml:2,mb:1}}
                 disabled
-                defaultValue="NCR" 
+                name='NCR'
+                label='NCR'
+                defaultValue="NCR"
+                value={region} 
                 
               />
             </Typography>
@@ -88,13 +141,15 @@ const BarangayID = () => {
           <Grid item  xs={12} sm={6} >
           
               <TextField 
-                    required
+                    
                     sx={{ml:2,mb:1}}
                     type="text" 
                     label="Precint No." 
                     name="Precint No."
                     variant="outlined"  
                     error={error}
+                    onChange={(e) => setPrecintno(e.target.value)}
+                value={precintno}
                     //onChange={handleChange} 
            />          
                  
@@ -104,7 +159,10 @@ const BarangayID = () => {
               Province : 
               <TextField 
                 disabled
+                name='Metro Manila'
+                label='Metro Manila'
                 defaultValue="Metro Manila" 
+                value={province}
                 sx={{ml:2,mb:1}}
               />
             </Typography>
@@ -118,7 +176,8 @@ const BarangayID = () => {
                 name="VRR No."
                 variant="outlined"  
                 error={error}
-                //onChange={handleChange} 
+                onChange={(e) => setVrr(e.target.value)}
+                value={vrr}
        />          
              
       </Grid>
@@ -129,7 +188,9 @@ const BarangayID = () => {
                 sx={{ml:2,mb:1}}
                 disabled
                 defaultValue="Las Piñas" 
-                
+                name='Las Piñas'
+                label='Las Piñas'
+                value={city}
               />
             </Typography>
 
@@ -137,14 +198,15 @@ const BarangayID = () => {
            <Grid item  xs={12} sm={6} >
           
           <TextField 
-                required
+                
                 sx={{ml:2,mb:1}}
                 type="text" 
                 label="Contact No." 
                 name="Contact No."
                 variant="outlined"  
                 error={error}
-                //onChange={handleChange} 
+                onChange={(e) => setContactno(e.target.value)}
+                value={contactno}
        />          
           </Grid>
           <Grid item  xs={12} sm={6} >
@@ -153,7 +215,11 @@ const BarangayID = () => {
               <TextField 
                 disabled
                 defaultValue="Talon Uno" 
+                name='Talon Uno'
+                label='Talon Uno'
                 sx={{ml:2,mb:1}}
+                onChange={(e) => setBarangay(e.target.value)}
+                value={barangay}
               />
             </Typography>
           </Grid>
@@ -163,33 +229,33 @@ const BarangayID = () => {
           <Divider/>
           <br/>
               <Grid container spacing={1}>
-                <Grid item   xs={9} sm={3}>
+                <Grid item    xs={12} sm={6}>
                   <TextField 
                   
                   margin="normal"
-                  required
+                  
                   error={error}
                   fullWidth
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}  
-                  id="email"
+                  onChange={(e) => setLastname(e.target.value)}
+                  value={lastname}  
+                  id="lastname"
                   label="Lastname "
                   name="lastname"
                   type="text"
-                  autoComplete="email"
+                  autoComplete="lastname"
                   autoFocus
                   />
                 </Grid>
                 
-                <Grid  item  xs={9} sm={3} >
+                <Grid  item   xs={12} sm={6} >
                 <TextField
                 margin="normal"
-                required
+                
                 
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setFirstname(target.value)}
+                value={firstname} 
                 name="Firstname"
                 label="firstname"
                 id="firstname"
@@ -200,13 +266,13 @@ const BarangayID = () => {
               
                 </Grid>
                 
-                <Grid  item   xs={9} sm={3} >
+                <Grid  item    xs={12} sm={6} >
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setMiddlename(target.value)}
+                value={middlename} 
                 name="Middlename"
                 label="Middlename"
                 id="middlename"
@@ -217,36 +283,35 @@ const BarangayID = () => {
               />
               
                 </Grid>
-                <Grid  item  xs={9} sm={3} >
+                <Grid  item  xs={12} sm={6} >
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
-                name="Middlename"
+                onChange={({ target }) => setNickname(target.value)}
+                value={nickname} 
+                name="Nickname"
                 label="Nickname"
-                id="middlename"
-                autoComplete="middlename"
+                id="nickname"
+                autoComplete="Nickname"
                 inputProps={{ minLength: 6 }}
                 helperText="*If only applicable"
                
               />
               
                 </Grid>
-                <Grid  item  xs={10} sm={4} >
+                <Grid  item  xs={12} sm={6} >
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setAge(target.value)}
+                value={age} 
                 name="Age"
                 label="Age"
-                id="middlename"
-                autoComplete="middlename"
-                inputProps={{ minLength: 6 }}
-                helperText="*If only applicable"
+                id="age"
+                autoComplete="age"
+               
                
               />
               
@@ -263,100 +328,100 @@ const BarangayID = () => {
         }}
         id="controllable-states-demo"
         options={options}
-        sx={{ width: 350, ml:30, mt:2   }}
+        // sx={{ width: 350, ml:30, mt:2   }}
         renderInput={(params) => <TextField {...params} label="Sex/Gender" />}
       />
                 </Grid>
-                <Grid  item  xs={10} sm={4} >
+                <Grid  item   xs={12} sm={6} >
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setDob(target.value)}
+                value={dob} 
                 name="date of birth"
                 label="Date of Birth"
-                id="middlename"
-                autoComplete="middlename"
+                id="Date of Birth"
+                autoComplete="Date of Birth"
                type="date"
-                helperText="*If only applicable"
+               
                
               />
               
                 </Grid>
-                <Grid item xs={12} sm={6} >
+                <Grid item  xs={12} sm={6} >
                 <Autocomplete
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
+        value={value2}
+        onChange={(event, newValue2) => {
+          setValue2(newValue2);
         }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
+        inputValue={inputValue2}
+        onInputChange={(event, newInputValue2) => {
+          setInputValue2(newInputValue2);
         }}
-        id="controllable-states-demo"
+        id="status"
+        label="Status"name="status"
         options={optionsStatus}
-        sx={{ width: 350, ml:30, mt:2   }}
-        renderInput={(params) => <TextField {...params} label="Status" />}
+        // sx={{ width: 350, ml:30, mt:2   }}
+        renderInput={(params1) => <TextField  {...params1} defaultValue="Status" label="Status"name="status" id='status' />}
       />
                 </Grid>
-                <Grid  item  xs={9} sm={4}>
+                <Grid  item  xs={12} sm={6}>
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
-                name="Address"
+                onChange={({ target }) => setBirthplace(target.value)}
+                value={birthplace} 
+                name="Place of Birth"
                 label="Place of Birth "
-                id="middlename"
-                autoComplete="middlename"
+                id="Place of Birth"
+                autoComplete="Place of Birth"
                 inputProps={{ minLength: 6 }}
-                helperText="*If only applicable"
                 
                
               />
               
                 </Grid>
-                <Grid item xs={9} sm={4}>
+                <Grid item  xs={12} sm={6}>
                   <TextField 
                    margin="normal"
                    error={error}
-                   sx={{ width: 350, ml:15}}
-                   onChange={({ target }) => setPassword(target.value)}
-                   value={password} 
-                   name="Address"
+                   
+                   onChange={({ target }) => setHeight(target.value)}
+                   value={height} 
+                   name="Height"
                    label="Height "
-                   id="middlename"
-                   autoComplete="middlename"
-                   inputProps={{ minLength: 6 }}
+                   id="Height"
+                   autoComplete="Height"
+                  
                   />
                 </Grid>
-                <Grid item xs={9} sm={4}>
+                <Grid item  xs={12} sm={6}>
                   <TextField 
                    margin="normal"
                    error={error}
-                   sx={{ width: 350, ml:15}}
-                   onChange={({ target }) => setPassword(target.value)}
-                   value={password} 
-                   name="Address"
+                 
+                   onChange={({ target }) => setWeight(target.value)}
+                   value={weight} 
+                   name="weight"
                    label="Weight "
-                   id="middlename"
-                   autoComplete="middlename"
-                   inputProps={{ minLength: 6 }}
+                   id="weight"
+                   autoComplete="weight"
+                  
                   />
                 </Grid>
-                <Grid  item  xs={12} >
+                <Grid  item   xs={12} sm={6} >
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
-                name="Address"
+                onChange={({ target }) => setPresentaddress(target.value)}
+                value={presentaddress} 
+                name="Present Address"
                 label=" Present Address (Talon Uno) "
-                id="middlename"
-                autoComplete="middlename"
+                id="Present Address"
+                autoComplete="Present Address"
                 inputProps={{ minLength: 6 }}
             
                
@@ -364,13 +429,13 @@ const BarangayID = () => {
               
                 </Grid>
                 
-                <Grid  item  xs={12}>
+                <Grid  item   xs={12} sm={6}>
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setProvincialaddress(target.value)}
+                value={provincialaddress} 
                 name="Address Province"
                 label="Address (Provincial)"
                 id="middlename"
@@ -386,58 +451,57 @@ const BarangayID = () => {
                 <br/>
                 <Divider sx={{borderBottomWidth: 10}}/>
                 <Grid container spacing={1}>
-                <Grid  item  xs={12} >
+                <Grid  item   xs={12} sm={6} >
                 <Typography> Contact Person Incase of Emergency: </Typography>
 
                 </Grid>
-                <Grid  item  xs={12}  >
+                <Grid  item   xs={12} sm={6}  >
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setEmergencyname(target.value)}
+                value={emergencyname} 
                 name="Name"
                 label="Name"
                
-                autoComplete="middlename"
+                autoComplete="Name"
                 inputProps={{ minLength: 6 }}
                 
                
               />
               
                 </Grid>
-                <Grid  item  xs={12} >
+                <Grid  item   xs={12} sm={6} >
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
-                name="Contact Number"
+                onChange={({ target }) => setEmergencyrelationship(target.value)}
+                value={emergencyrelationship} 
+                name="Relationship"
                 label="Relationship"
-                id="middlename"
-                autoComplete="middlename"
+                id="Relationship"
+                autoComplete="Relationship"
                 inputProps={{ minLength: 6 }}
-                helperText="*If only applicable"
+               
                
               />
               
                 </Grid>
-                <Grid  item  xs={12}>
+                <Grid  item   xs={12} sm={6}>
                 <TextField
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setEmergencyaddress(target.value)}
+                value={emergencyaddress} 
                 name="Address"
                 label="Address"
-                id="middlename"
-                autoComplete="middlename"
+                id="Address"
+                autoComplete="Address"
                 inputProps={{ minLength: 6 }}
-                helperText="*If only applicable"
-               
+             
               />
               
                 </Grid>
@@ -449,37 +513,36 @@ const BarangayID = () => {
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setEmergencynumber(target.value)}
+                value={emergencynumber} 
                 name="Contact Number"
                 label="Contact Number "
-                id="middlename"
-                autoComplete="middlename"
+                id="Contact Number"
+                autoComplete="Contact Number"
                 inputProps={{ minLength: 6 }}
-                helperText="*If only applicable"
-               
+            
               />
               
                 </Grid>
                 <Grid  item  xs={12} sm={6} >
                 <TextField
-                disabled
+                
                 margin="normal"
                 error={error}
                 fullWidth
-                onChange={({ target }) => setPassword(target.value)}
-                value={password} 
+                onChange={({ target }) => setEmergencyres(target.value)}
+                value={emergencyres} 
                 name="Res"
                 label="Res "
-                id="middlename"
-                autoComplete="middlename"
+                id="Res"
+                autoComplete="Res"
                 inputProps={{ minLength: 6 }}
                 helperText="*If only applicable"
                
               />
               
                 </Grid>
-                <Grid item xs={10} sm={4}>
+                <Grid item xs={12} sm={6}>
                 <Button 
              loading = {loading}
               type="submit"
@@ -491,29 +554,20 @@ const BarangayID = () => {
             Cancel
           </Button>
           </Grid>
-                <Grid item xs={10} sm={4}>
-                <Button 
-             loading = {loading}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color='secondary'
-              sx={{ mt: 3, mb: 2 }}
-              >
-            Preview
-          </Button>
-                </Grid>
-                <Grid item xs={10} sm={4}>
+                
+                <Grid item xs={12} sm={6}>
                 <LoadingButton 
              loading = {loading}
               type="submit"
+              
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              
               >
-            Submit
+            next
           </LoadingButton>
-                </Grid>
+                </Grid> 
                 <Grid container justifyContent="flex-end">
              
             </Grid>
@@ -522,9 +576,9 @@ const BarangayID = () => {
         </Card>
        </Box>
       </Grid>
-    
+      </Container>
     </>
   )
 }
 
-export default BarangayID
+export default BarangayForm

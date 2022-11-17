@@ -136,6 +136,7 @@ const sendOTP = async () => {
       localStorage.setItem('address',res.data.address);
       localStorage.setItem('contact',res.data.contact);
           localStorage.setItem('user', res.data.userInfo);
+          
            console.log('user', userInfo)
            console.log('email', res.data.email)
            navigate('/mainpage')

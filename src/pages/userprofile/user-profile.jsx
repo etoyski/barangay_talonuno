@@ -193,7 +193,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
-import swal from "sweetalert";
 const Input = styled("input")({
     display: "none",
 });
@@ -210,6 +209,9 @@ const UserProfile = () => {
     const navigate = useNavigate;
     const [error,setError] =useState();
     const [profileImage, setProfileImage] = useState(null);
+    const [fullname,setFullname]=useState('')
+    const [contact,setContact]=useState('')
+    const [address,setAddress]=useState('')
     const [inputs, setInputs] = useState({
       firstname: "",
       middlename: "",
@@ -245,25 +247,6 @@ const UserProfile = () => {
         //     // dispatch(uploadImage(profileImage));
         // }
     };
-    const cancel = () =>{
-        swal({
-            title: "Are you sure?",
-            text: "Do you want to cancel editing your profile?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal("Edit user Cancelled", {
-                
-              });
-              navigate('/mainpage')
-            } else {
-              navigate('/mainpage')
-            }
-          });
-        }
     const sendRequest = async () => {
       setLoading(true)
       try {
@@ -327,7 +310,7 @@ const UserProfile = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       //console.log(inputs);
-        
+   
       sendRequest();
   
   };
@@ -336,7 +319,7 @@ const UserProfile = () => {
         <React.Fragment>
             {/* <Header title="Settings - Account" /> */}
             {/* <AppbarS  pace color="#f2f4fb" /> */}
-           
+
             <Box bgcolor="#f2f4fb" pb={10} component="form" onSubmit={handleSubmit}>
                 <Container sx={{ pt: { xs: 5, sm: 10 } }}>
                     <Typography variant="h4" fontWeight="bold">
@@ -372,8 +355,8 @@ const UserProfile = () => {
                                     fullwidth
                                     name={localStorage.getItem('firstname')}
                                     label={sessionStorage.getItem('user')}
-                                    onChange={handleChange}
-                                    value={inputs.firstname}
+                                    onChange={(e) => setFullname(e.target.value)}
+                                    value={fullname}
                                         fullWidth
                                         size="small"
                                     />
@@ -422,8 +405,11 @@ const UserProfile = () => {
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Contact Number</Typography>
                                 <TextField
+                                value={inputs.number}
                                     onChange={handleChange}
-                                     value={localStorage.getItem('contact')}
+                                    id="number"
+                                    
+                                    name="contact"
                                     fullWidth
                                     size="small"
                                     InputProps={{
@@ -436,7 +422,7 @@ const UserProfile = () => {
                                 />
                             </Box>
                             <Box mt={2}>
-                                <Typography fontWeight={300}>Contact Number</Typography>
+                                <Typography fontWeight={300}>Address</Typography>
                                 <TextField
                                     onChange={handleChange}
                                      value={localStorage.getItem('address')}
@@ -451,7 +437,6 @@ const UserProfile = () => {
                                     }}
                                 />
                             </Box>
-                            
                         </Box>
 
                         <Stack
@@ -490,7 +475,7 @@ const UserProfile = () => {
                                 {loading ? "loading" : "Save"}
                             </LoadingButton>
 
-                            <Button fullWidth variant="outlined" color="error" onClick={cancel}>
+                            <Button fullWidth variant="outlined" color="error" onClick={() => navigate('/mainpage')}>
                                 Cancel
                             </Button>
                         </Stack>
@@ -542,6 +527,7 @@ const ProfileImage = ({ profileImage, previewImg }) => {
         </React.Fragment>
     );
 };
+
 
 export default UserProfile;
 
