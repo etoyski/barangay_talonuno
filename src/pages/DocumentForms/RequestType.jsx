@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const options = ['Barangay ID', 'Barangay Clearance', 'Barangay ID'];
 
-const RequestType = () => {
+const RequestType = ({step, setActiveStep,setFormdata}) => {
     const [loading, setLoading] = useState(false);
     const [error,setError] = useState(false); 
 
@@ -15,9 +15,16 @@ const RequestType = () => {
     const [value, setValue] = React.useState(options[0]);
     const handleSubmit = (e) => {
         e.preventDefault();
-       
-      
+        setActiveStep((currentState)=> currentState +1 );
+        setFormdata(( currentState ) => {
+         
   
+          return{
+            ...currentState, 
+            requesttype: value,
+        }
+        })
+        
   };
   return (
     <Container maxWidth="xl">
@@ -50,10 +57,10 @@ const RequestType = () => {
 
             </Grid>
             
-            {/* <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>
                 <LoadingButton 
              loading = {loading}
-              type="submit"
+              onClick= {()=> setActiveStep((currentState)=> currentState -1 )}
               sx={{ mt: 3, mb: 2}}
               variant="contained"
               fullWidth
@@ -62,7 +69,7 @@ const RequestType = () => {
             Previous
           </LoadingButton>
                 </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} >
                 <LoadingButton 
              loading = {loading}
               type="submit"
@@ -72,7 +79,7 @@ const RequestType = () => {
               >
             Next
           </LoadingButton>
-                </Grid>*/}
+                </Grid>
       </Grid> 
         
     </CardContent>

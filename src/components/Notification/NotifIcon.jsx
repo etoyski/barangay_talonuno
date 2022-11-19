@@ -26,6 +26,7 @@ import { List, Paper } from '@mui/material';
 import { useEffect } from 'react';
 import {login} from '../../redux/userSlice'
 import { Container } from '@mui/system';
+import moment from 'moment';
 
 export default function NotifIcon() {
     const [report, setReport] = useState([])
@@ -167,6 +168,7 @@ export default function NotifIcon() {
         </TimelineSeparator>
         <Paper component="card" sx={{width:260, mr:6}}>
         <List style={{maxHeight: '100%', overflow: 'auto'}}>
+        <TimelineContent>{moment(rep.ReportTime).format('LLLL')}</TimelineContent>
         <TimelineContent><b><Typography textTransform="capitalize"  > {rep.name} </Typography> Added a new activity</b></TimelineContent>
         <TimelineContent>Type of Activity: {rep.report}</TimelineContent>
         <TimelineContent>Status: {rep.process}</TimelineContent>

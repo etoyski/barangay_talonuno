@@ -4,21 +4,28 @@ import EmailIcon from '@mui/icons-material/Email';
 import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import { Container } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import moment from 'moment';
 
 
 const options = ['Male', 'Female'];
 const optionsStatus = ['Single', 'Engaged','Married','Divorced','Widowed'];
 const docs = ['Barangay ID', 'Barangay Clearance', 'Barangay ID'];
 
-const BarangayForm = ({step,setActivestep}) => {
+const BarangayForm = ({step,setActiveStep,setFormdata}) => {
 
-
+  const today = moment();
+  console.log(
+    "Today's date is: " + 
+    today.format('YYYY-MM-DD')
+  );
   const [irbi, setIrbi] = useState('');
-  const [region, setRegion] = useState('');
-  const [province, setProvince] = useState('');
-  const [city, setCity] = useState('');
-  const [barangay, setBarangay] = useState('');
-  const [date, setDate] = useState('');
+  const [region, setRegion] = useState('NCR');
+  const [province, setProvince] = useState('Metro Manila');
+  const [city, setCity] = useState('Las Piñas');
+  const [barangay, setBarangay] = useState('Talon Uno');
+  const [date, setDate] = useState( today.format('YYYY-MM-DD'));
   const [precintno, setPrecintno] = useState('');
   const [vrr, setVrr] = useState('');
   const [contactno , setContactno] = useState('');
@@ -50,12 +57,69 @@ const BarangayForm = ({step,setActivestep}) => {
   const [value, setValue] = React.useState(options[0]);
   const [value2, setValue2] = React.useState(optionsStatus[0]);
   // const [value3, setValue3] = React.useState(docs[0]);
-    console.log("sd")
-
+    //console.log("sd")
+  const navigate = useNavigate();
     const handleSubmit = (e) => {
       e.preventDefault();
-      setActivestep((currentState)=> currentState +1 );
+      setActiveStep((currentState)=> currentState +1 );
+      console.log('pak')
+      setFormdata(( currentState ) => {
+        let data = { 
+          irbi, 
+          region, 
+          city, 
+          province, 
+          barangay, 
+          date, 
+          precintno,
+          vrr,
+          contactno, 
+          middlename,
+          nickname,
+          age, 
+          gender, 
+          dob, 
+          status, 
+          birthplace, 
+          height, 
+          weight, 
+          lastname, 
+          firstname,
+          presentaddress,
+          provincialaddress,
+          emergencyname,
+          emergencyaddress,
+          emergencynumber,
+          emergencyrelationship,
+          emergencyres
+        }
+
+        return{
+          ...currentState, 
+          brgyform: data,
+      }
+      })
     };
+    const handleCancel = () => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, cancel it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Cancelled!',
+            'Your request has been cancelled.',
+            'success'
+          )
+          navigate('/mainpage')
+        }
+      })
+    }
   return (
     <>
     <Container maxWidth="xl">
@@ -102,20 +166,21 @@ const BarangayForm = ({step,setActivestep}) => {
           <Typography> 
               IRBI NO. : 
               <TextField 
-                
+                required
                 name='irbi'
                 onChange={(e) => setIrbi(e.target.value)}
                 value={irbi}
                 variant="standard"
+                type="number"
               />
                </Typography>
           </Grid>
           <Grid item  xs={12} sm={6}>
             <Typography> Date: 
               <TextField 
-              
-                    type="date" 
-                    label="" 
+              disabled
+                    type="text"
+                    label="Date Today"
                     name="date"
                     variant="outlined"  
                     error={error}
@@ -141,7 +206,7 @@ const BarangayForm = ({step,setActivestep}) => {
           <Grid item  xs={12} sm={6} >
           
               <TextField 
-                    
+                    required
                     sx={{ml:2,mb:1}}
                     type="text" 
                     label="Precint No." 
@@ -171,7 +236,7 @@ const BarangayForm = ({step,setActivestep}) => {
           
           <TextField 
             sx={{ml:2,mb:1}}
-                type="text" 
+            type="number"
                 label="VRR No." 
                 name="VRR No."
                 variant="outlined"  
@@ -198,9 +263,9 @@ const BarangayForm = ({step,setActivestep}) => {
            <Grid item  xs={12} sm={6} >
           
           <TextField 
-                
+                required
                 sx={{ml:2,mb:1}}
-                type="text" 
+                type="number" 
                 label="Contact No." 
                 name="Contact No."
                 variant="outlined"  
@@ -244,6 +309,7 @@ const BarangayForm = ({step,setActivestep}) => {
                   type="text"
                   autoComplete="lastname"
                   autoFocus
+                  required
                   />
                 </Grid>
                 
@@ -260,8 +326,8 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="firstname"
                 id="firstname"
                 autoComplete="firstname"
-                inputProps={{ minLength: 6 }}
-               
+                inputProps={{ minLength: 2 }}
+                required
               />
               
                 </Grid>
@@ -277,9 +343,8 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Middlename"
                 id="middlename"
                 autoComplete="middlename"
-                inputProps={{ minLength: 6 }}
                 helperText="*If only applicable"
-               
+                
               />
               
                 </Grid>
@@ -294,9 +359,8 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Nickname"
                 id="nickname"
                 autoComplete="Nickname"
-                inputProps={{ minLength: 6 }}
                 helperText="*If only applicable"
-               
+                
               />
               
                 </Grid>
@@ -311,13 +375,14 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Age"
                 id="age"
                 autoComplete="age"
-               
-               
+                type="number"
+                required
               />
               
                 </Grid>
                 <Grid item xs={12} sm={6} >
                 <Autocomplete
+                required
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
@@ -333,6 +398,7 @@ const BarangayForm = ({step,setActivestep}) => {
       />
                 </Grid>
                 <Grid  item   xs={12} sm={6} >
+                  <Typography> Date of Birth:</Typography>
                 <TextField
                 margin="normal"
                 error={error}
@@ -340,17 +406,18 @@ const BarangayForm = ({step,setActivestep}) => {
                 onChange={({ target }) => setDob(target.value)}
                 value={dob} 
                 name="date of birth"
-                label="Date of Birth"
+                
                 id="Date of Birth"
                 autoComplete="Date of Birth"
                type="date"
-               
+               required
                
               />
               
                 </Grid>
                 <Grid item  xs={12} sm={6} >
                 <Autocomplete
+                required
         value={value2}
         onChange={(event, newValue2) => {
           setValue2(newValue2);
@@ -377,8 +444,7 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Place of Birth "
                 id="Place of Birth"
                 autoComplete="Place of Birth"
-                inputProps={{ minLength: 6 }}
-                
+                required
                
               />
               
@@ -387,28 +453,42 @@ const BarangayForm = ({step,setActivestep}) => {
                   <TextField 
                    margin="normal"
                    error={error}
-                   
+                   required
                    onChange={({ target }) => setHeight(target.value)}
                    value={height} 
                    name="Height"
                    label="Height "
                    id="Height"
                    autoComplete="Height"
-                  
+                   InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                       cm
+                      </InputAdornment>
+                    ),
+                  }}
+                  type="number"
                   />
                 </Grid>
                 <Grid item  xs={12} sm={6}>
                   <TextField 
                    margin="normal"
                    error={error}
-                 
+                   required
                    onChange={({ target }) => setWeight(target.value)}
                    value={weight} 
                    name="weight"
                    label="Weight "
                    id="weight"
                    autoComplete="weight"
-                  
+                   InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                       kg
+                      </InputAdornment>
+                    ),
+                  }}
+                  type="number"
                   />
                 </Grid>
                 <Grid  item   xs={12} sm={6} >
@@ -423,7 +503,7 @@ const BarangayForm = ({step,setActivestep}) => {
                 id="Present Address"
                 autoComplete="Present Address"
                 inputProps={{ minLength: 6 }}
-            
+                required
                
               />
               
@@ -440,9 +520,8 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Address (Provincial)"
                 id="middlename"
                 autoComplete="middlename"
-                inputProps={{ minLength: 6 }}
                 helperText="*If only applicable"
-               
+                required
               />
               
                 </Grid>
@@ -464,9 +543,8 @@ const BarangayForm = ({step,setActivestep}) => {
                 value={emergencyname} 
                 name="Name"
                 label="Name"
-               
+                required
                 autoComplete="Name"
-                inputProps={{ minLength: 6 }}
                 
                
               />
@@ -483,14 +561,14 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Relationship"
                 id="Relationship"
                 autoComplete="Relationship"
-                inputProps={{ minLength: 6 }}
-               
+                required
                
               />
               
                 </Grid>
                 <Grid  item   xs={12} sm={6}>
                 <TextField
+                required
                 margin="normal"
                 error={error}
                 fullWidth
@@ -500,7 +578,6 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Address"
                 id="Address"
                 autoComplete="Address"
-                inputProps={{ minLength: 6 }}
              
               />
               
@@ -509,7 +586,7 @@ const BarangayForm = ({step,setActivestep}) => {
                 <Grid container spacing={1}>
                 <Grid  item  xs={12} sm={6} >
                 <TextField
-                
+                required
                 margin="normal"
                 error={error}
                 fullWidth
@@ -519,8 +596,7 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Contact Number "
                 id="Contact Number"
                 autoComplete="Contact Number"
-                inputProps={{ minLength: 6 }}
-            
+                type="number"
               />
               
                 </Grid>
@@ -536,7 +612,6 @@ const BarangayForm = ({step,setActivestep}) => {
                 label="Res "
                 id="Res"
                 autoComplete="Res"
-                inputProps={{ minLength: 6 }}
                 helperText="*If only applicable"
                
               />
@@ -545,7 +620,7 @@ const BarangayForm = ({step,setActivestep}) => {
                 <Grid item xs={12} sm={6}>
                 <Button 
              loading = {loading}
-              type="submit"
+              onClick={handleCancel}
               fullWidth
               variant="contained"
               color='error'

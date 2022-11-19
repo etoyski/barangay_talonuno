@@ -27,6 +27,7 @@ import {login} from '../../redux/userSlice'
 import { useNavigate } from 'react-router-dom';
 import VerticalTabs from '../../components/Tabs/Tabs';
 import AcitivityLog from './viewActivities';
+import moment from 'moment/moment';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -169,7 +170,7 @@ const handleFilter = async () => {
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">
-    Time Stamp: {rep.ReportTime}
+    Time Stamp: {moment(rep.ReportTime).format('LLLL')}
   </Typography>
 </CardContent>
 <CardContent>

@@ -23,14 +23,14 @@ import { useState } from 'react';
 
 const steps = ['Resident Information', 'Request details', 'Review your request'];
 
-function getStepContent(step,setActiveStep) {
+function getStepContent(step,setActiveStep,setFormdata,formdata) {
   switch (step) {
     case 0:
-      return <BarangayForm setActiveStep={setActiveStep} />;
+      return <BarangayForm setActiveStep={setActiveStep} setFormdata={setFormdata} />;
     case 1:
-      return <RequestType />;
+      return <RequestType setActiveStep={setActiveStep} setFormdata={setFormdata} />;
     case 2:
-      return <Review />;
+      return <Review setActiveStep={setActiveStep} formdata={formdata} />;
     default:
       throw new Error('Unknown step');
   }
@@ -41,7 +41,13 @@ const theme = createTheme();
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [items, setItems] = useState([]);
-  
+  const [formdata, setFormdata] = useState(
+    {
+        brgyform: { }, 
+        requesttype: '',
+
+    }
+  )
 
   const handleNext = (e) => {
     setActiveStep(activeStep + 1);
@@ -58,7 +64,7 @@ export default function Checkout() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <VerticalTabs/>
-      <Container component="form" onSubmit={handleSubmit} maxWidth="lg" sx={{ mb: 4 }}>
+      <Container  maxWidth="lg" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Request Documents
@@ -70,7 +76,9 @@ export default function Checkout() {
               </Step>
             ))}
           </Stepper>
-          {activeStep === steps.length ? (
+
+          {getStepContent(activeStep,setActiveStep,setFormdata,formdata) }
+          {/* {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
                 Request Submitted
@@ -101,7 +109,7 @@ export default function Checkout() {
                 </Button>
               </Box>
             </React.Fragment>
-          )}
+          )} */}
         </Paper>
         
       </Container>

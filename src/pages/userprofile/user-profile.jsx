@@ -212,6 +212,7 @@ const UserProfile = () => {
     const [fullname,setFullname]=useState('')
     const [contact,setContact]=useState('')
     const [address,setAddress]=useState('')
+    const [email,SetEmail] = useState('')
     const [inputs, setInputs] = useState({
       firstname: "",
       middlename: "",
@@ -351,8 +352,9 @@ const UserProfile = () => {
                                     </Typography>
                                     <TextField
                                     textTransform="capitalize"
-                                    disabled
+                                    
                                     fullwidth
+                                    placeholder={sessionStorage.getItem('user')}
                                     name={localStorage.getItem('firstname')}
                                     label={sessionStorage.getItem('user')}
                                     onChange={(e) => setFullname(e.target.value)}
@@ -389,8 +391,10 @@ const UserProfile = () => {
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Email</Typography>
                                 <TextField
-                                disabled
-                                     value={localStorage.getItem('email')}
+                                     onChange={(e) => SetEmail(e.target.value)}
+                                     value={email}
+                                    placeholder={localStorage.getItem('email')}
+                                    label={localStorage.getItem('email')}
                                     fullWidth
                                     size="small"
                                     InputProps={{
@@ -405,10 +409,11 @@ const UserProfile = () => {
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Contact Number</Typography>
                                 <TextField
-                                value={inputs.number}
-                                    onChange={handleChange}
+                                value={contact}
+                                onChange={(e) => SetEmail(e.target.value)}
                                     id="number"
-                                    
+                                    placeholder={localStorage.getItem('contact')}
+                                    label={localStorage.getItem('contact')}
                                     name="contact"
                                     fullWidth
                                     size="small"
@@ -424,8 +429,11 @@ const UserProfile = () => {
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Address</Typography>
                                 <TextField
-                                    onChange={handleChange}
-                                     value={localStorage.getItem('address')}
+                                  onChange={(e) => setAddress(e.target.value)}
+                                     value={address}
+                                     placeholder={localStorage.getItem('address')}
+                                     name={localStorage.getItem('address')}
+                                     label={localStorage.getItem('address')}
                                     fullWidth
                                     size="small"
                                     InputProps={{

@@ -4,86 +4,266 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { LoadingButton } from '@mui/lab';
+import { useState } from 'react';
+import { Box, Card, CardContent, Container, Divider, Paper } from '@mui/material';
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+// brgydata: formdata.brgyform
+// requesttype: formdata.requesttype
 
-export default function Review() {
+export default function Review({setActiveStep,formdata}) {
+  const [loading, setLoading] = useState(false);
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Request summary
-      </Typography>
-      <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))}
+    <>
+    <Container maxWidth="xl">
+    <Grid component={Paper} elevation={16} sx={{p:2}}>
+    
+    <Box component="form"  sx={{ mt: 1 }}>
+        <Card style={{ maxWidth: 1500,height:1520, padding: "20px 5px", margin: "0 auto" }}>
+          <CardContent>
+            
+              <Typography gutterBottom variant="h5" >
+           Request Details
+          </Typography> 
+            
+         
+              <Typography gutterBottom variant="body2" >
+           
+          </Typography> 
+             
+          
+          <br/>
+          
+       
 
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
-          </Typography>
-        </ListItem>
-      </List>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
-        </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
+          <br/>
+          <Divider/>
+          <br/>
+          <Grid container spacing={1}>
+          <Grid item  xs={12} sm={6}>
+          <Typography> 
+              IRBI NO. : {formdata.brgyform.irbi}
+            
+               </Typography>
           </Grid>
-        </Grid>
+          <Grid item  xs={12} sm={6}>
+            <Typography> 
+              <Typography>Date:  {formdata.brgyform.date}</Typography>
+                   </Typography>
+           </Grid>
+          <Grid item  xs={12} sm={6}>
+            <Typography> 
+              
+              <Typography> Region : {formdata.brgyform.region}</Typography>
+                
+             
+            </Typography>
+          </Grid>
+          <Grid item  xs={12} sm={6} >
+            
+              <Typography>Precint no: {formdata.brgyform.precintno}</Typography>
+                     
+                 
+          </Grid>
+                    <Grid item  xs={12} sm={6}>
+            <Typography> 
+              
+              <Typography>Province :  {formdata.brgyform.province}</Typography>
+             
+            </Typography>
+          </Grid>
+          <Grid item  xs={12} sm={6}>
+          
+          <Typography>   vrr no.: {formdata.brgyform.vrr}</Typography>
+               
+             
       </Grid>
-    </React.Fragment>
+          <Grid item   xs={12} sm={6}>
+            <Typography> 
+             
+              <Typography> City/Municipality : {formdata.brgyform.city}</Typography>
+             
+            </Typography>
+
+          </Grid>
+           <Grid item  xs={12} sm={6} >
+         
+          <Typography>  contact no. {formdata.brgyform.contactno}</Typography>
+                
+          </Grid>
+          <Grid item  xs={12} sm={6} >
+            <Typography> 
+             
+              <Typography> Barangay : {formdata.brgyform.barangay}</Typography>
+              
+            </Typography>
+          </Grid>
+         
+          </Grid>
+          <br/>
+          <Divider/>
+          <br/>
+              <Grid container spacing={1}>
+                <Grid item    xs={12} sm={6}>
+                  <Typography>Lastname: {formdata.brgyform.lastname}</Typography>
+                 
+                </Grid>
+                
+                <Grid  item   xs={12} sm={6} >
+                <Typography> Firstname: {formdata.brgyform.firstname}</Typography>
+             
+              
+                </Grid>
+                
+                <Grid  item    xs={12} sm={6} >
+                <Typography>Middlename: {formdata.brgyform.middlename}</Typography>
+             
+              
+                </Grid>
+                <Grid  item  xs={12} sm={6} >
+                <Typography>Nickname: {formdata.brgyform.nickname}</Typography>
+              
+              
+                </Grid>
+                <Grid  item  xs={12} sm={6} >
+                <Typography>Age: {formdata.brgyform.age}</Typography>
+            
+              
+                </Grid>
+                <Grid item xs={12} sm={6} >
+                <Typography>Gender: {formdata.brgyform.gender}</Typography>
+      
+                </Grid>
+                <Grid  item   xs={12} sm={6} >
+                <Typography>Date of birth: {formdata.brgyform.dob}</Typography>
+              
+               
+             
+              
+                </Grid>
+                <Grid item  xs={12} sm={6} >
+                <Typography>Status: {formdata.brgyform.status}</Typography>
+     
+                </Grid>
+                <Grid  item  xs={12} sm={6}>
+                <Typography>Place of birth: {formdata.brgyform.birthplace}</Typography>
+           
+               
+             
+              
+                </Grid>
+                <Grid item  xs={12} sm={6}>
+                  <Typography>Height: {formdata.brgyform.height} cm</Typography>
+                   
+                  
+                 
+                </Grid>
+                <Grid item  xs={12} sm={6}>
+                  <Typography>Weight: {formdata.brgyform.weight} kg</Typography>
+             
+                 
+                </Grid>
+                <Grid  item   xs={12} sm={6} >
+                <Typography>Present Address{formdata.brgyform.presentaddress}</Typography>
+              
+               
+              
+              
+                </Grid>
+                
+                <Grid  item   xs={12} sm={6}>
+                <Typography>Provincial Address: {formdata.brgyform.provincialaddress}</Typography>
+               
+             
+              
+                </Grid>
+              
+                </Grid>
+                <br/>
+                <Divider sx={{borderBottomWidth: 10}}/>
+                <Grid container spacing={1}>
+                <Grid  item   xs={12} sm={6} >
+                <Typography> Contact Person Incase of Emergency: </Typography>
+
+                </Grid>
+                <Grid  item   xs={12} sm={6}  >
+                <Typography>Name: {formdata.brgyform.emergencyname}</Typography>
+             
+                
+             
+              
+                </Grid>
+                <Grid  item   xs={12} sm={6} >
+                <Typography>Relationship: {formdata.brgyform.emergencyrelationship}</Typography>
+               
+               
+              
+              
+                </Grid>
+                <Grid  item   xs={12} sm={6}>
+                <Typography>Address: {formdata.brgyform.emergencyaddress}</Typography>
+                
+             
+              
+              
+                </Grid>
+                </Grid>
+                <Grid container spacing={1}>
+                <Grid  item  xs={12} sm={6} >
+                <Typography> Contact Number: {formdata.brgyform.emergencynumber}</Typography>
+               
+            
+              
+              
+                </Grid>
+                
+                <Grid  item  xs={12} sm={6} >
+                <Typography> res: {formdata.brgyform.emergencyres}</Typography>
+               
+               
+             
+              
+                </Grid>
+               
+                <Grid container justifyContent="flex-end">
+             
+            </Grid>
+            
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <LoadingButton 
+             loading = {loading}
+              onClick= {()=> setActiveStep((currentState)=> currentState -1 )}
+              sx={{ mt: 3, mb: 2}}
+              variant="contained"
+              fullWidth
+              color='secondary'
+              >
+            Previous
+          </LoadingButton>
+                </Grid>
+          <Grid item xs={12} sm={6}>
+                <LoadingButton 
+             loading = {loading}
+              type="submit"
+              sx={{mt: 3, mb: 2}}
+              variant="contained"
+              fullWidth
+              onClick={()=> console.log(formdata)}
+              >
+            Submit
+          </LoadingButton>
+                </Grid>
+     
+          </CardContent>
+        </Card>
+       </Box>
+       
+      </Grid>
+      </Container>
+    </>
+  
+    
   );
 }

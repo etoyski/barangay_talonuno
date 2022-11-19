@@ -27,6 +27,7 @@ import {login} from '../../redux/userSlice'
 import { useNavigate } from 'react-router-dom';
 import VerticalTabs from '../../components/Tabs/Tabs';
 import AcitivityLog from './viewActivities';
+import moment from 'moment';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -154,7 +155,7 @@ useEffect(() => {
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">
-    TimeStamp: {req.RequestTime}
+    TimeStamp: {moment(req.RequestTime).format('LLLL')}
   </Typography>
 </CardContent>
 <CardContent>
