@@ -252,7 +252,7 @@ const UserProfile = () => {
       setLoading(true)
       try {
         const res = await axios.post(
-          "https://barangay-talon-uno.vercel.app/register",
+          "https://barangay-talon-uno.vercel.app/update",
           {
             firstname: inputs.firstname,
             middlename: inputs.middlename,

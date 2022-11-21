@@ -36,6 +36,7 @@ export default function VerticalTabs() {
         <LinkTab icon={<HomeIcon />} iconPosition="start" label=""onClick={() => navigate('/mainpage')}to="/mainpage" />
         <LinkTab icon={<CampaignIcon />} iconPosition="start" label="Report" onClick={() => navigate('/report')}to="/report" />
         <LinkTab icon={<RequestPageIcon />} iconPosition="start" label="Request"  onClick={() => navigate('/reqdoc')}to="/reqdoc" />
+        <LinkTab icon={<CampaignIcon />} iconPosition="start" label="Blotter" onClick={() => navigate('/blotter')}to="/blotter" />
         <LinkTab icon={<HistoryIcon />} iconPosition="start" label="Activity Log"  onClick={() => navigate('/activitylog')}to="/activitylog" />
       </Tabs>
     </Box>

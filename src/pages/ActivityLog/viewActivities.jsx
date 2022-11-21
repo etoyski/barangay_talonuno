@@ -94,17 +94,23 @@ useEffect(() => {
   <Container>
     {/* <BasicTimeline/> */}
   </Container>
-    <Box sx={{p:3, ml:5}} alignItems="center">
+    <Box sx={{p:3, mr:10}} alignItems="flex-start">
       <Container alignItems="center">
-        
-        <ButtonGroup
-      
+       <Paper elevation={6} sx={{height:120}}>
+        <Typography variant='h5' sx={{ml:5}}> Activity Log</Typography>
+        <Typography variant='body2' sx={{ml:5}}> View your recent activities</Typography>
+       <ButtonGroup
+      sx={{ml:40, mt:1, }}
       variant="contained"
       aria-label="Disabled elevation buttons"
     >
       <Button  onClick={() => navigate('/viewreports')}to="/viewreports">View Reports</Button>
       <Button onClick={() => navigate('/viewrequest')}to="/viewrequests">View Requests</Button>
+      <Button onClick={() => navigate('/viewrequest')}to="/viewrequests">View Blotters</Button>
     </ButtonGroup>
+
+       </Paper>
+       
       </Container>
     </Box>
   {/* <Box bgcolor="#f2f4fb" sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">

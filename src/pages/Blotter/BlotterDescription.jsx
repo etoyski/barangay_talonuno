@@ -7,12 +7,12 @@ import { useState } from 'react';
 
 const options = ['Barangay ID', 'Barangay Clearance', 'Barangay ID'];
 
-const RequestType = ({step, setActiveStep,setFormdata}) => {
+const BlotterDescription = ({step, setActiveStep,setFormdata}) => {
     const [loading, setLoading] = useState(false);
     const [error,setError] = useState(false); 
 
-    const [inputValue, setInputValue] = React.useState('');
-    const [value, setValue] = React.useState(options[0]);
+    const [description, setDescription] = React.useState('');
+   console.log(description)
     const handleSubmit = (e) => {
         e.preventDefault();
         setActiveStep((currentState)=> currentState +1 );
@@ -21,7 +21,7 @@ const RequestType = ({step, setActiveStep,setFormdata}) => {
   
           return{
             ...currentState, 
-            requesttype: value,
+            blotterdescription: description,
         }
         })
         
@@ -33,27 +33,24 @@ const RequestType = ({step, setActiveStep,setFormdata}) => {
     <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
         <Card style={{ maxWidth: 1500, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
-          <Typography color='red'> Choose the type of document you want to request</Typography>
+          <Typography color='red'> Describe here the scenario of your conflict with the complained person</Typography>
           <br/>
          <Grid container spacing={1} alignItems="center" justify="center"  >
            
           
           <Grid xs={12} >
                  
-                <Autocomplete
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        id="controllable-states-demo"
-        options={options}
-        sx={{  width:200 }}
-        renderInput={(params) => <TextField {...params} label="Request Type" />}
-      />
+          <TextField
+          required
+          id="outlined-multiline-static"
+          label="Scenario"
+          multiline
+          rows={4}
+          fullWidth
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          
+        />
 
             </Grid>
             
@@ -90,4 +87,4 @@ const RequestType = ({step, setActiveStep,setFormdata}) => {
   )
 }
 
-export default RequestType
+export default BlotterDescription

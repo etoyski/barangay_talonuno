@@ -12,19 +12,20 @@ import { Box, Card, CardContent, Container, Divider, Paper } from '@mui/material
 // brgydata: formdata.brgyform
 // requesttype: formdata.requesttype
 
-export default function Review({setActiveStep,formdata}) {
+export default function BlotterReview({setActiveStep,formdata}) {
   const [loading, setLoading] = useState(false);
+  console.log(formdata.blotterdescription.description)
   return (
     <>
     <Container maxWidth="xl">
     <Grid component={Paper} elevation={16} sx={{p:2}}>
     
     <Box component="form"  sx={{ mt: 1 }}>
-        <Card style={{ maxWidth: 1500,height:1520, padding: "20px 5px", margin: "0 auto" }}>
+        <Card style={{ maxWidth: 1500,height:800, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
             
               <Typography gutterBottom variant="h5" >
-           Request Details
+           Blotter Details
           </Typography> 
             
          
@@ -42,14 +43,8 @@ export default function Review({setActiveStep,formdata}) {
           <br/>
           <Grid container spacing={1}>
           <Grid item  xs={12} sm={6}>
-          <Typography> 
-             Request Type: {formdata.requesttype}
-            
-               </Typography>
-          </Grid>
-          <Grid item  xs={12} sm={6}>
-          <Typography> 
-              IRBI NO. : {formdata.brgyform.irbi}
+          <Typography textTransform="capitalize"> 
+             Complainant Name : {formdata.brgyform.name}
             
                </Typography>
           </Grid>
@@ -61,25 +56,25 @@ export default function Review({setActiveStep,formdata}) {
           <Grid item  xs={12} sm={6}>
             <Typography> 
               
-              <Typography> Region : {formdata.brgyform.region}</Typography>
+              <Typography> Address : {formdata.brgyform.address}</Typography>
                 
              
             </Typography>
           </Grid>
           <Grid item  xs={12} sm={6} >
             
-              <Typography>Precint no: {formdata.brgyform.precintno}</Typography>
+              <Typography>Contact no: {formdata.brgyform.contactno}</Typography>
                      
                  
           </Grid>
-                    <Grid item  xs={12} sm={6}>
+                    {/* <Grid item  xs={12} sm={6}>
             <Typography> 
               
               <Typography>Province :  {formdata.brgyform.province}</Typography>
              
             </Typography>
-          </Grid>
-          <Grid item  xs={12} sm={6}>
+          </Grid> */}
+          {/* <Grid item  xs={12} sm={6}>
           
           <Typography>   vrr no.: {formdata.brgyform.vrr}</Typography>
                
@@ -97,8 +92,8 @@ export default function Review({setActiveStep,formdata}) {
          
           <Typography>  contact no. {formdata.brgyform.contactno}</Typography>
                 
-          </Grid>
-          <Grid item  xs={12} sm={6} >
+          </Grid> */}
+          {/* <Grid item  xs={12} sm={6} >
             <Typography> 
              
               <Typography> Barangay : {formdata.brgyform.barangay}</Typography>
@@ -183,32 +178,32 @@ export default function Review({setActiveStep,formdata}) {
                
              
               
-                </Grid>
+                </Grid> */}
               
                 </Grid>
                 <br/>
                 <Divider sx={{borderBottomWidth: 10}}/>
                 <Grid container spacing={1}>
-                <Grid  item   xs={12} sm={6} >
-                <Typography> Contact Person Incase of Emergency: </Typography>
+                <Grid  item   xs={12}  >
+                <Typography> Complained Person: </Typography>
 
                 </Grid>
                 <Grid  item   xs={12} sm={6}  >
-                <Typography>Name: {formdata.brgyform.emergencyname}</Typography>
+                <Typography>Name: {formdata.complainant.firstname}</Typography>
              
                 
              
               
                 </Grid>
                 <Grid  item   xs={12} sm={6} >
-                <Typography>Relationship: {formdata.brgyform.emergencyrelationship}</Typography>
+                <Typography>Relationship: {formdata.complainant.middlename}</Typography>
                
                
               
               
                 </Grid>
                 <Grid  item   xs={12} sm={6}>
-                <Typography>Address: {formdata.brgyform.emergencyaddress}</Typography>
+                <Typography>Address: {formdata.complainant.lastname}</Typography>
                 
              
               
@@ -217,7 +212,7 @@ export default function Review({setActiveStep,formdata}) {
                 </Grid>
                 <Grid container spacing={1}>
                 <Grid  item  xs={12} sm={6} >
-                <Typography> Contact Number: {formdata.brgyform.emergencynumber}</Typography>
+                <Typography> Contact Number: {formdata.complainant.address}</Typography>
                
             
               
@@ -225,15 +220,26 @@ export default function Review({setActiveStep,formdata}) {
                 </Grid>
                 
                 <Grid  item  xs={12} sm={6} >
-                <Typography> res: {formdata.brgyform.emergencyres}</Typography>
-               
-               
-             
-              
+                <Typography> Age: {formdata.complainant.age}</Typography>
+
                 </Grid>
-               
-                <Grid container justifyContent="flex-end">
-             
+                <Divider sx={{borderBottomWidth: 10}}/>
+                <br/>
+                <Divider sx={{borderBottomWidth: 10}}/>
+          
+       
+
+          <br/>
+          <Divider sx={{borderBottomWidth: 10}}/>
+          <br/>
+                <Grid container justifyContent="flex-start">
+                <Divider sx={{borderBottomWidth: 10}}/> 
+                <Grid  item  xs={12}  >
+                <Divider sx={{borderBottomWidth: 10}}/>
+                <Typography> Blotter Scenario Description: {formdata.blotterdescription}</Typography>
+
+                </Grid>
+                
             </Grid>
             
               </Grid>

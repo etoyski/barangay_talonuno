@@ -37,6 +37,7 @@ import RequestLanding from "./pages/Request/RequestLanding";
 import BarangayForm from "./pages/DocumentForms/BarangayForm";
 import RequestType from "./pages/DocumentForms/RequestType";
 import Checkout from "./pages/DocumentForms/Checkout";
+import BLotterCheckout from "./pages/Blotter/BlotterCheckout";
 function App() {
     
     // const [name, setName] = useState('etoy');
@@ -90,6 +91,7 @@ function App() {
                     <Route path="/activitylog" element={<AcitivityLog />} />
                     <Route path="/tabs" element={<VerticalTabs />} />
                     <Route path="/confirm" element={<ConfirmEmail />} />
+                    <Route path="/blotter" element={<BLotterCheckout />} />
                     <Route path="/reqdoc" element={<Checkout />} />
                     <Route path="/form=barangayform" element={<BarangayForm />} />
                     <Route path="/form=reqtype" element={<RequestType />} />

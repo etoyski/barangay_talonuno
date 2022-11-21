@@ -77,9 +77,9 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
           middlename,
           nickname,
           age, 
-          gender, 
+          value, 
           dob, 
-          status, 
+          value2, 
           birthplace, 
           height, 
           weight, 
@@ -126,7 +126,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
     <Grid component={Paper} elevation={16} sx={{p:2}}>
     
     <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 1 }}>
-        <Card style={{ maxWidth: 1500,height:2750, padding: "20px 5px", margin: "0 auto" }}>
+        <Card style={{ maxWidth: 1500,height:3000, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
             
               <Typography gutterBottom variant="h5" >
