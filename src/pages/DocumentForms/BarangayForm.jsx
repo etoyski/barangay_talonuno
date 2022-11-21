@@ -16,10 +16,10 @@ const docs = ['Barangay ID', 'Barangay Clearance', 'Barangay ID'];
 const BarangayForm = ({step,setActiveStep,setFormdata}) => {
 
   const today = moment();
-  console.log(
-    "Today's date is: " + 
-    today.format('YYYY-MM-DD')
-  );
+  // console.log(
+  //   "Today's date is: " + 
+  //   today.format('YYYY-MM-DD')
+  // );
   const [irbi, setIrbi] = useState('');
   const [region, setRegion] = useState('NCR');
   const [province, setProvince] = useState('Metro Manila');

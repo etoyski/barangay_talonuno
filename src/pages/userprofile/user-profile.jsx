@@ -206,7 +206,7 @@ const UserProfile = () => {
     // const loading = useSelector(loadComponent);
     //const [loading,isLoading] = useState(false);
     const [isMentor, setIsMentor] = useState(false);
-    const navigate = useNavigate;
+    const navigate = useNavigate();
     const [error,setError] =useState();
     const [profileImage, setProfileImage] = useState(null);
     const [fullname,setFullname]=useState('')
@@ -254,12 +254,9 @@ const UserProfile = () => {
         const res = await axios.post(
           "https://barangay-talon-uno.vercel.app/update",
           {
-            firstname: inputs.firstname,
-            middlename: inputs.middlename,
-            lastname: inputs.lastname,
-            number: Number(inputs.contactnumber),
-            //email: inputs.email,
-            email:`${localStorage.getItem('email')}`,
+           
+            number: Number(contact),
+            //email:`${localStorage.getItem('email')}`,
             image: profileImage
           }
           ,
@@ -286,10 +283,12 @@ const UserProfile = () => {
           icon: 'success',
           title: 'User Edited'
         });
+        localStorage.setItem('image',res.data.image)
         console.log(res.data);
         navigate("/user-profile");
         
       } catch (error) {
+        console.log("err",error)
         setError(true)
         const Toast = Swal.mixin({
           toast: true,
@@ -308,7 +307,7 @@ const UserProfile = () => {
           title: 'Edit failed'
         });
   
-        console.log("edit failed: ", error.response.data);
+        //console.log("edit failed: ", error);
       }
       finally {
         setLoading(false)
@@ -480,6 +479,7 @@ const UserProfile = () => {
                         <ProfileImage
                             profileImage={profileImage}
                             previewImg={previewImg}
+                           
                         />
 
                         <Divider />
@@ -519,9 +519,11 @@ const ProfileImage = ({ profileImage, previewImg }) => {
             >
                 <Avatar
                     src={profileImage}
-                    alt="asd"
+                    //alt="asd"
                     sx={{ height: 150, width: 150 }}
                     // variant="rounded"
+                    alt={sessionStorage.getItem('user')}
+                    
                 />
 
                 <Box>

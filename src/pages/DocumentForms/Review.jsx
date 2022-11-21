@@ -7,6 +7,9 @@ import Grid from '@mui/material/Grid';
 import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import { Box, Card, CardContent, Container, Divider, Paper } from '@mui/material';
+import axios from 'axios';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 
 // brgydata: formdata.brgyform
@@ -14,12 +17,89 @@ import { Box, Card, CardContent, Container, Divider, Paper } from '@mui/material
 
 export default function Review({setActiveStep,formdata}) {
   const [loading, setLoading] = useState(false);
+  const [error,setError] = useState(false)
+  const navigate  = useNavigate();
+  const sendRequest = async () => {
+    setLoading(true)
+    try { 
+        const res = await axios.post('https://barangay-talon-uno.vercel.app/main/request',{
+            //email:inputs.email,
+            
+           irbi: formdata.brgyform.irbi,
+           region: formdata.brgyform.region,
+           province: formdata.brgyform.province,
+           city: formdata.brgyform.city,
+           barangay: formdata.brgyform.barangay,
+           date: formdata.brgyform.date,
+           precint: formdata.brgyform.precintno,
+           vrr: formdata.brgyform.vrr,
+           contact: formdata.brgyform.contactno,
+           lastname: formdata.brgyform.lastname,
+           firstname: formdata.brgyform.firstname,
+           middlename: formdata.brgyform.middlename,
+           nickname: formdata.brgyform.nickname,
+           age: formdata.brgyform.age,
+           gender: formdata.brgyform.gender,
+           birthday: formdata.brgyform.birthday,
+           status: formdata.brgyform.status,
+           birthplace: formdata.brgyform.birthplace,
+           height: formdata.brgyform.height,
+           weight: formdata.brgyform.weight,
+           provadd: formdata.brgyform.provincialaddress,
+           contactname: formdata.brgyform.emergencyname,
+           relationship: formdata.brgyform.emergencyrelationship,
+           address: formdata.brgyform.emergencyaddress,
+           contactpersonnumber: formdata.brgyform.emergencynumber,
+           res: formdata.brgyform.emergencyres,
+          //requesttype: formdata.requesttype
+        }, 
+        {
+          headers:
+          {
+           "Authorization": "Bearer " + `${localStorage.getItem('T')}`  
+          }
+        })
+        swal({
+          title: "Request Submitted!",
+          text: "Request Successful",
+          icon: "success",
+          button: "OK",
+        });
+          
+            console.log(res.data.token);
+            console.log(res.data.email);
+            //localStorage.setItem('T', res.data.token);
+           //navigate('/report');
+        navigate('/reqdoc')
+    }catch(error) {
+      setError(true)
+      swal({
+        title: "Request Not Submitted!",
+        text: "Request Unsuccessful",
+        icon: "error",
+        button: "OK",
+        
+      });
+      console.log("error req: ", error.response.data);
+     }finally {
+      setLoading(false)
+     
+    }
+  
+}
+const handleSubmit = (e) => {
+  e.preventDefault();
+  //console.log(inputs);
+
+  sendRequest();
+
+};
   return (
     <>
     <Container maxWidth="xl">
     <Grid component={Paper} elevation={16} sx={{p:2}}>
     
-    <Box component="form"  sx={{ mt: 1 }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
         <Card style={{ maxWidth: 1500,height:1520, padding: "20px 5px", margin: "0 auto" }}>
           <CardContent>
             
@@ -256,7 +336,8 @@ export default function Review({setActiveStep,formdata}) {
               sx={{mt: 3, mb: 2}}
               variant="contained"
               fullWidth
-              onClick={()=> console.log(formdata)}
+             // onClick={()=> console.log(formdata)}
+             onClick={handleSubmit}
               >
             Submit
           </LoadingButton>
