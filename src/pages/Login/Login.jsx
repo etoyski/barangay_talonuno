@@ -181,6 +181,7 @@ const sendOTP = async () => {
       // const user = { 
       //   email,
       //   password};
+      
       setLoading(true)
      
       try { 
@@ -199,7 +200,7 @@ const sendOTP = async () => {
            localStorage.setItem('user',res.data.fullname);
            localStorage.setItem('address',res.data.address);
            localStorage.setItem('contact',res.data.contact);
-
+           localStorage.setItem('image',res.data.image);
 // // =======
            // localStorage.setItem('user',res.data.fullname);
            // localStorage.setItem('address',res.data.address);

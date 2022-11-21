@@ -231,9 +231,11 @@ function Navbar() {
                                         >
                                             <Avatar
                                                 sx={{ width: 32, height: 32 }}
-                                            >
-                                                {sessionStorage.getItem('user')}
-                                            </Avatar>
+                                                alt={sessionStorage.getItem('user')}
+                                                src={localStorage.getItem('image')}
+                                            />
+                                                
+                                         
                                         </IconButton>
                                     </Tooltip>
                                 </Box>
@@ -262,9 +264,11 @@ function Navbar() {
                                         >
                                             <Avatar
                                                 sx={{ width: 32, height: 32 }}
-                                            >
+                                                alt={sessionStorage.getItem('user')}
+                                                src={localStorage.getItem('image')}
+                                            />
                                                 
-                                            </Avatar>
+                                        
                                         </IconButton>
                                     </Tooltip>
                                 </Box>
