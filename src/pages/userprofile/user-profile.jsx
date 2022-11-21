@@ -410,11 +410,12 @@ const UserProfile = () => {
                                 <Typography fontWeight={300}>Contact Number</Typography>
                                 <TextField
                                 value={contact}
-                                onChange={(e) => SetEmail(e.target.value)}
+                                onChange={(e) => setContact(e.target.value)}
                                     id="number"
                                     placeholder={localStorage.getItem('contact')}
                                     label={localStorage.getItem('contact')}
                                     name="contact"
+                                    
                                     fullWidth
                                     size="small"
                                     InputProps={{
