@@ -421,7 +421,7 @@ const UserProfile = () => {
                                 onChange={(e) => setContact(e.target.value)}
                                     id="number"
                                     placeholder={localStorage.getItem('contact')}
-                                    label={localStorage.getItem('contact')}
+                                 
                                     name="contact"
 
                                     fullWidth
@@ -443,7 +443,7 @@ const UserProfile = () => {
                                      value={address}
                                      placeholder={localStorage.getItem('address')}
                                      name={localStorage.getItem('address')}
-                                     label={localStorage.getItem('address')}
+                                 
                                     fullWidth
                                     size="small"
                                     InputProps={{
