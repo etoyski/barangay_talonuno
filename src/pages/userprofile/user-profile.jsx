@@ -259,7 +259,15 @@ const UserProfile = () => {
             lastname: inputs.lastname,
             number: Number(inputs.contactnumber),
             //email: inputs.email,
-            email:`${localStorage.getItem('email')}`
+            email:`${localStorage.getItem('email')}`,
+            image: profileImage
+          }
+          ,
+          {
+            headers:
+            {
+                "Authorization": "Bearer " + `${localStorage.getItem('T')}`  
+            }
           }
         );
         const Toast = Swal.mixin({
@@ -415,7 +423,7 @@ const UserProfile = () => {
                                     placeholder={localStorage.getItem('contact')}
                                     label={localStorage.getItem('contact')}
                                     name="contact"
-                                    
+
                                     fullWidth
                                     size="small"
                                     InputProps={{
@@ -430,6 +438,7 @@ const UserProfile = () => {
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Address</Typography>
                                 <TextField
+                                disabled
                                   onChange={(e) => setAddress(e.target.value)}
                                      value={address}
                                      placeholder={localStorage.getItem('address')}

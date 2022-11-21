@@ -23,7 +23,7 @@ import BlotterDescription from './BlotterDescription';
 
 
 
-const steps = ['Resident Information','Complained Person Information', 'Blotter details', 'Review your request'];
+const steps = ['Resident Information','Complained Person Information', 'Blotter details', 'Review your blotter'];
 
 function getStepContent(step,setActiveStep,setFormdata,formdata) {
   switch (step) {
