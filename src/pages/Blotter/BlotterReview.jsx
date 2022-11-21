@@ -196,14 +196,14 @@ export default function BlotterReview({setActiveStep,formdata}) {
               
                 </Grid>
                 <Grid  item   xs={12} sm={6} >
-                <Typography>Relationship: {formdata.complainant.middlename}</Typography>
+                <Typography>Middlename: {formdata.complainant.middlename}</Typography>
                
                
               
               
                 </Grid>
                 <Grid  item   xs={12} sm={6}>
-                <Typography>Address: {formdata.complainant.lastname}</Typography>
+                <Typography>Lastname: {formdata.complainant.lastname}</Typography>
                 
              
               
@@ -211,12 +211,10 @@ export default function BlotterReview({setActiveStep,formdata}) {
                 </Grid>
                 </Grid>
                 <Grid container spacing={1}>
+              
                 <Grid  item  xs={12} sm={6} >
-                <Typography> Contact Number: {formdata.complainant.address}</Typography>
-               
-            
-              
-              
+                <Typography> Address: {formdata.complainant.address}</Typography>
+
                 </Grid>
                 
                 <Grid  item  xs={12} sm={6} >

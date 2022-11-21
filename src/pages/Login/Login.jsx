@@ -201,6 +201,7 @@ const sendOTP = async () => {
            localStorage.setItem('address',res.data.address);
            localStorage.setItem('contact',res.data.contact);
            localStorage.setItem('image',res.data.image);
+           console.log("data",res.data)
 // // =======
            // localStorage.setItem('user',res.data.fullname);
            // localStorage.setItem('address',res.data.address);

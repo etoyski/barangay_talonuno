@@ -336,6 +336,8 @@ function Navbar() {
                                                 navigate("/user-profile")
                                             }
                                             fontSize="small"
+                                            alt={sessionStorage.getItem('user')}
+                                            src={localStorage.getItem('image')}
                                         />
                                     </ListItemIcon>
                                     Profile

@@ -151,8 +151,10 @@ const UserProfile = () => {
                     <Stack direction={{ xs: "column", sm: "row" }} spacing={3}>
                         <Avatar
                             // src={img}
-                             alt= {localStorage.getItem("email")}
+                            alt={sessionStorage.getItem('user')}
+                            src={localStorage.getItem('image')}
                              sx={{ width: 63, height: 63 }}
+                             
                         />
 
                         <Stack

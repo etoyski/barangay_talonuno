@@ -360,7 +360,7 @@ const UserProfile = () => {
                                     </Typography>
                                     <TextField
                                     textTransform="capitalize"
-                                    
+                                    disabled
                                     fullwidth
                                     placeholder={sessionStorage.getItem('user')}
                                     name={localStorage.getItem('firstname')}
@@ -369,6 +369,7 @@ const UserProfile = () => {
                                     value={fullname}
                                         fullWidth
                                         size="small"
+                                    
                                     />
                                 </Box>
                                 </Stack>
@@ -399,10 +400,11 @@ const UserProfile = () => {
                             <Box mt={2}>
                                 <Typography fontWeight={300}>Email</Typography>
                                 <TextField
+                                disabled
                                      onChange={(e) => SetEmail(e.target.value)}
                                      value={email}
                                     placeholder={localStorage.getItem('email')}
-                                    label={localStorage.getItem('email')}
+                                    
                                     fullWidth
                                     size="small"
                                     InputProps={{
