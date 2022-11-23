@@ -23,7 +23,7 @@ const markerIcon = new L.Icon({
 });
 const GPS = () => {
     const [center, setCenter] = useState({ lat:14.4445, lng: 120.9939 });
-    const ZOOM_LEVEL = 9;
+    const ZOOM_LEVEL = 14;
     const mapRef = useRef();
     const [userLoc, setuserLoc] =useState("");
     const location = useGeoLocation();
@@ -49,6 +49,7 @@ axios.request(options).then(function (response) {
 }).catch(function (error) {
 	console.error(error);
 });
+
 
 //    useEffect(() => {
 //         if (location.loaded && !location.error){

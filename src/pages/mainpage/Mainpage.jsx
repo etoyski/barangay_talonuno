@@ -38,6 +38,7 @@ import BasicTimeline from "../../components/Notification/NotifBadge";
 import NotifIcon from "../../components/Notification/NotifIcon";
 import NotifRep from "../../components/Notification/NotifBadge";
 import { useEffect } from "react";
+import GPS from "../../components/map/maps";
 const iframe='<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBrgyTalon1&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="420" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
 function Iframe(props) {
   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
@@ -249,12 +250,14 @@ const UserProfile = () => {
                     >
                         <Box width="100%">
                             <Typography variant="h5" fontWeight="bold" mb={2}>
-                                    
+                                 You are currently at: 
                             </Typography>
-
+                            <Typography variant="h6" fontWeight="" mb={2}>
+                                {localStorage.getItem('gps')}  
+                            </Typography>
                             <Divider />
-                            <ActionAreaCard/>
-                          
+                            {/* <ActionAreaCard/> */}
+                            <GPS/>
                         </Box>
 
                         <Box width="100%">
@@ -304,20 +307,19 @@ const UserProfile = () => {
                                          <Iframe iframe={iframe} />
                                           </Item>
                                              </Paper>
+                                             
                                             </Stack>
                                         </Paper>
                                     </Box>
 
                                     <Box width="100%">
-                                        {/* <Divider>
-                                            <Typography
-                                                variant="body2"
-                                                fontWeight={300}
-                                                p={1}
-                                            >
-                                                10:00pm Online
-                                            </Typography>
-                                        </Divider> */}
+                                         <Divider>
+                                            <Container>
+                                                <Paper sx={{width:355}}>
+                                                   
+                                                </Paper>
+                                            </Container>
+                                        </Divider>
                                         {/* <Paper
                                             sx={{
                                                 backgroundColor: (theme) =>
@@ -377,25 +379,17 @@ const Activity = () => {
                     gap={2}
                     divider={<Divider orientation="vertical" flexItem />}
                 >
-                    <Avatar sx={{ width: 50, height: 50, bgcolor: "grey.300" }}>
-                        <EventNoteRoundedIcon color="warning" />
-                    </Avatar>
+                  
 
                     <Box>
-                        <Typography fontWeight="bold">
-                            User is requesting for a new Schedule!
-                        </Typography>
+                        
                         <Stack
                             direction={{ xs: "row", sm: "row" }}
                             alignItems="center"
                             gap={{ xs: 1, sm: 2 }}
                         >
-                            <Typography variant="body2" fontWeight={300}>
-                                4 hrs ago
-                            </Typography>
-                            <Button size="small" color="warning" disableRipple>
-                                In Progress
-                            </Button>
+                            <GPS />
+                           
                         </Stack>
                     </Box>
                 </Stack>
