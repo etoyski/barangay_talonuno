@@ -39,7 +39,7 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 export default function EditUserProfile() {
   const navigate = useNavigate();
   const [cancel, isCancelled] = useState(false);
-
+  
   const handleClick = () => {
     swal({
       title: "Are you sure?",

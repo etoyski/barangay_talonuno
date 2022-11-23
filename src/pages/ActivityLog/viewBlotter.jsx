@@ -39,10 +39,10 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ViewRequest() {
+export default function viewBlotter() {
   const [expanded, setExpanded] = React.useState("");
-  const [report, setReport] = useState([])
-  const [request, setRequest] = useState([])
+ // const [report, setReport] = useState([])
+  const [blotter, setBlotter] = useState([])
   const [statuss, setStatuss] = useState('')
 
 const dispatch = useDispatch();
@@ -118,9 +118,21 @@ useEffect(() => {
         Show All
       </Button>
     </Stack>
-    <Box sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
       <Grid
-        container spacing={{ xs: 5, md: 5 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start "
+        container
+        spacing={2}
+        
+        sx={{
+          pl:4,
+          borderTop: 'var(--Grid-borderWidth) solid',
+          borderLeft: 'var(--Grid-borderWidth) solid',
+          borderColor: 'divider',
+          '& > div': {
+            borderRight: 'var(--Grid-borderWidth) solid',
+            borderBottom: 'var(--Grid-borderWidth) solid',
+            borderColor: 'divider',
+          },
+        }}
       >
         
       { request.map( (user,index) => (
@@ -130,7 +142,7 @@ useEffect(() => {
         </Typography>
         {
             user.request.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).map((req, index) => (
-<Card sx={{ maxWidth: 345,mt:5,mr:3}} key={index}>
+<Card sx={{ maxWidth: 300,mt:5 }} key={index}>
 
 <ExpandMore
     expand={true}
@@ -146,80 +158,10 @@ useEffect(() => {
     TimeStamp: {moment(req.RequestTime).format('LLLL')}
   </Typography>
 </CardContent>
-
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  IRBI: {req.irbi}
-  </Typography>
-</CardContent>
-
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  VRR: {req.vrr}
-  </Typography>
-</CardContent>
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  region: {req.region}
-  </Typography>
-</CardContent>
-
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  City/Municipality: Las Piñas
-  </Typography>
-</CardContent>
-
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  Province: {req.province}
-  </Typography>
-</CardContent>
-
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  Barangay: {req.barangay}
-  </Typography>
-</CardContent>
-
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  Contact no: {req.contact}
-  </Typography>
-</CardContent>
-
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-  Firstname: {req.firstname}
-  </Typography>
-</CardContent>
-<CardContent>
-   
-  <Typography variant="body2" color="text.secondary">
-    Middlename: {req.middlename}
-  </Typography>
-</CardContent>
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">
-    Lastname: {req.lastname}
-  </Typography>
-</CardContent>
-<CardContent>
-  
-  <Typography variant="body2" color="text.secondary">
-    Nickname: {req.nickname}
-  </Typography>
-</CardContent>
-<CardContent>
-  
-  <Typography variant="body2" color="text.secondary">
-    Age: {req.age}
-  </Typography>
-</CardContent>
-<CardContent>
-  <Typography variant="body2" color="text.secondary">
-    Place of Birth: {req.birthplace}
+    Name: {req.name}
   </Typography>
 </CardContent>
 
@@ -230,20 +172,19 @@ useEffect(() => {
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Height:{req.height} cm
+    Status:{req.phone}
   </Typography>
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Weight:{req.weight} kg
+    Report Type: {req.type}
   </Typography>
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Report Type: {req.requesttype}
+    Purpose:{req.purpose}
   </Typography>
 </CardContent>
-
 <CardContent>
   <Typography variant="body2" color="text.secondary">
     Status:{req.process}
@@ -265,7 +206,7 @@ useEffect(() => {
      
      
       </Grid>
-      </Box>
+      
     </Container>
     </Box>
     

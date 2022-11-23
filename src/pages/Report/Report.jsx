@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import VerticalTabs from '../../components/Tabs/Tabs';
-import { TextField,Box, Autocomplete, Card, ThemeProvider, CardContent, createTheme, Paper, IconButton } from '@mui/material';
+import { TextField,Box, Autocomplete, Card, ThemeProvider, CardContent, createTheme, Paper, IconButton, Stack, Input, Avatar, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox'; 
@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import GPS from '../../components/map/maps';
 import { useEffect } from 'react';
 import GPS2 from '../../components/mapbox/mapBox';
+import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 
 const theme = createTheme({
   palette: {
@@ -37,7 +38,7 @@ export default function Report() {
   const dispatch = useDispatch();
   const [isloggedin, setisloggedin] = useState(false);
   const navigate = useNavigate();
-
+  const [profileImage, setProfileImage] = useState(null);
   useEffect(() => {
     if (localStorage.getItem("T") !== undefined) {
         // let token = localStorage.getItem("T");
@@ -66,6 +67,7 @@ export default function Report() {
 
   const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
+
   const [inputs,setInputs] = useState({
    //email:"",
     name:"",
@@ -75,7 +77,22 @@ export default function Report() {
     Image:"",
     
 });
+ const previewImg = (e) => {
+        const reader = new FileReader();
 
+        reader.onloadend = (e) => {
+            setProfileImage(e.target.result);
+            // console.log(e.target.result);
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+    };
+
+    const uploadImg = () => {
+        // if (user.img !== profileImage) {
+        //     // dispatch(uploadImage(profileImage));
+        // }
+    };
 const handleChange = (e) => {
 
   setInputs(prev => ({
@@ -92,7 +109,7 @@ const handleChange = (e) => {
             address: `${localStorage.getItem('address')}`,
             addressdetail: `${localStorage.getItem('gps')}`,
             report: value,
-            Image: inputs.Image,
+            Image: profileImage,
             
         }, {
           headers:{
@@ -109,7 +126,9 @@ const handleChange = (e) => {
             console.log(res.data.token);
            // localStorage.setItem('T', res.data.token);
            //navigate('/report');
-
+           
+          localStorage.setItem('reportImage',res.data.image)
+          console.log('repimg',res.data.image)
     }catch(error) {
       setError(true)
       swal({
@@ -132,7 +151,7 @@ const handleSubmit = (e) => {
     //console.log(inputs);
  
     sendRequest();
-
+ 
 };
 
   return (
@@ -262,24 +281,13 @@ const handleSubmit = (e) => {
       /> */}
       </Grid>
       <Grid item xs={12} sm={6}>
-      
-        <TextField
-          id="Image"
-          name="Image"
-          onChange={handleChange} 
-          value={inputs.Image} 
-          label="Image"
-          fullWidth
-          type ="file"
-          autoComplete="Image"
-          variant="standard"
-        
-          component="span"
-          accept="image/*"
-          error={error}
-          
-        />
-       
+
+        <ProfileImage
+                            profileImage={profileImage}
+                            previewImg={previewImg}
+                           
+                        />
+
       </Grid>
     
       
@@ -294,6 +302,7 @@ const handleSubmit = (e) => {
               type="submit"
               fullWidth
               variant="contained"
+              onClick={uploadImg}
               sx={{ mt: 3, mb: 2 }}
               
               >
@@ -311,6 +320,50 @@ const handleSubmit = (e) => {
   </React.Fragment>
   );
 }
+const ProfileImage = ({ profileImage, previewImg }) => {
+  return (
+      <React.Fragment>
+          <Stack
+              direction={{ xs: "column", sm: "row" }}
+              alignItems={{ xs: "start", sm: "end" }}
+              gap={2}
+              pt={5}
+              pb={5}
+          >
+              
+              <Avatar
+              variant="square"
+                  src={profileImage}
+                  //alt="asd"
+                  sx={{ height: 150, width: 150 }}
+                  // variant="rounded"
+                    alt={sessionStorage.getItem('user')}
+                  
+              />
+
+              <Box>
+                  <label htmlFor="contained-button-file">
+                      <Input
+                          accept="image/*"
+                          id="contained-button-file"
+                          multiple
+                          type="file"
+                          onChange={previewImg}
+                      />
+                      <Button
+                          endIcon={<InsertPhotoOutlinedIcon />}
+                          component="span"
+                          variant="outlined"
+                          color="info"
+                      >
+                          Upload
+                      </Button>
+                  </label>
+              </Box>
+          </Stack>
+      </React.Fragment>
+  );
+};
 const reporttypes = [
   { title: 'Accident', id: 1 },
   { title: 'Alarms and scandals', id: 2 },

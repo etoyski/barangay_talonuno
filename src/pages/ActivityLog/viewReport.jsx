@@ -131,20 +131,9 @@ const handleFilter = async () => {
         Show All
       </Button>
     </Stack>
+    <Box sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
       <Grid
-        container
-        spacing={2}
-        sx={{
-         pl:4,
-          borderTop: 'var(--Grid-borderWidth) solid',
-          borderLeft: 'var(--Grid-borderWidth) solid',
-          borderColor: 'divider',
-          '& > div': {
-            borderRight: 'var(--Grid-borderWidth) solid',
-            borderBottom: 'var(--Grid-borderWidth) solid',
-            borderColor: 'divider',
-          },
-        }}
+        container spacing={{ xs: 5, md: 5 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start "
       >
         
         
@@ -157,7 +146,7 @@ const handleFilter = async () => {
         {
             user.reports.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).map((rep, index) => (
            
-<Card sx={{ maxWidth: 300,mt:5 }} key={index}>
+<Card sx={{ maxWidth: 345,mt:5,mr:3 }} key={index}>
 
 <ExpandMore
     expand={true}
@@ -214,7 +203,7 @@ const handleFilter = async () => {
 }       
 
 </Grid>
-      
+</Box>      
      
      
     

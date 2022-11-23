@@ -39,9 +39,9 @@ export default function Review({setActiveStep,formdata}) {
            middlename: formdata.brgyform.middlename,
            nickname: formdata.brgyform.nickname,
            age: formdata.brgyform.age,
-           gender: formdata.brgyform.gender,
+           gender: formdata.brgyform.value,
            birthday: formdata.brgyform.birthday,
-           status: formdata.brgyform.status,
+           status: formdata.brgyform.value2,
            birthplace: formdata.brgyform.birthplace,
            height: formdata.brgyform.height,
            weight: formdata.brgyform.weight,
@@ -51,7 +51,7 @@ export default function Review({setActiveStep,formdata}) {
            address: formdata.brgyform.emergencyaddress,
            contactpersonnumber: formdata.brgyform.emergencynumber,
            res: formdata.brgyform.emergencyres,
-          //requesttype: formdata.requesttype
+           requesttype: formdata.requesttype
         }, 
         {
           headers:

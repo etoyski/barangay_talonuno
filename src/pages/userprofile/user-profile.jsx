@@ -284,6 +284,7 @@ const UserProfile = () => {
           title: 'User Edited'
         });
         localStorage.setItem('image',res.data.image)
+        localStorage.setItem('contact',res.data.contact)
         console.log(res.data);
         navigate("/user-profile");
         
@@ -422,7 +423,7 @@ const UserProfile = () => {
                                 onChange={(e) => setContact(e.target.value)}
                                     id="number"
                                     placeholder={localStorage.getItem('contact')}
-                                 
+                                    defaultValue={localStorage.getItem('contact')}
                                     name="contact"
 
                                     fullWidth
@@ -517,6 +518,7 @@ const ProfileImage = ({ profileImage, previewImg }) => {
                 pt={5}
                 pb={5}
             >
+                
                 <Avatar
                     src={profileImage}
                     //alt="asd"
