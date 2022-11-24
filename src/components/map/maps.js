@@ -37,11 +37,12 @@ const options = {
   url: 'https://trueway-geocoding.p.rapidapi.com/ReverseGeocode',
   params: {location: `${[location.coordinates.lat, location.coordinates.lng]}`, language: 'en'},
   headers: {
-    'X-RapidAPI-Key': '144c2c4729mshf9d8eac19730591p1ce751jsn00f27a0c1e16',
+    'X-RapidAPI-Key': '45bb997d7amshc3ceaf05169f6d9p105f4ejsnd6909eaa7a51',
     'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
   }
 };
-
+//144c2c4729mshf9d8eac19730591p1ce751jsn00f27a0c1e16 -yuls
+//45bb997d7amshc3ceaf05169f6d9p105f4ejsnd6909eaa7a51 -red
 axios.request(options).then(function (response) {
 	console.log(response.data.results[0]);
     setuserLoc(response.data.results[0].address);
