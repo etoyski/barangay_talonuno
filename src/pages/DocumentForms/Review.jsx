@@ -29,10 +29,9 @@ export default function Review({setActiveStep,formdata}) {
            region: formdata.brgyform.region,
            province: formdata.brgyform.province,
            city: formdata.brgyform.city,
-           barangay: formdata.brgyform.barangay,
+           brgy: formdata.brgyform.barangay,
            date: formdata.brgyform.date,
            precint: formdata.brgyform.precintno,
-           vrr: formdata.brgyform.vrr,
            contact: formdata.brgyform.contactno,
            lastname: formdata.brgyform.lastname,
            firstname: formdata.brgyform.firstname,
@@ -45,12 +44,13 @@ export default function Review({setActiveStep,formdata}) {
            birthplace: formdata.brgyform.birthplace,
            height: formdata.brgyform.height,
            weight: formdata.brgyform.weight,
-           provadd: formdata.brgyform.provincialaddress,
+           presentadd: formdata.brgyform.presentaddress,
+           provinceadd: formdata.brgyform.provincialaddress,
            contactname: formdata.brgyform.emergencyname,
            relationship: formdata.brgyform.emergencyrelationship,
            address: formdata.brgyform.emergencyaddress,
-           contactpersonnumber: formdata.brgyform.emergencynumber,
-           res: formdata.brgyform.emergencyres,
+           number: formdata.brgyform.emergencynumber,
+           res1: formdata.brgyform.emergencyres,
            requesttype: formdata.requesttype
         }, 
         {
@@ -159,12 +159,7 @@ const handleSubmit = (e) => {
              
             </Typography>
           </Grid>
-          <Grid item  xs={12} sm={6}>
-          
-          <Typography>   vrr no.: {formdata.brgyform.vrr}</Typography>
-               
-             
-      </Grid>
+       
           <Grid item   xs={12} sm={6}>
             <Typography> 
              

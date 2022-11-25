@@ -34,7 +34,7 @@ import BusinessIcon from '@mui/icons-material/Business';
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
   const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  const PHNUM_REGEX = /^(9|\+639)\d{9}$/;
+  const PHNUM_REGEX = /((^(\+)(\d){12}$)|(^\d{11}$))/;
   const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
   
@@ -260,6 +260,10 @@ import BusinessIcon from '@mui/icons-material/Business';
                     value={inputs.contactnumber}  
                     fullWidth 
                     required 
+                    inputProps={{
+                      
+                      pattern: "/((^(\+)(\d){12}$)|(^\d{11}$))/",
+                    }}
                      InputProps={{
                       startAdornment: <InputAdornment position="start">+63</InputAdornment>,
                     }}
