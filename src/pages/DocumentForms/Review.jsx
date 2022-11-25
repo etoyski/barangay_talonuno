@@ -51,7 +51,7 @@ export default function Review({setActiveStep,formdata}) {
            address: formdata.brgyform.emergencyaddress,
            number: formdata.brgyform.emergencynumber,
            res1: formdata.brgyform.emergencyres,
-           requesttype: formdata.requesttype
+           type: formdata.requesttype
         }, 
         {
           headers:
