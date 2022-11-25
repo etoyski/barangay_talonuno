@@ -32,44 +32,44 @@ const GPS = () => {
     //const lng = location.coordinates.lng
      const [lat,setLat]= useState([location.coordinates.lat]);
      const [lng,setLng]= useState([location.coordinates.lat]);
-// const options = {
-//   method: 'GET',
-//   url: 'https://trueway-geocoding.p.rapidapi.com/ReverseGeocode',
-//   params: {location: `${[location.coordinates.lat, location.coordinates.lng]}`, language: 'en'},
-//   headers: {
-//     'X-RapidAPI-Key': '144c2c4729mshf9d8eac19730591p1ce751jsn00f27a0c1e16',
-//     'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
-//   }
-// };
+const options = {
+  method: 'GET',
+  url: 'https://trueway-geocoding.p.rapidapi.com/ReverseGeocode',
+  params: {location: `${[location.coordinates.lat, location.coordinates.lng]}`, language: 'en'},
+  headers: {
+    'X-RapidAPI-Key': '45bb997d7amshc3ceaf05169f6d9p105f4ejsnd6909eaa7a51',
+    'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
+  }
+};
 //144c2c4729mshf9d8eac19730591p1ce751jsn00f27a0c1e16 -yuls
 //45bb997d7amshc3ceaf05169f6d9p105f4ejsnd6909eaa7a51 -red
 
-// axios.request(options).then(function (response) {
-// 	console.log(response.data.results[0]);
-//     setuserLoc(response.data.results[0].address);
-//     localStorage.setItem('gps', response.data.results[0].address)
-// }).catch(function (error) {
-// 	console.error(error);
-// });
+axios.request(options).then(function (response) {
+	console.log(response.data.results[0]);
+    setuserLoc(response.data.results[0].address);
+    localStorage.setItem('gps', response.data.results[0].address)
+}).catch(function (error) {
+	console.error(error);
+});
 
-useEffect(async() => {
-    const options = {
-        method: 'GET',
-        url: 'https://trueway-geocoding.p.rapidapi.com/ReverseGeocode',
-        params: {location: `${[location.coordinates.lat, location.coordinates.lng]}`, language: 'en'},
-        headers: {
-          'X-RapidAPI-Key': '144c2c4729mshf9d8eac19730591p1ce751jsn00f27a0c1e16',
-          'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
-        }
-      };
-     await axios.request(options).then(function (response) {
-        console.log(response.data.results[0]);
-        setuserLoc(response.data.results[0].address);
-        localStorage.setItem('gps', response.data.results[0].address)
-    }).catch(function (error) {
-        console.error(error);
-    });
-},[])
+// useEffect(async() => {
+//     const options = {
+//         method: 'GET',
+//         url: 'https://trueway-geocoding.p.rapidapi.com/ReverseGeocode',
+//         params: {location: `${[location.coordinates.lat, location.coordinates.lng]}`, language: 'en'},
+//         headers: {
+//           'X-RapidAPI-Key': '45bb997d7amshc3ceaf05169f6d9p105f4ejsnd6909eaa7a51',
+//           'X-RapidAPI-Host': 'trueway-geocoding.p.rapidapi.com'
+//         }
+//       };
+//      await axios.request(options).then(function (response) {
+//         console.log(response.data.results[0]);
+//         setuserLoc(response.data.results[0].address);
+//         localStorage.setItem('gps', response.data.results[0].address)
+//     }).catch(function (error) {
+//         console.error(error);
+//     });
+// },[])
 //    useEffect(() => {
 //         if (location.loaded && !location.error){
 //             mapRef.current.leafletElement.flyTo(
