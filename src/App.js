@@ -38,6 +38,7 @@ import BarangayForm from "./pages/DocumentForms/BarangayForm";
 import RequestType from "./pages/DocumentForms/RequestType";
 import Checkout from "./pages/DocumentForms/Checkout";
 import BLotterCheckout from "./pages/Blotter/BlotterCheckout";
+import fetchTodos from "./Service/Service";
 function App() {
     
     // const [name, setName] = useState('etoy');
@@ -45,10 +46,14 @@ function App() {
  const dispatch = useDispatch();
      //const [isloggedin, setisloggedin] = useState(false);
     const navigate = useNavigate();
-
+    const [todos, setTodos] = useState([]);
     useEffect(() => {
         if (localStorage.getItem("T") !== null) {
             // let token = localStorage.getItem("T");
+            fetchTodos()
+            .then(result => {
+                setTodos(result);
+            });
             dispatch(login(true))
             // validateToken(token) = value true or false
             //    setisloggedin(validateToken(token));
@@ -132,6 +137,7 @@ function App() {
             
         </React.Fragment>
     );
+    
 }
 
 export default App;

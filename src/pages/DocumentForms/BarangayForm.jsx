@@ -27,7 +27,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
   const [barangay, setBarangay] = useState('Talon Uno');
   const [date, setDate] = useState( today.format('YYYY-MM-DD'));
   const [precintno, setPrecintno] = useState('');
-  const [vrr, setVrr] = useState('');
+ // const [vrr, setVrr] = useState('');
   const [contactno , setContactno] = useState('');
   const [lastname, setLastname] = useState(''); 
   const [firstname, setFirstname] = useState('');
@@ -72,7 +72,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
           barangay, 
           date, 
           precintno,
-          vrr,
+         
           contactno, 
           middlename,
           nickname,
@@ -232,20 +232,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
               />
             </Typography>
           </Grid>
-          <Grid item  xs={12} sm={6}>
-          
-          <TextField 
-            sx={{ml:2,mb:1}}
-            type="number"
-                label="VRR No." 
-                name="VRR No."
-                variant="outlined"  
-                error={error}
-                onChange={(e) => setVrr(e.target.value)}
-                value={vrr}
-       />          
-             
-      </Grid>
+         
           <Grid item   xs={12} sm={6}>
             <Typography> 
               City/Municipality : 

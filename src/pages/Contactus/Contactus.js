@@ -120,10 +120,46 @@ const Contactus = () => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Telephone No. <CallIcon />
+         Barangay Talon Uno Main: Telephone No.  <CallIcon />
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        +632 802-0911
+        028 802-0911
+        </Typography>
+      </CardContent>
+      <CardActions>
+        
+        <Button size="small"><CallIcon />Call</Button>
+      </CardActions>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+         Telephone No.  <CallIcon />
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+       0289945178
+        </Typography>
+      </CardContent>
+      <CardActions>
+        
+        <Button size="small"><CallIcon />Call</Button>
+      </CardActions>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+        Phone No.  <CallIcon />
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+       09994714492
+        </Typography>
+      </CardContent>
+      <CardActions>
+        
+        <Button size="small"><CallIcon />Call</Button>
+      </CardActions>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+       Barangay Talon Uno Satelite Office  <CallIcon />
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+       88023811
         </Typography>
       </CardContent>
       <CardActions>
