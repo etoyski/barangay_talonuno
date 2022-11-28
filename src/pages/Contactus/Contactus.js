@@ -123,38 +123,17 @@ const Contactus = () => {
          Barangay Talon Uno Main: Telephone No.  <CallIcon />
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        028 802-0911
+        (02) 8802-0911
         </Typography>
       </CardContent>
-      <CardActions>
-        
-        <Button size="small"><CallIcon />Call</Button>
-      </CardActions>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-         Telephone No.  <CallIcon />
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-       0289945178
-        </Typography>
-      </CardContent>
-      <CardActions>
-        
-        <Button size="small"><CallIcon />Call</Button>
-      </CardActions>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-        Phone No.  <CallIcon />
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-       09994714492
-        </Typography>
-      </CardContent>
-      <CardActions>
-        
-        <Button size="small"><CallIcon />Call</Button>
-      </CardActions>
-      <CardContent>
+     
+
+    </Card>
+   
+        </Grid>
+        <Grid item xs="auto">
+        <Card sx={{ maxWidth: 345,height:150, width:450  }}>
+        <CardContent>
         <Typography gutterBottom variant="h5" component="div">
        Barangay Talon Uno Satelite Office  <CallIcon />
         </Typography>
@@ -162,12 +141,36 @@ const Contactus = () => {
        88023811
         </Typography>
       </CardContent>
-      <CardActions>
-        
-        <Button size="small"><CallIcon />Call</Button>
-      </CardActions>
-    </Card>
+    
+        </Card>
         </Grid>
+        <Grid item xs="auto">
+        <Card sx={{ maxWidth: 345,height:150, width:450  }}>
+        <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+         Telephone No.  <CallIcon />
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+       0289945178
+        </Typography>
+      </CardContent>
+     
+        </Card>
+        </Grid>
+        <Grid item xs="auto">
+        <Card sx={{ maxWidth: 345,height:150, width:450  }}>
+        <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+        Phone No.  <CallIcon />
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+       09994714492
+        </Typography>
+      </CardContent>
+    
+        </Card>
+        </Grid>
+       
         <Grid item xs>
         <Card sx={{ maxWidth: 345,height:150, width:450 }}>
       <CardMedia

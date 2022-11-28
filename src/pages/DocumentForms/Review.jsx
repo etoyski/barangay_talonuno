@@ -312,6 +312,17 @@ const handleSubmit = (e) => {
             </Grid>
             
               </Grid>
+              <Grid item xs={12} sm={6} >
+                <LoadingButton 
+             loading = {loading}
+             onClick= {()=> setActiveStep((currentState)=> currentState +1 )}
+              sx={{mt: 3, mb: 2}}
+              variant="contained"
+              fullWidth
+              >
+            Next
+          </LoadingButton>
+                </Grid>
               <Grid item xs={12} sm={6}>
                 <LoadingButton 
              loading = {loading}
@@ -324,7 +335,7 @@ const handleSubmit = (e) => {
             Previous
           </LoadingButton>
                 </Grid>
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
                 <LoadingButton 
              loading = {loading}
               type="submit"
@@ -337,7 +348,7 @@ const handleSubmit = (e) => {
             Submit
           </LoadingButton>
                 </Grid>
-     
+      */}
           </CardContent>
         </Card>
        </Box>

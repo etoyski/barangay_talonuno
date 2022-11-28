@@ -39,6 +39,14 @@ import RequestType from "./pages/DocumentForms/RequestType";
 import Checkout from "./pages/DocumentForms/Checkout";
 import BLotterCheckout from "./pages/Blotter/BlotterCheckout";
 import fetchTodos from "./Service/Service";
+
+ import BarangayIDPreview from "./pages/PagePreview/BarangayIDPreview";
+import CertificateofIncome from "./pages/PagePreview/CertificateOfIncome";
+import BarangayResidency from "./pages/PagePreview/BarangayResidency";
+import CertificateofIndigency from "./pages/PagePreview/Indigency";
+import PostResidency from "./pages/PagePreview/PostResidency";
+import LateRegistration from "./pages/PagePreview/LateRegistration";
+import CertificateofNoIncome from "./pages/PagePreview/CertificateofNoIncome";
 function App() {
     
     // const [name, setName] = useState('etoy');
@@ -80,6 +88,14 @@ function App() {
                     <Route path="/" element={<Navigate to="/home" />}>
                         {" "}
                     </Route>
+                    <Route path="/previewcertificateofnoincome" element={<CertificateofNoIncome />} />
+
+                    <Route path="/previewcertificateoflateregistration" element={<LateRegistration />} />
+                    <Route path="/previewcertificateofpostresidency" element={<PostResidency />} />
+                    <Route path="/previewcertificateofindigency" element={<CertificateofIndigency />} />
+                    <Route path="/previewcertificateofincome" element={<CertificateofIncome />} />
+                    <Route path="/preview=barangayresidency" element={<BarangayResidency />} />
+                    <Route path="/previewbarangayID" element={<BarangayIDPreview />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/gps" element={<GPS2 />} />
                     <Route path="/map" element={<GPS />} />

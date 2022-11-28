@@ -175,14 +175,14 @@ const Services = () => {
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/login">
         <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
-        <BadgeOutlinedIcon />  Post Residency
+        <BadgeOutlinedIcon /> Certificate of No Income
         </Typography>       
       </CardContent>
     </CardActionArea> : <CardActionArea>
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
-        <BadgeOutlinedIcon />  Post Residency
+        <BadgeOutlinedIcon />  Certificate of No Income
         </Typography>
         <br/>
         <br/>
@@ -208,7 +208,7 @@ const Services = () => {
       <CardMedia/>
       <CardContent onClick={() => navigate('/request')}to="/login">
         <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
-         <WorkOutlineOutlinedIcon /> Local Employment
+         <WorkOutlineOutlinedIcon /> Certificate for Late Registration
         </Typography>
         <Typography variant="body2" color="text.secondary">
           
@@ -218,7 +218,7 @@ const Services = () => {
       <CardMedia/>
       <CardContent onClick={() => navigate('/login')}to="/login">
         <Typography gutterBottom variant="h5" component="div" color="#1b5e20">
-         <WorkOutlineOutlinedIcon /> Local Employment
+         <WorkOutlineOutlinedIcon /> Certificate for Late Registration
         </Typography>
         <Typography variant="body2" color="text.secondary">
           
@@ -236,7 +236,7 @@ const Services = () => {
   </Roll>
   </Grid>
 
-  <Grid item xs="auto">
+  {/* <Grid item xs="auto">
   <Roll left>
   <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
     {isloggedin ? <CardActionArea>
@@ -272,9 +272,9 @@ const Services = () => {
       </CardActions>
   </Card>
   </Roll>
-  </Grid>
+  </Grid> */}
 
-  <Grid item xs="auto">
+  {/* <Grid item xs="auto">
   <Roll right>
   <Card sx={{ p:3,maxWidth: 345, height: 200, width:300 }}style={{backgroundColor: "#F5EDDC "}}>
     {isloggedin ?<CardActionArea>
@@ -343,7 +343,7 @@ const Services = () => {
       </CardActions>
   </Card>
   </Roll>
-  </Grid>
+  </Grid> */}
 
   <Grid item xs="auto">
   <Roll right>

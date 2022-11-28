@@ -18,10 +18,11 @@ import BarangayForm from './BarangayForm';
 import RequestType from './RequestType';
 import VerticalTabs from '../../components/Tabs/Tabs';
 import { useState } from 'react';
+import BarangayIDPreview from '../PagePreview/BarangayIDPreview';
 
 
 
-const steps = ['Resident Information', 'Request details', 'Review your request'];
+const steps = ['Resident Information', 'Request details', 'Review your request', 'Preview'];
 
 function getStepContent(step,setActiveStep,setFormdata,formdata) {
   switch (step) {
@@ -31,6 +32,8 @@ function getStepContent(step,setActiveStep,setFormdata,formdata) {
       return <RequestType setActiveStep={setActiveStep} setFormdata={setFormdata} />;
     case 2:
       return <Review setActiveStep={setActiveStep} formdata={formdata} />;
+      case 3:
+        return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata}/>;
     default:
       throw new Error('Unknown step');
   }
