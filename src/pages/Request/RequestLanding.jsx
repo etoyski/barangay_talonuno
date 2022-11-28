@@ -21,7 +21,7 @@ const RequestLanding = () => {
             <Typography variant='h5'>  </Typography>
             <br/> <br/>
             <Box alignItems="center" >
-            <Button variant='outlined' fullWidth onClick={() => navigate('/form=barangayform')}to="/form=barangayform" > Request A Document  </Button>
+            <Button variant='outlined' fullWidth onClick={() => navigate('/reqdoc')}to="/reqdoc" > Request A Document  </Button>
             </Box>
            
         </Paper>

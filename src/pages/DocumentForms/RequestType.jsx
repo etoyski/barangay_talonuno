@@ -5,7 +5,7 @@ import React from 'react'
 import { useState } from 'react';
 
 
-const options = ['Barangay ID', 'Barangay Clearance', 'Barangay Residency','Post Residency'];
+const options = ['Barangay ID', 'Barangay Clearance', 'Barangay Residency','Certificate of Income','Certificate of No Income','Indigency','Late Registarion','Post Residency', ];
 
 const RequestType = ({step, setActiveStep,setFormdata}) => {
     const [loading, setLoading] = useState(false);

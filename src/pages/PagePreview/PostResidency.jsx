@@ -1,4 +1,5 @@
-import { Divider, Paper, Stack, Typography } from '@mui/material'
+import { LoadingButton } from '@mui/lab';
+import { Button, Divider, Paper, Stack, Typography } from '@mui/material'
 import { Box, Container } from '@mui/system'
 import axios from 'axios';
 import React from 'react'
@@ -185,8 +186,9 @@ export default function PostResidency({setActiveStep,formdata}){
                 fontSize:19,
                 fontFamily:'Bookman Old Style',    
               }}
+              textTransform="capitalize"
             > 
-            NAme
+           Name of deceased person
             </Typography>
         <Divider sx={{borderBottomWidth: 1,background: 'black', width:500}}/>        
         </Stack>
@@ -224,7 +226,7 @@ export default function PostResidency({setActiveStep,formdata}){
                 textAlign: 'left'    
               }}
             > 
-            Address
+            Address of deceased person
             </Typography>
         <Divider sx={{borderBottomWidth: 1,background: 'black', width:500}}/>    
        
@@ -263,7 +265,7 @@ export default function PostResidency({setActiveStep,formdata}){
                 ml:5,  
               }}
             > 
-This CERTIFICATION is being issued this ______ day of _______________in the Year of our Lord Two Thousand and Twenty-two upon the request of <u> name</u>
+This CERTIFICATION is being issued this ______ day of _______________in the Year of our Lord Two Thousand and Twenty-two upon the request of <u> {formdata.brgyform.lastname}, {formdata.brgyform.firstname} {formdata.brgyform.middlename}</u>
 
             </Typography>    
            
@@ -354,6 +356,28 @@ This CERTIFICATION is being issued this ______ day of _______________in the Year
         </Stack>
        
         </Box>
+        <Stack
+  direction="row"
+  justifyContent="center"
+  alignItems="center"
+  spacing={1}
+  flexWrap="wrap"
+>
+      <Box>
+      <Button  variant="contained" sx={{width:250, mr:2}} onClick= {()=> setActiveStep((currentState)=> currentState -1 )}> Back</Button>
+      <LoadingButton 
+             loading = {loading}
+              type="submit"
+              sx={{width:250, mr:2}}
+              variant="contained"
+              fullWidth
+             // onClick={()=> console.log(formdata)}
+             onClick={handleSubmit}
+              >
+            Submit
+          </LoadingButton>
+      </Box>
+      </Stack>
     </Container>
         )
 }

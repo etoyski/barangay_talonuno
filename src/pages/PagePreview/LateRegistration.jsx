@@ -1,4 +1,5 @@
-import { Divider, Paper, Stack, Typography } from '@mui/material'
+import { LoadingButton } from '@mui/lab';
+import { Button, Divider, Paper, Stack, Typography } from '@mui/material'
 import { Box, Container } from '@mui/system'
 import axios from 'axios';
 import React from 'react'
@@ -185,8 +186,9 @@ export default function LateRegistration({setActiveStep,formdata}){
                 fontSize:19,
                 fontFamily:'Bookman Old Style',    
               }}
+              textTransform="capitalize"
             > 
-            NAme
+            {formdata.brgyform.lastname}, {formdata.brgyform.firstname} {formdata.brgyform.middlename}
             </Typography>
         <Divider sx={{borderBottomWidth: 1,background: 'black', width:500}}/>        
         </Stack>
@@ -224,7 +226,7 @@ export default function LateRegistration({setActiveStep,formdata}){
                 textAlign: 'left'    
               }}
             > 
-            Address
+            {formdata.brgyform.presentaddress}
             </Typography>
         <Divider sx={{borderBottomWidth: 1,background: 'black', width:500}}/>    
        
@@ -350,6 +352,28 @@ This CERTIFICATION is issued this _______ day of __________________in the Year o
         </Stack>
        
         </Box>
+        <Stack
+  direction="row"
+  justifyContent="center"
+  alignItems="center"
+  spacing={1}
+  flexWrap="wrap"
+>
+      <Box>
+      <Button  variant="contained" sx={{width:250, mr:2}} onClick= {()=> setActiveStep((currentState)=> currentState -1 )}> Back</Button>
+      <LoadingButton 
+             loading = {loading}
+              type="submit"
+              sx={{width:250, mr:2}}
+              variant="contained"
+              fullWidth
+             // onClick={()=> console.log(formdata)}
+             onClick={handleSubmit}
+              >
+            Submit
+          </LoadingButton>
+      </Box>
+      </Stack>
     </Container>
         )
 }

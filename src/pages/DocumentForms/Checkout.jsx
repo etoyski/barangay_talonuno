@@ -19,12 +19,18 @@ import RequestType from './RequestType';
 import VerticalTabs from '../../components/Tabs/Tabs';
 import { useState } from 'react';
 import BarangayIDPreview from '../PagePreview/BarangayIDPreview';
+import BarangayResidency from '../PagePreview/BarangayResidency';
+import CertificateofIncome from '../PagePreview/CertificateOfIncome';
+import CertificateofNoIncome from '../PagePreview/CertificateofNoIncome';
+import CertificateofIndigency from '../PagePreview/Indigency';
+import LateRegistration from '../PagePreview/LateRegistration';
+import PostResidency from '../PagePreview/PostResidency';
 
 
 
 const steps = ['Resident Information', 'Request details', 'Review your request', 'Preview'];
 
-function getStepContent(step,setActiveStep,setFormdata,formdata) {
+function getStepContent(step,setActiveStep,setFormdata,formdata,reqtype,setReqtype) {
   switch (step) {
     case 0:
       return <BarangayForm setActiveStep={setActiveStep} setFormdata={setFormdata} />;
@@ -33,7 +39,32 @@ function getStepContent(step,setActiveStep,setFormdata,formdata) {
     case 2:
       return <Review setActiveStep={setActiveStep} formdata={formdata} />;
       case 3:
-        return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata}/>;
+        {
+          if (formdata.requesttype === "Barangay ID"){
+            return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata} />;
+          }else if (formdata.requesttype == "Barangay Residency" ){
+            return <BarangayResidency setActiveStep={setActiveStep} formdata={formdata}  />;
+          }else if (formdata.requesttype == "Certificate of Income"){
+            return <CertificateofIncome setActiveStep={setActiveStep} formdata={formdata}  />;
+          }else if (formdata.requesttype == "Certificate of No Income" ){
+            return <CertificateofNoIncome setActiveStep={setActiveStep} formdata={formdata}  />;
+          }else if (formdata.requesttype == "Indigency"){
+            return <CertificateofIndigency setActiveStep={setActiveStep} formdata={formdata}  />;
+          }else if (formdata.requesttype == "Late Registration"){
+            return <LateRegistration setActiveStep={setActiveStep} formdata={formdata}  />;
+          }else if (formdata.requesttype == "Post Residency"){
+            return <PostResidency setActiveStep={setActiveStep} formdata={formdata}  />;
+          }
+        }
+
+        // if ( reqtype == "Barangay ID"){
+        //   return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata} />;
+        // }else if( reqtype == "Barangay Residency"){
+        //   return <BarangayResidency setActiveStep={setActiveStep} formdata={formdata}  />;
+        // }
+       
+      // case 3:
+      //   return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata}/>;
     default:
       throw new Error('Unknown step');
   }
@@ -51,7 +82,13 @@ export default function Checkout() {
 
     }
   )
+  const [reqtype, setReqtype] = useState(
+    {
+        
+        requesttype: '',
 
+    }
+  )
   const handleNext = (e) => {
     setActiveStep(activeStep + 1);
    
@@ -80,7 +117,7 @@ export default function Checkout() {
             ))}
           </Stepper>
 
-          {getStepContent(activeStep,setActiveStep,setFormdata,formdata) }
+          {getStepContent(activeStep,setActiveStep,setFormdata,formdata,reqtype,setReqtype) }
           {/* {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
