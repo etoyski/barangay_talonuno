@@ -44,7 +44,9 @@ export default function ViewRequest() {
   const [report, setReport] = useState([])
   const [request, setRequest] = useState([])
   const [statuss, setStatuss] = useState('')
+  const [sort,setSort] = useState([])
 
+  const [reqsort,setReqsort] = useState(false)
 const dispatch = useDispatch();
 const navigate = useNavigate()
 const getData = async () => {
@@ -60,6 +62,8 @@ const getData = async () => {
         console.log("data: ", res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ) );
         setRequest( res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") )  );
         setReport(res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ))
+        setSort(res.data.sortrequest.filter( (i) => i.email === localStorage.getItem("email")))
+
     } catch (error) {
         console.log(error);
     }
@@ -108,7 +112,7 @@ useEffect(() => {
       <Button variant="contained" color="error" onClick={() => setStatuss("Cancelled")}>
         Cancelled
       </Button>
-      <Button variant="contained" color="warning" onClick={() => setStatuss("In process")}>
+      <Button variant="contained" color="warning" onClick={() => setStatuss("Pending")}>
         Pending
       </Button>
       <Button variant="contained" color="success" onClick={() => setStatuss("Success")}>
@@ -116,6 +120,9 @@ useEffect(() => {
       </Button>
       <Button variant="contained" color="primary" onClick={() => setStatuss("")}>
         Show All
+      </Button>
+      <Button variant="contained" color="primary" onClick={() => setReqsort(!reqsort) }>
+        {reqsort  ? "Newest-Oldest" : "Oldest-Newest"}
       </Button>
     </Stack>
     <Box sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
@@ -129,7 +136,14 @@ useEffect(() => {
           {/* Email: {user.email} */}
         </Typography>
         {
-            user.request.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).map((req, index) => (
+            user.request.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).sort(
+              (a, b) =>
+              reqsort ?   new moment(b.requestTime).format("YYYYMMDD") - new moment(a.requestTime).format("YYYYMMDD") :  
+              new moment(a.requestTime).format("YYYYMMDD") - new moment(b.requestTime).format("YYYYMMDD")
+
+              
+            )
+            .map((req, index) => (
 <Card sx={{ maxWidth: 345,mt:5,mr:3}} key={index}>
 
 <ExpandMore
@@ -143,7 +157,7 @@ useEffect(() => {
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">
-    TimeStamp: {moment(req.RequestTime).format('LLLL')}
+    TimeStamp: {moment(req.requestTime).format('LLLL')}
   </Typography>
 </CardContent>
 

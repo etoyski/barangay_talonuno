@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useState } from 'react';
+import { LoadingButton } from '@mui/lab';
 const theme = createTheme({
     palette: {
       primary: {
@@ -283,7 +284,7 @@ export default function BarangayIDPreview({setActiveStep,formdata}) {
 >
       <Box>
       <Button  variant="contained" sx={{width:250, mr:2}} onClick= {()=> setActiveStep((currentState)=> currentState -1 )}> Back</Button>
-      <Button  variant="contained" sx={{width:250}}  type="submit"  onClick={handleSubmit}> Submit</Button>
+      <LoadingButton  variant="contained" sx={{width:250}}  type="submit"  onClick={handleSubmit}> Submit</LoadingButton>
       </Box>
       </Stack>
       

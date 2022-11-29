@@ -39,12 +39,15 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function viewBlotter() {
+export default function ViewBlotter() {
   const [expanded, setExpanded] = React.useState("");
  // const [report, setReport] = useState([])
   const [blotter, setBlotter] = useState([])
   const [statuss, setStatuss] = useState('')
+  const [sort,setSort] = useState([])
+  
 
+  const [blotsort,setBlotsort] = useState(false)
 const dispatch = useDispatch();
 const navigate = useNavigate()
 const getData = async () => {
@@ -58,8 +61,11 @@ const getData = async () => {
 
         console.log("data: ", res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") ) );
         console.log("data: ", res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ) );
-        setRequest( res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") )  );
-        setReport(res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ))
+        // setRequest( res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") )  );
+        // setReport(res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ))
+        setBlotter(res.data.blotlog.filter( (i) => i.email === localStorage.getItem("email")) )
+        setSort(res.data.sortreport.filter( (i) => i.email === localStorage.getItem("email")))
+        console.log("blotter",res.data.blotlog)
     } catch (error) {
         console.log(error);
     }
@@ -108,7 +114,7 @@ useEffect(() => {
       <Button variant="contained" color="error" onClick={() => setStatuss("Cancelled")}>
         Cancelled
       </Button>
-      <Button variant="contained" color="warning" onClick={() => setStatuss("In process")}>
+      <Button variant="contained" color="warning" onClick={() => setStatuss("Pending")}>
         Pending
       </Button>
       <Button variant="contained" color="success" onClick={() => setStatuss("Success")}>
@@ -117,32 +123,31 @@ useEffect(() => {
       <Button variant="contained" color="primary" onClick={() => setStatuss("")}>
         Show All
       </Button>
+
+      <Button variant="contained" color="primary" onClick={() =>setBlotsort(!blotsort)}>
+      {blotsort  ? "Newest-Oldest" : "Oldest-Newest"}
+      </Button>
     </Stack>
+    <Box sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
       <Grid
-        container
-        spacing={2}
-        
-        sx={{
-          pl:4,
-          borderTop: 'var(--Grid-borderWidth) solid',
-          borderLeft: 'var(--Grid-borderWidth) solid',
-          borderColor: 'divider',
-          '& > div': {
-            borderRight: 'var(--Grid-borderWidth) solid',
-            borderBottom: 'var(--Grid-borderWidth) solid',
-            borderColor: 'divider',
-          },
-        }}
+        container spacing={{ xs: 5, md: 5 }} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="flex-start "
       >
         
-      { request.map( (user,index) => (
+      { blotter.map( (user,index) => (
         <>
         <Typography variant="h6" color="black">
           {/* Email: {user.email} */}
         </Typography>
         {
-            user.request.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).map((req, index) => (
-<Card sx={{ maxWidth: 300,mt:5 }} key={index}>
+            user.blotter.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).sort(
+              (a, b) =>
+              blotsort ?   new moment(b.RequestTime).format("YYYYMMDD") - new moment(a.RequestTime).format("YYYYMMDD") :  
+              new moment(a.RequestTime).format("YYYYMMDD") - new moment(b.RequestTime).format("YYYYMMDD")
+
+              
+            )
+            .map((blot, index) => (
+<Card sx={{maxWidth: 345,mt:5,mr:3 }} key={index}>
 
 <ExpandMore
     expand={true}
@@ -155,39 +160,65 @@ useEffect(() => {
 <CardContent>
   
   <Typography variant="body2" color="text.secondary">
-    TimeStamp: {moment(req.RequestTime).format('LLLL')}
-  </Typography>
-</CardContent>
-<CardContent>
-  
-  <Typography variant="body2" color="text.secondary">
-    Name: {req.name}
+    TimeStamp: {moment(blot.RequestTime).format('LLLL')}
   </Typography>
 </CardContent>
 
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Address: {req.address}
+  Name of complainant: {blot.complainant}
+  </Typography>
+</CardContent>
+
+ <CardContent>
+  <Typography variant="body2" color="text.secondary">
+  Address: {blot.address}
   </Typography>
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Status:{req.phone}
+  Contact No: {blot.contact}
+  </Typography>
+</CardContent> 
+<Divider/> 
+
+<Typography> Details of Person to be blottered</Typography>
+ <CardContent>
+  <Typography variant="body2" color="text.secondary">
+  Firstname: {blot.complainedFirstname}
   </Typography>
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Report Type: {req.type}
+  Middlename: {blot.complainedMiddlename}
   </Typography>
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Purpose:{req.purpose}
+  Lastname: {blot.complainedLastname}
   </Typography>
 </CardContent>
 <CardContent>
   <Typography variant="body2" color="text.secondary">
-    Status:{req.process}
+  Address: {blot.complainedAddress}
+  </Typography>
+</CardContent>
+<CardContent>
+  <Typography variant="body2" color="text.secondary">
+  Age: {blot.complainedAge}
+  </Typography>
+</CardContent>
+<br/>
+<Divider/>
+<CardContent>
+  <Typography variant="body2" color="text.secondary">
+  Description: {blot.description}
+  </Typography>
+</CardContent>
+<Divider/>
+<CardContent>
+  <Typography variant="body2" color="text.secondary">
+  Status: {blot.process}
   </Typography>
 </CardContent>
 </Collapse>
@@ -206,7 +237,7 @@ useEffect(() => {
      
      
       </Grid>
-      
+      </Box>
     </Container>
     </Box>
     

@@ -94,21 +94,25 @@ useEffect(() => {
   <Container>
     {/* <BasicTimeline/> */}
   </Container>
-    <Box sx={{p:3, mr:10}} alignItems="flex-start">
+    <Box sx={{p:3, mr:10}} alignItems="flex-start" >
       <Container alignItems="center">
-       <Paper elevation={6} sx={{height:120}}>
+       <Paper elevation={6} sx={{p:2}}>
         <Typography variant='h5' sx={{ml:5}}> Activity Log</Typography>
         <Typography variant='body2' sx={{ml:5}}> View your recent activities</Typography>
-       <ButtonGroup
-      sx={{ml:40, mt:1, }}
-      variant="contained"
-      aria-label="Disabled elevation buttons"
-    >
-      <Button  onClick={() => navigate('/viewreports')}to="/viewreports">View Reports</Button>
-      <Button onClick={() => navigate('/viewrequest')}to="/viewrequests">View Requests</Button>
-      <Button onClick={() => navigate('/viewrequest')}to="/viewrequests">View Blotters</Button>
-    </ButtonGroup>
-
+        <Stack
+        direction={{sm:"column",md:"row"}}
+        justifyContent="center"
+        alignItems="center"
+        spacing={0.5}
+        flexWrap="wrap"
+        mt={2}
+        >
+       
+      <Button variant="contained" onClick={() => navigate('/viewreports')}to="/viewreports">View Reports</Button>
+      <Button variant="contained" onClick={() => navigate('/viewrequest')}to="/viewrequests">View Requests</Button>
+      <Button variant="contained" onClick={() => navigate('/viewblotter')}to="/viewblotter">View Blotters</Button>
+    
+</Stack>
        </Paper>
        
       </Container>

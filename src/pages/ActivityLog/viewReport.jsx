@@ -44,6 +44,14 @@ export default function ViewReports() {
   const [report, setReport] = useState([])
   const [request, setRequest] = useState([])
   const [statuss, setStatuss] = useState('')
+  const [sort,setSort] = useState([])
+
+  const [repsort,setRepsort] = useState(false)
+
+  const [list,setList] = useState({ 
+    
+  })
+
 const dispatch = useDispatch();
 const navigate = useNavigate()
 const getData = async () => {
@@ -55,10 +63,18 @@ const getData = async () => {
           }
         })
 
-        console.log("data: ", res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") ) );
+        console.log("repsort: ", res.data.sortreport);
         console.log("data: ", res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ) );
         setRequest( res.data.reqlog.filter( (i) => i.email === localStorage.getItem("email") )  );
         setReport(res.data.replog.filter( (i) => i.email === localStorage.getItem("email") ))
+        setSort(res.data.sortreport.filter( (i) => i.email === localStorage.getItem("email")))
+        setList(prev => {
+          return{
+            report: res.data.replog.filter( (i) => i.email === localStorage.getItem("email")),
+          repsort: res.data.sortreport.filter( (i) => i.email === localStorage.getItem("email")),
+          }
+        } )
+        
     } catch (error) {
         console.log(error);
     }
@@ -130,6 +146,9 @@ const handleFilter = async () => {
       <Button variant="contained" color="primary" onClick={() => setStatuss("")}>
         Show All
       </Button>
+      <Button variant="contained" color="primary" onClick={() => setRepsort(!repsort) }>
+        {repsort  ? "Newest-Oldest" : "Oldest-Newest"}
+      </Button>
     </Stack>
     <Box sx={{ flexGrow: 1, p:5,  }} alignItems="flex-start">
       <Grid
@@ -144,7 +163,14 @@ const handleFilter = async () => {
           Email: {user.email}
         </Typography> */}
         {
-            user.reports.filter((item) => { return statuss === '' ? item : item.process.includes(statuss);}).map((rep, index) => (
+            user.reports.filter((item) => { return statuss === '' ? item : item.process.includes(statuss)}).sort(
+              (a, b) =>
+              repsort ?   new moment(b.ReportTime).format("YYYYMMDD") - new moment(a.ReportTime).format("YYYYMMDD") :  
+              new moment(a.ReportTime).format("YYYYMMDD") - new moment(b.ReportTime).format("YYYYMMDD")
+
+              
+            )
+            .map((rep, index) => (
            
 <Card sx={{ maxWidth: 345,mt:5,mr:3 }} key={index}>
 

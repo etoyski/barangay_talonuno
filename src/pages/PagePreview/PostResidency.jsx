@@ -6,6 +6,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import brgylogo from "../../assets/brgylogo.jpg";
 
 export default function PostResidency({setActiveStep,formdata}){
     const [loading, setLoading] = useState(false);
@@ -91,13 +92,16 @@ export default function PostResidency({setActiveStep,formdata}){
     return(
     <Container maxWidth="md"  display="flex"
     justifyContent="center"
-    alignItems="center">
+    alignItems="center"
+    >
         <Box 
        
         component={Paper} 
         elevation={5} 
-        sx={{height:1000,width:780,mb:2,mt:2}}
+        sx={{height:1000,width:780,mb:2,mt:2, backgroundImage: `url(${brgylogo})`,backgroundSize: 'contain',backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',opacity:0.6 }}
         > 
+       
         <br/>
         <br/>
         <br/>

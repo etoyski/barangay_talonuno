@@ -36,7 +36,7 @@ import { Settings } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { login, validateToken } from "../../redux/userSlice";
 import Notif from "../Notification/NotifBadge";
-
+import brgylogo from "../../assets/brgylogo.jpg"
 function Navbar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -104,11 +104,19 @@ function Navbar() {
                     <NavbarContainer>
                         {isloggedin ? (
                             <NavLogo to="/mainpage" onClick={closeMobileMenu}>
-                                Talon Uno
+                                
+                              <Avatar
+                                src={brgylogo}
+                                
+                                 />
                             </NavLogo>
                         ) : (
                             <NavLogo to="/" onClick={closeMobileMenu}>
-                                Talon Uno
+                              <Avatar  
+                                src={brgylogo}
+                                // sx={{width:80,height:80}}
+
+                               />
                             </NavLogo>
                         )}
                         <MobileIcon onClick={handleClick}>

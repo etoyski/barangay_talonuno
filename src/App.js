@@ -47,6 +47,8 @@ import CertificateofIndigency from "./pages/PagePreview/Indigency";
 import PostResidency from "./pages/PagePreview/PostResidency";
 import LateRegistration from "./pages/PagePreview/LateRegistration";
 import CertificateofNoIncome from "./pages/PagePreview/CertificateofNoIncome";
+import ResetPassword from "./pages/Login/ResetPassword";
+import ViewBlotter from "./pages/ActivityLog/viewBlotter";
 function App() {
     
     // const [name, setName] = useState('etoy');
@@ -90,13 +92,14 @@ function App() {
                     </Route>
                     <Route path="/previewcertificateofnoincome" element={<CertificateofNoIncome />} />
 
-                    <Route path="/previewcertificateoflateregistration" element={<LateRegistration />} />
-                    <Route path="/previewcertificateofpostresidency" element={<PostResidency />} />
-                    <Route path="/previewcertificateofindigency" element={<CertificateofIndigency />} />
-                    <Route path="/previewcertificateofincome" element={<CertificateofIncome />} />
+                    <Route path="/preview=certificateoflateregistration" element={<LateRegistration />} />
+                    <Route path="/preview=certificateofpostresidency" element={<PostResidency />} />
+                    <Route path="/preview=certificateofindigency" element={<CertificateofIndigency />} />
+                    <Route path="/preview=certificateofincome" element={<CertificateofIncome />} />
                     <Route path="/preview=barangayresidency" element={<BarangayResidency />} />
                     <Route path="/previewbarangayID" element={<BarangayIDPreview />} />
                     <Route path="/home" element={<Home />} />
+                    <Route path="/reset=password/:token" element={<ResetPassword />} />
                     <Route path="/gps" element={<GPS2 />} />
                     <Route path="/map" element={<GPS />} />
                     <Route path="/viewrequest" element={<ViewRequest />} />
@@ -109,6 +112,7 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/viewreports" element={<ViewReports />} />
+                    <Route path="/viewblotter" element={<ViewBlotter />} />
                     <Route path="/activitylog" element={<AcitivityLog />} />
                     <Route path="/tabs" element={<VerticalTabs />} />
                     <Route path="/confirm" element={<ConfirmEmail />} />
