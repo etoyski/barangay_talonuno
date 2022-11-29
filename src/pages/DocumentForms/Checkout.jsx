@@ -104,8 +104,17 @@ export default function Checkout() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <VerticalTabs/>
-      <Container  maxWidth="lg" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+      <Container  maxWidth="xl" sx={{ mb: 4 }}>
+      <Box sx={{ mt: 1,  }} display="flex"
+  justifyContent="center"
+  alignItems="center">
+        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } , width:{xs:430, md:1000}}}>
+        <Box 
+        
+        sx={{
+        
+        }}
+        >
           <Typography component="h1" variant="h4" align="center">
             Request Documents
           </Typography>
@@ -150,8 +159,9 @@ export default function Checkout() {
               </Box>
             </React.Fragment>
           )} */}
+          </Box>
         </Paper>
-        
+        </Box>
       </Container>
     </ThemeProvider>
   );

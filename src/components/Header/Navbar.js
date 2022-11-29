@@ -107,16 +107,17 @@ function Navbar() {
                                 
                               <Avatar
                                 src={brgylogo}
-                                
+                                sx={{width:75,height:75,mr:2}}
                                  />
+                                 Talon Uno
                             </NavLogo>
                         ) : (
                             <NavLogo to="/" onClick={closeMobileMenu}>
                               <Avatar  
                                 src={brgylogo}
-                                // sx={{width:80,height:80}}
+                                sx={{width:75,height:75,mr:2}}
 
-                               />
+                               /> Talon Uno
                             </NavLogo>
                         )}
                         <MobileIcon onClick={handleClick}>
