@@ -426,13 +426,13 @@ const handleSUbmitReset = async(e) => {
                 </Link>
               </Grid>
             </Grid>
-            <Grid container justifyContent="row-reverse">
+            {/* <Grid container justifyContent="row-reverse">
               <Grid item>
                 <Button variant="text" onClick={handleClickOpen} >
                   Forgot password?
                 </Button>
               </Grid>
-            </Grid>
+            </Grid> */}
               </Grid>
           </CardContent>
         </Card>
