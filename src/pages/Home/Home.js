@@ -20,7 +20,7 @@ import LightSpeed from 'react-reveal/LightSpeed';
 import Second from "../../assets/brgyhall.jpg";
 import Slide from 'react-reveal/Slide';
 import GPS from '../../components/map/maps';
-
+import OfficialPic from '../../assets/officials.jpg'
 const iframe='<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBrgyTalon1&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
 function Iframe(props) {
   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe?props.iframe:""}} />);
@@ -324,7 +324,7 @@ const Hero = () => {
         <CardMedia
           component="img"
           height="160"
-          image="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/308017033_412787527656673_6269358637044388010_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=e3f864&_nc_ohc=8zYhfkdVerUAX8HOn-g&_nc_ht=scontent.fmnl17-3.fna&oh=00_AT8-O2n4c4yGEy9t1PyVMgcQwVPUdcbd3CbzAD-91UYmBQ&oe=633D0FFD"
+          image= {OfficialPic}
           alt="bg"
         />
         <CardContent onClick={() => navigate('/about')}to="/about">

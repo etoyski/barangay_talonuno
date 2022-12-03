@@ -59,10 +59,19 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
   // const [value3, setValue3] = React.useState(docs[0]);
     //console.log("sd")
   const navigate = useNavigate();
+  const currentdate = new Date();
+  const datetime =
+    "0" +
+    currentdate.getFullYear() +
+    (currentdate.getMonth() + 1) +
+    currentdate.getDate() +
+    currentdate.getHours() +
+    currentdate.getMinutes() +
+    currentdate.getSeconds();
     const handleSubmit = (e) => {
       e.preventDefault();
       setActiveStep((currentState)=> currentState +1 );
-      console.log('pak')
+      // console.log('test')
       setFormdata(( currentState ) => {
         let data = { 
           irbi, 
@@ -166,10 +175,12 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
           <Typography> 
               IRBI NO. : 
               <TextField 
-                required
+                disabled
                 name='irbi'
                 onChange={(e) => setIrbi(e.target.value)}
                 value={irbi}
+                //defaultValue={datetime}
+                placeholder={datetime}
                 variant="standard"
                 type="number"
               />

@@ -115,9 +115,13 @@ useEffect(() => {
       <Button variant="contained" color="warning" onClick={() => setStatuss("Pending")}>
         Pending
       </Button>
+      <Button variant="contained" sx={{background: "#fbc02d"}} onClick={() => setStatuss("for Pickup")}>
+      Ready for Pickup
+      </Button>
       <Button variant="contained" color="success" onClick={() => setStatuss("Success")}>
         Success
       </Button>
+      
       <Button variant="contained" color="primary" onClick={() => setStatuss("")}>
         Show All
       </Button>

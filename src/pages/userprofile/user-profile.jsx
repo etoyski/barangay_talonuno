@@ -284,7 +284,7 @@ const UserProfile = () => {
           title: 'User Edited'
         });
         localStorage.setItem('image',res.data.image)
-        localStorage.setItem('contact',res.data.contact)
+        localStorage.setItem('contact',res.data.contact);
         console.log(res.data);
         navigate("/user-profile");
         

@@ -45,7 +45,7 @@ const options = {
 //45bb997d7amshc3ceaf05169f6d9p105f4ejsnd6909eaa7a51 -red
 
 axios.request(options).then(function (response) {
-	console.log(response.data.results[0]);
+	//console.log(response.data.results[0]);
     setuserLoc(response.data.results[0].address);
     localStorage.setItem('gps', response.data.results[0].address)
 }).catch(function (error) {
