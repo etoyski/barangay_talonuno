@@ -110,7 +110,7 @@ useEffect(() => {
        
       <Button variant="contained" onClick={() => navigate('/viewreports')}to="/viewreports">View Reports</Button>
       <Button variant="contained" onClick={() => navigate('/viewrequest')}to="/viewrequests">View Requests</Button>
-      <Button variant="contained" onClick={() => navigate('/viewblotter')}to="/viewblotter">View Blotters</Button>
+      {/* <Button variant="contained" onClick={() => navigate('/viewblotter')}to="/viewblotter">View Blotters</Button> */}
     
 </Stack>
        </Paper>
