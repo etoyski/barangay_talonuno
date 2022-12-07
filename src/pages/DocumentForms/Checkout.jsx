@@ -28,34 +28,35 @@ import PostResidency from '../PagePreview/PostResidency';
 
 
 
-const steps = ['Resident Information', 'Request details', 'Review your request', 'Preview'];
+const steps = ['Request details', 'Resident Information', 'Review your request', 'Preview'];
 
 function getStepContent(step,setActiveStep,setFormdata,formdata,reqtype,setReqtype) {
   switch (step) {
     case 0:
-      return <BarangayForm setActiveStep={setActiveStep} setFormdata={setFormdata} />;
-    case 1:
       return <RequestType setActiveStep={setActiveStep} setFormdata={setFormdata} />;
+   
+    case 1:
+      return <BarangayForm setActiveStep={setActiveStep} setFormdata={setFormdata} />;
     case 2:
       return <Review setActiveStep={setActiveStep} formdata={formdata} />;
-      case 3:
-        {
-          if (formdata.requesttype === "Barangay ID"){
-            return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata} />;
-          }else if (formdata.requesttype == "Barangay Residency" ){
-            return <BarangayResidency setActiveStep={setActiveStep} formdata={formdata}  />;
-          }else if (formdata.requesttype == "Certificate of Income"){
-            return <CertificateofIncome setActiveStep={setActiveStep} formdata={formdata}  />;
-          }else if (formdata.requesttype == "Certificate of No Income" ){
-            return <CertificateofNoIncome setActiveStep={setActiveStep} formdata={formdata}  />;
-          }else if (formdata.requesttype == "Indigency"){
-            return <CertificateofIndigency setActiveStep={setActiveStep} formdata={formdata}  />;
-          }else if (formdata.requesttype == "Late Registration"){
-            return <LateRegistration setActiveStep={setActiveStep} formdata={formdata}  />;
-          }else if (formdata.requesttype == "Post Residency"){
-            return <PostResidency setActiveStep={setActiveStep} formdata={formdata}  />;
-          }
-        }
+      // case 3:
+      //   {
+      //     if (formdata.requesttype === "Barangay ID"){
+      //       return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata} />;
+      //     }else if (formdata.requesttype == "Barangay Residency" ){
+      //       return <BarangayResidency setActiveStep={setActiveStep} formdata={formdata}  />;
+      //     }else if (formdata.requesttype == "Certificate of Income"){
+      //       return <CertificateofIncome setActiveStep={setActiveStep} formdata={formdata}  />;
+      //     }else if (formdata.requesttype == "Certificate of No Income" ){
+      //       return <CertificateofNoIncome setActiveStep={setActiveStep} formdata={formdata}  />;
+      //     }else if (formdata.requesttype == "Indigency"){
+      //       return <CertificateofIndigency setActiveStep={setActiveStep} formdata={formdata}  />;
+      //     }else if (formdata.requesttype == "Late Registration"){
+      //       return <LateRegistration setActiveStep={setActiveStep} formdata={formdata}  />;
+      //     }else if (formdata.requesttype == "Post Residency"){
+      //       return <PostResidency setActiveStep={setActiveStep} formdata={formdata}  />;
+      //     }
+      //   }
 
         // if ( reqtype == "Barangay ID"){
         //   return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata} />;
@@ -63,8 +64,8 @@ function getStepContent(step,setActiveStep,setFormdata,formdata,reqtype,setReqty
         //   return <BarangayResidency setActiveStep={setActiveStep} formdata={formdata}  />;
         // }
        
-      // case 3:
-      //   return <BarangayIDPreview setActiveStep={setActiveStep} formdata={formdata}/>;
+      case 3:
+        return <Review setActiveStep={setActiveStep} formdata={formdata}/>;
     default:
       throw new Error('Unknown step');
   }

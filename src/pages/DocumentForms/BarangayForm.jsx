@@ -80,18 +80,18 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
           province, 
           barangay, 
           date, 
-          precintno,
+          // precintno,
          
           contactno, 
           middlename,
-          nickname,
+          //nickname,
           age, 
           value, 
           dob, 
           value2, 
           birthplace, 
-          height, 
-          weight, 
+          //height, 
+          //weight, 
           lastname, 
           firstname,
           presentaddress,
@@ -214,10 +214,10 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
               />
             </Typography>
           </Grid>
-          <Grid item  xs={12} sm={6} >
+          {/* <Grid item  xs={12} sm={6} >
           
               <TextField 
-                    required
+                    
                     sx={{ml:2,mb:1}}
                     type="text" 
                     label="Precint No." 
@@ -229,7 +229,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
                     //onChange={handleChange} 
            />          
                  
-          </Grid>
+          </Grid> */}
                     <Grid item  xs={12} sm={6}>
             <Typography> 
               Province : 
@@ -346,7 +346,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
               />
               
                 </Grid>
-                <Grid  item  xs={12} sm={6} >
+                {/* <Grid  item  xs={12} sm={6} >
                 <TextField
                 margin="normal"
                 error={error}
@@ -361,7 +361,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
                 
               />
               
-                </Grid>
+                </Grid> */}
                 <Grid  item  xs={12} sm={6} >
                 <TextField
                 margin="normal"
@@ -447,7 +447,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
               />
               
                 </Grid>
-                <Grid item  xs={12} sm={6}>
+                {/* <Grid item  xs={12} sm={6}>
                   <TextField 
                    margin="normal"
                    error={error}
@@ -488,7 +488,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
                   }}
                   type="number"
                   />
-                </Grid>
+                </Grid> */}
                 <Grid  item   xs={12} sm={6} >
                 <TextField
                 margin="normal"
@@ -528,11 +528,11 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
                 <br/>
                 <Divider sx={{borderBottomWidth: 10}}/>
                 <Grid container spacing={1}>
-                <Grid  item   xs={12} sm={6} >
+                <Grid  item   xs={12}  >
                 <Typography> Contact Person Incase of Emergency: </Typography>
 
                 </Grid>
-                <Grid  item   xs={12} sm={6}  >
+                <Grid  item   xs={12}  >
                 <TextField
                 margin="normal"
                 error={error}
@@ -548,7 +548,7 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
               />
               
                 </Grid>
-                <Grid  item   xs={12} sm={6} >
+                <Grid  item   xs={12}  >
                 <TextField
                 margin="normal"
                 error={error}
@@ -564,25 +564,10 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
               />
               
                 </Grid>
-                <Grid  item   xs={12} sm={6}>
-                <TextField
-                required
-                margin="normal"
-                error={error}
-                fullWidth
-                onChange={({ target }) => setEmergencyaddress(target.value)}
-                value={emergencyaddress} 
-                name="Address"
-                label="Address"
-                id="Address"
-                autoComplete="Address"
-             
-              />
-              
-                </Grid>
+                
                 </Grid>
                 <Grid container spacing={1}>
-                <Grid  item  xs={12} sm={6} >
+                <Grid  item  xs={12}  >
                 <TextField
                 required
                 margin="normal"
@@ -598,7 +583,23 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
               />
               
                 </Grid>
-                <Grid  item  xs={12} sm={6} >
+                <Grid  item   xs={12}   >
+                <TextField
+                required
+                margin="normal"
+                error={error}
+                fullWidth
+                onChange={({ target }) => setEmergencyaddress(target.value)}
+                value={emergencyaddress} 
+                name="Address"
+                label="Address"
+                id="Address"
+                autoComplete="Address"
+             
+              />
+              
+                </Grid> 
+                {/* <Grid  item  xs={12} sm={6} >
                 <TextField
                 
                 margin="normal"
@@ -613,8 +614,8 @@ const BarangayForm = ({step,setActiveStep,setFormdata}) => {
                 helperText="*If only applicable"
                
               />
-              
-                </Grid>
+                
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                 <Button 
              loading = {loading}

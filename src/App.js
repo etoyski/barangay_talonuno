@@ -49,6 +49,7 @@ import LateRegistration from "./pages/PagePreview/LateRegistration";
 import CertificateofNoIncome from "./pages/PagePreview/CertificateofNoIncome";
 import ResetPassword from "./pages/Login/ResetPassword";
 import ViewBlotter from "./pages/ActivityLog/viewBlotter";
+import CollapsibleTable from "./pages/ActivityLog/Sample";
 function App() {
     
     // const [name, setName] = useState('etoy');
@@ -91,6 +92,7 @@ function App() {
                         {" "}
                     </Route>
                     <Route path="/previewcertificateofnoincome" element={<CertificateofNoIncome />} />
+                    <Route path="/sample" element={<CollapsibleTable />} />
 
                     <Route path="/preview=certificateoflateregistration" element={<LateRegistration />} />
                     <Route path="/preview=certificateofpostresidency" element={<PostResidency />} />

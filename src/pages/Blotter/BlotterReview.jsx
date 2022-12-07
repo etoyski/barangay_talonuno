@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { Box, Card, CardContent, Container, Divider, Paper } from '@mui/material';
 import axios from 'axios';
 import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 
 // brgydata: formdata.brgyform

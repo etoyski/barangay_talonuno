@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-import VerticalTabs from '../../components/Tabs/Tabs';
+
 import { useState } from 'react';
 import BlotterForm from './BlotterForm';
 import BlotterComplainForm from './BlotterComplain';
@@ -68,7 +68,7 @@ export default function BLotterCheckout() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <VerticalTabs/>
+      
       <Container  maxWidth="lg" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">

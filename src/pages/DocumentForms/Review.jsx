@@ -31,19 +31,19 @@ export default function Review({setActiveStep,formdata}) {
            city: formdata.brgyform.city,
            brgy: formdata.brgyform.barangay,
            date: formdata.brgyform.date,
-           precint: formdata.brgyform.precintno,
+          //  precint: formdata.brgyform.precintno,
            contact: formdata.brgyform.contactno,
            lastname: formdata.brgyform.lastname,
            firstname: formdata.brgyform.firstname,
            middlename: formdata.brgyform.middlename,
-           nickname: formdata.brgyform.nickname,
+          //  nickname: formdata.brgyform.nickname,
            age: formdata.brgyform.age,
            gender: formdata.brgyform.value,
            birthday: formdata.brgyform.birthday,
            status: formdata.brgyform.value2,
            birthplace: formdata.brgyform.birthplace,
-           height: formdata.brgyform.height,
-           weight: formdata.brgyform.weight,
+          //  height: formdata.brgyform.height,
+          //  weight: formdata.brgyform.weight,
            presentadd: formdata.brgyform.presentaddress,
            provinceadd: formdata.brgyform.provincialaddress,
            contactname: formdata.brgyform.emergencyname,
@@ -70,7 +70,7 @@ export default function Review({setActiveStep,formdata}) {
             console.log(res.data.email);
             //localStorage.setItem('T', res.data.token);
            //navigate('/report');
-        navigate('/reqdoc')
+           navigate('/mainpage');
     }catch(error) {
       setError(true)
       swal({
@@ -146,12 +146,12 @@ const handleSubmit = (e) => {
              
             </Typography>
           </Grid>
-          <Grid item  xs={12} sm={6} >
+          {/* <Grid item  xs={12} sm={6} >
             
               <Typography>Precint no: {formdata.brgyform.precintno}</Typography>
                      
                  
-          </Grid>
+          </Grid> */}
                     <Grid item  xs={12} sm={6}>
             <Typography> 
               
@@ -202,11 +202,11 @@ const handleSubmit = (e) => {
              
               
                 </Grid>
-                <Grid  item  xs={12} sm={6} >
+                {/* <Grid  item  xs={12} sm={6} >
                 <Typography>Nickname: {formdata.brgyform.nickname}</Typography>
               
               
-                </Grid>
+                </Grid> */}
                 <Grid  item  xs={12} sm={6} >
                 <Typography>Age: {formdata.brgyform.age}</Typography>
             
@@ -234,7 +234,7 @@ const handleSubmit = (e) => {
              
               
                 </Grid>
-                <Grid item  xs={12} sm={6}>
+                {/* <Grid item  xs={12} sm={6}>
                   <Typography>Height: {formdata.brgyform.height} cm</Typography>
                    
                   
@@ -244,7 +244,7 @@ const handleSubmit = (e) => {
                   <Typography>Weight: {formdata.brgyform.weight} kg</Typography>
              
                  
-                </Grid>
+                </Grid> */}
                 <Grid  item   xs={12} sm={6} >
                 <Typography>Present Address{formdata.brgyform.presentaddress}</Typography>
               
@@ -299,13 +299,13 @@ const handleSubmit = (e) => {
               
                 </Grid>
                 
-                <Grid  item  xs={12} sm={6} >
+                {/* <Grid  item  xs={12} sm={6} >
                 <Typography> res: {formdata.brgyform.emergencyres}</Typography>
                
                
              
               
-                </Grid>
+                </Grid> */}
                
                 <Grid container justifyContent="flex-end">
              

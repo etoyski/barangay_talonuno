@@ -38,6 +38,7 @@ export default function Report() {
   const dispatch = useDispatch();
   const [isloggedin, setisloggedin] = useState(false);
   const navigate = useNavigate();
+  const [maddress,setMaddress] = useState('');
   const [profileImage, setProfileImage] = useState(null);
   useEffect(() => {
     if (localStorage.getItem("T") !== undefined) {
@@ -107,7 +108,7 @@ const handleChange = (e) => {
            // type: inputs.type,
             name: `${sessionStorage.getItem('user')}`,
             address: `${localStorage.getItem('address')}`,
-            addressdetail: `${localStorage.getItem('gps')}`,
+            addressdetail: `${localStorage.getItem('gps')}` || maddress,
             report: value,
             Image: profileImage,
             
@@ -124,8 +125,9 @@ const handleChange = (e) => {
         });
           
             console.log(res.data.token);
+            
            // localStorage.setItem('T', res.data.token);
-           //navigate('/report');
+           navigate('/mainpage');
            
           localStorage.setItem('reportImage',res.data.image)
           console.log('repimg',res.data.image)
@@ -235,11 +237,12 @@ const handleSubmit = (e) => {
       </Grid>
       <Grid item xs={12}>
         <TextField
-          disabled
+          
           id="addressdetail"
           name="addressdetail"
-          onChange={handleChange} 
-          value={localStorage.getItem('gps')}
+          placeholder={localStorage.getItem('gps')}
+          onChange={(e) => setMaddress(e.target.value)}
+          value={maddress || `${localStorage.getItem('gps')}`}
           label="addressdetail"
           fullWidth
           autoComplete="Your address detail"
